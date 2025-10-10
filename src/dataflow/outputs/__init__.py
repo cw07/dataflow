@@ -1,1 +1,1 @@
-from .allocator import output_allocator
+from .router import output_router

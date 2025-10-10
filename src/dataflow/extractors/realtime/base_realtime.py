@@ -16,17 +16,17 @@ class BaseRealtimeExtractor(BaseExtractor):
         self.error_handler = handler
 
     @abstractmethod
-    def subscribe(self, symbols: list) -> bool:
+    def subscribe(self, symbols: list):
         """Subscribe to realtime data for given symbols"""
         pass
 
     @abstractmethod
-    def resubscribe(self, symbols: Optional[list] = None) -> bool:
+    def resubscribe(self, symbols: Optional[list] = None):
         """Resubscribe to realtime data for given symbols"""
         pass
 
     @abstractmethod
-    def unsubscribe(self, symbols: Optional[list] = None) -> bool:
+    def unsubscribe(self, symbols: Optional[list] = None):
         """Unsubscribe from symbols"""
         pass
 

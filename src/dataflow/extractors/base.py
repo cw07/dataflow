@@ -13,17 +13,17 @@ class BaseExtractor(ABC):
         self._is_connected = False
 
     @abstractmethod
-    def connect(self) -> bool:
+    def connect(self):
         """Initialize connection/session"""
         pass
 
     @abstractmethod
-    def disconnect(self) -> bool:
+    def disconnect(self):
         """Close connection/session"""
         pass
 
     @abstractmethod
-    def validate_config(self) -> bool:
+    def validate_config(self):
         """Validate configuration parameters"""
         pass
 

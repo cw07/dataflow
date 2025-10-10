@@ -7,7 +7,7 @@ from datacore.models.mktdata.outputs import DataOutput
 from datacore.models.mktdata.realtime import RealtimeSchema
 
 from .base_realtime import BaseRealtimeExtractor
-from ...outputs import output_allocator
+from ...outputs import output_router
 
 logger = logging.getLogger(__name__)
 
@@ -43,10 +43,10 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
         except Exception as e:
             logger.error(e)
 
-    def disconnect(self) -> bool:
+    def disconnect(self):
         pass
 
-    def subscribe(self, symbols: list) -> None:
+    def subscribe(self, symbols: list):
         self.db_client.subscribe(
             dataset=self.config["dataset"],
             schema=DatabentoSchemaMap[self.config["realtime_schema"]],
@@ -54,10 +54,10 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
             symbols=symbols
         )
 
-    def resubscribe(self, symbols: Optional[list] = None) -> bool:
+    def resubscribe(self, symbols: Optional[list] = None):
         pass
 
-    def unsubscribe(self, symbols: Optional[list] = None) -> bool:
+    def unsubscribe(self, symbols: Optional[list] = None):
         pass
 
     def start_streaming(self):
@@ -71,4 +71,4 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
 
     def set_handler(self) -> Callable:
         output = self.config["output"]
-        return partial(output_allocator.allocate, output=output, config=self.config)
+        return partial(output_router.route, output=output, config=self.config)

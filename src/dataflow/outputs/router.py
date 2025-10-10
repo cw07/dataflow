@@ -5,7 +5,7 @@ from .file.file_manager import FileManager
 from .redis.redis_manager import RedisManager
 
 
-class OutputAllocator:
+class OutputRouter:
     _instance = None
     _initialized = False
 
@@ -15,8 +15,8 @@ class OutputAllocator:
         return cls._instance
 
     def __init__(self):
-        if not OutputAllocator._initialized:
-            OutputAllocator._initialized = True
+        if not OutputRouter._initialized:
+            OutputRouter._initialized = True
             db_manager = DatabaseManager()
             file_manager = FileManager()
             redis_manager = RedisManager()
@@ -37,10 +37,10 @@ class OutputAllocator:
         return message
 
 
-    def allocate(self, message, output: DataOutput, config):
+    def route(self, message, output: DataOutput, config):
         decorated_message = self.decorate(message, output, config)
         output_model = self.outputs[output]
         output_model.save(decorated_message, config)
 
 
-output_allocator = OutputAllocator()
+output_router = OutputRouter()
