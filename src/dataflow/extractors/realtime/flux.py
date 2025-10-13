@@ -1,8 +1,10 @@
+import os
 from functools import partial
 from typing import Any, Optional
 
-from ...extractors.realtime.base_realtime import BaseRealtimeExtractor
 from ...outputs import output_router
+from ...utils.loop_control import RealTimeLoopControl
+from ...extractors.realtime.base_realtime import BaseRealtimeExtractor
 
 
 class FluxRealtimeExtractor(BaseRealtimeExtractor):
@@ -32,6 +34,7 @@ class FluxRealtimeExtractor(BaseRealtimeExtractor):
     def unsubscribe(self, symbols: Optional[list] = None):
         pass
 
+    @RealTimeLoopControl(start=os.environ["EXTRACT_START_TIME"], end=os.environ["EXTRACT_END_TIME"])
     def start_extract(self):
         pass
 

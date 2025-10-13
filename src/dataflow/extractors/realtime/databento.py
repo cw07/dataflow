@@ -1,3 +1,4 @@
+import os
 import logging
 import databento as db
 from functools import partial
@@ -6,8 +7,10 @@ from typing import Callable, Dict, Any, Optional
 from datacore.models.mktdata.outputs import DataOutput
 from datacore.models.mktdata.realtime import RealtimeSchema
 
-from .base_realtime import BaseRealtimeExtractor
 from ...outputs import output_router
+from .base_realtime import BaseRealtimeExtractor
+from ...utils.loop_control import RealTimeLoopControl
+
 
 logger = logging.getLogger(__name__)
 
