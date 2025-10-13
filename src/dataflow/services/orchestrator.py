@@ -12,7 +12,7 @@ from ..outputs.file.file_manager import FileManager
 from ..outputs.redis.redis_manager import RedisManager
 
 # Import extractors
-from ..extractors.realtime.databento import DatabentoExtractor
+from ..extractors.realtime.databento import DatabentoRealtimeExtractor
 from ..extractors.base import BaseExtractor
 
 logger = logging.getLogger(__name__)
@@ -22,7 +22,7 @@ class ExtractorFactory:
     """Factory class to create extractor instances based on configuration"""
     
     _extractor_registry = {
-        'databento': DatabentoExtractor,
+        'databento': DatabentoRealtimeExtractor,
         # Add other extractors here as they are implemented
         # 'polygon': PolygonExtractor,
         # 'yfinance': YFinanceExtractor,
@@ -208,13 +208,12 @@ class ServiceGroup:
 class ServiceOrchestrator:
     """Orchestrates data extraction services based on time series configurations"""
 
-    def __init__(self, config_file_path: str):
-        self.config_manager = TimeSeriesConfigManager(config_file_path)
+    def __init__(self, service_type: str, time_series_config: list[TimeSeriesConfig]):
+        self.service_type = service_type
+        self.time_series_config = time_series_config
         self.service_groups: Dict[Tuple[str, str], ServiceGroup] = {}
         self._initialized = False
         self._running = False
-        
-        logger.info(f"ServiceOrchestrator initialized with config: {config_file_path}")
 
     def initialize_services(self):
         """Initialize all services based on time series configurations"""
@@ -340,8 +339,7 @@ class ServiceOrchestrator:
         
         logger.info("Configuration reloaded successfully")
 
-    def run_service(self, service_id: str, series_id: str, extractor_type: str, 
-                   destination: str, **kwargs) -> bool:
+    def run_services(self) -> bool:
         """Run a single service manually (for testing or one-off execution)"""
         try:
             # Create a temporary time series config
@@ -396,6 +394,6 @@ class ServiceOrchestrator:
         self.start_services()
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, exc_type, exc_val, traceback):
         """Context manager exit"""
         self.stop_services()

@@ -19,7 +19,8 @@ dependencies = [
     "pydantic-settings",
     "pyyaml",
     "pyodbc",
-    "databento"
+    "databento",
+    "tradetools"
 ]
 
 [tool.setuptools.packages.find]
