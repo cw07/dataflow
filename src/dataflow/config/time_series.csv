@@ -203,4 +203,5 @@ service_id,series_id,series_type,symbol,venue,data_schema,data_source,destinatio
 202,fut_XB.10_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
 203,fut_XB.11_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
 204,fut_XB.12_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-205,daily_swap_DDB_trade_flux,daily.swap,DDB,OTC,trade,flux,redis1,realtime,,{},1
+205,daily_swap_DDB_trade_flux,daily.swap,DDB,OTC,trade,flux,redis1,realtime,DDB Swap,{},1
+206,fut.contract_SI.1_daily_various,fut.contract,SI,CME,daily,various,database1,historical,Future Contract Mapping,{},1
