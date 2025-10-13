@@ -20,11 +20,12 @@ dependencies = [
     "pyyaml",
     "pyodbc",
     "databento",
-    "tradetools"
+    "tradetools",
+    "pandas"
 ]
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-datacore = ["config/*.yaml"] 
+datacore = ["config/specs/*.yaml"]

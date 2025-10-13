@@ -18,11 +18,11 @@ DatabentoSchemaMap = {
 
 class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
 
-    VENDOR = "databento"
+    vendor = "databento"
 
     def __init__(self, config: Dict[str, Any]):
         super().__init__(config)
-        self.db_client = None
+        self.dbento_client = None
         self.error_handler = None
 
     def validate_config(self) -> None:
@@ -38,7 +38,7 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     def connect(self):
         api_key = self.config.get("api_key")
         try:
-            self.db_client = db.Live(key=api_key)
+            self.dbento_client = db.Live(key=api_key)
             self._is_connected = True
         except Exception as e:
             logger.error(e)
@@ -47,7 +47,7 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
         pass
 
     def subscribe(self, symbols: list):
-        self.db_client.subscribe(
+        self.dbento_client.subscribe(
             dataset=self.config["dataset"],
             schema=DatabentoSchemaMap[self.config["realtime_schema"]],
             stype_in=self.config["stype_in"],
@@ -60,14 +60,14 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     def unsubscribe(self, symbols: Optional[list] = None):
         pass
 
-    def start_streaming(self):
+    def start_extract(self):
         self.subscribe(self.config.get('symbols'))
-        self.db_client.add_callback(self.set_handler())
-        self.db_client.start()
+        self.dbento_client.add_callback(self.set_handler())
+        self.dbento_client.start()
 
-    def stop_streaming(self):
+    def stop_extract(self):
         self.unsubscribe()
-        self.db_client.block_for_close(timeout=10)
+        self.dbento_client.block_for_close(timeout=10)
 
     def set_handler(self) -> Callable:
         output = self.config["output"]

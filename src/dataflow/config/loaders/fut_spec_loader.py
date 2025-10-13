@@ -287,7 +287,7 @@ def example_usage():
     """Example of how to use the FuturesSpecReader"""
 
     # Initialize reader
-    reader = FuturesSpecReader("../fut_spec.yaml")
+    reader = FuturesSpecReader("../specs/fut_spec.yaml")
 
     # Get specific contract
     cl_contract = reader.get_contract("CL")

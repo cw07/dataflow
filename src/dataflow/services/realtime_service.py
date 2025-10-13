@@ -1,14 +1,25 @@
+import os
 import sys
+import logging
 import argparse
+import datetime as dt
 from functools import partial
 
 from datacore.models.assets import AssetType
 from datacore.models.mktdata.datasource import DataSource
 
+from tradetools import DEFAULT_TIMEZONE
 from tradetools.common import parse_time, print_args
 
-from .orchestrator import ServiceOrchestrator
-from ..config.loaders.time_series_loader import time_series_config
+from dataflow.utils.common import set_env_vars
+from dataflow.config.loaders.time_series_loader import time_series_config
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
 
 
 def parse_arguments(args):
@@ -23,8 +34,8 @@ def parse_arguments(args):
 
     parser.add_argument(
         "--start-time",
-        required=True,
         type=parse_time,
+        default=dt.datetime.now(DEFAULT_TIMEZONE),
         help="Start time in 'HH:MM:SS delta_day' format",
     )
 
@@ -54,6 +65,12 @@ def parse_arguments(args):
     )
 
     parser.add_argument(
+        "--schema",
+        type=str,
+        required=True
+    )
+
+    parser.add_argument(
         "--dry-run",
         action="store_true",
     )
@@ -73,10 +90,20 @@ def main(args):
     print_args(args)
 
     asset_ts = time_series_config.get_ts_by_asset_type(args.asset_type).get_ts_by_source(args.data_source)
-    with ServiceOrchestrator(service_type="realtime", time_series_config=asset_ts) as so:
+
+    service_config = {
+        "schema": args.schema,
+        "time_series": asset_ts,
+    }
+
+    set_env_vars({
+        "EXTRACT_START_TIME": args.start_time.isoformat(),
+        "EXTRACT_END_TIME": args.end_time.isoformat(),
+    })
+
+    from dataflow.services.orchestrator import ServiceOrchestrator
+    with ServiceOrchestrator(service_type="realtime", service_config=service_config) as so:
         so.run_services()
-
-
 
 
 def clmain():
@@ -86,10 +113,10 @@ def clmain():
 if __name__ == "__main__":
     realtime_args = [
         "--mode", "PROD",
-        "--start-time", "09:30:00",
         "--end-time", "05:30:00 1",
-        "--data-source", "databento",
-        "--asset-type", "fut"
+        "--data-source", "bbg",
+        "--asset-type", "fut",
+        "--schema", "QTLSVL"
     ]
     main(realtime_args)
 

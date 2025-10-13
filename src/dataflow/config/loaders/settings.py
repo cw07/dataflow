@@ -6,15 +6,15 @@ from urllib.parse import urlparse
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, PydanticBaseSettingsSource, SettingsConfigDict
 
-# Calculate project root: 4 levels up from this file
-# settings.py -> config/ -> dataflow/ -> src/ -> dataflow (root)
 PROJECT_ROOT = Path(__file__).parent.parent.parent.parent
 ENV_FILE = PROJECT_ROOT / ".env"
+
 
 class ORMType(str, Enum):
     """Supported ORM types"""
     SQLALCHEMY = "sqlalchemy"
     PEEWEE = "peewee"
+
 
 class DatabaseType(str, Enum):
     """Supported database types"""
@@ -30,9 +30,6 @@ class Settings(BaseSettings):
     # Application Settings
     # ==============================================================================
     APP_NAME: str = "dataflow"
-    ENV: str = "development"
-    DEBUG: bool = False
-    LOG_LEVEL: str = "INFO"
 
     # ==============================================================================
     # ORM Configuration
@@ -40,91 +37,8 @@ class Settings(BaseSettings):
     ORM_TYPE: ORMType = ORMType.SQLALCHEMY
 
     # ==============================================================================
-    # Database Settings
-    # ==============================================================================
-    DATABASE_TYPE: DatabaseType = DatabaseType.POSTGRESQL
-    DATABASE_HOST: str = "localhost"
-    DATABASE_PORT: int = 5432
-    DATABASE_NAME: str = "market_data"
-    DATABASE_USER: str = "user"
-    DATABASE_PASSWORD: str = "password"
-
-    # SQLAlchemy specific settings
-    DATABASE_POOL_SIZE: int = 10
-    DATABASE_MAX_OVERFLOW: int = 20
-    DATABASE_ECHO: bool = False
-
-    # Optional: Full DATABASE_URL (overrides individual settings if provided)
-    DATABASE_URL: Optional[str] = None
-
-    # ==============================================================================
-    # Redis Settings
-    # ==============================================================================
-    REDIS_HOST: str = "localhost"
-    REDIS_PORT: int = 6379
-    REDIS_DB: int = 0
-    REDIS_PASSWORD: Optional[str] = None
-    REDIS_SSL: bool = False
-
-    # ==============================================================================
-    # File Storage Settings
-    # ==============================================================================
-    FILE_STORAGE_PATH: str = "./data"
-    FILE_FORMAT: str = "parquet"  # parquet, csv, json
-
-    # ==============================================================================
-    # Data Retention Settings
-    # ==============================================================================
-    RAW_DATA_RETENTION_DAYS: int = 30
-    TRADE_DATA_RETENTION_DAYS: int = 730  # 2 years
-    OHLCV_DATA_RETENTION_DAYS: int = -1  # -1 = indefinite
-
-    # ==============================================================================
-    # Service Settings
-    # ==============================================================================
-    MAX_RETRY: int = 3
-    RETRY_DELAY: int = 5
-    BATCH_SIZE: int = 10000
-
-    model_config = SettingsConfigDict(
-        env_file=ENV_FILE,
-        env_file_encoding='utf-8',
-        case_sensitive=True
-    )
-
-    # ==============================================================================
     # Validators
     # ==============================================================================
-    @field_validator('OHLCV_FREQUENCIES', mode='before')
-    @classmethod
-    def parse_frequencies(cls, v: Any) -> list[str]:
-        """Parse OHLCV_FREQUENCIES from string or list"""
-        if isinstance(v, str):
-            # Handle comma-separated string from env var
-            # e.g., "1min,5min,15min" -> ["1min", "5min", "15min"]
-            return [freq.strip() for freq in v.split(',')]
-        return v
-
-    @field_validator('LOG_LEVEL')
-    @classmethod
-    def validate_log_level(cls, v: str) -> str:
-        """Validate log level is valid"""
-        valid_levels = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
-        v_upper = v.upper()
-        if v_upper not in valid_levels:
-            raise ValueError(f"LOG_LEVEL must be one of {valid_levels}, got {v}")
-        return v_upper
-
-    @field_validator('FILE_FORMAT')
-    @classmethod
-    def validate_file_format(cls, v: str) -> str:
-        """Validate file format is supported"""
-        valid_formats = ['parquet', 'csv', 'json']
-        v_lower = v.lower()
-        if v_lower not in valid_formats:
-            raise ValueError(f"FILE_FORMAT must be one of {valid_formats}, got {v}")
-        return v_lower
-
     @field_validator('DATABASE_PORT')
     @classmethod
     def validate_database_port(cls, v: int, info) -> int:
@@ -262,14 +176,6 @@ class Settings(BaseSettings):
     def get_file_storage_path(self) -> Path:
         """Get file storage path as Path object"""
         return Path(self.FILE_STORAGE_PATH)
-
-    def is_production(self) -> bool:
-        """Check if running in production environment"""
-        return self.ENV.lower() == "production"
-
-    def is_development(self) -> bool:
-        """Check if running in development environment"""
-        return self.ENV.lower() == "development"
 
 
 # ==============================================================================

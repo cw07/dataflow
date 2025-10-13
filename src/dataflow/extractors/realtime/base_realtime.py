@@ -31,11 +31,11 @@ class BaseRealtimeExtractor(BaseExtractor):
         pass
 
     @abstractmethod
-    def start_streaming(self):
+    def start_extract(self):
         """Start streaming data"""
         pass
 
     @abstractmethod
-    def stop_streaming(self):
+    def stop_extract(self):
         """Stop streaming data"""
         pass

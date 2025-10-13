@@ -1,5 +1,4 @@
 from peewee import *
-from peewee_mssql import MssqlDatabase
 from dataclasses import fields
 from typing import get_origin, get_args
 
@@ -69,7 +68,6 @@ def peewee_database(db_type, **config):
     """
     db_types = {
         'postgres': PostgresqlDatabase,
-        'mssql': MssqlDatabase,
         'sqlite': SqliteDatabase,
         'mysql': MySQLDatabase,
     }

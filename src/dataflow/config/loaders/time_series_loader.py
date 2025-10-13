@@ -4,6 +4,10 @@ from pathlib import Path
 from typing import Any, Optional
 from pydantic import BaseModel, Field, field_validator
 
+
+DEFAULT_TS_PATH = Path(__file__).resolve().parent.parent / "time_series.csv"
+
+
 class TimeSeriesConfig(BaseModel):
     """Model for each time series configuration entry"""
     service_id: int
@@ -17,7 +21,7 @@ class TimeSeriesConfig(BaseModel):
     extractor: str
     description: Optional[str] = None
     additional_params: dict = Field(default_factory=dict)
-    enabled: bool
+    active: bool
 
     @field_validator('destination', mode='before')
     @classmethod
@@ -36,7 +40,7 @@ class TimeSeriesConfig(BaseModel):
                 return {}
         return v or {}
 
-    @field_validator('enabled', mode='before')
+    @field_validator('active', mode='before')
     @classmethod
     def parse_enabled(cls, v: Any) -> bool:
         if isinstance(v, str):
@@ -146,19 +150,22 @@ class TimeSeriesQueryResult(TimeSeriesFilterMixin):
         """Get count"""
         return len(self._time_series)
 
+    def __bool__(self):
+        return len(self._time_series) > 0
+
 
 class TimeSeriesConfigManager(TimeSeriesFilterMixin):
     """Manages loading and querying service configurations"""
 
-    def __init__(self, config_path: Path = Path('../time_series.csv'), enabled_only: bool = True):
+    def __init__(self, config_path: Path = DEFAULT_TS_PATH, active_only: bool = True):
         self.config_path = config_path
-        self.enabled_only: bool = enabled_only
+        self.active_only: bool = active_only
         self._time_series: list[TimeSeriesConfig] = []
         self.load_configurations()
 
     @property
-    def time_series(self) -> list[TimeSeriesConfig]:
-        return self._time_series
+    def time_series(self) -> TimeSeriesQueryResult:
+        return self._wrap_result(self._time_series)
 
     def load_configurations(self):
         """Load service configurations from CSV"""
@@ -167,8 +174,8 @@ class TimeSeriesConfigManager(TimeSeriesFilterMixin):
 
         for _, row in df.iterrows():
             ts = TimeSeriesConfig(**row.to_dict())
-            if self.enabled_only:
-                if ts.enabled:
+            if self.active_only:
+                if ts.active:
                     self._time_series.append(ts)
             else:
                 self._time_series.append(ts)
@@ -178,9 +185,9 @@ class TimeSeriesConfigManager(TimeSeriesFilterMixin):
         return TimeSeriesQueryResult(filtered)
 
 
-time_series_config = TimeSeriesConfigManager()
+time_series_config = TimeSeriesConfigManager(active_only=True).time_series
 
 if __name__ == "__main__":
-    ts_config = TimeSeriesConfigManager(Path('../time_series.csv'), enabled_only=True)
+    ts_config = TimeSeriesConfigManager(Path('../time_series.csv'), active_only=True)
     result = ts_config.get_realtime_ts().get_ts_by_source("bbg")
     print(result)
