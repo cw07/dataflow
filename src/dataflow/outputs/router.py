@@ -4,6 +4,7 @@ from dataflow.config.settings import settings
 from .database.db_manager import DatabaseManager
 from .file.file_manager import FileManager
 from .redis.redis_manager import RedisManager
+from ..config.loaders.time_series_loader import TimeSeriesConfig
 
 
 class OutputRouter:
@@ -31,17 +32,23 @@ class OutputRouter:
         pass
 
     @staticmethod
-    def decorate(message: dict, output, config):
-        if output == DataOutput.database:
-            message["vendor"] = config["vendor"]
-            message["asset_type"] = config["asset_type"]
+    def decorate(message: dict, time_series):
         return message
 
 
-    def route(self, message, output: DataOutput, config):
-        decorated_message = self.decorate(message, output, config)
-        output_model = self.outputs[output]
-        output_model.save(decorated_message, config)
+    def route(self, message, time_series: TimeSeriesConfig):
+        for output in time_series.destination:
+            if "database" in output:
+                output_type = DataOutput.database
+                message = self.decorate(message, time_series)
+            elif "redis" in output:
+                output_type = DataOutput.redis
+            elif "file" in output:
+                output_type = DataOutput.file
+            else:
+                raise ValueError(f"Cannot route {output}")
+            output_model = self.outputs[output_type]
+            output_model.save(message, time_series)
 
 
 output_router = OutputRouter()
