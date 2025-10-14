@@ -48,7 +48,9 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
     def unsubscribe(self, symbols: Optional[list] = None):
         pass
 
-    @RealTimeLoopControl(start=os.environ["EXTRACT_START_TIME"], end=os.environ["EXTRACT_END_TIME"])
+    @RealTimeLoopControl(start=os.environ["EXTRACT_START_TIME"],
+                         end=os.environ["EXTRACT_END_TIME"]
+                         )
     def start_extract(self):
         self.connect()
         while True:
@@ -60,9 +62,9 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
                     for d in data:
                         if d["symbol"] in self.mapping:
                             self.on_message(d)
-                    time.sleep(2)
                 except Exception as e:
                     logger.error(f"Error fetching {root_id} from Onyx: {e}")
+                time.sleep(1)
 
     def stop_extract(self):
         pass
