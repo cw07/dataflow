@@ -1,207 +1,226 @@
-service_id,series_id,series_type,symbol,venue,data_schema,data_source,destination,extractor,description,additional_params,active
-1,fut_CL.1_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,"database1,redis1",realtime,NYMEX WTI Futures,{},1
-2,fut_CL.2_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-3,fut_CL.3_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-4,fut_CL.4_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-5,fut_CL.5_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-6,fut_CL.6_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-7,fut_CL.7_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-8,fut_CL.8_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-9,fut_CL.9_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-10,fut_CL.10_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-11,fut_CL.11_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-12,fut_CL.12_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-13,fut_CL.13_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-14,fut_CL.14_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-15,fut_CL.15_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-16,fut_CL.16_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-17,fut_CL.17_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-18,fut_CL.18_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-19,fut_CL.19_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-20,fut_CL.20_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-21,fut_CL.21_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-22,fut_CL.22_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-23,fut_CL.23_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-24,fut_CL.24_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},1
-25,fut_CO.1_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-26,fut_CO.2_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-27,fut_CO.3_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-28,fut_CO.4_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-29,fut_CO.5_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-30,fut_CO.6_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-31,fut_CO.7_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-32,fut_CO.8_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-33,fut_CO.9_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-34,fut_CO.10_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-35,fut_CO.11_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-36,fut_CO.12_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-37,fut_CO.13_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-38,fut_CO.14_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-39,fut_CO.15_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-40,fut_CO.16_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-41,fut_CO.17_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-42,fut_CO.18_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-43,fut_CO.19_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-44,fut_CO.20_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-45,fut_CO.21_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-46,fut_CO.22_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-47,fut_CO.23_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-48,fut_CO.24_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},1
-49,fut_GC.1_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},1
-50,fut_GC.2_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},1
-51,fut_GC.3_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},1
-52,fut_GC.4_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},1
-53,fut_GC.5_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},1
-54,fut_GC.6_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},1
-55,fut_GC.7_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},1
-56,fut_GC.8_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},1
-57,fut_GC.9_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},1
-58,fut_GC.10_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},1
-59,fut_GC.11_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},1
-60,fut_GC.12_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},1
-61,fut_HG.1_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},1
-62,fut_HG.2_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},1
-63,fut_HG.3_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},1
-64,fut_HG.4_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},1
-65,fut_HG.5_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},1
-66,fut_HG.6_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},1
-67,fut_HG.7_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},1
-68,fut_HG.8_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},1
-69,fut_HG.9_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},1
-70,fut_HG.10_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},1
-71,fut_HG.11_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},1
-72,fut_HG.12_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},1
-73,fut_LA.1_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},1
-74,fut_LA.2_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},1
-75,fut_LA.3_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},1
-76,fut_LA.4_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},1
-77,fut_LA.5_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},1
-78,fut_LA.6_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},1
-79,fut_LA.7_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},1
-80,fut_LA.8_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},1
-81,fut_LA.9_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},1
-82,fut_LA.10_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},1
-83,fut_LA.11_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},1
-84,fut_LA.12_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},1
-85,fut_LL.1_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},1
-86,fut_LL.2_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},1
-87,fut_LL.3_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},1
-88,fut_LL.4_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},1
-89,fut_LL.5_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},1
-90,fut_LL.6_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},1
-91,fut_LL.7_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},1
-92,fut_LL.8_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},1
-93,fut_LL.9_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},1
-94,fut_LL.10_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},1
-95,fut_LL.11_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},1
-96,fut_LL.12_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},1
-97,fut_LN.1_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},1
-98,fut_LN.2_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},1
-99,fut_LN.3_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},1
-100,fut_LN.4_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},1
-101,fut_LN.5_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},1
-102,fut_LN.6_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},1
-103,fut_LN.7_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},1
-104,fut_LN.8_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},1
-105,fut_LN.9_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},1
-106,fut_LN.10_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},1
-107,fut_LN.11_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},1
-108,fut_LN.12_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},1
-109,fut_LP.1_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},1
-110,fut_LP.2_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},1
-111,fut_LP.3_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},1
-112,fut_LP.4_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},1
-113,fut_LP.5_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},1
-114,fut_LP.6_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},1
-115,fut_LP.7_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},1
-116,fut_LP.8_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},1
-117,fut_LP.9_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},1
-118,fut_LP.10_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},1
-119,fut_LP.11_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},1
-120,fut_LP.12_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},1
-121,fut_LX.1_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},1
-122,fut_LX.2_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},1
-123,fut_LX.3_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},1
-124,fut_LX.4_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},1
-125,fut_LX.5_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},1
-126,fut_LX.6_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},1
-127,fut_LX.7_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},1
-128,fut_LX.8_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},1
-129,fut_LX.9_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},1
-130,fut_LX.10_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},1
-131,fut_LX.11_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},1
-132,fut_LX.12_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},1
-133,fut_NG.1_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},1
-134,fut_NG.2_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},1
-135,fut_NG.3_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},1
-136,fut_NG.4_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},1
-137,fut_NG.5_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},1
-138,fut_NG.6_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},1
-139,fut_NG.7_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},1
-140,fut_NG.8_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},1
-141,fut_NG.9_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},1
-142,fut_NG.10_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},1
-143,fut_NG.11_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},1
-144,fut_NG.12_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},1
-145,fut_PA.1_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},1
-146,fut_PA.2_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},1
-147,fut_PA.3_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},1
-148,fut_PA.4_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},1
-149,fut_PA.5_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},1
-150,fut_PA.6_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},1
-151,fut_PA.7_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},1
-152,fut_PA.8_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},1
-153,fut_PA.9_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},1
-154,fut_PA.10_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},1
-155,fut_PA.11_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},1
-156,fut_PA.12_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},1
-157,fut_PL.1_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},1
-158,fut_PL.2_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},1
-159,fut_PL.3_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},1
-160,fut_PL.4_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},1
-161,fut_PL.5_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},1
-162,fut_PL.6_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},1
-163,fut_PL.7_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},1
-164,fut_PL.8_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},1
-165,fut_PL.9_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},1
-166,fut_PL.10_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},1
-167,fut_PL.11_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},1
-168,fut_PL.12_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},1
-169,fut_QS.1_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},1
-170,fut_QS.2_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},1
-171,fut_QS.3_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},1
-172,fut_QS.4_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},1
-173,fut_QS.5_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},1
-174,fut_QS.6_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},1
-175,fut_QS.7_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},1
-176,fut_QS.8_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},1
-177,fut_QS.9_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},1
-178,fut_QS.10_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},1
-179,fut_QS.11_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},1
-180,fut_QS.12_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},1
-181,fut_SI.1_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},1
-182,fut_SI.2_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},1
-183,fut_SI.3_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},1
-184,fut_SI.4_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},1
-185,fut_SI.5_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},1
-186,fut_SI.6_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},1
-187,fut_SI.7_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},1
-188,fut_SI.8_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},1
-189,fut_SI.9_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},1
-190,fut_SI.10_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},1
-191,fut_SI.11_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},1
-192,fut_SI.12_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},1
-193,fut_XB.1_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-194,fut_XB.2_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-195,fut_XB.3_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-196,fut_XB.4_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-197,fut_XB.5_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-198,fut_XB.6_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-199,fut_XB.7_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-200,fut_XB.8_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-201,fut_XB.9_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-202,fut_XB.10_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-203,fut_XB.11_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-204,fut_XB.12_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},1
-205,daily_swap_DDB_trade_flux,daily.swap,DDB,OTC,trade,flux,redis1,realtime,DDB Swap,{},1
-206,fut.contract_SI.1_daily_various,fut.contract,SI,CME,daily,various,database1,historical,Future Contract Mapping,{},1
+service_id,series_id,series_type,root_id,venue,data_schema,data_source,destination,extractor,description,additional_params,symbol,active
+1,fut_CL.1_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,"database1,redis1",realtime,NYMEX WTI Futures,{},,1
+2,fut_CL.2_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+3,fut_CL.3_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+4,fut_CL.4_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+5,fut_CL.5_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+6,fut_CL.6_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+7,fut_CL.7_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+8,fut_CL.8_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+9,fut_CL.9_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+10,fut_CL.10_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+11,fut_CL.11_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+12,fut_CL.12_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+13,fut_CL.13_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+14,fut_CL.14_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+15,fut_CL.15_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+16,fut_CL.16_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+17,fut_CL.17_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+18,fut_CL.18_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+19,fut_CL.19_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+20,fut_CL.20_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+21,fut_CL.21_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+22,fut_CL.22_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+23,fut_CL.23_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+24,fut_CL.24_mbp1_bbg,fut,CL,NYMEX,mbp1,bbg,database1,realtime,NYMEX WTI Futures,{},,1
+25,fut_CO.1_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+26,fut_CO.2_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+27,fut_CO.3_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+28,fut_CO.4_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+29,fut_CO.5_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+30,fut_CO.6_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+31,fut_CO.7_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+32,fut_CO.8_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+33,fut_CO.9_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+34,fut_CO.10_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+35,fut_CO.11_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+36,fut_CO.12_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+37,fut_CO.13_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+38,fut_CO.14_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+39,fut_CO.15_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+40,fut_CO.16_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+41,fut_CO.17_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+42,fut_CO.18_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+43,fut_CO.19_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+44,fut_CO.20_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+45,fut_CO.21_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+46,fut_CO.22_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+47,fut_CO.23_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+48,fut_CO.24_mbp1_bbg,fut,CO,ICE,mbp1,bbg,database1,realtime,ICE Brent Futures,{},,1
+49,fut_GC.1_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},,1
+50,fut_GC.2_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},,1
+51,fut_GC.3_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},,1
+52,fut_GC.4_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},,1
+53,fut_GC.5_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},,1
+54,fut_GC.6_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},,1
+55,fut_GC.7_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},,1
+56,fut_GC.8_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},,1
+57,fut_GC.9_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},,1
+58,fut_GC.10_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},,1
+59,fut_GC.11_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},,1
+60,fut_GC.12_mbp1_bbg,fut,GC,CME,mbp1,bbg,database1,realtime,CME Gold Futures,{},,1
+61,fut_HG.1_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},,1
+62,fut_HG.2_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},,1
+63,fut_HG.3_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},,1
+64,fut_HG.4_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},,1
+65,fut_HG.5_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},,1
+66,fut_HG.6_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},,1
+67,fut_HG.7_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},,1
+68,fut_HG.8_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},,1
+69,fut_HG.9_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},,1
+70,fut_HG.10_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},,1
+71,fut_HG.11_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},,1
+72,fut_HG.12_mbp1_bbg,fut,HG,CME,mbp1,bbg,database1,realtime,CME Copper Futures,{},,1
+73,fut_LA.1_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},,1
+74,fut_LA.2_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},,1
+75,fut_LA.3_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},,1
+76,fut_LA.4_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},,1
+77,fut_LA.5_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},,1
+78,fut_LA.6_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},,1
+79,fut_LA.7_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},,1
+80,fut_LA.8_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},,1
+81,fut_LA.9_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},,1
+82,fut_LA.10_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},,1
+83,fut_LA.11_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},,1
+84,fut_LA.12_mbp1_bbg,fut,LA,LME,mbp1,bbg,database1,realtime,LME Aluminum Futures,{},,1
+85,fut_LL.1_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},,1
+86,fut_LL.2_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},,1
+87,fut_LL.3_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},,1
+88,fut_LL.4_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},,1
+89,fut_LL.5_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},,1
+90,fut_LL.6_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},,1
+91,fut_LL.7_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},,1
+92,fut_LL.8_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},,1
+93,fut_LL.9_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},,1
+94,fut_LL.10_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},,1
+95,fut_LL.11_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},,1
+96,fut_LL.12_mbp1_bbg,fut,LL,LME,mbp1,bbg,database1,realtime,LME Lead Futures,{},,1
+97,fut_LN.1_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},,1
+98,fut_LN.2_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},,1
+99,fut_LN.3_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},,1
+100,fut_LN.4_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},,1
+101,fut_LN.5_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},,1
+102,fut_LN.6_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},,1
+103,fut_LN.7_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},,1
+104,fut_LN.8_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},,1
+105,fut_LN.9_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},,1
+106,fut_LN.10_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},,1
+107,fut_LN.11_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},,1
+108,fut_LN.12_mbp1_bbg,fut,LN,LME,mbp1,bbg,database1,realtime,LME Nickle Futures,{},,1
+109,fut_LP.1_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},,1
+110,fut_LP.2_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},,1
+111,fut_LP.3_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},,1
+112,fut_LP.4_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},,1
+113,fut_LP.5_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},,1
+114,fut_LP.6_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},,1
+115,fut_LP.7_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},,1
+116,fut_LP.8_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},,1
+117,fut_LP.9_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},,1
+118,fut_LP.10_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},,1
+119,fut_LP.11_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},,1
+120,fut_LP.12_mbp1_bbg,fut,LP,LME,mbp1,bbg,database1,realtime,LME Copper Futures,{},,1
+121,fut_LX.1_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},,1
+122,fut_LX.2_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},,1
+123,fut_LX.3_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},,1
+124,fut_LX.4_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},,1
+125,fut_LX.5_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},,1
+126,fut_LX.6_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},,1
+127,fut_LX.7_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},,1
+128,fut_LX.8_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},,1
+129,fut_LX.9_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},,1
+130,fut_LX.10_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},,1
+131,fut_LX.11_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},,1
+132,fut_LX.12_mbp1_bbg,fut,LX,LME,mbp1,bbg,database1,realtime,LME Zinc Futures,{},,1
+133,fut_NG.1_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},,1
+134,fut_NG.2_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},,1
+135,fut_NG.3_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},,1
+136,fut_NG.4_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},,1
+137,fut_NG.5_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},,1
+138,fut_NG.6_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},,1
+139,fut_NG.7_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},,1
+140,fut_NG.8_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},,1
+141,fut_NG.9_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},,1
+142,fut_NG.10_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},,1
+143,fut_NG.11_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},,1
+144,fut_NG.12_mbp1_bbg,fut,NG,NYMEX,mbp1,bbg,database1,realtime,NYMEX Natural Gas Henry Hub Futures,{},,1
+145,fut_PA.1_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},,1
+146,fut_PA.2_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},,1
+147,fut_PA.3_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},,1
+148,fut_PA.4_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},,1
+149,fut_PA.5_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},,1
+150,fut_PA.6_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},,1
+151,fut_PA.7_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},,1
+152,fut_PA.8_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},,1
+153,fut_PA.9_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},,1
+154,fut_PA.10_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},,1
+155,fut_PA.11_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},,1
+156,fut_PA.12_mbp1_bbg,fut,PA,NYMEX,mbp1,bbg,database1,realtime,NYMEX Palladium Futures,{},,1
+157,fut_PL.1_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},,1
+158,fut_PL.2_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},,1
+159,fut_PL.3_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},,1
+160,fut_PL.4_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},,1
+161,fut_PL.5_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},,1
+162,fut_PL.6_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},,1
+163,fut_PL.7_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},,1
+164,fut_PL.8_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},,1
+165,fut_PL.9_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},,1
+166,fut_PL.10_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},,1
+167,fut_PL.11_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},,1
+168,fut_PL.12_mbp1_bbg,fut,PL,NYMEX,mbp1,bbg,database1,realtime,NYMEX Platinum Futures,{},,1
+169,fut_QS.1_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},,1
+170,fut_QS.2_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},,1
+171,fut_QS.3_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},,1
+172,fut_QS.4_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},,1
+173,fut_QS.5_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},,1
+174,fut_QS.6_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},,1
+175,fut_QS.7_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},,1
+176,fut_QS.8_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},,1
+177,fut_QS.9_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},,1
+178,fut_QS.10_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},,1
+179,fut_QS.11_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},,1
+180,fut_QS.12_mbp1_bbg,fut,QS,ICE,mbp1,bbg,database1,realtime,ICE Low-Sulfur Gasoil Futures,{},,1
+181,fut_SI.1_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},,1
+182,fut_SI.2_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},,1
+183,fut_SI.3_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},,1
+184,fut_SI.4_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},,1
+185,fut_SI.5_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},,1
+186,fut_SI.6_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},,1
+187,fut_SI.7_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},,1
+188,fut_SI.8_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},,1
+189,fut_SI.9_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},,1
+190,fut_SI.10_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},,1
+191,fut_SI.11_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},,1
+192,fut_SI.12_mbp1_bbg,fut,SI,CME,mbp1,bbg,database1,realtime,CME Silver Futures,{},,1
+193,fut_XB.1_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
+194,fut_XB.2_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
+195,fut_XB.3_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
+196,fut_XB.4_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
+197,fut_XB.5_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
+198,fut_XB.6_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
+199,fut_XB.7_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
+200,fut_XB.8_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
+201,fut_XB.9_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
+202,fut_XB.10_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
+203,fut_XB.11_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
+204,fut_XB.12_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
+205,fut_NAPEW.1,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+206,fut_NAPEW.2,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+207,fut_NAPEW.3,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+208,fut_NAPEW.4,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+209,fut_NAPEW.5,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+210,fut_NAPEW.6,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+211,fut_NAPEW.7,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+212,fut_NAPEW.8,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+213,fut_NAPEW.9,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+214,fut_NAPEW.10,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+215,fut_NAPEW.11,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+216,fut_NAPEW.12,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+217,fut_NAPEW.13,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+218,fut_NAPEW.14,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+219,fut_NAPEW.15,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+220,fut_NAPEW.16,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+221,fut_NAPEW.17,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+222,fut_NAPEW.18,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+223,fut_NAPEW.19,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+224,fut_NAPEW.20,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},,1
+225,fut.contract_SI.1_daily_various,fut.contract,SI,CME,daily,various,database1,historical,Future Contract Mapping,{},,1

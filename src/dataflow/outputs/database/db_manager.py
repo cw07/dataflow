@@ -1,12 +1,11 @@
-from datacore.models.mktdata.realtime import MarketByPrice1
-
 from dataflow.utils.common import ORM
-from dataflow.utils.schema_map import SCHEMA_MAP
+from dataflow.orm.peewee import PeeweeDB
 from dataflow.orm.base import BaseORMAdapter
-from ..base import BaseOutputManager
+from dataflow.orm.sqlalchemy import SQLAlchemyDB
+from dataflow.utils.schema_map import SCHEMA_MAP
+from dataflow.config.settings import DatabaseConfig
+from dataflow.outputs.base import BaseOutputManager
 from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
-from ...orm.peewee import create_peewee_model, peewee_database, PeeweeDB
-from ...orm.sqlalchemy import create_sqlalchemy_model, sqlalchemy_database, SQLAlchemyDB
 
 
 class DatabaseManager(BaseOutputManager):
@@ -29,6 +28,3 @@ class DatabaseManager(BaseOutputManager):
         for output_name in time_series.destination:
             if output_name in self.db_instance:
                 self.db_instance[output_name].save_data(market_data_obj)
-
-
-

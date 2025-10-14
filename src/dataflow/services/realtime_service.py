@@ -89,7 +89,12 @@ def main(args):
     args = parse_arguments(args)
     print_args(args)
 
-    asset_ts = time_series_config.get_ts_by_asset_type(args.asset_type).get_ts_by_source(args.data_source)
+    asset_ts = (
+        time_series_config.get_realtime_ts()
+        .get_ts_by_asset_type(args.asset_type)
+        .get_ts_by_source(args.data_source)
+        .get_ts_by_schema(args.schema)
+    )
 
     service_config = {
         "schema": args.schema,
@@ -114,9 +119,9 @@ if __name__ == "__main__":
     realtime_args = [
         "--mode", "PROD",
         "--end-time", "05:30:00 1",
-        "--data-source", "bbg",
+        "--data-source", "onyx",
         "--asset-type", "fut",
-        "--schema", "QTLSVL"
+        "--schema", "trade"
     ]
     main(realtime_args)
 

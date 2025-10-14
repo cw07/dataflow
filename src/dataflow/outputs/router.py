@@ -18,9 +18,9 @@ class OutputRouter:
     def __init__(self):
         if not OutputRouter._initialized:
             OutputRouter._initialized = True
-            db_manager = DatabaseManager(settings.all_database())
+            db_manager = DatabaseManager(settings.all_databases())
             redis_manager = RedisManager(settings.all_redis())
-            file_manager = FileManager()
+            file_manager = FileManager(settings.all_files())
             self.outputs = {
                 DataOutput.database: db_manager,
                 DataOutput.redis: redis_manager,

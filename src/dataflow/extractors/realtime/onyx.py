@@ -1,4 +1,5 @@
 import os
+import requests
 from functools import partial
 from typing import Any, Optional
 
@@ -8,21 +9,26 @@ from ...config.loaders.time_series_loader import TimeSeriesQueryResult, TimeSeri
 from ...extractors.realtime.base_realtime import BaseRealtimeExtractor
 
 
-class FluxRealtimeExtractor(BaseRealtimeExtractor):
+class OnyxRealtimeExtractor(BaseRealtimeExtractor):
 
-    vendor = "flux"
+    vendor = "onyx"
 
     def __init__(self, config: dict[str, Any]):
         super().__init__(config)
-        self.time_series: TimeSeriesQueryResult = self.config["time_series"]
+        self.time_series: list[TimeSeriesConfig] = self.config["time_series"]
         self.mapping: dict[str, TimeSeriesConfig] = {}
-        self.flux_client = None
+        self.headers = None
+        self.root_ids = None
 
     def validate_config(self) -> None:
         pass
 
     def connect(self):
-        pass
+        self.headers = {
+            "Authorization =": f"Bearer {1}",
+        }
+        self.mapping = {s.symbol: s for s in self.time_series}
+        self.root_ids = {s.root_id for s in self.time_series}
 
     def disconnect(self):
         pass
@@ -38,7 +44,15 @@ class FluxRealtimeExtractor(BaseRealtimeExtractor):
 
     @RealTimeLoopControl(start=os.environ["EXTRACT_START_TIME"], end=os.environ["EXTRACT_END_TIME"])
     def start_extract(self):
-        pass
+        self.connect()
+        while True:
+            for root_id in self.root_ids:
+                url = f"https://api.onyxhub.com/v1/tickers/live/{root_id}"
+                response = requests.get(url, headers=self.headers)
+                data = response.json()
+                for d in data:
+                    if d["symbol"] in self.mapping:
+                        self.on_message(d)
 
     def stop_extract(self):
         pass

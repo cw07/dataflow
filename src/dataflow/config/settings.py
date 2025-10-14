@@ -1,231 +1,225 @@
-from enum import Enum
 from pathlib import Path
-from typing import Any, Optional
-from urllib.parse import urlparse
-from pydantic import Field, field_validator
-from pydantic_settings import BaseSettings, PydanticBaseSettingsSource, SettingsConfigDict
+from pydantic import field_validator
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from dataflow.utils.common import ORM
-
-PROJECT_ROOT = Path(__file__).parent.parent.parent.parent
-ENV_FILE = PROJECT_ROOT / ".env"
+from dataflow.utils.database import DatabaseConnectionBuilder
 
 
-class ORMType(str, Enum):
-    """Supported ORM types"""
-    SQLALCHEMY = "sqlalchemy"
-    PEEWEE = "peewee"
+class DatabaseConfig(BaseSettings):
+    """
+    Configuration for database connections.
+    """
+
+    id: str
+    orm: str  # 'sqlalchemy' or 'peewee'
+    db_type: str  # e.g., 'postgresql', 'mysql'
+    host: str
+    database: str
+    username: str
+    password: str
+    driver: str
+    trusted_connection: bool = False
+    connection_pool_max_size: int = 10
+    connection_pool_recycle: int = 3600
+    autocommit: bool = True
+
+    def connection_params(self) -> str | dict:
+        """
+        Build connection string based on ORM type and database type.
+
+        Args:
+            None (uses instance attributes)
+
+        Returns:
+            str: Connection string for SQLAlchemy, or dict for Peewee.
+
+        Raises:
+            ValueError: If ORM type is not supported.
+        """
+        if self.orm == ORM.SQLALCHEMY:
+            return DatabaseConnectionBuilder.build_sqlalchemy_connection_string(
+                db_type=self.db_type,
+                host=self.host,
+                database=self.database,
+                username=self.username,
+                password=self.password,
+                driver=self.driver,
+                trusted_connection=self.trusted_connection,
+                autocommit=self.autocommit,
+            )
+        elif self.orm == ORM.PEEWEE:
+            return DatabaseConnectionBuilder.build_peewee_connection_params(
+                db_type=self.db_type,
+                host=self.host,
+                database=self.database,
+                username=self.username,
+                password=self.password,
+                driver=self.driver,
+                trusted_connection=self.trusted_connection,
+                autocommit=self.autocommit,
+            )
+        else:
+            raise ValueError(f"Unsupported ORM type: {self.orm}")
 
 
-class DatabaseType(str, Enum):
-    """Supported database types"""
-    POSTGRESQL = "postgresql"
-    MYSQL = "mysql"
-    SQLITE = "sqlite"
-    MSSQL = "mssql"
+class RedisConfig(BaseSettings):
+    id: str
+    host: str
+    port: int
+    password: str
+    ssl: bool
+    db: int
+
+
+class FileConfig(BaseSettings):
+    id: str
+    file_storage_path: Path
+    file_format: str
+
 
 class Settings(BaseSettings):
-    """Main configuration settings"""
+    # Application
+    app_name: str
 
-    # ==============================================================================
-    # Application Settings
-    # ==============================================================================
-    APP_NAME: str = "dataflow"
+    # Time Series
+    time_series_config: Path
 
-    # ==============================================================================
-    # ORM Configuration
-    # ==============================================================================
-    ORM_TYPE: ORMType = ORMType.SQLALCHEMY
+    # ORM
+    orm_type: str
 
-    # ==============================================================================
-    # Validators
-    # ==============================================================================
-    @field_validator('DATABASE_PORT')
+    # Databases
+    db1_id: str
+    db1_type: str
+    db1_host: str
+    db1_database: str
+    db1_username: str
+    db1_password: str
+    db1_driver: str
+    db1_trusted_connection: bool
+    db1_connection_pool_max_size: int
+    db1_connection_pool_recycle: int
+    db1_autocommit: bool
+
+    db2_id: str
+    db2_type: str
+    db2_host: str
+    db2_database: str
+    db2_username: str
+    db2_password: str
+    db2_driver: str
+    db2_trusted_connection: bool
+    db2_connection_pool_max_size: int
+    db2_connection_pool_recycle: int
+    db2_autocommit: bool
+
+    # Redis
+    redis1_id: str
+    redis1_host: str
+    redis1_port: int
+    redis1_password: str
+    redis1_ssl: bool
+    redis1_db: int
+
+    redis2_id: str
+    redis2_host: str
+    redis2_port: int
+    redis2_password: str
+    redis2_ssl: bool
+    redis2_db: int
+
+    # File Storage
+    file1_id: str
+    file1_storage_path: Path
+    file1_format: str
+
+    # Data Provider API Keys
+    databento_api_key: str
+    polygon_api_key: str
+    alpaca_api_key: str
+    alpaca_api_secret: str
+
+    model_config = SettingsConfigDict(
+        env_file=Path(__file__).resolve().parents[3] / '.env',
+        env_file_encoding="utf-8",
+        extra="forbid",
+        case_sensitive=False,
+    )
+
+    @field_validator('file1_storage_path', mode='before')
     @classmethod
-    def validate_database_port(cls, v: int, info) -> int:
-        """Set default port based on database type if not explicitly set"""
-        # This validator runs after DATABASE_TYPE is set
-        # Default ports are already set in field defaults
-        if v <= 0 or v > 65535:
-            raise ValueError(f"DATABASE_PORT must be between 1 and 65535, got {v}")
-        return v
+    def expand_paths(cls, v: str) -> Path:
+        return Path(v).expanduser().resolve()
 
-    # ==============================================================================
-    # Custom Settings Sources (Optional - Only .env file)
-    # ==============================================================================
-    @classmethod
-    def settings_customise_sources(
-            cls,
-            settings_cls: type[BaseSettings],
-            init_settings: PydanticBaseSettingsSource,
-            env_settings: PydanticBaseSettingsSource,
-            dotenv_settings: PydanticBaseSettingsSource,
-            file_secret_settings: PydanticBaseSettingsSource,
-    ) -> tuple[PydanticBaseSettingsSource, ...]:
-        """
-        Customize settings sources to read ONLY from .env file.
-        System environment variables are ignored.
+    def all_databases(self) -> dict[str, DatabaseConfig]:
+        databases = {}
+        prefixes = set()
 
-        To allow system env vars, return:
-        return (init_settings, env_settings, dotenv_settings)
+        for field_name, field in self.__class__.model_fields.items():
+            if field_name.endswith('_id') and field_name.startswith('db'):
+                prefix = field_name.replace('_id', '')
+                prefixes.add(prefix)
 
-        """
-        return (init_settings, dotenv_settings)
+        for prefix in prefixes:
+            database_id = getattr(self, f'{prefix}_id')
+            databases[database_id] = DatabaseConfig(
+                id=database_id,
+                orm=getattr(self, 'orm_type'),
+                db_type=getattr(self, f'{prefix}_type'),
+                host=getattr(self, f'{prefix}_host'),
+                database=getattr(self, f'{prefix}_database'),
+                username=getattr(self, f'{prefix}_username'),
+                password=getattr(self, f'{prefix}_password'),
+                driver=getattr(self, f'{prefix}_driver'),
+                trusted_connection=getattr(self, f'{prefix}_trusted_connection'),
+                connection_pool_max_size=getattr(self, f'{prefix}_connection_pool_max_size'),
+                connection_pool_recycle=getattr(self, f'{prefix}_connection_pool_recycle'),
+                autocommit=getattr(self, f'{prefix}_autocommit'),
+            )
+        return databases
 
-    # ==============================================================================
-    # Helper Methods
-    # ==============================================================================
-    def get_database_url(self) -> str:
-        """Get database URL.
-        If DATABASE_URL is set, use it. Otherwise, construct from individual settings.
-        """
-        if self.DATABASE_URL:
-            return self.DATABASE_URL
+    def all_redis(self) -> dict[str, RedisConfig]:
+        redis = {}
+        prefixes = set()
 
-        # Construct URL based on database type
-        if self.DATABASE_TYPE == DatabaseType.POSTGRESQL:
-            driver = "postgresql"
-        elif self.DATABASE_TYPE == DatabaseType.MYSQL:
-            driver = "mysql+pymysql"
-        elif self.DATABASE_TYPE == DatabaseType.SQLITE:
-            # SQLite doesn't use host/port/user/password
-            return f"sqlite:///{self.DATABASE_NAME}"
-        elif self.DATABASE_TYPE == DatabaseType.MSSQL:
-            driver = "mssql+pyodbc"
-        else:
-            raise ValueError(f"Unsupported database type: {self.DATABASE_TYPE}")
+        for field_name, field in self.__class__.model_fields.items():
+            if field_name.startswith('redis') and field_name.endswith('_id'):
+                prefix = field_name.replace('_id', '')
+                prefixes.add(prefix)
 
-        # Construct URL
-        return (
-            f"{driver}://{self.DATABASE_USER}:{self.DATABASE_PASSWORD}@"
-            f"{self.DATABASE_HOST}:{self.DATABASE_PORT}/{self.DATABASE_NAME}"
-        )
+        for prefix in prefixes:
+            redis_id = getattr(self, f'{prefix}_id')
+            redis[redis_id] = RedisConfig(
+                id=redis_id,
+                host=getattr(self, f'{prefix}_host'),
+                port=getattr(self, f'{prefix}_port'),
+                password=getattr(self, f'{prefix}_password'),
+                ssl=getattr(self, f'{prefix}_ssl'),
+                db=getattr(self, f'{prefix}_db'),
+            )
+        return redis
 
-    def get_default_port(self) -> int:
-        """Get default port for the configured database type"""
-        default_ports = {
-            DatabaseType.POSTGRESQL: 5432,
-            DatabaseType.MYSQL: 3306,
-            DatabaseType.SQLITE: 0,  # SQLite doesn't use ports
-            DatabaseType.MSSQL: 1433,
-        }
-        return default_ports.get(self.DATABASE_TYPE, 5432)
+    def all_files(self) -> dict[str, FileConfig]:
+        files = {}
+        prefixes = set()
+        for field_name, field in self.__class__.model_fields.items():
+            if field_name.startswith('file') and field_name.endswith('_id'):
+                prefix = field_name.replace('_id', '')
+                prefixes.add(prefix)
 
-    def get_orm_config(self) -> dict[str, Any]:
-        """Get ORM-specific configuration"""
-        if self.ORM_TYPE == ORMType.SQLALCHEMY:
-            return {
-                'database_url': self.get_database_url(),
-                'echo': self.DATABASE_ECHO,
-                'pool_size': self.DATABASE_POOL_SIZE,
-                'max_overflow': self.DATABASE_MAX_OVERFLOW,
-            }
-        elif self.ORM_TYPE == ORMType.PEEWEE:
-            # Peewee uses individual connection parameters
-            if self.DATABASE_TYPE == DatabaseType.SQLITE:
-                return {
-                    'database': self.DATABASE_NAME,
-                }
-            else:
-                return {
-                    'database': self.DATABASE_NAME,
-                    'user': self.DATABASE_USER,
-                    'password': self.DATABASE_PASSWORD,
-                    'host': self.DATABASE_HOST,
-                    'port': self.DATABASE_PORT,
-                }
-        else:
-            raise ValueError(f"Unsupported ORM type: {self.ORM_TYPE}")
-
-    def get_database_config(self) -> dict[str, Any]:
-        """Get database configuration as a dictionary"""
-        return {
-            'type': self.DATABASE_TYPE,
-            'host': self.DATABASE_HOST,
-            'port': self.DATABASE_PORT,
-            'database': self.DATABASE_NAME,
-            'user': self.DATABASE_USER,
-            'password': self.DATABASE_PASSWORD,
-            'url': self.get_database_url(),
-        }
-
-    def get_redis_config(self) -> dict[str, Any]:
-        """Get Redis configuration"""
-        return {
-            'host': self.REDIS_HOST,
-            'port': self.REDIS_PORT,
-            'db': self.REDIS_DB,
-            'password': self.REDIS_PASSWORD,
-            'ssl': self.REDIS_SSL,
-        }
-
-    def get_extractor_config(self, extractor_name: str) -> dict[str, Any]:
-        """Get configuration for specific extractor"""
-        configs = {
-            'databento': {
-                'api_key': self.DATABENTO_API_KEY
-            },
-            'polygon': {
-                'api_key': self.POLYGON_API_KEY
-            },
-            'yfinance': {
-                'rate_limit': self.YFINANCE_RATE_LIMIT
-            }
-        }
-        return configs.get(extractor_name.lower(), {})
-
-    def get_file_storage_path(self) -> Path:
-        """Get file storage path as Path object"""
-        return Path(self.FILE_STORAGE_PATH)
+        for prefix in prefixes:
+            file_id = getattr(self, f'{prefix}_id')
+            files[file_id] = FileConfig(
+                id=file_id,
+                file_storage_path=getattr(self, f'{prefix}_storage_path'),
+                file_format=getattr(self, f'{prefix}_format'),
+            )
+        return files
 
 
-# ==============================================================================
-# Singleton Instance
-# ==============================================================================
 settings = Settings()
 
-# ==============================================================================
-# Example Usage
-# ==============================================================================
-if __name__ == "__main__":
-    print("Configuration Settings")
-    print("=" * 70)
 
-    print(f"\n📁 Application:")
-    print(f"  Name: {settings.APP_NAME}")
-    print(f"  Environment: {settings.ENV}")
-    print(f"  Debug: {settings.DEBUG}")
-    print(f"  Log Level: {settings.LOG_LEVEL}")
-
-    print(f"\n🗄️ Database:")
-    print(f"  Type: {settings.DATABASE_TYPE}")
-    print(f"  Host: {settings.DATABASE_HOST}")
-    print(f"  Port: {settings.DATABASE_PORT}")
-    print(f"  Database: {settings.DATABASE_NAME}")
-    print(f"  User: {settings.DATABASE_USER}")
-    print(f"  URL: {settings.get_database_url()}")
-    print(f"  ORM Type: {settings.ORM_TYPE}")
-    print(f"  Pool Size: {settings.DATABASE_POOL_SIZE}")
-    print(f"  Echo: {settings.DATABASE_ECHO}")
-
-    print(f"\nREDIS:")
-    print(f"  Host: {settings.REDIS_HOST}")
-    print(f"  Port: {settings.REDIS_PORT}")
-    print(f"  DB: {settings.REDIS_DB}")
-
-    print(f"\n💾 File Storage:")
-    print(f"  Path: {settings.FILE_STORAGE_PATH}")
-    print(f"  Format: {settings.FILE_FORMAT}")
-
-    print(f"\n🔑 API Keys:")
-    print(f"  Databento: {'✅ Set' if settings.DATABENTO_API_KEY else '❌ Not set'}")
-    print(f"  Polygon: {'✅ Set' if settings.POLYGON_API_KEY else '❌ Not set'}")
-
-    print(f"\n⚙️ Helper Methods:")
-    print(f"  Database Config: {settings.get_database_config()}")
-    print(f"  ORM Config: {settings.get_orm_config()}")
-    print(f"  Redis Config: {settings.get_redis_config()}")
-    print(f"  Is Production: {settings.is_production()}")
-    print(f"  Is Development: {settings.is_development()}")
-
-    print("\n" + "=" * 70)
+if __name__ == '__main__':
+    print(settings.all_databases())
+    print(settings.all_redis())

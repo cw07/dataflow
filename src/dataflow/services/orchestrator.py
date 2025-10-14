@@ -3,9 +3,8 @@ import logging
 from typing import Type
 from collections import defaultdict
 
-from ..extractors import DatabentoRealtimeExtractor, BBGRealtimeExtractor
 from ..extractors.base import BaseExtractor
-from ..utils.loop_control import BaseGate
+from ..extractors import DatabentoRealtimeExtractor, BBGRealtimeExtractor, OnyxRealtimeExtractor
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +15,7 @@ class ExtractorFactory:
     _extractor_registry = {
         ("realtime", "databento"): DatabentoRealtimeExtractor,
         ("realtime", "bbg"): BBGRealtimeExtractor,
+        ("realtime", "onyx"): OnyxRealtimeExtractor,
 
     }
     

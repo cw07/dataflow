@@ -15,7 +15,7 @@ class TimeSeriesConfig(BaseModel):
     service_id: int
     series_id: str
     series_type: str
-    symbol: str
+    root_id: str
     venue: str
     data_schema: str
     data_source: str
@@ -23,6 +23,7 @@ class TimeSeriesConfig(BaseModel):
     extractor: str
     description: Optional[str] = None
     additional_params: dict = Field(default_factory=dict)
+    symbol: Optional[str] = None
     active: bool
 
     @field_validator('destination', mode='before')
@@ -31,6 +32,22 @@ class TimeSeriesConfig(BaseModel):
         if isinstance(v, str):
             return [d for d in v.split(',')]
         return v
+
+    @field_validator('description', mode='before')
+    @classmethod
+    def parse_description(cls, v: Any) -> Optional[str]:
+        if isinstance(v, str) and v:
+            return v
+        else:
+            return None
+
+    @field_validator('symbol', mode='before')
+    @classmethod
+    def parse_symbol(cls, v: Any) -> Optional[str]:
+        if isinstance(v, str) and v:
+            return v
+        else:
+            return None
 
     @field_validator('additional_params', mode='before')
     @classmethod
@@ -71,7 +88,7 @@ class TimeSeriesConfig(BaseModel):
             f"  service_id={self.service_id},\n"
             f"  series_id='{self.series_id}',\n"
             f"  series_type='{self.series_type}',\n"
-            f"  symbol='{self.symbol}',\n"
+            f"  root_id='{self.root_id}',\n"
             f"  venue='{self.venue}',\n"
             f"  data_schema='{self.data_schema}',\n"
             f"  data_source='{self.data_source}',\n"
@@ -106,6 +123,11 @@ class TimeSeriesFilterMixin:
     def get_ts_by_asset_type(self, asset_type: str):
         """Filter by asset type"""
         filtered = [s for s in self.time_series if s.series_type == asset_type]
+        return self._wrap_result(filtered)
+
+    def get_ts_by_schema(self, schema: str):
+        """Filter by schema"""
+        filtered = [s for s in self.time_series if s.data_schema == schema]
         return self._wrap_result(filtered)
 
     def get_realtime_ts(self):
@@ -202,6 +224,6 @@ class TimeSeriesConfigManager(TimeSeriesFilterMixin):
 time_series_config = TimeSeriesConfigManager(active_only=True).time_series
 
 if __name__ == "__main__":
-    ts_config = TimeSeriesConfigManager(Path('../time_series.csv'), active_only=True)
+    ts_config = TimeSeriesConfigManager(active_only=True).time_series
     result = ts_config.get_realtime_ts().get_ts_by_source("bbg")
     print(result)
