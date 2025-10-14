@@ -1,11 +1,12 @@
 import os
 import requests
-from functools import partial
 from typing import Any, Optional
+
+from dataflow.config.settings import settings
 
 from ...outputs import output_router
 from ...utils.loop_control import RealTimeLoopControl
-from ...config.loaders.time_series_loader import TimeSeriesQueryResult, TimeSeriesConfig
+from ...config.loaders.time_series_loader import TimeSeriesConfig
 from ...extractors.realtime.base_realtime import BaseRealtimeExtractor
 
 
@@ -25,7 +26,7 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
 
     def connect(self):
         self.headers = {
-            "Authorization =": f"Bearer {1}",
+            "Authorization =": f"Bearer {settings.onyx_api_key}",
         }
         self.mapping = {s.symbol: s for s in self.time_series}
         self.root_ids = {s.root_id for s in self.time_series}
