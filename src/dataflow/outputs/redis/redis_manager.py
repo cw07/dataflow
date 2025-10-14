@@ -1,9 +1,20 @@
+from dataflow.config.settings import RedisConfig
 from ..base import BaseOutputManager
+from ...config.loaders.time_series_loader import TimeSeriesConfig
+from ...utils.schema_map import SCHEMA_MAP
 
 
 class RedisManager(BaseOutputManager):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, config: dict[str, RedisConfig]):
+        super().__init__(config)
+        self.redis_instance: dict = {}
 
-    def save(self, message, orm: str, data_model):
-        pass
+    def init_redis(self)
+        for redis_id, redis_cfg in self.config.items():
+            self.redis_instance[redis_id] = 1
+
+    def save(self, message, time_series: TimeSeriesConfig):
+        market_data_obj = SCHEMA_MAP[time_series.data_schema].from_dict(message)
+        for output_name in time_series.destination:
+            if output_name in self.redis_instance:
+                self.redis_instance[output_name].save_data(market_data_obj)

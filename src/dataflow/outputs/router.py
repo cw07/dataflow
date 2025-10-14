@@ -1,5 +1,6 @@
 from datacore.models.mktdata.outputs import DataOutput
 
+from dataflow.config.settings import settings
 from .database.db_manager import DatabaseManager
 from .file.file_manager import FileManager
 from .redis.redis_manager import RedisManager
@@ -17,9 +18,9 @@ class OutputRouter:
     def __init__(self):
         if not OutputRouter._initialized:
             OutputRouter._initialized = True
-            db_manager = DatabaseManager()
+            db_manager = DatabaseManager(settings.all_database())
+            redis_manager = RedisManager(settings.all_redis())
             file_manager = FileManager()
-            redis_manager = RedisManager()
             self.outputs = {
                 DataOutput.database: db_manager,
                 DataOutput.redis: redis_manager,

@@ -1,32 +1,34 @@
-from datacore.models.orm import ORM
 from datacore.models.mktdata.realtime import MarketByPrice1
 
+from dataflow.utils.common import ORM
+from dataflow.utils.schema_map import SCHEMA_MAP
+from dataflow.orm.base import BaseORMAdapter
 from ..base import BaseOutputManager
-from ...orm.peewee import create_peewee_model, peewee_database
-from ...orm.sqlalchemy import create_sqlalchemy_model, sqlalchemy_database
-
-
-schema_dataclass_map = {
-    "mbp1": MarketByPrice1
-}
+from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
+from ...orm.peewee import create_peewee_model, peewee_database, PeeweeDB
+from ...orm.sqlalchemy import create_sqlalchemy_model, sqlalchemy_database, SQLAlchemyDB
 
 
 class DatabaseManager(BaseOutputManager):
     """Manage database connections and models"""
-    def __init__(self):
-        super().__init__()
-        self.db_instance = None
+    def __init__(self, config: dict[str, DatabaseConfig]):
+        super().__init__(config)
+        self.db_instance: dict[str, BaseORMAdapter] = {}
 
-    def save(self, message, config: dict):
-        orm = config["orm"]
-        schema = config["schema"]
-        market_data = schema_dataclass_map[schema].from_dict(message)
+    def init_db(self):
+        for db_id, db_cfg in self.config.items():
+            if db_cfg.orm == ORM.SQLALCHEMY:
+                self.db_instance[db_id] = SQLAlchemyDB(db_cfg)
+            elif db_cfg.orm == ORM.PEEWEE:
+                self.db_instance[db_id] = PeeweeDB(db_cfg)
+            else:
+                raise ValueError(f"Unknown database orm: {db_cfg.orm}")
 
-        if orm == ORM.PEEWEE:
-            self.db_instance = peewee_database(config)
-            orm_model = create_peewee_model(instance=market_data)
-            self.db_instance.create_tables([orm_model], safe=True)
-            data = market_data.to_dict()
-            record = orm_model.create(**data)
+    def save(self, message, time_series: TimeSeriesConfig):
+        market_data_obj = SCHEMA_MAP[time_series.data_schema].from_dict(message)
+        for output_name in time_series.destination:
+            if output_name in self.db_instance:
+                self.db_instance[output_name].save_data(market_data_obj)
+
 
 

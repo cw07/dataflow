@@ -1,6 +1,8 @@
 from peewee import *
 from dataclasses import fields
-from typing import get_origin, get_args
+from typing import get_origin, get_args, Dict, Any, Type, List
+
+from dataflow.orm.base import BaseORMAdapter
 
 
 def create_peewee_model(instance, db_instance=None, table_name=None):
@@ -77,3 +79,38 @@ def peewee_database(db_type, **config):
         raise ValueError(f"Unsupported database type: {db_type}")
 
     return db_class(**config)
+
+
+class PeeweeDB(BaseORMAdapter):
+
+    def __init__(self, config):
+        super().__init__(config)
+        self.engine = self.create_engine()
+        self.session = self.create_session()
+
+    def create_model(self, name: str, fields: Dict[str, Any]) -> Type:
+        pass
+
+    def create_table(self, models: List[Type]) -> None:
+        pass
+
+    def save_data(self, data_obj):
+        pass
+
+    def bulk_insert(self, model: Type, data: List[Dict]) -> None:
+        pass
+
+    def insert_one(self, model: Type, data: Dict) -> Any:
+        pass
+
+    def connect(self, config: Dict[str, Any]) -> None:
+        pass
+
+    def close(self) -> None:
+        pass
+
+    def create_engine(self):
+        pass
+
+    def create_session(self):
+        pass

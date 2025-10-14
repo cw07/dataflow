@@ -4,6 +4,8 @@ from pathlib import Path
 from typing import Any, Optional
 from pydantic import BaseModel, Field, field_validator
 
+from dataflow.utils.common import DataOutput
+
 
 DEFAULT_TS_PATH = Path(__file__).resolve().parent.parent / "time_series.csv"
 
@@ -46,6 +48,18 @@ class TimeSeriesConfig(BaseModel):
         if isinstance(v, str):
             return v.lower() in ('true', '1', 'yes', 'on')
         return bool(v)
+
+    @staticmethod
+    def output_type(destination: str):
+        if "database" in destination or "db" in destination:
+            output_type = DataOutput.database
+        elif "redis" in destination:
+            output_type = DataOutput.redis
+        elif "file" in destination:
+            output_type = DataOutput.file
+        else:
+            raise ValueError("Invalid destination type")
+        return output_type
 
     def __repr__(self) -> str:
         """String representation showing all fields except additional_params"""

@@ -4,7 +4,7 @@ from typing import Any, Optional
 
 from ...outputs import output_router
 from ...utils.loop_control import RealTimeLoopControl
-from ...config.loaders.time_series_loader import TimeSeriesQueryResult
+from ...config.loaders.time_series_loader import TimeSeriesQueryResult, TimeSeriesConfig
 from ...extractors.realtime.base_realtime import BaseRealtimeExtractor
 
 
@@ -15,6 +15,7 @@ class FluxRealtimeExtractor(BaseRealtimeExtractor):
     def __init__(self, config: dict[str, Any]):
         super().__init__(config)
         self.time_series: TimeSeriesQueryResult = self.config["time_series"]
+        self.mapping: dict[str, TimeSeriesConfig] = {}
         self.flux_client = None
 
     def validate_config(self) -> None:
@@ -42,6 +43,7 @@ class FluxRealtimeExtractor(BaseRealtimeExtractor):
     def stop_extract(self):
         pass
 
-    def set_handler(self):
-        output = self.config["output"]
-        return partial(output_router.route, output=output, config=self.config)
+    def on_message(self, message):
+        symbol = message["symbol"]
+        time_series = self.mapping[symbol]
+        output_router.route(message=message, time_series=time_series)

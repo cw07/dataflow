@@ -1,17 +1,33 @@
-# orm/base.py
 from abc import ABC, abstractmethod
 from typing import Any, Type, List, Dict
 
 
 class BaseORMAdapter(ABC):
+
+    def __init__(self, config: dict):
+        self.config = config
+
+
+    @abstractmethod
+    def create_engine(self):
+        pass
+
+    @abstractmethod
+    def create_session(self):
+        pass
+
     @abstractmethod
     def create_model(self, name: str, fields: Dict[str, Any]) -> Type:
         """Dynamically create ORM model"""
         pass
 
     @abstractmethod
-    def create_tables(self, models: List[Type]) -> None:
+    def create_table(self, models: List[Type]) -> None:
         """Create database tables for models"""
+        pass
+
+    @abstractmethod
+    def save_data(self, data_obj):
         pass
 
     @abstractmethod

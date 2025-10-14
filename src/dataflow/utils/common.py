@@ -1,5 +1,16 @@
 import os
+from enum import StrEnum
 
+
+class ORM(StrEnum):
+    SQLALCHEMY = 'sqlalchemy'
+    PEEWEE = 'peewee'
+
+
+class DataOutput(StrEnum):
+    database = "database"
+    redis = "redis"
+    file = "file"
 
 def set_env_vars(argument: dict):
     for arg_name, arg_value in argument.items():

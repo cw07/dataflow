@@ -2,9 +2,10 @@ from enum import Enum
 from pathlib import Path
 from typing import Any, Optional
 from urllib.parse import urlparse
-
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, PydanticBaseSettingsSource, SettingsConfigDict
+
+from dataflow.utils.common import ORM
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent.parent
 ENV_FILE = PROJECT_ROOT / ".env"
