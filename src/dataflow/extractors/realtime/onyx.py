@@ -56,7 +56,7 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
         while True:
             for root_id in self.root_ids:
                 try:
-                    url = f"https://api.onyxhub.com/v1/tickers/live/{root_id}"
+                    url = f"https://api.onyxhub.co/v1/tickers/live/{root_id}"
                     response = requests.get(url, headers=self.headers)
                     data = response.json()
                     for d in data:
