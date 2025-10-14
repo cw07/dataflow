@@ -135,9 +135,8 @@ class Settings(BaseSettings):
 
     # Data Provider API Keys
     databento_api_key: str
-    polygon_api_key: str
-    alpaca_api_key: str
-    alpaca_api_secret: str
+    onyx_api_key: str
+    sparta_api_key: str
 
     model_config = SettingsConfigDict(
         env_file=Path(__file__).resolve().parents[3] / '.env',
