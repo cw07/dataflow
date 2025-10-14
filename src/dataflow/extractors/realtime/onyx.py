@@ -1,4 +1,6 @@
 import os
+import time
+import logging
 import requests
 from typing import Any, Optional
 
@@ -8,6 +10,9 @@ from ...outputs import output_router
 from ...utils.loop_control import RealTimeLoopControl
 from ...config.loaders.time_series_loader import TimeSeriesConfig
 from ...extractors.realtime.base_realtime import BaseRealtimeExtractor
+
+
+logger = logging.getLogger(__name__)
 
 
 class OnyxRealtimeExtractor(BaseRealtimeExtractor):
@@ -48,12 +53,16 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
         self.connect()
         while True:
             for root_id in self.root_ids:
-                url = f"https://api.onyxhub.com/v1/tickers/live/{root_id}"
-                response = requests.get(url, headers=self.headers)
-                data = response.json()
-                for d in data:
-                    if d["symbol"] in self.mapping:
-                        self.on_message(d)
+                try:
+                    url = f"https://api.onyxhub.com/v1/tickers/live/{root_id}"
+                    response = requests.get(url, headers=self.headers)
+                    data = response.json()
+                    for d in data:
+                        if d["symbol"] in self.mapping:
+                            self.on_message(d)
+                    time.sleep(2)
+                except Exception as e:
+                    logger.error(f"Error fetching {root_id} from Onyx: {e}")
 
     def stop_extract(self):
         pass

@@ -63,10 +63,17 @@ class RealTimeLoopControl(BaseGate):
     Accepts dt.datetime (naive or tz-aware, but be consistent).
     """
 
-    def __init__(self, start: Optional[dt.datetime | str] = None, end: Optional[dt.datetime | str] = None):
+    def __init__(self,
+                 start: Optional[dt.datetime | str] = None,
+                 end: Optional[dt.datetime | str] = None,
+                 new_thread: bool = False
+                 ):
         self.start = self._parse_datetime(start)
         self.end = self._parse_datetime(end)
         self._tz = self.get_timezone()
+        self.new_thread = new_thread
+        self._stop_event = threading.Event() if new_thread else None
+        self._thread = None
 
     def __call__(self, func):
         from functools import wraps
@@ -79,15 +86,35 @@ class RealTimeLoopControl(BaseGate):
 
             self.wait_until_start()
 
-            _ = func(*args, **kwargs)  # func will launch a separate thread for its job
+            if self.new_thread:
+                # Start the function in a separate thread
+                self._stop_event.clear()
+                self._thread = threading.Thread(
+                    target=func,
+                    args=args,
+                    kwargs=kwargs,
+                    daemon=True
+                )
+                self._thread.start()
 
-            while True:
-                if not self.should_continue():
-                    logger.info(f"Service {func.__name__} passed end time {self.end}, stopping.")
-                    break
+                while True:
+                    if not self.should_continue():
+                        logger.info(f"Service {func.__name__} passed end time {self.end}, stopping.")
+                        self._stop_event.set()
+                        self._thread.join(timeout=5.0)
+                        break
 
-                if self.on_idle:
-                    self.on_idle()
+                    if self.on_idle:
+                        self.on_idle()
+            else:
+                _ = func(*args, **kwargs)  # func will launch a separate thread for its job
+                while True:
+                    if not self.should_continue():
+                        logger.info(f"Service {func.__name__} passed end time {self.end}, stopping.")
+                        break
+
+                    if self.on_idle:
+                        self.on_idle()
 
         return wrapper
 

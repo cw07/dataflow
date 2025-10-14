@@ -77,7 +77,8 @@ class ServiceOrchestrator:
             extract_service.start_extract()
 
     def stop_services(self):
-       pass
+        for extract_service in self.services:
+            logger.info(f"Service {extract_service.__class__.__name__} stopped")
 
     def run_services(self):
         """Run a single service manually (for testing or one-off execution)"""
