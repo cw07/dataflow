@@ -31,7 +31,7 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
 
     def connect(self):
         self.headers = {
-            "Authorization =": f"Bearer {settings.onyx_api_key}",
+            "Authorization": f"Bearer {settings.onyx_api_key}",
         }
         self.mapping = {s.symbol: s for s in self.time_series}
         self.root_ids = {s.root_id for s in self.time_series}
