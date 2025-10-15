@@ -35,7 +35,6 @@ class BBGRealtimeExtractor(BaseRealtimeExtractor):
     def unsubscribe(self, symbols: Optional[list] = None):
         pass
 
-    @RealTimeLoopControl(start=os.environ["EXTRACT_START_TIME"], end=os.environ["EXTRACT_END_TIME"])
     def start_extract(self):
         pass
 

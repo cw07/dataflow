@@ -37,7 +37,7 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
         end = self.config["end"]
 
         onyx_period_map = {
-            MktDataSchema.OHLCV: "1d"
+            MktDataSchema.OHLCV_1D: "1d"
         }
 
         params = {
