@@ -69,5 +69,5 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
 
     def on_message(self, message):
         symbol = message["symbol"]
-        time_series = self.mapping[symbol]
+        time_series: TimeSeriesConfig = self.mapping[symbol]
         output_router.route(message=message, time_series=time_series)

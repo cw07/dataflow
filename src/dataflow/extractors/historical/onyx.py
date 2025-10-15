@@ -57,9 +57,9 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
             except Exception as e:
                 logger.error(f"Error fetching historical {time_series.symbol} from Onyx: {e}")
 
-    def on_message(self, data, time_series):
+    def on_message(self, data, time_series: TimeSeriesConfig):
         new_data = {
-            "asset_type": time_series.asset_type,
+            "asset_type": time_series.series_type,
             "vendor": time_series.data_source,
             "symbol": time_series.symbol,
             "ts_event": data["timestamp"],
