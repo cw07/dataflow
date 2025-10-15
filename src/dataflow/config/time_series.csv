@@ -223,14 +223,4 @@ service_id,series_id,series_type,root_id,venue,data_schema,data_source,destinati
 222,NAPEW.18,fut,NAPEW,ICE,mbp-1,onyx,redis1,realtime,Naphtha E/W,{},napewh27,1
 223,NAPEW.19,fut,NAPEW,ICE,mbp-1,onyx,redis1,realtime,Naphtha E/W,{},napewj27,1
 224,NAPEW.20,fut,NAPEW,ICE,mbp-1,onyx,redis1,realtime,Naphtha E/W,{},napewk27,1
-225,NAPEW.1,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,{},napewv25,1
-226,NAPEW.2,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,{},napewx25,1
-227,NAPEW.3,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,{},napewz25,1
-228,NAPEW.4,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,{},napewf26,1
-229,NAPEW.5,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,{},napewg26,1
-230,NAPEW.6,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,{},napewh26,1
-231,NAPEW.7,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,{},napewj26,1
-232,NAPEW.8,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,{},napewk26,1
-233,NAPEW.9,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,{},napewm26,1
-234,NAPEW.10,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,{},napewn26,1
-235,fut.contract_SI.1_daily_various,fut.contract,SI,CME,daily,various,database1,historical,Future Contract Mapping,{},,1
+225,fut.contract_SI.1_daily_various,fut.contract,SI,CME,definition,various,database1,historical,Future Contract Mapping,{},,1
