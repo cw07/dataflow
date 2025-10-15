@@ -54,12 +54,15 @@ class TimeSeriesConfig(BaseModel):
     @field_validator('additional_params', mode='before')
     @classmethod
     def parse_json_params(cls, v: Any) -> dict:
-        if isinstance(v, str):
+        if isinstance(v, dict):
+            return v
+        elif isinstance(v, str):
             try:
                 return json.loads(v) if v else {}
             except json.JSONDecodeError:
                 return {}
-        return v or {}
+        else:
+            raise TypeError(f"additional_params must be a str or dict, not {type(v)}")
 
     @field_validator('active', mode='before')
     @classmethod
