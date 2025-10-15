@@ -97,7 +97,7 @@ class TimeSeriesConfig(BaseModel):
             f"  destination={dest_str},\n"
             f"  extractor='{self.extractor}',\n"
             f"  description={desc_str},\n"
-            f"  enabled={self.enabled}\n"
+            f"  active={self.active}\n"
             f")"
         )
 
