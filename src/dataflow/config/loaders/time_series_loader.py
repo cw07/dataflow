@@ -176,15 +176,11 @@ class TimeSeriesQueryResult(TimeSeriesFilterMixin):
         count = len(self._time_series)
         if count == 0:
             return "TimeSeriesQueryResult(0 time series)"
-        display_limit = 10
-        items_to_show = self._time_series[:display_limit]
-        configs_repr = '\n  '.join(repr(ts) for ts in items_to_show)
+        configs_repr = '\n  '.join(repr(ts) for ts in self._time_series)
         if count == 1:
             return f"TimeSeriesQueryResult(1 time series):\n {configs_repr}"
-        elif count <= display_limit:
-            return f"TimeSeriesQueryResult({count} time series):\n{configs_repr}"
         else:
-            return f"TimeSeriesQueryResult({count} time series, showing first {display_limit}):\n{configs_repr}\n ..."
+            return f"TimeSeriesQueryResult({count} time series):\n{configs_repr}"
 
     def __iter__(self):
         """Make it iterable"""
