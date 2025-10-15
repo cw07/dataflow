@@ -40,12 +40,17 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
             MktDataSchema.OHLCV: "1d"
         }
 
+        params = {
+            "start": start,
+            "end": end,
+        }
+
         for time_series in self.time_series:
             try:
                 symbol = time_series.symbol
                 period = onyx_period_map[time_series.data_schema]
-                url = f"{settings.onyx_url}/tickers/ohlc/{symbol}/{period}?start={start}&end={end}"
-                response = requests.get(url, headers=headers)
+                url = f"{settings.onyx_url}/tickers/ohlc/{symbol}/{period}"
+                response = requests.get(url, headers=headers, params=params)
                 data = response.json()
                 self.on_message(data, time_series)
             except Exception as e:
