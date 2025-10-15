@@ -89,19 +89,18 @@ class TimeSeriesConfig(BaseModel):
         desc_str = f"('{self.description}')" if self.description else 'None'
 
         return (
-            f"TimeSeriesConfig(\n"
-            f"  service_id={self.service_id},\n"
-            f"  series_id='{self.series_id}',\n"
-            f"  series_type='{self.series_type}',\n"
-            f"  root_id='{self.root_id}',\n"
-            f"  venue='{self.venue}',\n"
-            f"  data_schema='{self.data_schema}',\n"
-            f"  data_source='{self.data_source}',\n"
-            f"  destination={dest_str},\n"
-            f"  extractor='{self.extractor}',\n"
-            f"  description={desc_str},\n"
-            f"  active={self.active}\n"
-            f")"
+            f"TimeSeriesConfig("
+            f"service_id={self.service_id}, "
+            f"series_id='{self.series_id}', "
+            f"series_type='{self.series_type}', "
+            f"root_id='{self.root_id}', "
+            f"venue='{self.venue}', "
+            f"data_schema='{self.data_schema}', "
+            f"data_source='{self.data_source}', "
+            f"destination=[{dest_str}], "
+            f"extractor='{self.extractor}', "
+            f"description={desc_str}, "
+            f"active={self.active})"
         )
 
 class TimeSeriesFilterMixin:
