@@ -58,5 +58,15 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
                 logger.error(f"Error fetching historical {time_series.symbol} from Onyx: {e}")
 
     def on_message(self, data, time_series):
-        output_router.route(message=data, time_series=time_series)
+        new_data = {
+            "asset_type": time_series.asset_type,
+            "vendor": time_series.data_source,
+            "symbol": time_series.symbol,
+            "ts_event": data["timestamp"],
+            "open": data["open"],
+            "high": data["high"],
+            "low": data["low"],
+            "close": data["close"]
+        }
+        output_router.route(message=new_data, time_series=time_series)
 
