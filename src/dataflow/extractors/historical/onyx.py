@@ -52,7 +52,8 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
                 url = f"{settings.onyx_url}/tickers/ohlc/{symbol}/{period}"
                 response = requests.get(url, headers=headers, params=params)
                 data = response.json()
-                self.on_message(data, time_series)
+                for d in data:
+                    self.on_message(d, time_series)
             except Exception as e:
                 logger.error(f"Error fetching historical {time_series.symbol} from Onyx: {e}")
 
