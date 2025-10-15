@@ -233,4 +233,14 @@ service_id,series_id,series_type,root_id,venue,data_schema,data_source,destinati
 232,NAPEW.8,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewk26,1
 233,NAPEW.9,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewm26,1
 234,NAPEW.10,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewn26,1
-235,fut.contract_SI.1_daily_various,fut.contract,SI,CME,definition,various,database1,historical,Future Contract Mapping,{},,1
+235,NAPEW.11,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewq26,1
+236,NAPEW.12,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewu26,1
+237,NAPEW.13,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewv26,1
+238,NAPEW.14,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewx26,1
+239,NAPEW.15,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewz26,1
+240,NAPEW.16,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewf27,1
+241,NAPEW.17,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewg27,1
+242,NAPEW.18,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewh27,1
+243,NAPEW.19,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewj27,1
+244,NAPEW.20,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewk27,1
+245,fut.contract_SI.1_daily_various,fut.contract,SI,CME,definition,various,database1,historical,Future Contract Mapping,{},,1
