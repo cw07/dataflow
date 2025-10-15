@@ -1,7 +1,11 @@
+import logging
+
 from dataflow.config.settings import RedisConfig
 from dataflow.outputs.base import BaseOutputManager
 from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
 from dataflow.utils.schema_map import SCHEMA_MAP
+
+logger = logging.getLogger(__name__)
 
 
 class RedisWrapper:
@@ -43,4 +47,5 @@ class RedisManager(BaseOutputManager):
         market_data_obj = SCHEMA_MAP[time_series.data_schema].from_dict(message)
         for output_name in time_series.destination:
             if output_name in self.redis_instance:
+                logger.info(f"Saving {market_data_obj} for {time_series}")
                 self.redis_instance[output_name].save_data(market_data_obj, time_series)

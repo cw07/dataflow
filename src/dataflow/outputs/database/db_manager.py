@@ -1,3 +1,5 @@
+import logging
+
 from dataflow.utils.common import ORM
 from dataflow.orm.peewee import PeeweeDB
 from dataflow.orm.base import BaseORMAdapter
@@ -6,6 +8,8 @@ from dataflow.utils.schema_map import SCHEMA_MAP
 from dataflow.config.settings import DatabaseConfig
 from dataflow.outputs.base import BaseOutputManager
 from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
+
+logger = logging.getLogger(__name__)
 
 
 class DatabaseManager(BaseOutputManager):

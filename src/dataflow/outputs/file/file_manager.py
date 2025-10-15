@@ -1,4 +1,8 @@
+import logging
+
 from dataflow.outputs.base import BaseOutputManager
+
+logger = logging.getLogger(__name__)
 
 
 class FileManager(BaseOutputManager):
