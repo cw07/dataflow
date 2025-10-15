@@ -5,7 +5,7 @@ import requests
 from datacore.models.mktdata.historical import OHLCV1D
 from datacore.models.mktdata.schema import MktDataSchema
 
-from dataflow.config import settings
+from dataflow.config.settings import settings
 from dataflow.outputs import output_router
 from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
 from dataflow.extractors.historical.base_historical import BaseHistoricalExtractor

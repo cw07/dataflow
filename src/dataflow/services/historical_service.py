@@ -86,7 +86,6 @@ def parse_arguments(args):
 def main(args):
     args = parse_arguments(args)
 
-
     asset_ts = (
         time_series_config.get_historical_ts()
         .get_ts_by_asset_type(args.asset_type)
