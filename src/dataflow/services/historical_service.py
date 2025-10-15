@@ -8,7 +8,7 @@ from functools import partial
 from datacore.models.assets import AssetType
 from datacore.models.mktdata.datasource import DataSource
 
-from tradetools import DEFAULT_TIMEZONE
+from tradetools import UTC
 from tradetools.common import parse_time, print_args
 
 from dataflow.utils.common import set_env_vars
