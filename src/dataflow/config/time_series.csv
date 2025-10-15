@@ -203,24 +203,24 @@ service_id,series_id,series_type,root_id,venue,data_schema,data_source,destinati
 202,fut_XB.10_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
 203,fut_XB.11_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
 204,fut_XB.12_mbp1_bbg,fut,XB,NYMEX,mbp1,bbg,database1,realtime,NYMEX RBOB Futures,{},,1
-205,fut_NAPEW.1,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewv25,1
-206,fut_NAPEW.2,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewx25,1
-207,fut_NAPEW.3,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewz25,1
-208,fut_NAPEW.4,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewf26,1
-209,fut_NAPEW.5,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewg26,1
-210,fut_NAPEW.6,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewh26,1
-211,fut_NAPEW.7,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewj26,1
-212,fut_NAPEW.8,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewk26,1
-213,fut_NAPEW.9,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewm26,1
-214,fut_NAPEW.10,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewn26,1
-215,fut_NAPEW.11,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewq26,1
-216,fut_NAPEW.12,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewu26,1
-217,fut_NAPEW.13,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewv26,1
-218,fut_NAPEW.14,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewx26,1
-219,fut_NAPEW.15,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewz26,1
-220,fut_NAPEW.16,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewf27,1
-221,fut_NAPEW.17,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewg27,1
-222,fut_NAPEW.18,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewh27,1
-223,fut_NAPEW.19,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewj27,1
-224,fut_NAPEW.20,fut,NAPEW,ICE,trade,onyx,redis1,realtime,Naphtha E/W,{},napewk27,1
+205,fut_NAPEW.1,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewv25,1
+206,fut_NAPEW.2,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewx25,1
+207,fut_NAPEW.3,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewz25,1
+208,fut_NAPEW.4,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewf26,1
+209,fut_NAPEW.5,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewg26,1
+210,fut_NAPEW.6,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewh26,1
+211,fut_NAPEW.7,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewj26,1
+212,fut_NAPEW.8,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewk26,1
+213,fut_NAPEW.9,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewm26,1
+214,fut_NAPEW.10,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewn26,1
+215,fut_NAPEW.11,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewq26,1
+216,fut_NAPEW.12,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewu26,1
+217,fut_NAPEW.13,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewv26,1
+218,fut_NAPEW.14,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewx26,1
+219,fut_NAPEW.15,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewz26,1
+220,fut_NAPEW.16,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewf27,1
+221,fut_NAPEW.17,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewg27,1
+222,fut_NAPEW.18,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewh27,1
+223,fut_NAPEW.19,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewj27,1
+224,fut_NAPEW.20,fut,NAPEW,ICE,mbp1,onyx,redis1,realtime,Naphtha E/W,{},napewk27,1
 225,fut.contract_SI.1_daily_various,fut.contract,SI,CME,daily,various,database1,historical,Future Contract Mapping,{},,1
