@@ -83,7 +83,8 @@ class TimeSeriesConfig(BaseModel):
             raise ValueError("Invalid destination type")
         return output_type
 
-    def __repr__(self) -> str:
+
+    def __str__(self) -> str:
         """String representation showing all fields except additional_params"""
         dest_str = ','.join(self.destination) if self.destination else ''
         desc_str = f"('{self.description}')" if self.description else 'None'
@@ -102,6 +103,9 @@ class TimeSeriesConfig(BaseModel):
             f"description={desc_str}, "
             f"active={self.active})"
         )
+
+    def __repr__(self) -> str:
+        return self.__str__()
 
 class TimeSeriesFilterMixin:
     """Mixin class providing common filtering methods"""
