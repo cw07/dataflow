@@ -96,7 +96,8 @@ def main(args):
 
     service_config = {
         "start": args.start_time.replace(tzinfo=UTC).isoformat(),
-        "schema": args.end_time.replace(tzinfo=UTC).isoformat(),
+        "end": args.end_time.replace(tzinfo=UTC).isoformat(),
+        "schema": args.schema,
         "time_series": asset_ts,
     }
     print_args(args, extra_params=service_config)
@@ -120,7 +121,3 @@ if __name__ == "__main__":
         "--schema", "ohlcv-1d"
     ]
     main(historical_args)
-
-
-
-
