@@ -121,7 +121,7 @@ if __name__ == "__main__":
         "--end-time", "05:30:00 1",
         "--data-source", "onyx",
         "--asset-type", "fut",
-        "--schema", "trade"
+        "--schema", "mbp-1"
     ]
     main(realtime_args)
 

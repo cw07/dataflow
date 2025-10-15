@@ -136,6 +136,7 @@ class Settings(BaseSettings):
     # Data Provider API Keys
     databento_api_key: str
     onyx_api_key: str
+    onyx_url: str
     sparta_api_key: str
 
     model_config = SettingsConfigDict(

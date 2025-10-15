@@ -35,14 +35,12 @@ def parse_arguments(args):
     parser.add_argument(
         "--start-time",
         type=parse_time,
-        default=dt.datetime.now(DEFAULT_TIMEZONE),
         help="Start time in 'HH:MM:SS delta_day' format",
     )
 
     parser.add_argument(
         "--end-time",
-        required=True,
-        type=partial(parse_time, run_hours_limit=True),
+        type=parse_time,
         help="End time in 'HH:MM:SS delta_day' format"
     )
 
@@ -87,7 +85,7 @@ def parse_arguments(args):
 
 def main(args):
     args = parse_arguments(args)
-    print_args(args)
+
 
     asset_ts = (
         time_series_config.get_historical_ts()
@@ -97,14 +95,11 @@ def main(args):
     )
 
     service_config = {
-        "schema": args.schema,
+        "start": args.start_time.replace(tzinfo=UTC).isoformat(),
+        "schema": args.end_time.replace(tzinfo=UTC).isoformat(),
         "time_series": asset_ts,
     }
-
-    set_env_vars({
-        "EXTRACT_START_TIME": args.start_time.isoformat(),
-        "EXTRACT_END_TIME": args.end_time.isoformat(),
-    })
+    print_args(args, extra_params=service_config)
 
     from dataflow.services.orchestrator import ServiceOrchestrator
     with ServiceOrchestrator(service_type="historical", service_config=service_config) as so:
@@ -118,10 +113,11 @@ def clmain():
 if __name__ == "__main__":
     historical_args = [
         "--mode", "PROD",
-        "--end-time", "05:30:00 1",
+        "--start-time", "00:00:00 -1",
+        "--end-time", "00:00:00 -1",
         "--data-source", "onyx",
         "--asset-type", "fut",
-        "--schema", "trade"
+        "--schema", "ohlcv-1d"
     ]
     main(historical_args)
 

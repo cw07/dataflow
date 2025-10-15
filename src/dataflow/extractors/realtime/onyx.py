@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 
 
 class OnyxRealtimeExtractor(BaseRealtimeExtractor):
-
     vendor = "onyx"
 
     def __init__(self, config: dict[str, Any]):

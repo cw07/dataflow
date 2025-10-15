@@ -20,7 +20,6 @@ DatabentoSchemaMap = {
 }
 
 class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
-
     vendor = "databento"
 
     def __init__(self, config: Dict[str, Any]):

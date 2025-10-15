@@ -4,7 +4,7 @@ from typing import Type
 from collections import defaultdict
 
 from dataflow.extractors.base import BaseExtractor
-from dataflow.extractors import DatabentoRealtimeExtractor, BBGRealtimeExtractor, OnyxRealtimeExtractor
+from dataflow.extractors import DatabentoRealtimeExtractor, BBGRealtimeExtractor, OnyxRealtimeExtractor, OnyxHistoricalExtractor
 
 logger = logging.getLogger(__name__)
 
@@ -16,7 +16,7 @@ class ExtractorFactory:
         ("realtime", "databento"): DatabentoRealtimeExtractor,
         ("realtime", "bbg"): BBGRealtimeExtractor,
         ("realtime", "onyx"): OnyxRealtimeExtractor,
-
+        ("historical", "onyx"): OnyxHistoricalExtractor
     }
     
     @classmethod

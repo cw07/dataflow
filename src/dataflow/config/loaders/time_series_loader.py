@@ -4,6 +4,8 @@ from pathlib import Path
 from typing import Any, Optional
 from pydantic import BaseModel, Field, field_validator
 
+from datacore.models.mktdata.schema import MktDataSchema
+
 from dataflow.utils.common import DataOutput
 
 
@@ -17,7 +19,7 @@ class TimeSeriesConfig(BaseModel):
     series_type: str
     root_id: str
     venue: str
-    data_schema: str
+    data_schema: MktDataSchema
     data_source: str
     destination: list[str]
     extractor: str
