@@ -1,7 +1,7 @@
 from dataflow.config.settings import RedisConfig
-from ..base import BaseOutputManager
-from ...config.loaders.time_series_loader import TimeSeriesConfig
-from ...utils.schema_map import SCHEMA_MAP
+from dataflow.outputs.base import BaseOutputManager
+from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
+from dataflow.utils.schema_map import SCHEMA_MAP
 
 
 class RedisManager(BaseOutputManager):

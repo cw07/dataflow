@@ -5,11 +5,10 @@ import requests
 from typing import Any, Optional
 
 from dataflow.config.settings import settings
-
-from ...outputs import output_router
-from ...utils.loop_control import RealTimeLoopControl
-from ...config.loaders.time_series_loader import TimeSeriesConfig
-from ...extractors.realtime.base_realtime import BaseRealtimeExtractor
+from dataflow.outputs import output_router
+from dataflow.utils.loop_control import RealTimeLoopControl
+from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
+from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
 
 
 logger = logging.getLogger(__name__)

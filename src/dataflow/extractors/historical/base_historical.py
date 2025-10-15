@@ -1,6 +1,7 @@
 from abc import abstractmethod
 from typing import Callable, Any, Optional
-from ..base import BaseExtractor
+
+from dataflow.extractors.base import BaseExtractor
 
 
 class BaseHistoricalExtractor(BaseExtractor):

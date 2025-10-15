@@ -3,8 +3,8 @@ import logging
 from typing import Type
 from collections import defaultdict
 
-from ..extractors.base import BaseExtractor
-from ..extractors import DatabentoRealtimeExtractor, BBGRealtimeExtractor, OnyxRealtimeExtractor
+from dataflow.extractors.base import BaseExtractor
+from dataflow.extractors import DatabentoRealtimeExtractor, BBGRealtimeExtractor, OnyxRealtimeExtractor
 
 logger = logging.getLogger(__name__)
 

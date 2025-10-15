@@ -1,6 +1,7 @@
 from abc import abstractmethod
 from typing import Callable, Dict, Any, Optional
-from ..base import BaseExtractor
+
+from dataflow.extractors.base import BaseExtractor
 
 
 class BaseRealtimeExtractor(BaseExtractor):

@@ -6,7 +6,6 @@ import datetime as dt
 from typing import Optional, Union
 from abc import ABC, abstractmethod
 
-
 logger = logging.getLogger(__name__)
 
 

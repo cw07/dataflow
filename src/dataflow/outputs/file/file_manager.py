@@ -1,4 +1,4 @@
-from ..base import BaseOutputManager
+from dataflow.outputs.base import BaseOutputManager
 
 
 class FileManager(BaseOutputManager):
