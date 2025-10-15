@@ -63,7 +63,7 @@ class TimeSeriesConfig(BaseModel):
 
     @field_validator('active', mode='before')
     @classmethod
-    def parse_enabled(cls, v: Any) -> bool:
+    def parse_active(cls, v: Any) -> bool:
         if isinstance(v, str):
             return v.lower() in ('true', '1', 'yes', 'on')
         return bool(v)
@@ -114,7 +114,7 @@ class TimeSeriesFilterMixin:
 
     def get_active_ts(self):
         """Get all time series (no filtering)"""
-        filtered = [s for s in self.time_series if s.enabled]
+        filtered = [s for s in self.time_series if s.active]
         return self._wrap_result(filtered)
 
     def get_ts_by_source(self, source: str):
