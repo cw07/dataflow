@@ -18,6 +18,7 @@ class RedisManager(BaseOutputManager):
     def __init__(self, config: dict[str, RedisConfig]):
         super().__init__(config)
         self.redis_instance: dict = {}
+        self.init_redis()
 
     def init_redis(self):
         for redis_id, redis_cfg in self.config.items():
