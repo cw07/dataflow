@@ -24,6 +24,10 @@ dependencies = [
     "pandas"
 ]
 
+[project.scripts]
+realtime_service = "dataflow.services.realtime_service:clmain"
+historical_service = "dataflow.services.historical_service:clmain"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
