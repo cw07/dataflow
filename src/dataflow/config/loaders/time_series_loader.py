@@ -1,15 +1,12 @@
 import json
 import pandas as pd
-from pathlib import Path
 from typing import Any, Optional
 from pydantic import BaseModel, Field, field_validator
 
 from datacore.models.mktdata.schema import MktDataSchema
 
+from dataflow.config.settings import settings
 from dataflow.utils.common import DataOutput
-
-
-DEFAULT_TS_PATH = Path(__file__).resolve().parent.parent / "time_series.csv"
 
 
 class TimeSeriesConfig(BaseModel):
@@ -197,8 +194,7 @@ class TimeSeriesQueryResult(TimeSeriesFilterMixin):
 class TimeSeriesConfigManager(TimeSeriesFilterMixin):
     """Manages loading and querying service configurations"""
 
-    def __init__(self, config_path: Path = DEFAULT_TS_PATH, active_only: bool = True):
-        self.config_path = config_path
+    def __init__(self, active_only: bool = True):
         self.active_only: bool = active_only
         self._time_series: list[TimeSeriesConfig] = []
         self.load_configurations()
@@ -209,9 +205,11 @@ class TimeSeriesConfigManager(TimeSeriesFilterMixin):
 
     def load_configurations(self):
         """Load service configurations from CSV"""
-        df = pd.read_csv(self.config_path)
+        if settings.time_series_config_type == "file":
+            df = pd.read_csv(settings.time_series_config_path)
+        else:
+            df = pd.DataFrame()
         df = df.where(pd.notnull(df), None)
-
         for _, row in df.iterrows():
             ts = TimeSeriesConfig(**row.to_dict())
             if self.active_only:

@@ -10,6 +10,9 @@ from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
 
 logger = logging.getLogger(__name__)
 
+loop_control = RealTimeLoopControl(start=os.environ["EXTRACT_START_TIME"],
+                                   end=os.environ["EXTRACT_END_TIME"])
+
 
 class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     vendor = "databento"
@@ -59,9 +62,7 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     def unsubscribe(self, symbols: Optional[list] = None):
         pass
 
-    @RealTimeLoopControl(start=os.environ["EXTRACT_START_TIME"],
-                         end=os.environ["EXTRACT_END_TIME"]
-                         )
+    @loop_control
     def start_extract(self):
         self.subscribe(self.config.get('symbols'))
         self.dbento_client.add_callback(self.on_message)

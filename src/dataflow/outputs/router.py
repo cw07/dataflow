@@ -38,7 +38,7 @@ class OutputRouter:
 
     def route(self, message, time_series: TimeSeriesConfig):
         for output in time_series.destination:
-            if "database" in output:
+            if "database" in output or "db" in output:
                 output_type = DataOutput.database
                 message = self.decorate(message, time_series)
             elif "redis" in output:

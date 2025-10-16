@@ -83,7 +83,9 @@ class Settings(BaseSettings):
     app_name: str
 
     # Time Series
-    time_series_config: Path
+    time_series_config_type: str
+    time_series_config_path: Path
+    time_series_config_table: str
 
     # ORM
     orm_type: str
@@ -146,10 +148,29 @@ class Settings(BaseSettings):
         case_sensitive=False,
     )
 
-    @field_validator('file1_storage_path', mode='before')
+    @field_validator('time_series_config_path', 'file1_storage_path', mode='before')
     @classmethod
     def expand_paths(cls, v: str) -> Path:
-        return Path(v).expanduser().resolve()
+        """
+        Resolve relative paths relative to the project root.
+        Handles:
+        - Relative paths like './config/time_series.csv' (relative to project root)
+        - Absolute paths (returned as-is)
+        - User home paths like '~/config/file.csv' (expanded)
+        """
+        path = Path(v)
+        
+        # If it's already absolute, just resolve it
+        if path.is_absolute():
+            return path.resolve()
+        
+        # If it starts with ~, expand user home
+        if str(v).startswith('~'):
+            return path.expanduser().resolve()
+        
+        # For relative paths, resolve relative to project root
+        project_root = Path(__file__).resolve().parents[3]
+        return (project_root / path).resolve()
 
     def all_databases(self) -> dict[str, DatabaseConfig]:
         databases = {}
