@@ -1,5 +1,5 @@
 service_id,series_id,series_type,root_id,venue,data_schema,data_source,destination,extractor,description,additional_params,symbol,active
-1,CL.1,fut,CL,NYMEX,mbp-1,bbg,"database1,redis1",realtime,NYMEX WTI 1st Futures,{},,1
+1,CL.1,fut,CL,NYMEX,mbp-1,bbg,"database1,redis1",realtime,WTI 1st Futures,{},,1
 2,CL.2,fut,CL,NYMEX,mbp-1,bbg,database1,realtime,WTI 2nd Futures,{},,1
 3,CL.3,fut,CL,NYMEX,mbp-1,bbg,database1,realtime,WTI 3rd Futures,{},,1
 4,CL.4,fut,CL,NYMEX,mbp-1,bbg,database1,realtime,WTI 4th Futures,{},,1
