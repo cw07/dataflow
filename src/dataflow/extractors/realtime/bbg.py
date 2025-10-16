@@ -26,7 +26,7 @@ class BBGRealtimeExtractor(BaseRealtimeExtractor):
     def disconnect(self):
         pass
 
-    def subscribe(self, symbols: list):
+    def subscribe(self):
         pass
 
     def resubscribe(self, symbols: Optional[list] = None):

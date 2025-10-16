@@ -17,7 +17,7 @@ class BaseRealtimeExtractor(BaseExtractor):
         self.error_handler = handler
 
     @abstractmethod
-    def subscribe(self, symbols: list):
+    def subscribe(self):
         """Subscribe to realtime data for given symbols"""
         pass
 

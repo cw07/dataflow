@@ -23,9 +23,9 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
     def __init__(self, config: dict[str, Any]):
         super().__init__(config)
         self.time_series: list[TimeSeriesConfig] = self.config["time_series"]
-        self.mapping: dict[str, TimeSeriesConfig] = {}
+        self.mapping: dict[str, TimeSeriesConfig] = {s.symbol: s for s in self.time_series}
+        self.root_ids = {s.root_id for s in self.time_series}
         self.headers = None
-        self.root_ids = None
 
     def validate_config(self) -> None:
         pass
@@ -34,13 +34,11 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
         self.headers = {
             "Authorization": f"Bearer {settings.onyx_api_key}",
         }
-        self.mapping = {s.symbol: s for s in self.time_series}
-        self.root_ids = {s.root_id for s in self.time_series}
 
     def disconnect(self):
         pass
 
-    def subscribe(self, symbols: list):
+    def subscribe(self):
         pass
 
     def resubscribe(self, symbols: Optional[list] = None):
@@ -55,7 +53,6 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
 
     @loop_control
     def start_extract(self):
-        self.connect()
         while self.should_run():
             for root_id in self.root_ids:
                 try:

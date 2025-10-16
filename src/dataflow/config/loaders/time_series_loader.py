@@ -30,7 +30,8 @@ class TimeSeriesConfig(BaseModel):
     def parse_destination(cls, v: Any) -> list[str]:
         if isinstance(v, str):
             return [d for d in v.split(',')]
-        return v
+        else:
+            return []
 
     @field_validator('description', mode='before')
     @classmethod
