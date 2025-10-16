@@ -70,6 +70,7 @@ class ServiceOrchestrator:
             extractor = extractor_cls(config=service_config)
             self.services.append(extractor)
 
+        logger.info(f"{len(self.services)} services initialized")
         self._initialized = True
 
     def start_services(self):

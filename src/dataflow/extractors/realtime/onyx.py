@@ -10,8 +10,11 @@ from dataflow.utils.loop_control import RealTimeLoopControl
 from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
 from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
 
-
 logger = logging.getLogger(__name__)
+
+loop_control = RealTimeLoopControl(start=os.environ["EXTRACT_START_TIME"],
+                                   end=os.environ["EXTRACT_END_TIME"],
+                                   new_thread=True)
 
 
 class OnyxRealtimeExtractor(BaseRealtimeExtractor):
@@ -46,12 +49,14 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
     def unsubscribe(self, symbols: Optional[list] = None):
         pass
 
-    @RealTimeLoopControl(start=os.environ["EXTRACT_START_TIME"],
-                         end=os.environ["EXTRACT_END_TIME"]
-                         )
+    @staticmethod
+    def should_run() -> bool:
+        return not loop_control.stop_event.is_set()
+
+    @loop_control
     def start_extract(self):
         self.connect()
-        while True:
+        while self.should_run():
             for root_id in self.root_ids:
                 try:
                     url = f"https://api.onyxhub.co/v1/tickers/live/{root_id}"

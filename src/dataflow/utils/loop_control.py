@@ -71,7 +71,7 @@ class RealTimeLoopControl(BaseGate):
         self.end = self._parse_datetime(end)
         self._tz = self.get_timezone()
         self.new_thread = new_thread
-        self._stop_event = threading.Event() if new_thread else None
+        self.stop_event = threading.Event() if new_thread else None
         self._thread = None
 
     def __call__(self, func):
@@ -87,7 +87,7 @@ class RealTimeLoopControl(BaseGate):
 
             if self.new_thread:
                 logger.info(f"Starting a new thread for service as configured: {self.new_thread=}")
-                self._stop_event.clear()
+                self.stop_event.clear()
                 self._thread = threading.Thread(
                     target=func,
                     args=args,
@@ -99,14 +99,14 @@ class RealTimeLoopControl(BaseGate):
                 while True:
                     if not self.should_continue():
                         logger.info(f"Service {func.__name__} passed end time {self.end}, stopping.")
-                        self._stop_event.set()
-                        self._thread.join(timeout=5.0)
+                        self.stop_event.set()
+                        self._thread.join(timeout=300)
                         break
 
                     if self.on_idle:
                         self.on_idle()
             else:
-                _ = func(*args, **kwargs)  # func will launch a separate thread for its job
+                _ = func(*args, **kwargs)  # assume func will start a separate daemon thread
                 while True:
                     if not self.should_continue():
                         logger.info(f"Service {func.__name__} passed end time {self.end}, stopping.")
