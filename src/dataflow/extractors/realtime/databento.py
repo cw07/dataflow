@@ -1,29 +1,24 @@
 import os
 import logging
 import databento as db
-from functools import partial
 from typing import Callable, Dict, Any, Optional
-
-from datacore.models.mktdata.outputs import DataOutput
-from datacore.models.mktdata.realtime import RealtimeSchema
 
 from dataflow.outputs import output_router
 from dataflow.utils.loop_control import RealTimeLoopControl
+from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
 from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
-
 
 logger = logging.getLogger(__name__)
 
-DatabentoSchemaMap = {
-    RealtimeSchema.MBO: 'mbo',
-    RealtimeSchema.MBP_1: 'mbp-1'
-}
 
 class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     vendor = "databento"
 
     def __init__(self, config: Dict[str, Any]):
         super().__init__(config)
+        self.time_series: list[TimeSeriesConfig] = self.config["time_series"]
+        self.schemas = set(ts.data_schema for ts in self.time_series)
+        self.mapping: dict[str, TimeSeriesConfig] = {}
         self.dbento_client = None
         self.error_handler = None
 
@@ -49,12 +44,14 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
         pass
 
     def subscribe(self, symbols: list):
-        self.dbento_client.subscribe(
-            dataset=self.config["dataset"],
-            schema=DatabentoSchemaMap[self.config["realtime_schema"]],
-            stype_in=self.config["stype_in"],
-            symbols=symbols
-        )
+        for schema in self.schemas:
+            symbols = [s.symbol for s in self.time_series]
+            self.dbento_client.subscribe(
+                dataset=self.config["dataset"],
+                schema=schema,
+                stype_in=self.config["stype_in"],
+                symbols=symbols
+            )
 
     def resubscribe(self, symbols: Optional[list] = None):
         pass
@@ -62,15 +59,19 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     def unsubscribe(self, symbols: Optional[list] = None):
         pass
 
+    @RealTimeLoopControl(start=os.environ["EXTRACT_START_TIME"],
+                         end=os.environ["EXTRACT_END_TIME"]
+                         )
     def start_extract(self):
         self.subscribe(self.config.get('symbols'))
-        self.dbento_client.add_callback(self.set_handler())
+        self.dbento_client.add_callback(self.on_message)
         self.dbento_client.start()
 
     def stop_extract(self):
         self.unsubscribe()
         self.dbento_client.block_for_close(timeout=10)
 
-    def set_handler(self) -> Callable:
-        output = self.config["output"]
-        return partial(output_router.route, output=output, config=self.config)
+    def on_message(self, message) -> Callable:
+        symbol = message["symbol"]
+        time_series = self.mapping[symbol]
+        return output_router.route(message=message, time_series=time_series)
