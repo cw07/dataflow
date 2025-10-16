@@ -86,7 +86,7 @@ class RealTimeLoopControl(BaseGate):
             self.wait_until_start()
 
             if self.new_thread:
-                # Start the function in a separate thread
+                logger.info(f"Starting a new thread for service as configured: {self.new_thread=}")
                 self._stop_event.clear()
                 self._thread = threading.Thread(
                     target=func,
