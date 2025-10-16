@@ -1,3 +1,5 @@
+import logging
+
 from datacore.models.mktdata.outputs import DataOutput
 
 from dataflow.config.settings import settings
@@ -5,6 +7,8 @@ from dataflow.outputs.file.file_manager import FileManager
 from dataflow.outputs.redis.redis_manager import RedisManager
 from dataflow.outputs.database.db_manager import DatabaseManager
 from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
+
+logger = logging.getLogger(__name__)
 
 
 class OutputRouter:
@@ -35,7 +39,6 @@ class OutputRouter:
     def decorate(message: dict, time_series):
         return message
 
-
     def route(self, message, time_series: TimeSeriesConfig):
         for output in time_series.destination:
             if "database" in output or "db" in output:
@@ -46,9 +49,11 @@ class OutputRouter:
             elif "file" in output:
                 output_type = DataOutput.file
             else:
-                raise ValueError(f"Cannot route {output}")
-            output_model = self.outputs[output_type]
-            output_model.save(message, time_series)
+                output_type = None
+                logger.info(f"Log only: {message}")
+            if output_type:
+                output_model = self.outputs[output_type]
+                output_model.save(message, time_series)
 
 
 output_router = OutputRouter()
