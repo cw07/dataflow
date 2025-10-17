@@ -95,7 +95,7 @@ class Settings(BaseSettings):
     db1_id: str
     db1_type: str
     db1_host: str
-    db1_port: int
+    db1_port: Optional[int]
     db1_username: str
     db1_password: str
     db1_database: str
@@ -108,7 +108,7 @@ class Settings(BaseSettings):
     db2_id: str
     db2_type: str
     db2_host: str
-    db2_port: int
+    db2_port: Optional[int]
     db2_username: str
     db2_password: str
     db2_database: str
