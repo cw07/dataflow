@@ -120,10 +120,3 @@ class PeeweeDB(BaseORMAdapter):
         db_class = db_type_map[self.config.db_type]
         db = db_class(**conn_param)
         return db
-
-
-    def create_session(self):
-        pass
-
-
-peewee_db = LazyDB(PeeweeDB)

@@ -17,10 +17,6 @@ class BaseORMAdapter(ABC):
         pass
 
     @abstractmethod
-    def create_session(self):
-        pass
-
-    @abstractmethod
     def create_model(self, name: str, fields: dict[str, Any]) -> Type:
         """Dynamically create ORM model"""
         pass

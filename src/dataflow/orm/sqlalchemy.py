@@ -54,4 +54,4 @@ class SQLAlchemyDB(BaseORMAdapter):
             raise ValueError("Must create engine before create session")
 
 
-sqlalchemy_db = LazyDB(SQLAlchemyDB)
+LazySQLAlchemy = LazyDB(SQLAlchemyDB)
