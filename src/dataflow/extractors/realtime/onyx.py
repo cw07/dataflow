@@ -25,15 +25,15 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
         self.time_series: list[TimeSeriesConfig] = self.config["time_series"]
         self.mapping: dict[str, TimeSeriesConfig] = {s.symbol: s for s in self.time_series}
         self.root_ids = {s.root_id for s in self.time_series}
-        self.headers = None
+        self.headers = {
+            "Authorization": f"Bearer {settings.onyx_api_key}",
+        }
 
     def validate_config(self) -> None:
         pass
 
     def connect(self):
-        self.headers = {
-            "Authorization": f"Bearer {settings.onyx_api_key}",
-        }
+        pass
 
     def disconnect(self):
         pass
