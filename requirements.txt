@@ -6,6 +6,5 @@ pydantic-settings
 pyyaml
 pyodbc
 databento
-tradetools
 pandas
 requests
