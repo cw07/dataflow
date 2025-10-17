@@ -146,7 +146,7 @@ class Settings(BaseSettings):
     sparta_api_key: str
 
     model_config = SettingsConfigDict(
-        env_file=Path(__file__).resolve().parents[3] / '.env',
+        env_file=[Path(__file__).resolve().parents[3] / '.env.example', Path(__file__).resolve().parents[3] / '.env'],
         env_file_encoding="utf-8",
         extra="forbid",
         case_sensitive=False,
