@@ -1,6 +1,6 @@
 from pathlib import Path
-from typing import Optional
 from pydantic import field_validator
+from typing import Optional, Any, Union, get_args, get_origin
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from dataflow.utils.common import ORM
@@ -150,6 +150,20 @@ class Settings(BaseSettings):
         extra="forbid",
         case_sensitive=False,
     )
+
+    @field_validator("*", mode="before")
+    @classmethod
+    def empty_str_to_none(cls, v: Any, info):
+        if v == '':
+            field = cls.model_fields.get(info.field_name)
+            if field and field.annotation:
+                origin = get_origin(field.annotation)
+                if origin is Union:
+                    args = get_args(field.annotation)
+                    if type(None) in args:
+                        return None
+        return v
+
 
     @field_validator('time_series_config_path', 'file1_storage_path', mode='before')
     @classmethod
