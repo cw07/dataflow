@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 from urllib.parse import quote_plus
 
 
@@ -12,6 +12,7 @@ class DatabaseConnectionBuilder:
     def build_sqlalchemy_connection_string(
         db_type: str,
         host: str,
+        port: Optional[int],
         database: str,
         username: str = "",
         password: str = "",
@@ -26,6 +27,7 @@ class DatabaseConnectionBuilder:
             db_type: Database type (e.g., 'mysql', 'postgresql', 'sqlite').
             host: Host address.
             database: Database name.
+            port: Database port number (optional).
             username: Username (optional).
             password: Password (optional).
             driver: Database driver (e.g., 'ODBC Driver 17 for SQL Server').
@@ -42,15 +44,15 @@ class DatabaseConnectionBuilder:
 
         if db_type == "mssql":
             return DatabaseConnectionBuilder._build_sqlalchemy_mssql(
-                host, database, username, password, driver, trusted_connection, autocommit
+                host, port, database, username, password, driver, trusted_connection, autocommit
             )
         elif db_type == "postgresql":
             return DatabaseConnectionBuilder._build_sqlalchemy_postgresql(
-                host, database, username, password, trusted_connection
+                host, port, database, username, password, trusted_connection
             )
         elif db_type == "mysql":
             return DatabaseConnectionBuilder._build_sqlalchemy_mysql(
-                host, database, username, password, autocommit
+                host, port, database, username, password, autocommit
             )
         elif db_type == "sqlite":
             return DatabaseConnectionBuilder._build_sqlalchemy_sqlite(database)
@@ -61,6 +63,7 @@ class DatabaseConnectionBuilder:
     def build_peewee_connection_params(
         db_type: str,
         host: str,
+        port: Optional[int],
         database: str,
         username: str = "",
         password: str = "",
@@ -74,6 +77,7 @@ class DatabaseConnectionBuilder:
         Args:
             db_type: Database type (e.g., 'postgresql', 'mysql', 'sqlite').
             host: Host address.
+            port: Database port number (optional).
             database: Database name.
             username: Username (optional).
             password: Password (optional).
@@ -91,11 +95,11 @@ class DatabaseConnectionBuilder:
 
         if db_type == "postgresql":
             return DatabaseConnectionBuilder._build_peewee_postgresql(
-                host, database, username, password
+                host, port, database, username, password
             )
         elif db_type == "mysql":
             return DatabaseConnectionBuilder._build_peewee_mysql(
-                host, database, username, password, autocommit
+                host, port,  database, username, password, autocommit
             )
         elif db_type == "sqlite":
             return DatabaseConnectionBuilder._build_peewee_sqlite(database)
@@ -106,22 +110,25 @@ class DatabaseConnectionBuilder:
 
     @staticmethod
     def _build_sqlalchemy_mssql(
-        host: str,
-        database: str,
-        username: str,
-        password: str,
-        driver: str,
-        trusted_connection: bool,
-        autocommit: bool,
+            host: str,
+            port: Optional[int],
+            database: str,
+            username: str,
+            password: str,
+            driver: str,
+            trusted_connection: bool,
+            autocommit: bool,
     ) -> str:
         """
         Build SQLAlchemy connection string for MSSQL.
         """
+        if not port:
+            port = 3306
         driver_encoded = quote_plus(driver) if driver else "ODBC+Driver+17+for+SQL+Server"
 
         if trusted_connection:
             conn_str = (
-                f"mssql+pyodbc:///{host}/{database}"
+                f"mssql+pyodbc:///{host}:{port}/{database}"
                 f"?driver={driver_encoded}"
                 f"&trusted_connection=yes"
             )
@@ -129,7 +136,7 @@ class DatabaseConnectionBuilder:
             username_encoded = quote_plus(username)
             password_encoded = quote_plus(password)
             conn_str = (
-                f"mssql+pyodbc:///{username_encoded}:{password_encoded}@{host}/{database}"
+                f"mssql+pyodbc:///{username_encoded}:{password_encoded}@{host}:{port}/{database}"
                 f"?driver={driver_encoded}"
             )
 
@@ -141,6 +148,7 @@ class DatabaseConnectionBuilder:
     @staticmethod
     def _build_sqlalchemy_postgresql(
             host: str,
+            port: Optional[int],
             database: str,
             username: str,
             password: str,
@@ -150,15 +158,17 @@ class DatabaseConnectionBuilder:
         """
         Build SQLAlchemy connection string for PostgreSQL.
         """
+        if not port:
+            port = 5432
         if trusted_connection:
             # PostgreSQL trust authentication (no password required)
             username_encoded = quote_plus(username) if username else "postgres"
-            conn_str = f"postgresql+psycopg2:///{username_encoded}@{host}/{database}"
+            conn_str = f"postgresql+psycopg2:///{username_encoded}@{host}:{port}/{database}"
         else:
             # Standard username/password authentication
             username_encoded = quote_plus(username)
             password_encoded = quote_plus(password)
-            conn_str = f"postgresql+psycopg2://{username_encoded}:{password_encoded}@{host}/{database}"
+            conn_str = f"postgresql+psycopg2://{username_encoded}:{password_encoded}@{host}:{port}/{database}"
 
         # PostgreSQL supports autocommit as a connection parameter
         if autocommit:
@@ -169,6 +179,7 @@ class DatabaseConnectionBuilder:
     @staticmethod
     def _build_sqlalchemy_mysql(
             host: str,
+            port: Optional[int],
             database: str,
             username: str,
             password: str,
@@ -178,16 +189,18 @@ class DatabaseConnectionBuilder:
         """
         Build SQLAlchemy connection string for MySQL.
         """
+        if not port:
+            port = 3306
         if trusted_connection:
             # MySQL socket authentication (Unix/Linux only)
             # Uses current OS user, no password needed
             username_encoded = quote_plus(username) if username else "root"
-            conn_str = f"mysql+pymysql:///{username_encoded}@{host}/{database}"
+            conn_str = f"mysql+pymysql:///{username_encoded}@{host}:{port}/{database}"
         else:
             # Standard username/password authentication
             username_encoded = quote_plus(username)
             password_encoded = quote_plus(password)
-            conn_str = f"mysql+pymysql://{username_encoded}:{password_encoded}@{host}/{database}"
+            conn_str = f"mysql+pymysql://{username_encoded}:{password_encoded}@{host}:{port}/{database}"
 
         # Add autocommit parameter
         separator = "&" if "?" in conn_str else "?"
@@ -203,10 +216,10 @@ class DatabaseConnectionBuilder:
         """
         return f"sqlite:///{database}"
 
-    # Peeew builders
     @staticmethod
     def _build_peewee_postgresql(
             host: str,
+            port: Optional[int],
             database: str,
             username: str,
             password: str,
@@ -216,14 +229,16 @@ class DatabaseConnectionBuilder:
         """
         return {
             'host': host,
-            'database': database,
+            'port': port if port else 5432,
             'user': username,
             'password': password,
+            'database': database,
         }
 
     @staticmethod
     def _build_peewee_mysql(
             host: str,
+            port: Optional[int],
             database: str,
             username: str,
             password: str,
@@ -234,9 +249,10 @@ class DatabaseConnectionBuilder:
         """
         params: dict[str, Any] = {
             'host': host,
-            'database': database,
+            'port': port if port else 3306,
             'user': username,
             'password': password,
+            'database': database,
         }
 
         if autocommit:

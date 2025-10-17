@@ -1,8 +1,10 @@
-from peewee import *
 from dataclasses import fields
+from peewee import PostgresqlDatabase, MySQLDatabase, SqliteDatabase,  Model
+from peewee import BigIntegerField, CharField, DoubleField, BooleanField
 from typing import get_origin, get_args, Dict, Any, Type, List
 
-from dataflow.orm.base import BaseORMAdapter
+from dataflow.config.settings import DatabaseConfig
+from dataflow.orm.base import BaseORMAdapter, LazyDB
 
 
 def create_peewee_model(instance, db_instance=None, table_name=None):
@@ -83,10 +85,9 @@ def peewee_database(db_type, **config):
 
 class PeeweeDB(BaseORMAdapter):
 
-    def __init__(self, config):
+    def __init__(self, config: DatabaseConfig):
         super().__init__(config)
         self.engine = self.create_engine()
-        self.session = self.create_session()
 
     def create_model(self, name: str, fields: Dict[str, Any]) -> Type:
         pass
@@ -110,7 +111,19 @@ class PeeweeDB(BaseORMAdapter):
         pass
 
     def create_engine(self):
-        pass
+        conn_param = self.config.connection_params()
+        db_type_map = {
+            "postgres": PostgresqlDatabase,
+            "mysql": MySQLDatabase,
+            "sqlite": SqliteDatabase
+        }
+        db_class = db_type_map[self.config.db_type]
+        db = db_class(**conn_param)
+        return db
+
 
     def create_session(self):
         pass
+
+
+peewee_db = LazyDB(PeeweeDB)

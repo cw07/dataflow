@@ -3,7 +3,7 @@ import logging
 from dataflow.utils.common import ORM
 from dataflow.orm.peewee import PeeweeDB
 from dataflow.orm.base import BaseORMAdapter
-from dataflow.orm.sqlalchemy import SQLAlchemyDB
+from dataflow.orm.sqlalchemy import sqlalchemy_db
 from dataflow.utils.schema_map import SCHEMA_MAP
 from dataflow.config.settings import DatabaseConfig
 from dataflow.outputs.base import BaseOutputManager
@@ -17,11 +17,12 @@ class DatabaseManager(BaseOutputManager):
     def __init__(self, config: dict[str, DatabaseConfig]):
         super().__init__(config)
         self.db_instance: dict[str, BaseORMAdapter] = {}
+        self.init_db()
 
     def init_db(self):
         for db_id, db_cfg in self.config.items():
             if db_cfg.orm == ORM.SQLALCHEMY:
-                self.db_instance[db_id] = SQLAlchemyDB(db_cfg)
+                self.db_instance[db_id] = sqlalchemy_db(db_cfg)
             elif db_cfg.orm == ORM.PEEWEE:
                 self.db_instance[db_id] = PeeweeDB(db_cfg)
             else:

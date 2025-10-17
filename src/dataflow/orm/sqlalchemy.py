@@ -1,18 +1,19 @@
+import logging
+
+from sqlalchemy.orm import sessionmaker
 from typing import Dict, Any, Type, List
+from sqlalchemy import URL, Engine, create_engine, text
 
-from dataflow.orm.base import BaseORMAdapter
-
-def create_sqlalchemy_model(instance):
-    pass
+from dataflow.config.settings import DatabaseConfig
+from dataflow.orm.base import BaseORMAdapter, LazyDB
 
 
-def sqlalchemy_database(db_type, **config):
-    pass
+logger = logging.getLogger(__name__)
 
 
 class SQLAlchemyDB(BaseORMAdapter):
 
-    def __init__(self, config):
+    def __init__(self, config: DatabaseConfig):
         super().__init__(config)
         self.engine = self.create_engine()
         self.session = self.create_session()
@@ -39,7 +40,18 @@ class SQLAlchemyDB(BaseORMAdapter):
         pass
 
     def create_engine(self):
-        pass
+        conn_str = self.config.connection_params()
+        engine = create_engine(url=conn_str,
+                               pool_size=self.config.connection_pool_max_size,
+                               pool_recycle=self.config.connection_pool_recycle)
+        logger.info(f"Connected to {self.config.id}")
+        return engine
 
     def create_session(self):
-        pass
+        if self.engine:
+            return sessionmaker(self.engine)
+        else:
+            raise ValueError("Must create engine before create session")
+
+
+sqlalchemy_db = LazyDB(SQLAlchemyDB)

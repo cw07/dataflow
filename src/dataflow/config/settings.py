@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -13,11 +14,12 @@ class DatabaseConfig(BaseSettings):
 
     id: str
     orm: str  # 'sqlalchemy' or 'peewee'
-    db_type: str  # e.g., 'postgresql', 'mysql'
+    db_type: str  # e.g., 'postgres', 'mysql', 'mssql'
     host: str
-    database: str
+    port: Optional[int] = None
     username: str
     password: str
+    database: str
     driver: str
     trusted_connection: bool = False
     connection_pool_max_size: int = 10
@@ -27,9 +29,6 @@ class DatabaseConfig(BaseSettings):
     def connection_params(self) -> str | dict:
         """
         Build connection string based on ORM type and database type.
-
-        Args:
-            None (uses instance attributes)
 
         Returns:
             str: Connection string for SQLAlchemy, or dict for Peewee.
@@ -41,6 +40,7 @@ class DatabaseConfig(BaseSettings):
             return DatabaseConnectionBuilder.build_sqlalchemy_connection_string(
                 db_type=self.db_type,
                 host=self.host,
+                port=self.port,
                 database=self.database,
                 username=self.username,
                 password=self.password,
@@ -52,6 +52,7 @@ class DatabaseConfig(BaseSettings):
             return DatabaseConnectionBuilder.build_peewee_connection_params(
                 db_type=self.db_type,
                 host=self.host,
+                port=self.port,
                 database=self.database,
                 username=self.username,
                 password=self.password,
@@ -94,9 +95,10 @@ class Settings(BaseSettings):
     db1_id: str
     db1_type: str
     db1_host: str
-    db1_database: str
+    db1_port: int
     db1_username: str
     db1_password: str
+    db1_database: str
     db1_driver: str
     db1_trusted_connection: bool
     db1_connection_pool_max_size: int
@@ -106,9 +108,10 @@ class Settings(BaseSettings):
     db2_id: str
     db2_type: str
     db2_host: str
-    db2_database: str
+    db2_port: int
     db2_username: str
     db2_password: str
+    db2_database: str
     db2_driver: str
     db2_trusted_connection: bool
     db2_connection_pool_max_size: int
@@ -188,9 +191,10 @@ class Settings(BaseSettings):
                 orm=getattr(self, 'orm_type'),
                 db_type=getattr(self, f'{prefix}_type'),
                 host=getattr(self, f'{prefix}_host'),
-                database=getattr(self, f'{prefix}_database'),
+                port=getattr(self, f'{prefix}_port', None),
                 username=getattr(self, f'{prefix}_username'),
                 password=getattr(self, f'{prefix}_password'),
+                database=getattr(self, f'{prefix}_database'),
                 driver=getattr(self, f'{prefix}_driver'),
                 trusted_connection=getattr(self, f'{prefix}_trusted_connection'),
                 connection_pool_max_size=getattr(self, f'{prefix}_connection_pool_max_size'),
