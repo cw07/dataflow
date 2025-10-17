@@ -117,6 +117,8 @@ class PeeweeDB(BaseORMAdapter):
             "mysql": MySQLDatabase,
             "sqlite": SqliteDatabase
         }
-        db_class = db_type_map[self.config.db_type]
+        db_class = db_type_map.get(self.config.db_type)
+        if not db_class:
+            raise ValueError(f"Unsupported database type for peewee: {self.config.db_type}")
         db = db_class(**conn_param)
         return db
