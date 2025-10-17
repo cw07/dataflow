@@ -86,7 +86,8 @@ class Settings(BaseSettings):
     # Time Series
     time_series_config_type: str
     time_series_config_path: Path
-    time_series_config_table: str
+    time_series_config_db_id: str
+    time_series_config_db_table: str
 
     # ORM
     orm_type: str
