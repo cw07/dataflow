@@ -1,9 +1,10 @@
 import databento as db
+from dataflow.config.settings import settings
 
 db.enable_logging("INFO")
 
-live_client = db.Live("db-VWBRmQwdY8WvHBpvLPYB3xRtFr5pC")
-client = db.Historical("db-VWBRmQwdY8WvHBpvLPYB3xRtFr5pC")
+live_client = db.Live(settings.databento_api_key)
+client = db.Historical(settings.databento_api_key)
 
 def get_child_instruments():
     # Request definition data for parent symbols
