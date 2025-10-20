@@ -123,4 +123,5 @@ class PeeweeDB(BaseORMAdapter):
         db = db_class(**conn_param)
         return db
 
+
 LazyPeewee = LazyDB(PeeweeDB)
