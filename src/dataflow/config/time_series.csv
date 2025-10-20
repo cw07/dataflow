@@ -244,5 +244,5 @@ service_id,series_id,series_type,root_id,venue,data_schema,data_source,destinati
 243,NAPEW.19,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewj27,1
 244,NAPEW.20,fut,NAPEW,ICE,ohlcv-1d,onyx,redis1,historical,Naphtha E/W,"{""redis"":{""type"":""kv"",""field"":""close""}}",napewk27,1
 245,GC.1,fut,GC,CME,mbp-1,databento,log,realtime,Gold 1st Futures,"{""dataset"":""GLBX.MDP3""}",GCZ5,1
-246,PFATIOCH Index,index,PFATIOCH Index,SGX,ohlcv-1d,mkt_db,database1,historical,IRON ORE 62%,{},,1
+246,PFATIOCH Index,index,PFATIOCH Index,SGX,ohlcv-1d,mkt_db,database1,historical,IRON ORE 62%,"{""table_name"":""sgx.tsi_index"", ""date_column"":""TIMESTAMP""}",,1
 247,fut.contract_SI.1_daily_various,fut.contract,SI,CME,definition,various,database1,historical,Future Contract Mapping,{},,1
