@@ -116,14 +116,23 @@ def clmain():
 
 
 if __name__ == "__main__":
-    realtime_args = [
+    onyx_args = [
         "--mode", "PROD",
         "--end-time", "05:30:00 1",
         "--data-source", "onyx",
         "--asset-type", "fut",
         "--schema", "mbp-1"
     ]
-    main(realtime_args)
+
+    databento_args = [
+        "--mode", "PROD",
+        "--end-time", "05:30:00 1",
+        "--data-source", "databento",
+        "--asset-type", "fut",
+        "--schema", "mbp-1"
+    ]
+
+    main(onyx_args)
 
 
 

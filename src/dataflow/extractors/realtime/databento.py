@@ -1,8 +1,7 @@
-from collections import defaultdict
-
 import os
 import logging
 import databento as db
+from collections import defaultdict
 from typing import Callable, Dict, Any, Optional
 
 from dataflow.outputs import output_router
@@ -46,7 +45,6 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     def subscribe(self):
         for data_set, schema_to_symbols in self.data_sets.items():
             for schema, symbols in schema_to_symbols.items():
-                symbols = [s.symbol for s in self.time_series]
                 self.dbento_client.subscribe(
                     dataset=data_set,
                     schema=schema,
