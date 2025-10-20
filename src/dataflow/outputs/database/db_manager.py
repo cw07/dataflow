@@ -1,7 +1,7 @@
 import logging
 
 from dataflow.utils.common import ORM
-from dataflow.orm.peewee import PeeweeDB
+from dataflow.orm.peewee import LazyPeewee
 from dataflow.orm.base import BaseORMAdapter
 from dataflow.orm.sqlalchemy import LazySQLAlchemy
 from dataflow.utils.schema_map import SCHEMA_MAP
@@ -24,7 +24,7 @@ class DatabaseManager(BaseOutputManager):
             if db_cfg.orm == ORM.SQLALCHEMY:
                 self.db_instance[db_id] = LazySQLAlchemy(db_cfg)
             elif db_cfg.orm == ORM.PEEWEE:
-                self.db_instance[db_id] = PeeweeDB(db_cfg)
+                self.db_instance[db_id] = LazyPeewee(db_cfg)
             else:
                 raise ValueError(f"Unknown database orm: {db_cfg.orm}")
 

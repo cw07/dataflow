@@ -59,6 +59,7 @@ class LazyDB:
 
     def __call__(self, config: DatabaseConfig):
         self.config = config
+        return self
 
     def __getattr__(self, method):
         return getattr(self.get_instance(), method)

@@ -122,3 +122,5 @@ class PeeweeDB(BaseORMAdapter):
             raise ValueError(f"Unsupported database type for peewee: {self.config.db_type}")
         db = db_class(**conn_param)
         return db
+
+LazyPeewee = LazyDB(PeeweeDB)
