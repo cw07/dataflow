@@ -12,7 +12,7 @@ from tradetools import UTC
 from tradetools.common import parse_time, print_args
 
 from dataflow.utils.common import set_env_vars
-from dataflow.config.loaders.time_series_loader import time_series_config
+from dataflow.config.loaders.time_series import time_series_config
 
 
 logging.basicConfig(

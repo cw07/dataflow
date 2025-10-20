@@ -1,0 +1,35 @@
+# Time Series pipelines, for futures, all contract share the same meta
+
+root_ids:
+  NAPEW.ONYX:
+    pipelines:
+      - extractor: realtime
+        source: onyx
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+      - extractor: historical
+        source: onyx
+        schema: ohlcv-1d
+        output: redis1
+        params: '{"redis":{"type":"kv","field":"close"}}'
+
+  GC.CME:
+    pipelines:
+      - extractor: realtime
+        source: databento
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+
+  PFATIOCH.SGX:
+    pipelines:
+      - extractor: historical
+        source: mkt_db
+        schema: ohlcv-1d
+        output: database1
+        params: '{"table_name":"sgx.tsi_index", "date_column":"TIMESTAMP"}'
+
+
+
+

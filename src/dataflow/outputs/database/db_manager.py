@@ -7,7 +7,7 @@ from dataflow.orm.sqlalchemy import LazySQLAlchemy
 from dataflow.utils.schema_map import SCHEMA_MAP
 from dataflow.config.settings import DatabaseConfig
 from dataflow.outputs.base import BaseOutputManager
-from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
+from dataflow.config.loaders.time_series import TimeSeriesConfig
 
 logger = logging.getLogger(__name__)
 

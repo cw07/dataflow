@@ -1,12 +1,16 @@
 import json
 import pandas as pd
 from typing import Any, Optional
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 from datacore.models.mktdata.schema import MktDataSchema
 
 from dataflow.config.settings import settings
 from dataflow.utils.common import DataOutput
+from dataflow.config.loaders.fut_spec import FuturesSpecReader
+
+
+fut_spec = FuturesSpecReader("../specs/fut_spec.yaml")
 
 
 class TimeSeriesConfig(BaseModel):
@@ -32,14 +36,6 @@ class TimeSeriesConfig(BaseModel):
             return [d for d in v.split(',')]
         else:
             return []
-
-    @field_validator('description', mode='before')
-    @classmethod
-    def parse_description(cls, v: Any) -> Optional[str]:
-        if isinstance(v, str) and v:
-            return v
-        else:
-            return None
 
     @field_validator('symbol', mode='before')
     @classmethod
@@ -68,6 +64,19 @@ class TimeSeriesConfig(BaseModel):
         if isinstance(v, str):
             return v.lower() in ('true', '1', 'yes', 'on')
         return bool(v)
+
+    @model_validator(mode='after')
+    def resolve_fut_description(self) -> 'TimeSeriesConfig':
+        if self.series_type == 'fut' and self.description is None:
+            term = int(self.series_id.split(".")[1])
+            term_in_word = {1: "1st", 2: "2nd", 3: "3rd"}
+            fut_contract = fut_spec.get_contract(self.root_id)
+            if fut_contract:
+                self.description = term_in_word.get(term, str(term)+"th") + " " + fut_contract.description
+            else:
+                self.description = term_in_word.get(term, str(term)+"th") + " " + self.root_id
+            self.description = self.description + f" ({self.venue})"
+        return self
 
     @staticmethod
     def output_type(destination: str):

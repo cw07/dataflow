@@ -7,7 +7,7 @@ from datacore.models.mktdata.schema import MktDataSchema
 
 from dataflow.config.settings import settings
 from dataflow.outputs import output_router
-from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
+from dataflow.config.loaders.time_series import TimeSeriesConfig
 from dataflow.extractors.historical.base_historical import BaseHistoricalExtractor
 
 logger = logging.getLogger(__name__)

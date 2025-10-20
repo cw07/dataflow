@@ -7,7 +7,7 @@ from typing import Callable, Dict, Any, Optional
 from dataflow.outputs import output_router
 from dataflow.config.settings import settings
 from dataflow.utils.loop_control import RealTimeLoopControl
-from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
+from dataflow.config.loaders.time_series import TimeSeriesConfig
 from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
 
 logger = logging.getLogger(__name__)

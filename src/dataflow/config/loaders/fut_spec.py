@@ -12,13 +12,13 @@ class FuturesContract:
     """Data class for a futures contract specification"""
     root_id: str
     description: str
-    exchange: str
+    venue: str
     time_zone: str
     open_time_local: str
     close_time_local: str
     trading_days: List[int]
+    contract_month_code: List[str]
     contract_months: List[str]
-    contract_months_desc: List[str]
     category: Optional[str] = None
 
     def get_active_contracts(self, year: int, month: Optional[int] = None) -> List[str]:
@@ -38,7 +38,7 @@ class FuturesContract:
         month_map = {'F': 1, 'G': 2, 'H': 3, 'J': 4, 'K': 5, 'M': 6,
                      'N': 7, 'Q': 8, 'U': 9, 'V': 10, 'X': 11, 'Z': 12}
 
-        for contract_month in self.contract_months:
+        for contract_month in self.contract_month_code:
             contract_month_num = month_map[contract_month]
             if month is None or contract_month_num >= month:
                 contracts.append(f"{self.root_id}{contract_month}{year_suffix}")
@@ -103,15 +103,15 @@ class FuturesSpecReader:
             self.categories[category] = []
             for root_id, spec in contracts.items():
                 contract = FuturesContract(
-                    root_id=spec['root_id'],
+                    root_id=root_id,
                     description=spec['description'],
-                    exchange=spec['exchange'],
+                    venue=root_id.split('.')[-1],
                     time_zone=spec['time_zone'],
                     open_time_local=spec['trading_hours']['open_time_local'],
                     close_time_local=spec['trading_hours']['close_time_local'],
                     trading_days=spec["trading_hours"]["trading_days"],
+                    contract_month_code=[self.data["contract_month_codes"][des] for des in spec["contract_months"]],
                     contract_months=spec['contract_months'],
-                    contract_months_desc=spec['contract_months_desc'],
                     category=category
                 )
                 self.contracts[root_id] = contract
@@ -143,7 +143,7 @@ class FuturesSpecReader:
         Returns:
             List of FuturesContract objects
         """
-        return [c for c in self.contracts.values() if c.exchange == exchange]
+        return [c for c in self.contracts.values() if c.venue == exchange]
 
     def get_contracts_by_category(self, category: str) -> List[FuturesContract]:
         """
@@ -276,7 +276,7 @@ class FuturesSpecReader:
 
         # Check month code
         contract = self.contracts[root_id]
-        if month_code not in contract.contract_months:
+        if month_code not in contract.contract_month_code:
             return False, f"Invalid month code {month_code} for {root_id}"
 
         # Check year is numeric
@@ -298,7 +298,7 @@ def example_usage():
     print(cl_contract.is_trading_now())
     if cl_contract:
         print(f"WTI Crude: {cl_contract.description}")
-        print(f"Exchange: {cl_contract.exchange}")
+        print(f"Exchange: {cl_contract.venue}")
         print(f"Trading hours: {cl_contract.open_time_local} - {cl_contract.close_time_local} {cl_contract.time_zone}")
 
         # Get active contracts for 2025

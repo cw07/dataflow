@@ -6,7 +6,7 @@ from dataflow.config.settings import settings
 from dataflow.outputs.file.file_manager import FileManager
 from dataflow.outputs.redis.redis_manager import RedisManager
 from dataflow.outputs.database.db_manager import DatabaseManager
-from dataflow.config.loaders.time_series_loader import TimeSeriesConfig
+from dataflow.config.loaders.time_series import TimeSeriesConfig
 
 logger = logging.getLogger(__name__)
 

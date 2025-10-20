@@ -1,403 +1,376 @@
 # Futures Specification Configuration
-# Contract months mapping: F=Jan, G=Feb, H=Mar, J=Apr, K=May, M=Jun, N=Jul, Q=Aug, U=Sep, V=Oct, X=Nov, Z=Dec
 
 futures_spec:
   energy:
-    CL:
+    CL.CME:
       root_id: CL
       terms: 24
       contract_size: 1000
       description: WTI Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4]
-      contract_months: [ F, G, H, J, K, M, N, Q, U, V, X, Z]
-      contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    QM:
-      root_id: MCL
+      contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+      active: true
+    QM.CME:
+      root_id: QM
       terms: 12
       contract_size: 500
       description: E-mini WTI Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4 ]
-      contract_months: [ F, G, H, J, K, M, N, Q, U, V, X, Z ]
-      contract_months_desc: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
-    MCL:
+      contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+      active: true
+    MCL.CME:
       root_id: MCL
       terms: 12
       contract_size: 100
       description: Micro WTI Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4 ]
-      contract_months: [ F, G, H, J, K, M, N, Q, U, V, X, Z ]
-      contract_months_desc: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
-    NG:
+      contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+      active: true
+    NG.CME:
       root_id: NG
       terms: 24
       contract_size: 10000
       description: Natural Gas Henry Hub Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [6,0,1,2,3,4]
-      contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
-      contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    QG:
+      contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+      active: true
+    QG.CME:
       root_id: QG
       terms: 12
       contract_size: 2500
       description: E-mini Natural Gas Henry Hub Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4 ]
-      contract_months: [ F, G, H, J, K, M, N, Q, U, V, X, Z ]
-      contract_months_desc: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
-    MNG:
+      contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+      active: true
+    MNG.CME:
       root_id: MNG
       terms: 12
       contract_size: 1000
       description: Micro Natural Gas Henry Hub Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4 ]
-      contract_months: [ F, G, H, J, K, M, N, Q, U, V, X, Z ]
-      contract_months_desc: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
-    RB:
+      contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+      active: true
+    RB.CME:
       root_id: RB
       terms: 12
       contract_size: 42000
       description: RBOB Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
-        trading_days: [6,0,1,2,3,4]
-      contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
-      contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    G:
+        trading_days: [ 6,0,1,2,3,4 ]
+      contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+      active: true
+    G.ICE:
       root_id: G
       terms: 24
       contract_size: 100
       description: Low-Sulfur Gasoil Futures
-      exchange: ICE
       time_zone: America/New_York
       trading_hours:
         open_time_local: "20:00:00"
         close_time_local: "18:00:00"
-        trading_days: [6,0,1,2,3,4]
-      contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
-      contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    B:
+        trading_days: [ 6,0,1,2,3,4 ]
+      contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+      active: true
+    B.ICE:
       root_id: B
       terms: 24
       contract_size: 1000
       description: Brent Futures
-      exchange: ICE
       time_zone: America/Chicago
       trading_hours:
         open_time_local: "20:00:00"
         close_time_local: "18:00:00"
         trading_days: [ 6,0,1,2,3,4 ]
-      contract_months: [ F, G, H, J, K, M, N, Q, U, V, X, Z ]
-      contract_months_desc: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+      contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+      active: true
+    NAPEW.ONYX:
+      root_id: NAPEW
+      terms: 20
+      active: true
 
   precious_metals:
-    GC:
+    GC.CME:
       root_id: GC
       terms: 12
       contract_size: 100
       description: Gold Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
-        trading_days: [6,0,1,2,3,4]
-      contract_months: [G, J, M, Q, V, Z]
-      contract_months_desc: [Feb, Apr, Jun, Aug, Oct, Dec]
-    QO:
+        trading_days: [ 6,0,1,2,3,4 ]
+      contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
+      active: true
+    QO.CME:
       root_id: QO
       terms: 6
       contract_size: 50
       description: E-mini Gold Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4 ]
-      contract_months: [ G, J, M, Q, V, Z ]
-      contract_months_desc: [ Feb, Apr, Jun, Aug, Oct, Dec ]
-    MGC:
+      contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
+      active: true
+    MGC.CME:
       root_id: MGC
       terms: 6
       contract_size: 10
       description: Micro Gold Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4 ]
-      contract_months: [ G, J, M, Q, V, Z ]
-      contract_months_desc: [ Feb, Apr, Jun, Aug, Oct, Dec ]
-    1OZ:
+      contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
+      active: true
+    1OZ.CME:
       root_id: 1OZ
       terms: 6
       contract_size: 1
       description: 1-Ounce Gold Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4 ]
-      contract_months: [ G, J, M, Q, V, Z ]
-      contract_months_desc: [ Feb, Apr, Jun, Aug, Oct, Dec ]
-    SI:
+      contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
+      active: true
+    SI.CME:
       root_id: SI
       terms: 12
       contract_size: 5000
       description: Silver Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4]
-      contract_months: [ F, H, K, N, U, Z]
-      contract_months_desc: [ Jan, Mar, May, Jul, Sep, Dec]
-    QI:
+      contract_months: [ Jan, Mar, May, Jul, Sep, Dec]
+      active: true
+    QI.CME:
       root_id: QI
       terms: 12
       contract_size: 2500
       description: E-mini Silver Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4 ]
-      contract_months: [ F, H, K, N, U, Z ]
-      contract_months_desc: [ Jan, Mar, May, Jul, Sep, Dec ]
-    SIL:
+      contract_months: [ Jan, Mar, May, Jul, Sep, Dec ]
+      active: true
+    SIL.CME:
       root_id: SIL
       terms: 12
       contract_size: 1000
       description: Micro Silver Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4 ]
-      contract_months: [ F, H, K, N, U, Z]
-      contract_months_desc: [ Jan, Mar, May, Jul, Sep, Dec ]
-    PL:
+      contract_months: [ Jan, Mar, May, Jul, Sep, Dec ]
+      active: true
+    PL.CME:
       root_id: PL
       terms: 12
       contract_size: 50
       description: Platinum Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
-        trading_days: [6,0,1,2,3,4]
-      contract_months: [F, J, N, V]
-      contract_months_desc: [Jan, Apr, Jul, Oct]
-    PA:
+        trading_days: [ 6,0,1,2,3,4 ]
+      contract_months: [ Jan, Apr, Jul, Oct ]
+      active: true
+    PA.CME:
       root_id: PA
       terms: 12
       contract_size: 100
       description: Palladium Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
-        trading_days: [6,0,1,2,3,4]
-      contract_months: [H, M, U, Z]
-      contract_months_desc: [Mar, Jun, Sep, Dec]
-
+        trading_days: [ 6,0,1,2,3,4 ]
+      contract_months: [ Mar, Jun, Sep, Dec ]
+      active: true
   base_metals:
-    HG:
+    HG.CME:
       root_id: HG
       terms: 12
       contract_size: 25000
       description: Copper Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
-        trading_days: [6,0,1,2,3,4]
-      contract_months: [H, K, N, U, Z]
-      contract_months_desc: [Mar, May, Jul, Sep, Dec]
-    MHG:
+        trading_days: [ 6,0,1,2,3,4 ]
+      contract_months: [ Mar, May, Jul, Sep, Dec ]
+      active: true
+    MHG.CME:
       root_id: MHG
       terms: 12
       contract_size: 2500
       description: Micro Copper Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4 ]
-      contract_months: [ H, K, N, U, Z ]
-      contract_months_desc: [ Mar, May, Jul, Sep, Dec ]
-    LA:
+      contract_months: [ Mar, May, Jul, Sep, Dec ]
+      active: true
+    LA.LME:
       root_id: LA
       terms: 12
       contract_size: 25
       description: Aluminum Futures
-      exchange: LME
       time_zone: Europe/London
       trading_hours:
         open_time_local: "20:00:00"
         close_time_local: "19:45:00"
-        trading_days: [0,1,2,3,4]
-      contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
-      contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    LL:
+        trading_days: [ 0,1,2,3,4 ]
+      contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+      active: true
+    LL.LME:
       root_id: LL
       terms: 12
       contract_size: 25
       description: Lead Futures
-      exchange: LME
       time_zone: Europe/London
       trading_hours:
         open_time_local: "20:00:00"
         close_time_local: "19:45:00"
-        trading_days: [0,1,2,3,4]
-      contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
-      contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    LN:
+        trading_days: [ 0,1,2,3,4 ]
+      contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+      active: true
+    LN.LME:
       root_id: LN
       terms: 12
       contract_size: 6
       description: Nickle Futures
-      exchange: LME
       time_zone: Europe/London
       trading_hours:
         open_time_local: "20:00:00"
         close_time_local: "19:45:00"
         trading_days: [0,1,2,3,4]
-      contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
-      contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    LP:
+      contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+      active: true
+    LP.LME:
       root_id: LP
       terms: 12
       contract_size: 25
       description: Copper Futures
-      exchange: LME
       time_zone: Europe/London
       trading_hours:
         open_time_local: "20:00:00"
         close_time_local: "19:45:00"
         trading_days: [0,1,2,3,4]
-      contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
-      contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    LX:
+      contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+      active: true
+    LX.LME:
       root_id: LX
       terms: 12
       contract_size: 25
       description: Zinc Futures
-      exchange: LME
       time_zone: Europe/London
       trading_hours:
         open_time_local: "20:00:00"
         close_time_local: "19:45:00"
         trading_days: [0,1,2,3,4]
-      contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
-      contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-
+      contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+      active: true
   interest_rate:
-    SR3:
+    SR3.CME:
       root_id: SR3
       terms: 12
       contract_size: 2500
       description: Three-Month SOFR Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
         trading_days: [ 6,0,1,2,3,4 ]
-        contract_months: [ M, H, U, Z ]
-        contract_months_desc: [Mar, Jun, Sep, Dec] # and the nearest 6 serial contract months
-
+      contract_months: [Mar, Jun, Sep, Dec] # and the nearest 6 serial contract months
+      active: true
   equities:
-    NQ:
+    NQ.CME:
       root_id: NQ
       terms: 6
       contract_size: 20
       description: E-mini Nasdaq-100 Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
-        contract_months: [ M, H, U, Z ]
-        contract_months_desc: [Mar, Jun, Sep, Dec]
-    MNQ:
+        trading_days: [ 6,0,1,2,3,4 ]
+      contract_months: [Mar, Jun, Sep, Dec]
+      active: true
+    MNQ.CME:
       root_id: MNQ
       terms: 6
       contract_size: 2
       description: Micro E-mini Nasdaq-100 Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
-        contract_months: [ M, H, U, Z ]
-        contract_months_desc: [ Mar, Jun, Sep, Dec ]
-    ES:
+        trading_days: [ 6,0,1,2,3,4 ]
+      contract_months: [ Mar, Jun, Sep, Dec ]
+      active: true
+    ES.CME:
       root_id: ES
       terms: 6
       contract_size: 50
       description: E-mini S&P 500 Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
-        contract_months: [ M, H, U, Z ]
-        contract_months_desc: [ Mar, Jun, Sep, Dec ]
-    MES:
+        trading_days: [ 6,0,1,2,3,4 ]
+      contract_months: [ Mar, Jun, Sep, Dec ]
+      active: true
+    MES.CME:
       root_id: ES
       terms: 6
       contract_size: 5
       description: Micro E-mini S&P 500 Futures
-      exchange: CME
       time_zone: America/New_York
       trading_hours:
         open_time_local: "18:00:00"
         close_time_local: "17:00:00"
-        contract_months: [ M, H, U, Z ]
-        contract_months_desc: [ Mar, Jun, Sep, Dec ]
-
+        trading_days: [ 6,0,1,2,3,4 ]
+      contract_months: [ Mar, Jun, Sep, Dec ]
+      active: true
 
 exchanges:
   NYMEX:
@@ -415,15 +388,15 @@ exchanges:
 
 # Contract month codes reference
 contract_month_codes:
-  F: January
-  G: February
-  H: March
-  J: April
-  K: May
-  M: June
-  N: July
-  Q: August
-  U: September
-  V: October
-  X: November
-  Z: December
+  Jan: F
+  Feb: G
+  Mar: H
+  Apr: J
+  May: K
+  Jun: M
+  Jul: N
+  Aug: Q
+  Sep: U
+  Oct: V
+  Nov: X
+  Dec: Z

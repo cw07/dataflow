@@ -5,7 +5,7 @@ from typing import Any, Optional
 
 from dataflow.outputs import output_router
 from dataflow.utils.loop_control import RealTimeLoopControl
-from dataflow.config.loaders.time_series_loader import TimeSeriesQueryResult
+from dataflow.config.loaders.time_series import TimeSeriesQueryResult
 from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
 
 
