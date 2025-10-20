@@ -1,7 +1,7 @@
 # Futures Specification Configuration
 # Contract months mapping: F=Jan, G=Feb, H=Mar, J=Apr, K=May, M=Jun, N=Jul, Q=Aug, U=Sep, V=Oct, X=Nov, Z=Dec
 
-futures_specifications:
+futures_spec:
   energy:
     CL:
       root_id: CL
@@ -9,8 +9,9 @@ futures_specifications:
       exchange: NYMEX
       time_zone: America/New_York
       trading_hours:
-        open_time_utc: "18:00:00"
-        close_time_utc: "17:00:00"
+        open_time_local: "18:00:00"
+        close_time_local: "17:00:00"
+        trading_days: [6,0,1,2,3,4]
       contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
       contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 
@@ -18,10 +19,11 @@ futures_specifications:
       root_id: CO
       description: ICE Brent Futures
       exchange: ICE
-      time_zone: Europe/London
+      time_zone: America/Chicago
       trading_hours:
-        open_time_utc: "01:00:00"
-        close_time_utc: "23:00:00"
+        open_time_local: "20:00:00"
+        close_time_local: "18:00:00"
+        trading_days: [6,0,1,2,3,4]
       contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
       contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 
@@ -31,8 +33,9 @@ futures_specifications:
       exchange: NYMEX
       time_zone: America/New_York
       trading_hours:
-        open_time_utc: "18:00:00"
-        close_time_utc: "17:00:00"
+        open_time_local: "18:00:00"
+        close_time_local: "17:00:00"
+        trading_days: [6,0,1,2,3,4]
       contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
       contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 
@@ -42,8 +45,9 @@ futures_specifications:
       exchange: NYMEX
       time_zone: America/New_York
       trading_hours:
-        open_time_utc: "18:00:00"
-        close_time_utc: "17:00:00"
+        open_time_local: "18:00:00"
+        close_time_local: "17:00:00"
+        trading_days: [6,0,1,2,3,4]
       contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
       contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 
@@ -51,10 +55,11 @@ futures_specifications:
       root_id: QS
       description: ICE Low-Sulfur Gasoil Futures
       exchange: ICE
-      time_zone: Europe/London
+      time_zone: America/New_York
       trading_hours:
-        open_time_utc: "01:00:00"
-        close_time_utc: "23:00:00"
+        open_time_local: "20:00:00"
+        close_time_local: "18:00:00"
+        trading_days: [6,0,1,2,3,4]
       contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
       contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 
@@ -65,8 +70,9 @@ futures_specifications:
       exchange: CME
       time_zone: America/New_York
       trading_hours:
-        open_time_utc: "18:00:00"
-        close_time_utc: "17:00:00"
+        open_time_local: "18:00:00"
+        close_time_local: "17:00:00"
+        trading_days: [6,0,1,2,3,4]
       contract_months: [G, J, M, Q, V, Z]
       contract_months_desc: [Feb, Apr, Jun, Aug, Oct, Dec]
 
@@ -76,8 +82,9 @@ futures_specifications:
       exchange: CME
       time_zone: America/New_York
       trading_hours:
-        open_time_utc: "18:00:00"
-        close_time_utc: "17:00:00"
+        open_time_local: "18:00:00"
+        close_time_local: "17:00:00"
+        trading_days: [6,0,1,2,3,4]
       contract_months: [H, K, N, U, Z]
       contract_months_desc: [Mar, May, Jul, Sep, Dec]
 
@@ -87,8 +94,9 @@ futures_specifications:
       exchange: NYMEX
       time_zone: America/New_York
       trading_hours:
-        open_time_utc: "18:00:00"
-        close_time_utc: "17:00:00"
+        open_time_local: "18:00:00"
+        close_time_local: "17:00:00"
+        trading_days: [6,0,1,2,3,4]
       contract_months: [F, J, N, V]
       contract_months_desc: [Jan, Apr, Jul, Oct]
 
@@ -98,8 +106,9 @@ futures_specifications:
       exchange: NYMEX
       time_zone: America/New_York
       trading_hours:
-        open_time_utc: "18:00:00"
-        close_time_utc: "17:00:00"
+        open_time_local: "18:00:00"
+        close_time_local: "17:00:00"
+        trading_days: [6,0,1,2,3,4]
       contract_months: [H, M, U, Z]
       contract_months_desc: [Mar, Jun, Sep, Dec]
 
@@ -110,8 +119,9 @@ futures_specifications:
       exchange: CME
       time_zone: America/New_York
       trading_hours:
-        open_time_utc: "18:00:00"
-        close_time_utc: "17:00:00"
+        open_time_local: "18:00:00"
+        close_time_local: "17:00:00"
+        trading_days: [6,0,1,2,3,4]
       contract_months: [H, K, N, U, Z]
       contract_months_desc: [Mar, May, Jul, Sep, Dec]
 
@@ -121,8 +131,9 @@ futures_specifications:
       exchange: LME
       time_zone: Europe/London
       trading_hours:
-        open_time_utc: "20:00:00"
-        close_time_utc: "19:45:00"
+        open_time_local: "20:00:00"
+        close_time_local: "19:45:00"
+        trading_days: [0,1,2,3,4]
       contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
       contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 
@@ -132,8 +143,9 @@ futures_specifications:
       exchange: LME
       time_zone: Europe/London
       trading_hours:
-        open_time_utc: "20:00:00"
-        close_time_utc: "19:45:00"
+        open_time_local: "20:00:00"
+        close_time_local: "19:45:00"
+        trading_days: [0,1,2,3,4]
       contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
       contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 
@@ -143,8 +155,9 @@ futures_specifications:
       exchange: LME
       time_zone: Europe/London
       trading_hours:
-        open_time_utc: "20:00:00"
-        close_time_utc: "19:45:00"
+        open_time_local: "20:00:00"
+        close_time_local: "19:45:00"
+        trading_days: [0,1,2,3,4]
       contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
       contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 
@@ -154,8 +167,9 @@ futures_specifications:
       exchange: LME
       time_zone: Europe/London
       trading_hours:
-        open_time_utc: "20:00:00"
-        close_time_utc: "19:45:00"
+        open_time_local: "20:00:00"
+        close_time_local: "19:45:00"
+        trading_days: [0,1,2,3,4]
       contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
       contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 
@@ -165,8 +179,9 @@ futures_specifications:
       exchange: LME
       time_zone: Europe/London
       trading_hours:
-        open_time_utc: "20:00:00"
-        close_time_utc: "19:45:00"
+        open_time_local: "20:00:00"
+        close_time_local: "19:45:00"
+        trading_days: [0,1,2,3,4]
       contract_months: [F, G, H, J, K, M, N, Q, U, V, X, Z]
       contract_months_desc: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 
@@ -175,22 +190,18 @@ exchanges:
   NYMEX:
     name: New York Mercantile Exchange
     time_zone: America/New_York
-    products: [CL, NG, PA, PL, XB]
 
   CME:
     name: Chicago Mercantile Exchange
     time_zone: America/New_York
-    products: [GC, HG, SI]
 
   ICE:
     name: Intercontinental Exchange
     time_zone: Europe/London
-    products: [CO, QS]
 
   LME:
     name: London Metal Exchange
     time_zone: Europe/London
-    products: [LA, LL, LN, LP, LZ]
 
 # Contract month codes reference
 contract_month_codes:

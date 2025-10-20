@@ -1,8 +1,10 @@
+from zoneinfo import ZoneInfo
+
 import yaml
 import datetime as dt
-from typing import Dict, List, Optional, Tuple
 from pathlib import Path
 from dataclasses import dataclass, field
+from typing import Dict, List, Optional, Tuple
 
 
 @dataclass
@@ -12,8 +14,9 @@ class FuturesContract:
     description: str
     exchange: str
     time_zone: str
-    open_time_utc: str
-    close_time_utc: str
+    open_time_local: str
+    close_time_local: str
+    trading_days: List[int]
     contract_months: List[str]
     contract_months_desc: List[str]
     category: Optional[str] = None
@@ -42,32 +45,32 @@ class FuturesContract:
 
         return contracts
 
-    def is_trading_now(self, current_time: dt.datetime = None) -> bool:
+    def is_trading_now(self) -> bool:
         """
         Check if the contract is currently in trading hours
-
-        Args:
-            current_time: Time to check (defaults to current UTC time)
 
         Returns:
             Boolean indicating if market is open
         """
-        if current_time is None:
-            current_time = dt.datetime.utcnow()
+        now = dt.datetime.now(ZoneInfo(self.time_zone))
 
-        # Parse trading hours
-        open_hour, open_min, open_sec = map(int, self.open_time_utc.split(':'))
-        close_hour, close_min, close_sec = map(int, self.close_time_utc.split(':'))
+        weekday = now.weekday()
+        current_time = now.time()
 
-        current_time_minutes = current_time.hour * 60 + current_time.minute
-        open_minutes = open_hour * 60 + open_min
-        close_minutes = close_hour * 60 + close_min
+        open_hour, open_min, open_sec = map(int, self.open_time_local.split(':'))
+        close_hour, close_min, close_sec = map(int, self.close_time_local.split(':'))
 
-        # Handle overnight trading (open > close means crosses midnight)
-        if open_minutes > close_minutes:
-            return current_time_minutes >= open_minutes or current_time_minutes < close_minutes
+        session_start = dt.time(open_hour, open_min, open_sec)
+        session_end = dt.time(close_hour, close_min, close_sec)
+
+        if weekday not in self.trading_days:
+            return False
+        elif self.trading_days.index(weekday) == 0:
+            return current_time >= session_start
+        elif self.trading_days.index(weekday) == len(self.trading_days) - 1:
+            return current_time < session_end
         else:
-            return open_minutes <= current_time_minutes < close_minutes
+            return not (session_end <= current_time <= session_start)
 
 
 class FuturesSpecReader:
@@ -96,7 +99,7 @@ class FuturesSpecReader:
             self.data = yaml.safe_load(f)
 
         # Parse futures specifications
-        for category, contracts in self.data['futures_specifications'].items():
+        for category, contracts in self.data['futures_spec'].items():
             self.categories[category] = []
             for root_id, spec in contracts.items():
                 contract = FuturesContract(
@@ -104,8 +107,9 @@ class FuturesSpecReader:
                     description=spec['description'],
                     exchange=spec['exchange'],
                     time_zone=spec['time_zone'],
-                    open_time_utc=spec['trading_hours']['open_time_utc'],
-                    close_time_utc=spec['trading_hours']['close_time_utc'],
+                    open_time_local=spec['trading_hours']['open_time_local'],
+                    close_time_local=spec['trading_hours']['close_time_local'],
+                    trading_days=spec["trading_hours"]["trading_days"],
                     contract_months=spec['contract_months'],
                     contract_months_desc=spec['contract_months_desc'],
                     category=category
@@ -291,10 +295,11 @@ def example_usage():
 
     # Get specific contract
     cl_contract = reader.get_contract("CL")
+    print(cl_contract.is_trading_now())
     if cl_contract:
         print(f"WTI Crude: {cl_contract.description}")
         print(f"Exchange: {cl_contract.exchange}")
-        print(f"Trading hours: {cl_contract.open_time_utc} - {cl_contract.close_time_utc} UTC")
+        print(f"Trading hours: {cl_contract.open_time_local} - {cl_contract.close_time_local} {cl_contract.time_zone}")
 
         # Get active contracts for 2025
         active_2025 = cl_contract.get_active_contracts(2025)
