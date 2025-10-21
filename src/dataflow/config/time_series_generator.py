@@ -7,10 +7,13 @@ from datacore.models.assets import AssetType
 from dataflow.config.loaders.fx_spec import fx_specs
 from dataflow.config.loaders.spread_spec import spread_specs
 from dataflow.config.loaders.equity_spec import equity_specs
-from dataflow.config.loaders.time_series import TimeSeriesConfig
 from dataflow.config.loaders.fut_spec import futures_specs
-from dataflow.config.loaders.pipelines import pipeline_specs
+from dataflow.config.loaders.fwd_spec import fwd_specs
 from dataflow.config.loaders.index_spec import index_specs
+
+from dataflow.config.loaders.pipelines import pipeline_specs
+from dataflow.config.loaders.time_series import TimeSeriesConfig
+
 
 
 def gen_fut_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
@@ -90,8 +93,36 @@ def gen_index_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
     return total_time_series, time_series
 
 
+def get_fwd_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
+    for root_id, fwd_spec in fwd_specs.specs.items():
+        pipelines = pipeline_specs.get_spec(root_id)
+        if not pipelines:
+            continue
+        for pipeline in pipelines:
+            ts = TimeSeriesConfig(
+                service_id=total_time_series,
+                series_id=f"{root_id}",
+                series_type=AssetType.FWD,
+                root_id=root_id,
+                venue=root_id.split(".")[1],
+                data_schema=pipeline.schema,
+                data_source=pipeline.source,
+                destination=pipeline.output,
+                extractor=pipeline.extractor,
+                description=fwd_spec.description,
+                additional_params=pipeline.params,
+                active=fwd_spec.active
+            )
+            time_series.append(ts)
+            total_time_series += 1
+    return total_time_series, time_series
+
+
 def gen_spread_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
     for root_id, spread_spec in spread_specs.specs.items():
+        pipelines = pipeline_specs.get_spec(root_id)
+        if not pipelines:
+            continue
         pass
 
     return total_time_series, time_series
@@ -110,6 +141,7 @@ def main(args):
     total_time_series, time_series = gen_fut_spec(total_time_series, time_series)
     total_time_series, time_series = gen_index_spec(total_time_series, time_series)
     total_time_series, time_series = gen_fx_spec(total_time_series, time_series)
+    total_time_series, time_series = get_fwd_spec(total_time_series, time_series)
     total_time_series, time_series = gen_equity_spec(total_time_series, time_series)
     total_time_series, time_series = gen_spread_spec(total_time_series, time_series)
     dump_to_file(time_series)
