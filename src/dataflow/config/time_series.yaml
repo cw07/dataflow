@@ -930,3 +930,83 @@
       type: stream
   symbol: null
   active: true
+- service_id: 58
+  series_id: LMHADS03.LME
+  series_type: fwd
+  root_id: LMHADS03.LME
+  venue: LME
+  data_schema: mbp-1
+  data_source: bbg
+  destination:
+  - redis1
+  extractor: realtime
+  description: LME Aluminum 3M Forward
+  additional_params:
+    redis:
+      type: stream
+  symbol: null
+  active: true
+- service_id: 59
+  series_id: LMCADS03.LME
+  series_type: fwd
+  root_id: LMCADS03.LME
+  venue: LME
+  data_schema: mbp-1
+  data_source: bbg
+  destination:
+  - redis1
+  extractor: realtime
+  description: LME Copper 3M Forward
+  additional_params:
+    redis:
+      type: stream
+  symbol: null
+  active: true
+- service_id: 60
+  series_id: LMNIDS03.LME
+  series_type: fwd
+  root_id: LMNIDS03.LME
+  venue: LME
+  data_schema: mbp-1
+  data_source: bbg
+  destination:
+  - redis1
+  extractor: realtime
+  description: LME Nickel 3M Forward
+  additional_params:
+    redis:
+      type: stream
+  symbol: null
+  active: true
+- service_id: 61
+  series_id: LMPBDS03.LME
+  series_type: fwd
+  root_id: LMPBDS03.LME
+  venue: LME
+  data_schema: mbp-1
+  data_source: bbg
+  destination:
+  - redis1
+  extractor: realtime
+  description: LME Lead 3M Forward
+  additional_params:
+    redis:
+      type: stream
+  symbol: null
+  active: true
+- service_id: 62
+  series_id: LMZSDS03.LME
+  series_type: fwd
+  root_id: LMZSDS03.LME
+  venue: LME
+  data_schema: mbp-1
+  data_source: bbg
+  destination:
+  - redis1
+  extractor: realtime
+  description: LME Zinc 3M Forward
+  additional_params:
+    redis:
+      type: stream
+  symbol: null
+  active: true

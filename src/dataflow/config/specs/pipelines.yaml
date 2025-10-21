@@ -55,8 +55,41 @@ root_ids:
         schema: mbp-1
         output: redis1
         params: '{"redis":{"type":"stream"}}'
-
-
+  LMHADS03.LME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  LMCADS03.LME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  LMNIDS03.LME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  LMPBDS03.LME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  LMZSDS03.LME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
 
 
 
