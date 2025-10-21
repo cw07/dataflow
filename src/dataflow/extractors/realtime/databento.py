@@ -4,8 +4,11 @@ import databento as db
 from collections import defaultdict
 from typing import Callable, Dict, Any, Optional
 
+from datacore.models.assets import AssetType
 from dataflow.outputs import output_router
 from dataflow.config.settings import settings
+from dataflow.utils.databento import VENUE_DATASET_MAP
+from dataflow.symbology.databento import db_symbol_resolver
 from dataflow.utils.loop_control import RealTimeLoopControl
 from dataflow.config.loaders.time_series import TimeSeriesConfig
 from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
@@ -23,10 +26,10 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
         super().__init__(config)
         self.time_series: list[TimeSeriesConfig] = self.config["time_series"]
         self.data_sets: dict = self.get_data_sets()
-        self.dbento_mapping: dict[int, str] = {}
-        self.mapping: dict[str, TimeSeriesConfig] = {s.symbol: s for s in self.time_series}
+        self.instrument_id_to_raw_sym: dict[int, str] = {}
+        self.series_id_to_raw_sym: dict[str, str] = self.resolve_raw_symbols()
+        self.raw_sym_to_ts: dict[str, TimeSeriesConfig] = {self.series_id_to_raw_sym[s.series_id]: s for s in self.time_series}
         self.dbento_client = None
-        self.error_handler = None
 
     def validate_config(self) -> None:
         pass
@@ -34,7 +37,9 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     def connect(self):
         api_key = settings.databento_api_key
         try:
-            self.dbento_client = db.Live(key=api_key)
+            self.dbento_client = db.Live(key=api_key,
+                                         reconnect_policy="reconnect"
+                                         )
             self._is_connected = True
         except Exception as e:
             logger.error(e)
@@ -45,11 +50,13 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     def subscribe(self):
         for data_set, schema_to_symbols in self.data_sets.items():
             for schema, symbols in schema_to_symbols.items():
+                db_raw_symbols = [self.series_id_to_raw_sym[s] for s in symbols]
+                logger.info(f"Subscribing to {data_set} {schema} for {len(db_raw_symbols)} symbols")
                 self.dbento_client.subscribe(
                     dataset=data_set,
                     schema=schema,
                     stype_in="raw_symbol",
-                    symbols=symbols
+                    symbols=db_raw_symbols,
                 )
 
     def resubscribe(self, symbols: Optional[list] = None):
@@ -60,24 +67,39 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
 
     @loop_control
     def start_extract(self):
-        self.connect()
-        self.subscribe()
-        self.dbento_client.add_callback(record_callback=self.on_message,
-                                        exception_callback=self.error_handler)
-        self.dbento_client.start()
+        try:
+            self.connect()
+            self.subscribe()
+            self.dbento_client.add_callback(record_callback=self.on_message,
+                                            exception_callback=self.on_error)
+            self.dbento_client.add_reconnect_callback(reconnect_callback=self.on_reconnect,
+                                                      exception_callback=self.on_error)
+            self.dbento_client.start()
+        except Exception as e:
+            logger.error(f"Error when extracting databento: {e}, shutting down")
+            if self._is_connected and self.dbento_client is not None:
+                self.dbento_client.block_for_close(timeout=30)
+
 
     def stop_extract(self):
         self.unsubscribe()
         self.dbento_client.block_for_close(timeout=10)
 
+    def resolve_raw_symbols(self):
+        mapping = {}  # {data_set, {our_root, databento_raw_symbol}}
+        for data_set, schema_to_symbols in self.data_sets.items():
+            symbol_in_data_set = []
+            for schema, symbols in schema_to_symbols.items():
+                symbol_in_data_set.extend(symbols)
+            mapping.update(db_symbol_resolver.resolve(symbol_in_data_set, data_set))
+        return mapping
+
     def get_data_sets(self):
         data_sets = defaultdict(lambda: defaultdict(list))
         for ts in self.time_series:
-            data_set = ts.additional_params.get("dataset")
+            data_set = VENUE_DATASET_MAP[ts.venue]
             schema = ts.data_schema
-            symbol = ts.symbol
-            if not data_set:
-                raise ValueError(f"Databento time series must have dataset in parameters: {ts.additional_params}")
+            symbol = ts.series_id
             data_sets[data_set][schema].append(symbol)
         return data_sets
 
@@ -91,19 +113,47 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
         else:
             pass
 
-    def on_failure(self, exception: Exception) -> None:
+    def on_error(self, exception: Exception) -> None:
         logger.error(exception)
 
-    def on_reconnect(self, start, end) -> None:
-        pass
+    def on_reconnect(self, start, end):
+        logger.info(f"reconnection gap from {start} to {end}")
 
     def handle_mbp1(self, msg: db.MBP1Msg) -> None:
-        symbol = self.dbento_mapping[msg.instrument_id]
-        time_series = self.mapping[symbol]
-        return output_router.route(message=msg, time_series=time_series)
+        try:
+            symbol = self.instrument_id_to_raw_sym[msg.instrument_id]
+            time_series = self.raw_sym_to_ts[symbol]
+
+            new_msg = {
+                "asset_type": time_series.series_type,
+                "vendor":  time_series.data_source,
+                "symbol": symbol,
+                "price": msg.pretty_price,
+                "ts_event": msg.pretty_ts_event.isoformat(),
+                "ts_recv": msg.pretty_ts_recv.isoformat(),
+                "ts_in_delta": msg.ts_in_delta,
+                "action": str(msg.action),
+                "side": str(msg.side),
+                "size": msg.size,
+                "instrument_id": msg.instrument_id,
+                "publisher_id": msg.publisher_id,
+                "rtype": str(msg.rtype),
+                "sequence": msg.sequence,
+                "flags": msg.flags,
+                "bid_px_00": msg.levels[0].bid_px * 0.000000001,
+                "bid_sz_00": msg.levels[0].bid_sz,
+                "bid_ct_00": msg.levels[0].bid_ct,
+                "ask_px_00": msg.levels[0].ask_px * 0.000000001,
+                "ask_sz_00": msg.levels[0].ask_sz,
+                "ask_ct_00": msg.levels[0].ask_ct,
+                "mid_px_00": (msg.levels[0].bid_px * 0.000000001 + msg.levels[0].ask_px * 0.000000001) / 2,
+            }
+            output_router.route(message=new_msg, time_series=time_series)
+        except Exception as e:
+            logger.error(f"Error handle mbp1: {e}")
 
     def handle_symbol_mapping(self, msg: db.SymbolMappingMsg):
-        self.dbento_mapping[msg.instrument_id] = msg.stype_in_symbol
+        self.instrument_id_to_raw_sym[msg.instrument_id] = msg.stype_in_symbol
 
     @staticmethod
     def handle_system_msg(msg: db.SystemMsg):

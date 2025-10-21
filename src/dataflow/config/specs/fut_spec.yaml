@@ -2,7 +2,7 @@
 
 futures_spec:
   energy:
-    CL.CME:
+    CME.CL:
       root_id: CL
       terms: 24
       contract_size: 1000
@@ -14,7 +14,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4]
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
-    QM.CME:
+    CME.QM:
       root_id: QM
       terms: 12
       contract_size: 500
@@ -26,7 +26,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
-    MCL.CME:
+    CME.MCL:
       root_id: MCL
       terms: 12
       contract_size: 100
@@ -38,7 +38,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
-    NG.CME:
+    CME.NG:
       root_id: NG
       terms: 24
       contract_size: 10000
@@ -50,7 +50,7 @@ futures_spec:
         trading_days: [6,0,1,2,3,4]
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
-    QG.CME:
+    CME.QG:
       root_id: QG
       terms: 12
       contract_size: 2500
@@ -62,7 +62,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
-    MNG.CME:
+    CME.MNG:
       root_id: MNG
       terms: 12
       contract_size: 1000
@@ -74,7 +74,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
-    RB.CME:
+    CME.RB:
       root_id: RB
       terms: 12
       contract_size: 42000
@@ -86,7 +86,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
-    G.ICE:
+    ICE.G:
       root_id: G
       terms: 24
       contract_size: 100
@@ -98,7 +98,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
-    B.ICE:
+    ICE.B:
       root_id: B
       terms: 24
       contract_size: 1000
@@ -110,7 +110,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
-    NAPEW.ONYX:
+    ONYX.NAPEW:
       root_id: NAPEW
       terms: 20
       contract_size: 1000
@@ -124,7 +124,7 @@ futures_spec:
       active: true
 
   precious_metals:
-    GC.CME:
+    CME.GC:
       root_id: GC
       terms: 12
       contract_size: 100
@@ -136,7 +136,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
       active: true
-    QO.CME:
+    CME.QO:
       root_id: QO
       terms: 6
       contract_size: 50
@@ -148,7 +148,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
       active: true
-    MGC.CME:
+    CME.MGC:
       root_id: MGC
       terms: 6
       contract_size: 10
@@ -160,7 +160,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
       active: true
-    1OZ.CME:
+    CME.1OZ:
       root_id: 1OZ
       terms: 6
       contract_size: 1
@@ -172,7 +172,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
       active: true
-    SI.CME:
+    CME.SI:
       root_id: SI
       terms: 12
       contract_size: 5000
@@ -184,7 +184,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4]
       contract_months: [ Jan, Mar, May, Jul, Sep, Dec]
       active: true
-    QI.CME:
+    CME.QI:
       root_id: QI
       terms: 12
       contract_size: 2500
@@ -196,7 +196,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Mar, May, Jul, Sep, Dec ]
       active: true
-    SIL.CME:
+    CME.SIL:
       root_id: SIL
       terms: 12
       contract_size: 1000
@@ -208,7 +208,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Mar, May, Jul, Sep, Dec ]
       active: true
-    PL.CME:
+    CME.PL:
       root_id: PL
       terms: 12
       contract_size: 50
@@ -220,7 +220,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Apr, Jul, Oct ]
       active: true
-    PA.CME:
+    CME.PA:
       root_id: PA
       terms: 12
       contract_size: 100
@@ -233,7 +233,7 @@ futures_spec:
       contract_months: [ Mar, Jun, Sep, Dec ]
       active: true
   base_metals:
-    HG.CME:
+    CME.HG:
       root_id: HG
       terms: 12
       contract_size: 25000
@@ -245,7 +245,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Mar, May, Jul, Sep, Dec ]
       active: true
-    MHG.CME:
+    CME.MHG:
       root_id: MHG
       terms: 12
       contract_size: 2500
@@ -257,7 +257,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Mar, May, Jul, Sep, Dec ]
       active: true
-    LA.LME:
+    LME.LA:
       root_id: LA
       terms: 12
       contract_size: 25
@@ -269,7 +269,7 @@ futures_spec:
         trading_days: [ 0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
-    LL.LME:
+    LME.LL:
       root_id: LL
       terms: 12
       contract_size: 25
@@ -281,7 +281,7 @@ futures_spec:
         trading_days: [ 0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
-    LN.LME:
+    LME.LN:
       root_id: LN
       terms: 12
       contract_size: 6
@@ -293,7 +293,7 @@ futures_spec:
         trading_days: [0,1,2,3,4]
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
-    LP.LME:
+    LME.LP:
       root_id: LP
       terms: 12
       contract_size: 25
@@ -305,7 +305,7 @@ futures_spec:
         trading_days: [0,1,2,3,4]
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
-    LX.LME:
+    LME.LX:
       root_id: LX
       terms: 12
       contract_size: 25
@@ -318,7 +318,7 @@ futures_spec:
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
   interest_rate:
-    SR3.CME:
+    CME.SR3:
       root_id: SR3
       terms: 12
       contract_size: 2500
@@ -331,7 +331,7 @@ futures_spec:
       contract_months: [Mar, Jun, Sep, Dec] # and the nearest 6 serial contract months
       active: true
   equities:
-    NQ.CME:
+    CME.NQ:
       root_id: NQ
       terms: 6
       contract_size: 20
@@ -343,7 +343,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [Mar, Jun, Sep, Dec]
       active: true
-    MNQ.CME:
+    CME.MNQ:
       root_id: MNQ
       terms: 6
       contract_size: 2
@@ -355,7 +355,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Mar, Jun, Sep, Dec ]
       active: true
-    ES.CME:
+    CME.ES:
       root_id: ES
       terms: 6
       contract_size: 50
@@ -367,7 +367,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Mar, Jun, Sep, Dec ]
       active: true
-    MES.CME:
+    CME.MES:
       root_id: ES
       terms: 6
       contract_size: 5

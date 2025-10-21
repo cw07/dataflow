@@ -1,9 +1,9 @@
 # This YAML file is auto-generated. Do not edit manually.
 
 - service_id: 1
-  series_id: CL.CME.1
+  series_id: CME.CL.1
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -17,9 +17,9 @@
   symbol: null
   active: true
 - service_id: 2
-  series_id: CL.CME.2
+  series_id: CME.CL.2
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -33,9 +33,9 @@
   symbol: null
   active: true
 - service_id: 3
-  series_id: CL.CME.3
+  series_id: CME.CL.3
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -49,9 +49,9 @@
   symbol: null
   active: true
 - service_id: 4
-  series_id: CL.CME.4
+  series_id: CME.CL.4
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -65,9 +65,9 @@
   symbol: null
   active: true
 - service_id: 5
-  series_id: CL.CME.5
+  series_id: CME.CL.5
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -81,9 +81,9 @@
   symbol: null
   active: true
 - service_id: 6
-  series_id: CL.CME.6
+  series_id: CME.CL.6
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -97,9 +97,9 @@
   symbol: null
   active: true
 - service_id: 7
-  series_id: CL.CME.7
+  series_id: CME.CL.7
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -113,9 +113,9 @@
   symbol: null
   active: true
 - service_id: 8
-  series_id: CL.CME.8
+  series_id: CME.CL.8
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -129,9 +129,9 @@
   symbol: null
   active: true
 - service_id: 9
-  series_id: CL.CME.9
+  series_id: CME.CL.9
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -145,9 +145,9 @@
   symbol: null
   active: true
 - service_id: 10
-  series_id: CL.CME.10
+  series_id: CME.CL.10
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -161,9 +161,9 @@
   symbol: null
   active: true
 - service_id: 11
-  series_id: CL.CME.11
+  series_id: CME.CL.11
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -177,9 +177,9 @@
   symbol: null
   active: true
 - service_id: 12
-  series_id: CL.CME.12
+  series_id: CME.CL.12
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -193,9 +193,9 @@
   symbol: null
   active: true
 - service_id: 13
-  series_id: CL.CME.13
+  series_id: CME.CL.13
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -209,9 +209,9 @@
   symbol: null
   active: true
 - service_id: 14
-  series_id: CL.CME.14
+  series_id: CME.CL.14
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -225,9 +225,9 @@
   symbol: null
   active: true
 - service_id: 15
-  series_id: CL.CME.15
+  series_id: CME.CL.15
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -241,9 +241,9 @@
   symbol: null
   active: true
 - service_id: 16
-  series_id: CL.CME.16
+  series_id: CME.CL.16
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -257,9 +257,9 @@
   symbol: null
   active: true
 - service_id: 17
-  series_id: CL.CME.17
+  series_id: CME.CL.17
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -273,9 +273,9 @@
   symbol: null
   active: true
 - service_id: 18
-  series_id: CL.CME.18
+  series_id: CME.CL.18
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -289,9 +289,9 @@
   symbol: null
   active: true
 - service_id: 19
-  series_id: CL.CME.19
+  series_id: CME.CL.19
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -305,9 +305,9 @@
   symbol: null
   active: true
 - service_id: 20
-  series_id: CL.CME.20
+  series_id: CME.CL.20
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -321,9 +321,9 @@
   symbol: null
   active: true
 - service_id: 21
-  series_id: CL.CME.21
+  series_id: CME.CL.21
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -337,9 +337,9 @@
   symbol: null
   active: true
 - service_id: 22
-  series_id: CL.CME.22
+  series_id: CME.CL.22
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -353,9 +353,9 @@
   symbol: null
   active: true
 - service_id: 23
-  series_id: CL.CME.23
+  series_id: CME.CL.23
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -369,9 +369,9 @@
   symbol: null
   active: true
 - service_id: 24
-  series_id: CL.CME.24
+  series_id: CME.CL.24
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -385,9 +385,9 @@
   symbol: null
   active: true
 - service_id: 25
-  series_id: CL.CME.1
+  series_id: CME.CL.1
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -401,9 +401,9 @@
   symbol: null
   active: true
 - service_id: 26
-  series_id: CL.CME.2
+  series_id: CME.CL.2
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -417,9 +417,9 @@
   symbol: null
   active: true
 - service_id: 27
-  series_id: CL.CME.3
+  series_id: CME.CL.3
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -433,9 +433,9 @@
   symbol: null
   active: true
 - service_id: 28
-  series_id: CL.CME.4
+  series_id: CME.CL.4
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -449,9 +449,9 @@
   symbol: null
   active: true
 - service_id: 29
-  series_id: CL.CME.5
+  series_id: CME.CL.5
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -465,9 +465,9 @@
   symbol: null
   active: true
 - service_id: 30
-  series_id: CL.CME.6
+  series_id: CME.CL.6
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -481,9 +481,9 @@
   symbol: null
   active: true
 - service_id: 31
-  series_id: CL.CME.7
+  series_id: CME.CL.7
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -497,9 +497,9 @@
   symbol: null
   active: true
 - service_id: 32
-  series_id: CL.CME.8
+  series_id: CME.CL.8
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -513,9 +513,9 @@
   symbol: null
   active: true
 - service_id: 33
-  series_id: CL.CME.9
+  series_id: CME.CL.9
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -529,9 +529,9 @@
   symbol: null
   active: true
 - service_id: 34
-  series_id: CL.CME.10
+  series_id: CME.CL.10
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -545,9 +545,9 @@
   symbol: null
   active: true
 - service_id: 35
-  series_id: CL.CME.11
+  series_id: CME.CL.11
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -561,9 +561,9 @@
   symbol: null
   active: true
 - service_id: 36
-  series_id: CL.CME.12
+  series_id: CME.CL.12
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -577,9 +577,9 @@
   symbol: null
   active: true
 - service_id: 37
-  series_id: CL.CME.13
+  series_id: CME.CL.13
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -593,9 +593,9 @@
   symbol: null
   active: true
 - service_id: 38
-  series_id: CL.CME.14
+  series_id: CME.CL.14
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -609,9 +609,9 @@
   symbol: null
   active: true
 - service_id: 39
-  series_id: CL.CME.15
+  series_id: CME.CL.15
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -625,9 +625,9 @@
   symbol: null
   active: true
 - service_id: 40
-  series_id: CL.CME.16
+  series_id: CME.CL.16
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -641,9 +641,9 @@
   symbol: null
   active: true
 - service_id: 41
-  series_id: CL.CME.17
+  series_id: CME.CL.17
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -657,9 +657,9 @@
   symbol: null
   active: true
 - service_id: 42
-  series_id: CL.CME.18
+  series_id: CME.CL.18
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -673,9 +673,9 @@
   symbol: null
   active: true
 - service_id: 43
-  series_id: CL.CME.19
+  series_id: CME.CL.19
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -689,9 +689,9 @@
   symbol: null
   active: true
 - service_id: 44
-  series_id: CL.CME.20
+  series_id: CME.CL.20
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -705,9 +705,9 @@
   symbol: null
   active: true
 - service_id: 45
-  series_id: CL.CME.21
+  series_id: CME.CL.21
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -721,9 +721,9 @@
   symbol: null
   active: true
 - service_id: 46
-  series_id: CL.CME.22
+  series_id: CME.CL.22
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -737,9 +737,9 @@
   symbol: null
   active: true
 - service_id: 47
-  series_id: CL.CME.23
+  series_id: CME.CL.23
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -753,9 +753,9 @@
   symbol: null
   active: true
 - service_id: 48
-  series_id: CL.CME.24
+  series_id: CME.CL.24
   series_type: fut
-  root_id: CL.CME
+  root_id: CME.CL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -769,9 +769,9 @@
   symbol: null
   active: true
 - service_id: 49
-  series_id: NG.CME.1
+  series_id: CME.NG.1
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -785,9 +785,9 @@
   symbol: null
   active: true
 - service_id: 50
-  series_id: NG.CME.2
+  series_id: CME.NG.2
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -801,9 +801,9 @@
   symbol: null
   active: true
 - service_id: 51
-  series_id: NG.CME.3
+  series_id: CME.NG.3
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -817,9 +817,9 @@
   symbol: null
   active: true
 - service_id: 52
-  series_id: NG.CME.4
+  series_id: CME.NG.4
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -833,9 +833,9 @@
   symbol: null
   active: true
 - service_id: 53
-  series_id: NG.CME.5
+  series_id: CME.NG.5
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -849,9 +849,9 @@
   symbol: null
   active: true
 - service_id: 54
-  series_id: NG.CME.6
+  series_id: CME.NG.6
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -865,9 +865,9 @@
   symbol: null
   active: true
 - service_id: 55
-  series_id: NG.CME.7
+  series_id: CME.NG.7
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -881,9 +881,9 @@
   symbol: null
   active: true
 - service_id: 56
-  series_id: NG.CME.8
+  series_id: CME.NG.8
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -897,9 +897,9 @@
   symbol: null
   active: true
 - service_id: 57
-  series_id: NG.CME.9
+  series_id: CME.NG.9
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -913,9 +913,9 @@
   symbol: null
   active: true
 - service_id: 58
-  series_id: NG.CME.10
+  series_id: CME.NG.10
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -929,9 +929,9 @@
   symbol: null
   active: true
 - service_id: 59
-  series_id: NG.CME.11
+  series_id: CME.NG.11
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -945,9 +945,9 @@
   symbol: null
   active: true
 - service_id: 60
-  series_id: NG.CME.12
+  series_id: CME.NG.12
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -961,9 +961,9 @@
   symbol: null
   active: true
 - service_id: 61
-  series_id: NG.CME.13
+  series_id: CME.NG.13
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -977,9 +977,9 @@
   symbol: null
   active: true
 - service_id: 62
-  series_id: NG.CME.14
+  series_id: CME.NG.14
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -993,9 +993,9 @@
   symbol: null
   active: true
 - service_id: 63
-  series_id: NG.CME.15
+  series_id: CME.NG.15
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1009,9 +1009,9 @@
   symbol: null
   active: true
 - service_id: 64
-  series_id: NG.CME.16
+  series_id: CME.NG.16
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1025,9 +1025,9 @@
   symbol: null
   active: true
 - service_id: 65
-  series_id: NG.CME.17
+  series_id: CME.NG.17
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1041,9 +1041,9 @@
   symbol: null
   active: true
 - service_id: 66
-  series_id: NG.CME.18
+  series_id: CME.NG.18
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1057,9 +1057,9 @@
   symbol: null
   active: true
 - service_id: 67
-  series_id: NG.CME.19
+  series_id: CME.NG.19
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1073,9 +1073,9 @@
   symbol: null
   active: true
 - service_id: 68
-  series_id: NG.CME.20
+  series_id: CME.NG.20
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1089,9 +1089,9 @@
   symbol: null
   active: true
 - service_id: 69
-  series_id: NG.CME.21
+  series_id: CME.NG.21
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1105,9 +1105,9 @@
   symbol: null
   active: true
 - service_id: 70
-  series_id: NG.CME.22
+  series_id: CME.NG.22
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1121,9 +1121,9 @@
   symbol: null
   active: true
 - service_id: 71
-  series_id: NG.CME.23
+  series_id: CME.NG.23
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1137,9 +1137,9 @@
   symbol: null
   active: true
 - service_id: 72
-  series_id: NG.CME.24
+  series_id: CME.NG.24
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1153,9 +1153,9 @@
   symbol: null
   active: true
 - service_id: 73
-  series_id: NG.CME.1
+  series_id: CME.NG.1
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1169,9 +1169,9 @@
   symbol: null
   active: true
 - service_id: 74
-  series_id: NG.CME.2
+  series_id: CME.NG.2
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1185,9 +1185,9 @@
   symbol: null
   active: true
 - service_id: 75
-  series_id: NG.CME.3
+  series_id: CME.NG.3
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1201,9 +1201,9 @@
   symbol: null
   active: true
 - service_id: 76
-  series_id: NG.CME.4
+  series_id: CME.NG.4
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1217,9 +1217,9 @@
   symbol: null
   active: true
 - service_id: 77
-  series_id: NG.CME.5
+  series_id: CME.NG.5
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1233,9 +1233,9 @@
   symbol: null
   active: true
 - service_id: 78
-  series_id: NG.CME.6
+  series_id: CME.NG.6
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1249,9 +1249,9 @@
   symbol: null
   active: true
 - service_id: 79
-  series_id: NG.CME.7
+  series_id: CME.NG.7
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1265,9 +1265,9 @@
   symbol: null
   active: true
 - service_id: 80
-  series_id: NG.CME.8
+  series_id: CME.NG.8
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1281,9 +1281,9 @@
   symbol: null
   active: true
 - service_id: 81
-  series_id: NG.CME.9
+  series_id: CME.NG.9
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1297,9 +1297,9 @@
   symbol: null
   active: true
 - service_id: 82
-  series_id: NG.CME.10
+  series_id: CME.NG.10
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1313,9 +1313,9 @@
   symbol: null
   active: true
 - service_id: 83
-  series_id: NG.CME.11
+  series_id: CME.NG.11
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1329,9 +1329,9 @@
   symbol: null
   active: true
 - service_id: 84
-  series_id: NG.CME.12
+  series_id: CME.NG.12
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1345,9 +1345,9 @@
   symbol: null
   active: true
 - service_id: 85
-  series_id: NG.CME.13
+  series_id: CME.NG.13
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1361,9 +1361,9 @@
   symbol: null
   active: true
 - service_id: 86
-  series_id: NG.CME.14
+  series_id: CME.NG.14
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1377,9 +1377,9 @@
   symbol: null
   active: true
 - service_id: 87
-  series_id: NG.CME.15
+  series_id: CME.NG.15
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1393,9 +1393,9 @@
   symbol: null
   active: true
 - service_id: 88
-  series_id: NG.CME.16
+  series_id: CME.NG.16
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1409,9 +1409,9 @@
   symbol: null
   active: true
 - service_id: 89
-  series_id: NG.CME.17
+  series_id: CME.NG.17
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1425,9 +1425,9 @@
   symbol: null
   active: true
 - service_id: 90
-  series_id: NG.CME.18
+  series_id: CME.NG.18
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1441,9 +1441,9 @@
   symbol: null
   active: true
 - service_id: 91
-  series_id: NG.CME.19
+  series_id: CME.NG.19
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1457,9 +1457,9 @@
   symbol: null
   active: true
 - service_id: 92
-  series_id: NG.CME.20
+  series_id: CME.NG.20
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1473,9 +1473,9 @@
   symbol: null
   active: true
 - service_id: 93
-  series_id: NG.CME.21
+  series_id: CME.NG.21
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1489,9 +1489,9 @@
   symbol: null
   active: true
 - service_id: 94
-  series_id: NG.CME.22
+  series_id: CME.NG.22
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1505,9 +1505,9 @@
   symbol: null
   active: true
 - service_id: 95
-  series_id: NG.CME.23
+  series_id: CME.NG.23
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1521,9 +1521,9 @@
   symbol: null
   active: true
 - service_id: 96
-  series_id: NG.CME.24
+  series_id: CME.NG.24
   series_type: fut
-  root_id: NG.CME
+  root_id: CME.NG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1537,9 +1537,9 @@
   symbol: null
   active: true
 - service_id: 97
-  series_id: RB.CME.1
+  series_id: CME.RB.1
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1553,9 +1553,9 @@
   symbol: null
   active: true
 - service_id: 98
-  series_id: RB.CME.2
+  series_id: CME.RB.2
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1569,9 +1569,9 @@
   symbol: null
   active: true
 - service_id: 99
-  series_id: RB.CME.3
+  series_id: CME.RB.3
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1585,9 +1585,9 @@
   symbol: null
   active: true
 - service_id: 100
-  series_id: RB.CME.4
+  series_id: CME.RB.4
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1601,9 +1601,9 @@
   symbol: null
   active: true
 - service_id: 101
-  series_id: RB.CME.5
+  series_id: CME.RB.5
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1617,9 +1617,9 @@
   symbol: null
   active: true
 - service_id: 102
-  series_id: RB.CME.6
+  series_id: CME.RB.6
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1633,9 +1633,9 @@
   symbol: null
   active: true
 - service_id: 103
-  series_id: RB.CME.7
+  series_id: CME.RB.7
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1649,9 +1649,9 @@
   symbol: null
   active: true
 - service_id: 104
-  series_id: RB.CME.8
+  series_id: CME.RB.8
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1665,9 +1665,9 @@
   symbol: null
   active: true
 - service_id: 105
-  series_id: RB.CME.9
+  series_id: CME.RB.9
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1681,9 +1681,9 @@
   symbol: null
   active: true
 - service_id: 106
-  series_id: RB.CME.10
+  series_id: CME.RB.10
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1697,9 +1697,9 @@
   symbol: null
   active: true
 - service_id: 107
-  series_id: RB.CME.11
+  series_id: CME.RB.11
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1713,9 +1713,9 @@
   symbol: null
   active: true
 - service_id: 108
-  series_id: RB.CME.12
+  series_id: CME.RB.12
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -1729,9 +1729,9 @@
   symbol: null
   active: true
 - service_id: 109
-  series_id: RB.CME.1
+  series_id: CME.RB.1
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1745,9 +1745,9 @@
   symbol: null
   active: true
 - service_id: 110
-  series_id: RB.CME.2
+  series_id: CME.RB.2
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1761,9 +1761,9 @@
   symbol: null
   active: true
 - service_id: 111
-  series_id: RB.CME.3
+  series_id: CME.RB.3
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1777,9 +1777,9 @@
   symbol: null
   active: true
 - service_id: 112
-  series_id: RB.CME.4
+  series_id: CME.RB.4
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1793,9 +1793,9 @@
   symbol: null
   active: true
 - service_id: 113
-  series_id: RB.CME.5
+  series_id: CME.RB.5
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1809,9 +1809,9 @@
   symbol: null
   active: true
 - service_id: 114
-  series_id: RB.CME.6
+  series_id: CME.RB.6
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1825,9 +1825,9 @@
   symbol: null
   active: true
 - service_id: 115
-  series_id: RB.CME.7
+  series_id: CME.RB.7
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1841,9 +1841,9 @@
   symbol: null
   active: true
 - service_id: 116
-  series_id: RB.CME.8
+  series_id: CME.RB.8
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1857,9 +1857,9 @@
   symbol: null
   active: true
 - service_id: 117
-  series_id: RB.CME.9
+  series_id: CME.RB.9
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1873,9 +1873,9 @@
   symbol: null
   active: true
 - service_id: 118
-  series_id: RB.CME.10
+  series_id: CME.RB.10
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1889,9 +1889,9 @@
   symbol: null
   active: true
 - service_id: 119
-  series_id: RB.CME.11
+  series_id: CME.RB.11
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1905,9 +1905,9 @@
   symbol: null
   active: true
 - service_id: 120
-  series_id: RB.CME.12
+  series_id: CME.RB.12
   series_type: fut
-  root_id: RB.CME
+  root_id: CME.RB
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -1921,396 +1921,396 @@
   symbol: null
   active: true
 - service_id: 121
-  series_id: B.ICE.1
+  series_id: ICE.G.1
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 1st Brent Futures
+  description: 1st Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 122
-  series_id: B.ICE.2
+  series_id: ICE.G.2
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 2nd Brent Futures
+  description: 2nd Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 123
-  series_id: B.ICE.3
+  series_id: ICE.G.3
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 3rd Brent Futures
+  description: 3rd Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 124
-  series_id: B.ICE.4
+  series_id: ICE.G.4
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 4th Brent Futures
+  description: 4th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 125
-  series_id: B.ICE.5
+  series_id: ICE.G.5
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 5th Brent Futures
+  description: 5th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 126
-  series_id: B.ICE.6
+  series_id: ICE.G.6
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 6th Brent Futures
+  description: 6th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 127
-  series_id: B.ICE.7
+  series_id: ICE.G.7
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 7th Brent Futures
+  description: 7th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 128
-  series_id: B.ICE.8
+  series_id: ICE.G.8
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 8th Brent Futures
+  description: 8th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 129
-  series_id: B.ICE.9
+  series_id: ICE.G.9
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 9th Brent Futures
+  description: 9th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 130
-  series_id: B.ICE.10
+  series_id: ICE.G.10
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 10th Brent Futures
+  description: 10th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 131
-  series_id: B.ICE.11
+  series_id: ICE.G.11
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 11th Brent Futures
+  description: 11th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 132
-  series_id: B.ICE.12
+  series_id: ICE.G.12
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 12th Brent Futures
+  description: 12th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 133
-  series_id: B.ICE.13
+  series_id: ICE.G.13
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 13th Brent Futures
+  description: 13th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 134
-  series_id: B.ICE.14
+  series_id: ICE.G.14
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 14th Brent Futures
+  description: 14th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 135
-  series_id: B.ICE.15
+  series_id: ICE.G.15
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 15th Brent Futures
+  description: 15th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 136
-  series_id: B.ICE.16
+  series_id: ICE.G.16
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 16th Brent Futures
+  description: 16th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 137
-  series_id: B.ICE.17
+  series_id: ICE.G.17
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 17th Brent Futures
+  description: 17th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 138
-  series_id: B.ICE.18
+  series_id: ICE.G.18
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 18th Brent Futures
+  description: 18th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 139
-  series_id: B.ICE.19
+  series_id: ICE.G.19
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 19th Brent Futures
+  description: 19th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 140
-  series_id: B.ICE.20
+  series_id: ICE.G.20
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 20th Brent Futures
+  description: 20th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 141
-  series_id: B.ICE.21
+  series_id: ICE.G.21
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 21th Brent Futures
+  description: 21th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 142
-  series_id: B.ICE.22
+  series_id: ICE.G.22
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 22th Brent Futures
+  description: 22th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 143
-  series_id: B.ICE.23
+  series_id: ICE.G.23
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 23th Brent Futures
+  description: 23th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 144
-  series_id: B.ICE.24
+  series_id: ICE.G.24
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.G
   venue: ICE
   data_schema: mbp-1
   data_source: bbg
   destination:
   - redis1
   extractor: realtime
-  description: 24th Brent Futures
+  description: 24th Low-Sulfur Gasoil Futures
   additional_params:
     redis:
       type: stream
   symbol: null
   active: true
 - service_id: 145
-  series_id: B.ICE.1
+  series_id: ICE.B.1
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2321,12 +2321,12 @@
   symbol: null
   active: true
 - service_id: 146
-  series_id: B.ICE.2
+  series_id: ICE.B.2
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2337,12 +2337,12 @@
   symbol: null
   active: true
 - service_id: 147
-  series_id: B.ICE.3
+  series_id: ICE.B.3
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2353,12 +2353,12 @@
   symbol: null
   active: true
 - service_id: 148
-  series_id: B.ICE.4
+  series_id: ICE.B.4
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2369,12 +2369,12 @@
   symbol: null
   active: true
 - service_id: 149
-  series_id: B.ICE.5
+  series_id: ICE.B.5
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2385,12 +2385,12 @@
   symbol: null
   active: true
 - service_id: 150
-  series_id: B.ICE.6
+  series_id: ICE.B.6
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2401,12 +2401,12 @@
   symbol: null
   active: true
 - service_id: 151
-  series_id: B.ICE.7
+  series_id: ICE.B.7
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2417,12 +2417,12 @@
   symbol: null
   active: true
 - service_id: 152
-  series_id: B.ICE.8
+  series_id: ICE.B.8
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2433,12 +2433,12 @@
   symbol: null
   active: true
 - service_id: 153
-  series_id: B.ICE.9
+  series_id: ICE.B.9
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2449,12 +2449,12 @@
   symbol: null
   active: true
 - service_id: 154
-  series_id: B.ICE.10
+  series_id: ICE.B.10
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2465,12 +2465,12 @@
   symbol: null
   active: true
 - service_id: 155
-  series_id: B.ICE.11
+  series_id: ICE.B.11
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2481,12 +2481,12 @@
   symbol: null
   active: true
 - service_id: 156
-  series_id: B.ICE.12
+  series_id: ICE.B.12
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2497,12 +2497,12 @@
   symbol: null
   active: true
 - service_id: 157
-  series_id: B.ICE.13
+  series_id: ICE.B.13
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2513,12 +2513,12 @@
   symbol: null
   active: true
 - service_id: 158
-  series_id: B.ICE.14
+  series_id: ICE.B.14
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2529,12 +2529,12 @@
   symbol: null
   active: true
 - service_id: 159
-  series_id: B.ICE.15
+  series_id: ICE.B.15
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2545,12 +2545,12 @@
   symbol: null
   active: true
 - service_id: 160
-  series_id: B.ICE.16
+  series_id: ICE.B.16
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2561,12 +2561,12 @@
   symbol: null
   active: true
 - service_id: 161
-  series_id: B.ICE.17
+  series_id: ICE.B.17
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2577,12 +2577,12 @@
   symbol: null
   active: true
 - service_id: 162
-  series_id: B.ICE.18
+  series_id: ICE.B.18
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2593,12 +2593,12 @@
   symbol: null
   active: true
 - service_id: 163
-  series_id: B.ICE.19
+  series_id: ICE.B.19
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2609,12 +2609,12 @@
   symbol: null
   active: true
 - service_id: 164
-  series_id: B.ICE.20
+  series_id: ICE.B.20
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2625,12 +2625,12 @@
   symbol: null
   active: true
 - service_id: 165
-  series_id: B.ICE.21
+  series_id: ICE.B.21
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2641,12 +2641,12 @@
   symbol: null
   active: true
 - service_id: 166
-  series_id: B.ICE.22
+  series_id: ICE.B.22
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2657,12 +2657,12 @@
   symbol: null
   active: true
 - service_id: 167
-  series_id: B.ICE.23
+  series_id: ICE.B.23
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2673,12 +2673,12 @@
   symbol: null
   active: true
 - service_id: 168
-  series_id: B.ICE.24
+  series_id: ICE.B.24
   series_type: fut
-  root_id: B.ICE
+  root_id: ICE.B
   venue: ICE
   data_schema: mbp-1
-  data_source: databento
+  data_source: bbg
   destination:
   - redis1
   extractor: realtime
@@ -2689,9 +2689,9 @@
   symbol: null
   active: true
 - service_id: 169
-  series_id: NAPEW.ONYX.1
+  series_id: ONYX.NAPEW.1
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2705,9 +2705,9 @@
   symbol: null
   active: true
 - service_id: 170
-  series_id: NAPEW.ONYX.2
+  series_id: ONYX.NAPEW.2
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2721,9 +2721,9 @@
   symbol: null
   active: true
 - service_id: 171
-  series_id: NAPEW.ONYX.3
+  series_id: ONYX.NAPEW.3
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2737,9 +2737,9 @@
   symbol: null
   active: true
 - service_id: 172
-  series_id: NAPEW.ONYX.4
+  series_id: ONYX.NAPEW.4
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2753,9 +2753,9 @@
   symbol: null
   active: true
 - service_id: 173
-  series_id: NAPEW.ONYX.5
+  series_id: ONYX.NAPEW.5
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2769,9 +2769,9 @@
   symbol: null
   active: true
 - service_id: 174
-  series_id: NAPEW.ONYX.6
+  series_id: ONYX.NAPEW.6
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2785,9 +2785,9 @@
   symbol: null
   active: true
 - service_id: 175
-  series_id: NAPEW.ONYX.7
+  series_id: ONYX.NAPEW.7
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2801,9 +2801,9 @@
   symbol: null
   active: true
 - service_id: 176
-  series_id: NAPEW.ONYX.8
+  series_id: ONYX.NAPEW.8
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2817,9 +2817,9 @@
   symbol: null
   active: true
 - service_id: 177
-  series_id: NAPEW.ONYX.9
+  series_id: ONYX.NAPEW.9
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2833,9 +2833,9 @@
   symbol: null
   active: true
 - service_id: 178
-  series_id: NAPEW.ONYX.10
+  series_id: ONYX.NAPEW.10
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2849,9 +2849,9 @@
   symbol: null
   active: true
 - service_id: 179
-  series_id: NAPEW.ONYX.11
+  series_id: ONYX.NAPEW.11
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2865,9 +2865,9 @@
   symbol: null
   active: true
 - service_id: 180
-  series_id: NAPEW.ONYX.12
+  series_id: ONYX.NAPEW.12
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2881,9 +2881,9 @@
   symbol: null
   active: true
 - service_id: 181
-  series_id: NAPEW.ONYX.13
+  series_id: ONYX.NAPEW.13
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2897,9 +2897,9 @@
   symbol: null
   active: true
 - service_id: 182
-  series_id: NAPEW.ONYX.14
+  series_id: ONYX.NAPEW.14
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2913,9 +2913,9 @@
   symbol: null
   active: true
 - service_id: 183
-  series_id: NAPEW.ONYX.15
+  series_id: ONYX.NAPEW.15
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2929,9 +2929,9 @@
   symbol: null
   active: true
 - service_id: 184
-  series_id: NAPEW.ONYX.16
+  series_id: ONYX.NAPEW.16
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2945,9 +2945,9 @@
   symbol: null
   active: true
 - service_id: 185
-  series_id: NAPEW.ONYX.17
+  series_id: ONYX.NAPEW.17
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2961,9 +2961,9 @@
   symbol: null
   active: true
 - service_id: 186
-  series_id: NAPEW.ONYX.18
+  series_id: ONYX.NAPEW.18
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2977,9 +2977,9 @@
   symbol: null
   active: true
 - service_id: 187
-  series_id: NAPEW.ONYX.19
+  series_id: ONYX.NAPEW.19
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -2993,9 +2993,9 @@
   symbol: null
   active: true
 - service_id: 188
-  series_id: NAPEW.ONYX.20
+  series_id: ONYX.NAPEW.20
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: mbp-1
   data_source: onyx
@@ -3009,9 +3009,9 @@
   symbol: null
   active: true
 - service_id: 189
-  series_id: NAPEW.ONYX.1
+  series_id: ONYX.NAPEW.1
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3026,9 +3026,9 @@
   symbol: null
   active: true
 - service_id: 190
-  series_id: NAPEW.ONYX.2
+  series_id: ONYX.NAPEW.2
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3043,9 +3043,9 @@
   symbol: null
   active: true
 - service_id: 191
-  series_id: NAPEW.ONYX.3
+  series_id: ONYX.NAPEW.3
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3060,9 +3060,9 @@
   symbol: null
   active: true
 - service_id: 192
-  series_id: NAPEW.ONYX.4
+  series_id: ONYX.NAPEW.4
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3077,9 +3077,9 @@
   symbol: null
   active: true
 - service_id: 193
-  series_id: NAPEW.ONYX.5
+  series_id: ONYX.NAPEW.5
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3094,9 +3094,9 @@
   symbol: null
   active: true
 - service_id: 194
-  series_id: NAPEW.ONYX.6
+  series_id: ONYX.NAPEW.6
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3111,9 +3111,9 @@
   symbol: null
   active: true
 - service_id: 195
-  series_id: NAPEW.ONYX.7
+  series_id: ONYX.NAPEW.7
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3128,9 +3128,9 @@
   symbol: null
   active: true
 - service_id: 196
-  series_id: NAPEW.ONYX.8
+  series_id: ONYX.NAPEW.8
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3145,9 +3145,9 @@
   symbol: null
   active: true
 - service_id: 197
-  series_id: NAPEW.ONYX.9
+  series_id: ONYX.NAPEW.9
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3162,9 +3162,9 @@
   symbol: null
   active: true
 - service_id: 198
-  series_id: NAPEW.ONYX.10
+  series_id: ONYX.NAPEW.10
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3179,9 +3179,9 @@
   symbol: null
   active: true
 - service_id: 199
-  series_id: NAPEW.ONYX.11
+  series_id: ONYX.NAPEW.11
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3196,9 +3196,9 @@
   symbol: null
   active: true
 - service_id: 200
-  series_id: NAPEW.ONYX.12
+  series_id: ONYX.NAPEW.12
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3213,9 +3213,9 @@
   symbol: null
   active: true
 - service_id: 201
-  series_id: NAPEW.ONYX.13
+  series_id: ONYX.NAPEW.13
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3230,9 +3230,9 @@
   symbol: null
   active: true
 - service_id: 202
-  series_id: NAPEW.ONYX.14
+  series_id: ONYX.NAPEW.14
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3247,9 +3247,9 @@
   symbol: null
   active: true
 - service_id: 203
-  series_id: NAPEW.ONYX.15
+  series_id: ONYX.NAPEW.15
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3264,9 +3264,9 @@
   symbol: null
   active: true
 - service_id: 204
-  series_id: NAPEW.ONYX.16
+  series_id: ONYX.NAPEW.16
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3281,9 +3281,9 @@
   symbol: null
   active: true
 - service_id: 205
-  series_id: NAPEW.ONYX.17
+  series_id: ONYX.NAPEW.17
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3298,9 +3298,9 @@
   symbol: null
   active: true
 - service_id: 206
-  series_id: NAPEW.ONYX.18
+  series_id: ONYX.NAPEW.18
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3315,9 +3315,9 @@
   symbol: null
   active: true
 - service_id: 207
-  series_id: NAPEW.ONYX.19
+  series_id: ONYX.NAPEW.19
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3332,9 +3332,9 @@
   symbol: null
   active: true
 - service_id: 208
-  series_id: NAPEW.ONYX.20
+  series_id: ONYX.NAPEW.20
   series_type: fut
-  root_id: NAPEW.ONYX
+  root_id: ONYX.NAPEW
   venue: ONYX
   data_schema: ohlcv-1d
   data_source: onyx
@@ -3349,9 +3349,9 @@
   symbol: null
   active: true
 - service_id: 209
-  series_id: GC.CME.1
+  series_id: CME.GC.1
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3365,9 +3365,9 @@
   symbol: null
   active: true
 - service_id: 210
-  series_id: GC.CME.2
+  series_id: CME.GC.2
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3381,9 +3381,9 @@
   symbol: null
   active: true
 - service_id: 211
-  series_id: GC.CME.3
+  series_id: CME.GC.3
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3397,9 +3397,9 @@
   symbol: null
   active: true
 - service_id: 212
-  series_id: GC.CME.4
+  series_id: CME.GC.4
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3413,9 +3413,9 @@
   symbol: null
   active: true
 - service_id: 213
-  series_id: GC.CME.5
+  series_id: CME.GC.5
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3429,9 +3429,9 @@
   symbol: null
   active: true
 - service_id: 214
-  series_id: GC.CME.6
+  series_id: CME.GC.6
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3445,9 +3445,9 @@
   symbol: null
   active: true
 - service_id: 215
-  series_id: GC.CME.7
+  series_id: CME.GC.7
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3461,9 +3461,9 @@
   symbol: null
   active: true
 - service_id: 216
-  series_id: GC.CME.8
+  series_id: CME.GC.8
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3477,9 +3477,9 @@
   symbol: null
   active: true
 - service_id: 217
-  series_id: GC.CME.9
+  series_id: CME.GC.9
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3493,9 +3493,9 @@
   symbol: null
   active: true
 - service_id: 218
-  series_id: GC.CME.10
+  series_id: CME.GC.10
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3509,9 +3509,9 @@
   symbol: null
   active: true
 - service_id: 219
-  series_id: GC.CME.11
+  series_id: CME.GC.11
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3525,9 +3525,9 @@
   symbol: null
   active: true
 - service_id: 220
-  series_id: GC.CME.12
+  series_id: CME.GC.12
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3541,9 +3541,9 @@
   symbol: null
   active: true
 - service_id: 221
-  series_id: GC.CME.1
+  series_id: CME.GC.1
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3557,9 +3557,9 @@
   symbol: null
   active: true
 - service_id: 222
-  series_id: GC.CME.2
+  series_id: CME.GC.2
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3573,9 +3573,9 @@
   symbol: null
   active: true
 - service_id: 223
-  series_id: GC.CME.3
+  series_id: CME.GC.3
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3589,9 +3589,9 @@
   symbol: null
   active: true
 - service_id: 224
-  series_id: GC.CME.4
+  series_id: CME.GC.4
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3605,9 +3605,9 @@
   symbol: null
   active: true
 - service_id: 225
-  series_id: GC.CME.5
+  series_id: CME.GC.5
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3621,9 +3621,9 @@
   symbol: null
   active: true
 - service_id: 226
-  series_id: GC.CME.6
+  series_id: CME.GC.6
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3637,9 +3637,9 @@
   symbol: null
   active: true
 - service_id: 227
-  series_id: GC.CME.7
+  series_id: CME.GC.7
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3653,9 +3653,9 @@
   symbol: null
   active: true
 - service_id: 228
-  series_id: GC.CME.8
+  series_id: CME.GC.8
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3669,9 +3669,9 @@
   symbol: null
   active: true
 - service_id: 229
-  series_id: GC.CME.9
+  series_id: CME.GC.9
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3685,9 +3685,9 @@
   symbol: null
   active: true
 - service_id: 230
-  series_id: GC.CME.10
+  series_id: CME.GC.10
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3701,9 +3701,9 @@
   symbol: null
   active: true
 - service_id: 231
-  series_id: GC.CME.11
+  series_id: CME.GC.11
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3717,9 +3717,9 @@
   symbol: null
   active: true
 - service_id: 232
-  series_id: GC.CME.12
+  series_id: CME.GC.12
   series_type: fut
-  root_id: GC.CME
+  root_id: CME.GC
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3733,9 +3733,9 @@
   symbol: null
   active: true
 - service_id: 233
-  series_id: SI.CME.1
+  series_id: CME.SI.1
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3749,9 +3749,9 @@
   symbol: null
   active: true
 - service_id: 234
-  series_id: SI.CME.2
+  series_id: CME.SI.2
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3765,9 +3765,9 @@
   symbol: null
   active: true
 - service_id: 235
-  series_id: SI.CME.3
+  series_id: CME.SI.3
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3781,9 +3781,9 @@
   symbol: null
   active: true
 - service_id: 236
-  series_id: SI.CME.4
+  series_id: CME.SI.4
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3797,9 +3797,9 @@
   symbol: null
   active: true
 - service_id: 237
-  series_id: SI.CME.5
+  series_id: CME.SI.5
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3813,9 +3813,9 @@
   symbol: null
   active: true
 - service_id: 238
-  series_id: SI.CME.6
+  series_id: CME.SI.6
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3829,9 +3829,9 @@
   symbol: null
   active: true
 - service_id: 239
-  series_id: SI.CME.7
+  series_id: CME.SI.7
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3845,9 +3845,9 @@
   symbol: null
   active: true
 - service_id: 240
-  series_id: SI.CME.8
+  series_id: CME.SI.8
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3861,9 +3861,9 @@
   symbol: null
   active: true
 - service_id: 241
-  series_id: SI.CME.9
+  series_id: CME.SI.9
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3877,9 +3877,9 @@
   symbol: null
   active: true
 - service_id: 242
-  series_id: SI.CME.10
+  series_id: CME.SI.10
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3893,9 +3893,9 @@
   symbol: null
   active: true
 - service_id: 243
-  series_id: SI.CME.11
+  series_id: CME.SI.11
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3909,9 +3909,9 @@
   symbol: null
   active: true
 - service_id: 244
-  series_id: SI.CME.12
+  series_id: CME.SI.12
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -3925,9 +3925,9 @@
   symbol: null
   active: true
 - service_id: 245
-  series_id: SI.CME.1
+  series_id: CME.SI.1
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3941,9 +3941,9 @@
   symbol: null
   active: true
 - service_id: 246
-  series_id: SI.CME.2
+  series_id: CME.SI.2
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3957,9 +3957,9 @@
   symbol: null
   active: true
 - service_id: 247
-  series_id: SI.CME.3
+  series_id: CME.SI.3
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3973,9 +3973,9 @@
   symbol: null
   active: true
 - service_id: 248
-  series_id: SI.CME.4
+  series_id: CME.SI.4
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -3989,9 +3989,9 @@
   symbol: null
   active: true
 - service_id: 249
-  series_id: SI.CME.5
+  series_id: CME.SI.5
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4005,9 +4005,9 @@
   symbol: null
   active: true
 - service_id: 250
-  series_id: SI.CME.6
+  series_id: CME.SI.6
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4021,9 +4021,9 @@
   symbol: null
   active: true
 - service_id: 251
-  series_id: SI.CME.7
+  series_id: CME.SI.7
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4037,9 +4037,9 @@
   symbol: null
   active: true
 - service_id: 252
-  series_id: SI.CME.8
+  series_id: CME.SI.8
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4053,9 +4053,9 @@
   symbol: null
   active: true
 - service_id: 253
-  series_id: SI.CME.9
+  series_id: CME.SI.9
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4069,9 +4069,9 @@
   symbol: null
   active: true
 - service_id: 254
-  series_id: SI.CME.10
+  series_id: CME.SI.10
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4085,9 +4085,9 @@
   symbol: null
   active: true
 - service_id: 255
-  series_id: SI.CME.11
+  series_id: CME.SI.11
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4101,9 +4101,9 @@
   symbol: null
   active: true
 - service_id: 256
-  series_id: SI.CME.12
+  series_id: CME.SI.12
   series_type: fut
-  root_id: SI.CME
+  root_id: CME.SI
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4117,9 +4117,9 @@
   symbol: null
   active: true
 - service_id: 257
-  series_id: PL.CME.1
+  series_id: CME.PL.1
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4133,9 +4133,9 @@
   symbol: null
   active: true
 - service_id: 258
-  series_id: PL.CME.2
+  series_id: CME.PL.2
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4149,9 +4149,9 @@
   symbol: null
   active: true
 - service_id: 259
-  series_id: PL.CME.3
+  series_id: CME.PL.3
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4165,9 +4165,9 @@
   symbol: null
   active: true
 - service_id: 260
-  series_id: PL.CME.4
+  series_id: CME.PL.4
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4181,9 +4181,9 @@
   symbol: null
   active: true
 - service_id: 261
-  series_id: PL.CME.5
+  series_id: CME.PL.5
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4197,9 +4197,9 @@
   symbol: null
   active: true
 - service_id: 262
-  series_id: PL.CME.6
+  series_id: CME.PL.6
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4213,9 +4213,9 @@
   symbol: null
   active: true
 - service_id: 263
-  series_id: PL.CME.7
+  series_id: CME.PL.7
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4229,9 +4229,9 @@
   symbol: null
   active: true
 - service_id: 264
-  series_id: PL.CME.8
+  series_id: CME.PL.8
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4245,9 +4245,9 @@
   symbol: null
   active: true
 - service_id: 265
-  series_id: PL.CME.9
+  series_id: CME.PL.9
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4261,9 +4261,9 @@
   symbol: null
   active: true
 - service_id: 266
-  series_id: PL.CME.10
+  series_id: CME.PL.10
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4277,9 +4277,9 @@
   symbol: null
   active: true
 - service_id: 267
-  series_id: PL.CME.11
+  series_id: CME.PL.11
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4293,9 +4293,9 @@
   symbol: null
   active: true
 - service_id: 268
-  series_id: PL.CME.12
+  series_id: CME.PL.12
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4309,9 +4309,9 @@
   symbol: null
   active: true
 - service_id: 269
-  series_id: PL.CME.1
+  series_id: CME.PL.1
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4325,9 +4325,9 @@
   symbol: null
   active: true
 - service_id: 270
-  series_id: PL.CME.2
+  series_id: CME.PL.2
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4341,9 +4341,9 @@
   symbol: null
   active: true
 - service_id: 271
-  series_id: PL.CME.3
+  series_id: CME.PL.3
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4357,9 +4357,9 @@
   symbol: null
   active: true
 - service_id: 272
-  series_id: PL.CME.4
+  series_id: CME.PL.4
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4373,9 +4373,9 @@
   symbol: null
   active: true
 - service_id: 273
-  series_id: PL.CME.5
+  series_id: CME.PL.5
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4389,9 +4389,9 @@
   symbol: null
   active: true
 - service_id: 274
-  series_id: PL.CME.6
+  series_id: CME.PL.6
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4405,9 +4405,9 @@
   symbol: null
   active: true
 - service_id: 275
-  series_id: PL.CME.7
+  series_id: CME.PL.7
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4421,9 +4421,9 @@
   symbol: null
   active: true
 - service_id: 276
-  series_id: PL.CME.8
+  series_id: CME.PL.8
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4437,9 +4437,9 @@
   symbol: null
   active: true
 - service_id: 277
-  series_id: PL.CME.9
+  series_id: CME.PL.9
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4453,9 +4453,9 @@
   symbol: null
   active: true
 - service_id: 278
-  series_id: PL.CME.10
+  series_id: CME.PL.10
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4469,9 +4469,9 @@
   symbol: null
   active: true
 - service_id: 279
-  series_id: PL.CME.11
+  series_id: CME.PL.11
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4485,9 +4485,9 @@
   symbol: null
   active: true
 - service_id: 280
-  series_id: PL.CME.12
+  series_id: CME.PL.12
   series_type: fut
-  root_id: PL.CME
+  root_id: CME.PL
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4501,9 +4501,9 @@
   symbol: null
   active: true
 - service_id: 281
-  series_id: PA.CME.1
+  series_id: CME.PA.1
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4517,9 +4517,9 @@
   symbol: null
   active: true
 - service_id: 282
-  series_id: PA.CME.2
+  series_id: CME.PA.2
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4533,9 +4533,9 @@
   symbol: null
   active: true
 - service_id: 283
-  series_id: PA.CME.3
+  series_id: CME.PA.3
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4549,9 +4549,9 @@
   symbol: null
   active: true
 - service_id: 284
-  series_id: PA.CME.4
+  series_id: CME.PA.4
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4565,9 +4565,9 @@
   symbol: null
   active: true
 - service_id: 285
-  series_id: PA.CME.5
+  series_id: CME.PA.5
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4581,9 +4581,9 @@
   symbol: null
   active: true
 - service_id: 286
-  series_id: PA.CME.6
+  series_id: CME.PA.6
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4597,9 +4597,9 @@
   symbol: null
   active: true
 - service_id: 287
-  series_id: PA.CME.7
+  series_id: CME.PA.7
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4613,9 +4613,9 @@
   symbol: null
   active: true
 - service_id: 288
-  series_id: PA.CME.8
+  series_id: CME.PA.8
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4629,9 +4629,9 @@
   symbol: null
   active: true
 - service_id: 289
-  series_id: PA.CME.9
+  series_id: CME.PA.9
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4645,9 +4645,9 @@
   symbol: null
   active: true
 - service_id: 290
-  series_id: PA.CME.10
+  series_id: CME.PA.10
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4661,9 +4661,9 @@
   symbol: null
   active: true
 - service_id: 291
-  series_id: PA.CME.11
+  series_id: CME.PA.11
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4677,9 +4677,9 @@
   symbol: null
   active: true
 - service_id: 292
-  series_id: PA.CME.12
+  series_id: CME.PA.12
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4693,9 +4693,9 @@
   symbol: null
   active: true
 - service_id: 293
-  series_id: PA.CME.1
+  series_id: CME.PA.1
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4709,9 +4709,9 @@
   symbol: null
   active: true
 - service_id: 294
-  series_id: PA.CME.2
+  series_id: CME.PA.2
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4725,9 +4725,9 @@
   symbol: null
   active: true
 - service_id: 295
-  series_id: PA.CME.3
+  series_id: CME.PA.3
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4741,9 +4741,9 @@
   symbol: null
   active: true
 - service_id: 296
-  series_id: PA.CME.4
+  series_id: CME.PA.4
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4757,9 +4757,9 @@
   symbol: null
   active: true
 - service_id: 297
-  series_id: PA.CME.5
+  series_id: CME.PA.5
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4773,9 +4773,9 @@
   symbol: null
   active: true
 - service_id: 298
-  series_id: PA.CME.6
+  series_id: CME.PA.6
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4789,9 +4789,9 @@
   symbol: null
   active: true
 - service_id: 299
-  series_id: PA.CME.7
+  series_id: CME.PA.7
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4805,9 +4805,9 @@
   symbol: null
   active: true
 - service_id: 300
-  series_id: PA.CME.8
+  series_id: CME.PA.8
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4821,9 +4821,9 @@
   symbol: null
   active: true
 - service_id: 301
-  series_id: PA.CME.9
+  series_id: CME.PA.9
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4837,9 +4837,9 @@
   symbol: null
   active: true
 - service_id: 302
-  series_id: PA.CME.10
+  series_id: CME.PA.10
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4853,9 +4853,9 @@
   symbol: null
   active: true
 - service_id: 303
-  series_id: PA.CME.11
+  series_id: CME.PA.11
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4869,9 +4869,9 @@
   symbol: null
   active: true
 - service_id: 304
-  series_id: PA.CME.12
+  series_id: CME.PA.12
   series_type: fut
-  root_id: PA.CME
+  root_id: CME.PA
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -4885,9 +4885,9 @@
   symbol: null
   active: true
 - service_id: 305
-  series_id: HG.CME.1
+  series_id: CME.HG.1
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4901,9 +4901,9 @@
   symbol: null
   active: true
 - service_id: 306
-  series_id: HG.CME.2
+  series_id: CME.HG.2
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4917,9 +4917,9 @@
   symbol: null
   active: true
 - service_id: 307
-  series_id: HG.CME.3
+  series_id: CME.HG.3
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4933,9 +4933,9 @@
   symbol: null
   active: true
 - service_id: 308
-  series_id: HG.CME.4
+  series_id: CME.HG.4
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4949,9 +4949,9 @@
   symbol: null
   active: true
 - service_id: 309
-  series_id: HG.CME.5
+  series_id: CME.HG.5
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4965,9 +4965,9 @@
   symbol: null
   active: true
 - service_id: 310
-  series_id: HG.CME.6
+  series_id: CME.HG.6
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4981,9 +4981,9 @@
   symbol: null
   active: true
 - service_id: 311
-  series_id: HG.CME.7
+  series_id: CME.HG.7
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -4997,9 +4997,9 @@
   symbol: null
   active: true
 - service_id: 312
-  series_id: HG.CME.8
+  series_id: CME.HG.8
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -5013,9 +5013,9 @@
   symbol: null
   active: true
 - service_id: 313
-  series_id: HG.CME.9
+  series_id: CME.HG.9
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -5029,9 +5029,9 @@
   symbol: null
   active: true
 - service_id: 314
-  series_id: HG.CME.10
+  series_id: CME.HG.10
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -5045,9 +5045,9 @@
   symbol: null
   active: true
 - service_id: 315
-  series_id: HG.CME.11
+  series_id: CME.HG.11
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -5061,9 +5061,9 @@
   symbol: null
   active: true
 - service_id: 316
-  series_id: HG.CME.12
+  series_id: CME.HG.12
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: bbg
@@ -5077,9 +5077,9 @@
   symbol: null
   active: true
 - service_id: 317
-  series_id: HG.CME.1
+  series_id: CME.HG.1
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -5093,9 +5093,9 @@
   symbol: null
   active: true
 - service_id: 318
-  series_id: HG.CME.2
+  series_id: CME.HG.2
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -5109,9 +5109,9 @@
   symbol: null
   active: true
 - service_id: 319
-  series_id: HG.CME.3
+  series_id: CME.HG.3
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -5125,9 +5125,9 @@
   symbol: null
   active: true
 - service_id: 320
-  series_id: HG.CME.4
+  series_id: CME.HG.4
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -5141,9 +5141,9 @@
   symbol: null
   active: true
 - service_id: 321
-  series_id: HG.CME.5
+  series_id: CME.HG.5
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -5157,9 +5157,9 @@
   symbol: null
   active: true
 - service_id: 322
-  series_id: HG.CME.6
+  series_id: CME.HG.6
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -5173,9 +5173,9 @@
   symbol: null
   active: true
 - service_id: 323
-  series_id: HG.CME.7
+  series_id: CME.HG.7
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -5189,9 +5189,9 @@
   symbol: null
   active: true
 - service_id: 324
-  series_id: HG.CME.8
+  series_id: CME.HG.8
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -5205,9 +5205,9 @@
   symbol: null
   active: true
 - service_id: 325
-  series_id: HG.CME.9
+  series_id: CME.HG.9
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -5221,9 +5221,9 @@
   symbol: null
   active: true
 - service_id: 326
-  series_id: HG.CME.10
+  series_id: CME.HG.10
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -5237,9 +5237,9 @@
   symbol: null
   active: true
 - service_id: 327
-  series_id: HG.CME.11
+  series_id: CME.HG.11
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -5253,9 +5253,9 @@
   symbol: null
   active: true
 - service_id: 328
-  series_id: HG.CME.12
+  series_id: CME.HG.12
   series_type: fut
-  root_id: HG.CME
+  root_id: CME.HG
   venue: CME
   data_schema: mbp-1
   data_source: databento
@@ -5269,9 +5269,9 @@
   symbol: null
   active: true
 - service_id: 329
-  series_id: LA.LME.1
+  series_id: LME.LA.1
   series_type: fut
-  root_id: LA.LME
+  root_id: LME.LA
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5285,9 +5285,9 @@
   symbol: null
   active: true
 - service_id: 330
-  series_id: LA.LME.2
+  series_id: LME.LA.2
   series_type: fut
-  root_id: LA.LME
+  root_id: LME.LA
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5301,9 +5301,9 @@
   symbol: null
   active: true
 - service_id: 331
-  series_id: LA.LME.3
+  series_id: LME.LA.3
   series_type: fut
-  root_id: LA.LME
+  root_id: LME.LA
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5317,9 +5317,9 @@
   symbol: null
   active: true
 - service_id: 332
-  series_id: LA.LME.4
+  series_id: LME.LA.4
   series_type: fut
-  root_id: LA.LME
+  root_id: LME.LA
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5333,9 +5333,9 @@
   symbol: null
   active: true
 - service_id: 333
-  series_id: LA.LME.5
+  series_id: LME.LA.5
   series_type: fut
-  root_id: LA.LME
+  root_id: LME.LA
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5349,9 +5349,9 @@
   symbol: null
   active: true
 - service_id: 334
-  series_id: LA.LME.6
+  series_id: LME.LA.6
   series_type: fut
-  root_id: LA.LME
+  root_id: LME.LA
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5365,9 +5365,9 @@
   symbol: null
   active: true
 - service_id: 335
-  series_id: LA.LME.7
+  series_id: LME.LA.7
   series_type: fut
-  root_id: LA.LME
+  root_id: LME.LA
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5381,9 +5381,9 @@
   symbol: null
   active: true
 - service_id: 336
-  series_id: LA.LME.8
+  series_id: LME.LA.8
   series_type: fut
-  root_id: LA.LME
+  root_id: LME.LA
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5397,9 +5397,9 @@
   symbol: null
   active: true
 - service_id: 337
-  series_id: LA.LME.9
+  series_id: LME.LA.9
   series_type: fut
-  root_id: LA.LME
+  root_id: LME.LA
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5413,9 +5413,9 @@
   symbol: null
   active: true
 - service_id: 338
-  series_id: LA.LME.10
+  series_id: LME.LA.10
   series_type: fut
-  root_id: LA.LME
+  root_id: LME.LA
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5429,9 +5429,9 @@
   symbol: null
   active: true
 - service_id: 339
-  series_id: LA.LME.11
+  series_id: LME.LA.11
   series_type: fut
-  root_id: LA.LME
+  root_id: LME.LA
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5445,9 +5445,9 @@
   symbol: null
   active: true
 - service_id: 340
-  series_id: LA.LME.12
+  series_id: LME.LA.12
   series_type: fut
-  root_id: LA.LME
+  root_id: LME.LA
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5461,9 +5461,9 @@
   symbol: null
   active: true
 - service_id: 341
-  series_id: LL.LME.1
+  series_id: LME.LL.1
   series_type: fut
-  root_id: LL.LME
+  root_id: LME.LL
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5477,9 +5477,9 @@
   symbol: null
   active: true
 - service_id: 342
-  series_id: LL.LME.2
+  series_id: LME.LL.2
   series_type: fut
-  root_id: LL.LME
+  root_id: LME.LL
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5493,9 +5493,9 @@
   symbol: null
   active: true
 - service_id: 343
-  series_id: LL.LME.3
+  series_id: LME.LL.3
   series_type: fut
-  root_id: LL.LME
+  root_id: LME.LL
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5509,9 +5509,9 @@
   symbol: null
   active: true
 - service_id: 344
-  series_id: LL.LME.4
+  series_id: LME.LL.4
   series_type: fut
-  root_id: LL.LME
+  root_id: LME.LL
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5525,9 +5525,9 @@
   symbol: null
   active: true
 - service_id: 345
-  series_id: LL.LME.5
+  series_id: LME.LL.5
   series_type: fut
-  root_id: LL.LME
+  root_id: LME.LL
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5541,9 +5541,9 @@
   symbol: null
   active: true
 - service_id: 346
-  series_id: LL.LME.6
+  series_id: LME.LL.6
   series_type: fut
-  root_id: LL.LME
+  root_id: LME.LL
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5557,9 +5557,9 @@
   symbol: null
   active: true
 - service_id: 347
-  series_id: LL.LME.7
+  series_id: LME.LL.7
   series_type: fut
-  root_id: LL.LME
+  root_id: LME.LL
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5573,9 +5573,9 @@
   symbol: null
   active: true
 - service_id: 348
-  series_id: LL.LME.8
+  series_id: LME.LL.8
   series_type: fut
-  root_id: LL.LME
+  root_id: LME.LL
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5589,9 +5589,9 @@
   symbol: null
   active: true
 - service_id: 349
-  series_id: LL.LME.9
+  series_id: LME.LL.9
   series_type: fut
-  root_id: LL.LME
+  root_id: LME.LL
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5605,9 +5605,9 @@
   symbol: null
   active: true
 - service_id: 350
-  series_id: LL.LME.10
+  series_id: LME.LL.10
   series_type: fut
-  root_id: LL.LME
+  root_id: LME.LL
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5621,9 +5621,9 @@
   symbol: null
   active: true
 - service_id: 351
-  series_id: LL.LME.11
+  series_id: LME.LL.11
   series_type: fut
-  root_id: LL.LME
+  root_id: LME.LL
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5637,9 +5637,9 @@
   symbol: null
   active: true
 - service_id: 352
-  series_id: LL.LME.12
+  series_id: LME.LL.12
   series_type: fut
-  root_id: LL.LME
+  root_id: LME.LL
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5653,9 +5653,9 @@
   symbol: null
   active: true
 - service_id: 353
-  series_id: LN.LME.1
+  series_id: LME.LN.1
   series_type: fut
-  root_id: LN.LME
+  root_id: LME.LN
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5669,9 +5669,9 @@
   symbol: null
   active: true
 - service_id: 354
-  series_id: LN.LME.2
+  series_id: LME.LN.2
   series_type: fut
-  root_id: LN.LME
+  root_id: LME.LN
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5685,9 +5685,9 @@
   symbol: null
   active: true
 - service_id: 355
-  series_id: LN.LME.3
+  series_id: LME.LN.3
   series_type: fut
-  root_id: LN.LME
+  root_id: LME.LN
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5701,9 +5701,9 @@
   symbol: null
   active: true
 - service_id: 356
-  series_id: LN.LME.4
+  series_id: LME.LN.4
   series_type: fut
-  root_id: LN.LME
+  root_id: LME.LN
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5717,9 +5717,9 @@
   symbol: null
   active: true
 - service_id: 357
-  series_id: LN.LME.5
+  series_id: LME.LN.5
   series_type: fut
-  root_id: LN.LME
+  root_id: LME.LN
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5733,9 +5733,9 @@
   symbol: null
   active: true
 - service_id: 358
-  series_id: LN.LME.6
+  series_id: LME.LN.6
   series_type: fut
-  root_id: LN.LME
+  root_id: LME.LN
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5749,9 +5749,9 @@
   symbol: null
   active: true
 - service_id: 359
-  series_id: LN.LME.7
+  series_id: LME.LN.7
   series_type: fut
-  root_id: LN.LME
+  root_id: LME.LN
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5765,9 +5765,9 @@
   symbol: null
   active: true
 - service_id: 360
-  series_id: LN.LME.8
+  series_id: LME.LN.8
   series_type: fut
-  root_id: LN.LME
+  root_id: LME.LN
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5781,9 +5781,9 @@
   symbol: null
   active: true
 - service_id: 361
-  series_id: LN.LME.9
+  series_id: LME.LN.9
   series_type: fut
-  root_id: LN.LME
+  root_id: LME.LN
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5797,9 +5797,9 @@
   symbol: null
   active: true
 - service_id: 362
-  series_id: LN.LME.10
+  series_id: LME.LN.10
   series_type: fut
-  root_id: LN.LME
+  root_id: LME.LN
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5813,9 +5813,9 @@
   symbol: null
   active: true
 - service_id: 363
-  series_id: LN.LME.11
+  series_id: LME.LN.11
   series_type: fut
-  root_id: LN.LME
+  root_id: LME.LN
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5829,9 +5829,9 @@
   symbol: null
   active: true
 - service_id: 364
-  series_id: LN.LME.12
+  series_id: LME.LN.12
   series_type: fut
-  root_id: LN.LME
+  root_id: LME.LN
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5845,9 +5845,9 @@
   symbol: null
   active: true
 - service_id: 365
-  series_id: LP.LME.1
+  series_id: LME.LP.1
   series_type: fut
-  root_id: LP.LME
+  root_id: LME.LP
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5861,9 +5861,9 @@
   symbol: null
   active: true
 - service_id: 366
-  series_id: LP.LME.2
+  series_id: LME.LP.2
   series_type: fut
-  root_id: LP.LME
+  root_id: LME.LP
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5877,9 +5877,9 @@
   symbol: null
   active: true
 - service_id: 367
-  series_id: LP.LME.3
+  series_id: LME.LP.3
   series_type: fut
-  root_id: LP.LME
+  root_id: LME.LP
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5893,9 +5893,9 @@
   symbol: null
   active: true
 - service_id: 368
-  series_id: LP.LME.4
+  series_id: LME.LP.4
   series_type: fut
-  root_id: LP.LME
+  root_id: LME.LP
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5909,9 +5909,9 @@
   symbol: null
   active: true
 - service_id: 369
-  series_id: LP.LME.5
+  series_id: LME.LP.5
   series_type: fut
-  root_id: LP.LME
+  root_id: LME.LP
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5925,9 +5925,9 @@
   symbol: null
   active: true
 - service_id: 370
-  series_id: LP.LME.6
+  series_id: LME.LP.6
   series_type: fut
-  root_id: LP.LME
+  root_id: LME.LP
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5941,9 +5941,9 @@
   symbol: null
   active: true
 - service_id: 371
-  series_id: LP.LME.7
+  series_id: LME.LP.7
   series_type: fut
-  root_id: LP.LME
+  root_id: LME.LP
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5957,9 +5957,9 @@
   symbol: null
   active: true
 - service_id: 372
-  series_id: LP.LME.8
+  series_id: LME.LP.8
   series_type: fut
-  root_id: LP.LME
+  root_id: LME.LP
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5973,9 +5973,9 @@
   symbol: null
   active: true
 - service_id: 373
-  series_id: LP.LME.9
+  series_id: LME.LP.9
   series_type: fut
-  root_id: LP.LME
+  root_id: LME.LP
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -5989,9 +5989,9 @@
   symbol: null
   active: true
 - service_id: 374
-  series_id: LP.LME.10
+  series_id: LME.LP.10
   series_type: fut
-  root_id: LP.LME
+  root_id: LME.LP
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6005,9 +6005,9 @@
   symbol: null
   active: true
 - service_id: 375
-  series_id: LP.LME.11
+  series_id: LME.LP.11
   series_type: fut
-  root_id: LP.LME
+  root_id: LME.LP
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6021,9 +6021,9 @@
   symbol: null
   active: true
 - service_id: 376
-  series_id: LP.LME.12
+  series_id: LME.LP.12
   series_type: fut
-  root_id: LP.LME
+  root_id: LME.LP
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6037,9 +6037,9 @@
   symbol: null
   active: true
 - service_id: 377
-  series_id: LX.LME.1
+  series_id: LME.LX.1
   series_type: fut
-  root_id: LX.LME
+  root_id: LME.LX
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6053,9 +6053,9 @@
   symbol: null
   active: true
 - service_id: 378
-  series_id: LX.LME.2
+  series_id: LME.LX.2
   series_type: fut
-  root_id: LX.LME
+  root_id: LME.LX
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6069,9 +6069,9 @@
   symbol: null
   active: true
 - service_id: 379
-  series_id: LX.LME.3
+  series_id: LME.LX.3
   series_type: fut
-  root_id: LX.LME
+  root_id: LME.LX
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6085,9 +6085,9 @@
   symbol: null
   active: true
 - service_id: 380
-  series_id: LX.LME.4
+  series_id: LME.LX.4
   series_type: fut
-  root_id: LX.LME
+  root_id: LME.LX
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6101,9 +6101,9 @@
   symbol: null
   active: true
 - service_id: 381
-  series_id: LX.LME.5
+  series_id: LME.LX.5
   series_type: fut
-  root_id: LX.LME
+  root_id: LME.LX
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6117,9 +6117,9 @@
   symbol: null
   active: true
 - service_id: 382
-  series_id: LX.LME.6
+  series_id: LME.LX.6
   series_type: fut
-  root_id: LX.LME
+  root_id: LME.LX
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6133,9 +6133,9 @@
   symbol: null
   active: true
 - service_id: 383
-  series_id: LX.LME.7
+  series_id: LME.LX.7
   series_type: fut
-  root_id: LX.LME
+  root_id: LME.LX
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6149,9 +6149,9 @@
   symbol: null
   active: true
 - service_id: 384
-  series_id: LX.LME.8
+  series_id: LME.LX.8
   series_type: fut
-  root_id: LX.LME
+  root_id: LME.LX
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6165,9 +6165,9 @@
   symbol: null
   active: true
 - service_id: 385
-  series_id: LX.LME.9
+  series_id: LME.LX.9
   series_type: fut
-  root_id: LX.LME
+  root_id: LME.LX
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6181,9 +6181,9 @@
   symbol: null
   active: true
 - service_id: 386
-  series_id: LX.LME.10
+  series_id: LME.LX.10
   series_type: fut
-  root_id: LX.LME
+  root_id: LME.LX
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6197,9 +6197,9 @@
   symbol: null
   active: true
 - service_id: 387
-  series_id: LX.LME.11
+  series_id: LME.LX.11
   series_type: fut
-  root_id: LX.LME
+  root_id: LME.LX
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6213,9 +6213,9 @@
   symbol: null
   active: true
 - service_id: 388
-  series_id: LX.LME.12
+  series_id: LME.LX.12
   series_type: fut
-  root_id: LX.LME
+  root_id: LME.LX
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6229,9 +6229,9 @@
   symbol: null
   active: true
 - service_id: 389
-  series_id: PFATIOCH.SGX
+  series_id: SGX.PFATIOCH
   series_type: index
-  root_id: PFATIOCH.SGX
+  root_id: SGX.PFATIOCH
   venue: SGX
   data_schema: ohlcv-1d
   data_source: mkt_db
@@ -6309,9 +6309,9 @@
   symbol: null
   active: true
 - service_id: 394
-  series_id: LMHADS03.LME
+  series_id: LME.LMHADS03
   series_type: fwd
-  root_id: LMHADS03.LME
+  root_id: LME.LMHADS03
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6325,9 +6325,9 @@
   symbol: null
   active: true
 - service_id: 395
-  series_id: LMCADS03.LME
+  series_id: LME.LMCADS03
   series_type: fwd
-  root_id: LMCADS03.LME
+  root_id: LME.LMCADS03
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6341,9 +6341,9 @@
   symbol: null
   active: true
 - service_id: 396
-  series_id: LMNIDS03.LME
+  series_id: LME.LMNIDS03
   series_type: fwd
-  root_id: LMNIDS03.LME
+  root_id: LME.LMNIDS03
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6357,9 +6357,9 @@
   symbol: null
   active: true
 - service_id: 397
-  series_id: LMPBDS03.LME
+  series_id: LME.LMPBDS03
   series_type: fwd
-  root_id: LMPBDS03.LME
+  root_id: LME.LMPBDS03
   venue: LME
   data_schema: mbp-1
   data_source: bbg
@@ -6373,9 +6373,9 @@
   symbol: null
   active: true
 - service_id: 398
-  series_id: LMZSDS03.LME
+  series_id: LME.LMZSDS03
   series_type: fwd
-  root_id: LMZSDS03.LME
+  root_id: LME.LMZSDS03
   venue: LME
   data_schema: mbp-1
   data_source: bbg

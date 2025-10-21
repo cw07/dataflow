@@ -41,6 +41,7 @@ def gen_fut_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
     for root_id, fut_spec in futures_specs.specs.items():
         pipelines = pipeline_specs.get_spec(root_id)
         if not pipelines:
+            logger.warning(f"No pipeline for {root_id}")
             continue
         for pipeline in pipelines:
             for i in range(1, fut_spec.terms+1):
@@ -49,7 +50,7 @@ def gen_fut_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
                     series_id=f"{root_id}.{i}",
                     series_type=AssetType.FUT,
                     root_id=root_id,
-                    venue=root_id.split(".")[1],
+                    venue=root_id.split(".")[0],
                     data_schema=pipeline.schema,
                     data_source=pipeline.source,
                     destination=pipeline.output,
@@ -67,6 +68,7 @@ def gen_fx_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
     for root_id, fx_spec in fx_specs.specs.items():
         pipelines = pipeline_specs.get_spec(root_id)
         if not pipelines:
+            logger.warning(f"No pipeline for {root_id}")
             continue
         for pipeline in pipelines:
             ts = TimeSeriesConfig(
@@ -92,6 +94,7 @@ def gen_index_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
     for root_id, index_spec in index_specs.specs.items():
         pipelines = pipeline_specs.get_spec(root_id)
         if not pipelines:
+            logger.warning(f"No pipeline for {root_id}")
             continue
         for pipeline in pipelines:
             ts = TimeSeriesConfig(
@@ -99,7 +102,7 @@ def gen_index_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
                 series_id=f"{root_id}",
                 series_type=AssetType.INDEX,
                 root_id=root_id,
-                venue=root_id.split(".")[1],
+                venue=root_id.split(".")[0],
                 data_schema=pipeline.schema,
                 data_source=pipeline.source,
                 destination=pipeline.output,
@@ -117,6 +120,7 @@ def get_fwd_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
     for root_id, fwd_spec in fwd_specs.specs.items():
         pipelines = pipeline_specs.get_spec(root_id)
         if not pipelines:
+            logger.warning(f"No pipeline for {root_id}")
             continue
         for pipeline in pipelines:
             ts = TimeSeriesConfig(
@@ -124,7 +128,7 @@ def get_fwd_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
                 series_id=f"{root_id}",
                 series_type=AssetType.FWD,
                 root_id=root_id,
-                venue=root_id.split(".")[1],
+                venue=root_id.split(".")[0],
                 data_schema=pipeline.schema,
                 data_source=pipeline.source,
                 destination=pipeline.output,
@@ -142,6 +146,7 @@ def gen_spread_spec(total_time_series: int, time_series: list[TimeSeriesConfig])
     for root_id, spread_spec in spread_specs.specs.items():
         pipelines = pipeline_specs.get_spec(root_id)
         if not pipelines:
+            logger.warning(f"No pipeline for {root_id}")
             continue
         pass
 

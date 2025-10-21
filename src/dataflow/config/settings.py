@@ -68,6 +68,7 @@ class RedisConfig(BaseSettings):
     id: str
     host: str
     port: int
+    username: str
     password: str
     ssl: bool
     db: int
@@ -123,6 +124,7 @@ class Settings(BaseSettings):
     redis1_id: str
     redis1_host: str
     redis1_port: int
+    redis1_username: str
     redis1_password: str
     redis1_ssl: bool
     redis1_db: int
@@ -130,6 +132,7 @@ class Settings(BaseSettings):
     redis2_id: str
     redis2_host: str
     redis2_port: int
+    redis2_username: str
     redis2_password: str
     redis2_ssl: bool
     redis2_db: int
@@ -229,14 +232,20 @@ class Settings(BaseSettings):
 
         for prefix in prefixes:
             redis_id = getattr(self, f'{prefix}_id')
-            redis[redis_id] = RedisConfig(
-                id=redis_id,
-                host=getattr(self, f'{prefix}_host'),
-                port=getattr(self, f'{prefix}_port'),
-                password=getattr(self, f'{prefix}_password'),
-                ssl=getattr(self, f'{prefix}_ssl'),
-                db=getattr(self, f'{prefix}_db'),
-            )
+            host = getattr(self, f'{prefix}_host')
+            port = getattr(self, f'{prefix}_port')
+            user_name = getattr(self, f'{prefix}_username')
+            pwd = getattr(self, f'{prefix}_password')
+            if host and port and user_name and pwd:
+                redis[redis_id] = RedisConfig(
+                    id=redis_id,
+                    host=host,
+                    port=port,
+                    username=user_name,
+                    password=pwd,
+                    ssl=getattr(self, f'{prefix}_ssl'),
+                    db=getattr(self, f'{prefix}_db'),
+                )
         return redis
 
     def all_files(self) -> dict[str, FileConfig]:

@@ -1,5 +1,6 @@
 import json
 import pandas as pd
+import yaml
 from typing import Any, Optional
 from pydantic import BaseModel, Field, field_validator, model_validator
 
@@ -30,6 +31,8 @@ class TimeSeriesConfig(BaseModel):
     def parse_destination(cls, v: Any) -> list[str]:
         if isinstance(v, str):
             return [d for d in v.split(',')]
+        elif isinstance(v, list):
+            return v
         else:
             return []
 
@@ -211,19 +214,30 @@ class TimeSeriesConfigManager(TimeSeriesFilterMixin):
         return self._wrap_result(self._time_series)
 
     def load_configurations(self):
-        """Load service configurations from CSV"""
-        if settings.time_series_config_type == "file":
+        """Load service configurations from CSV or YAML"""
+        if settings.time_series_config_type == "csv":
             df = pd.read_csv(settings.time_series_config_path)
-        else:
-            df = pd.DataFrame()
-        df = df.where(pd.notnull(df), None)
-        for _, row in df.iterrows():
-            ts = TimeSeriesConfig(**row.to_dict())
-            if self.active_only:
-                if ts.active:
+            df = df.where(pd.notnull(df), None)
+            for _, row in df.iterrows():
+                ts = TimeSeriesConfig(**row.to_dict())
+                if self.active_only:
+                    if ts.active:
+                        self._time_series.append(ts)
+                else:
                     self._time_series.append(ts)
-            else:
-                self._time_series.append(ts)
+        elif settings.time_series_config_type == "yaml":
+            with open(settings.time_series_config_path, 'r') as file:
+                data = yaml.safe_load(file)
+            for item in data:
+                ts = TimeSeriesConfig(**item)
+                if self.active_only:
+                    if ts.active:
+                        self._time_series.append(ts)
+                else:
+                    self._time_series.append(ts)
+        else:
+            # Handle other config types or default to empty list
+            pass
 
     def _wrap_result(self, filtered: list[TimeSeriesConfig]) -> TimeSeriesQueryResult:
         """Wrap filtered results in a QueryResult for chaining"""
@@ -231,6 +245,7 @@ class TimeSeriesConfigManager(TimeSeriesFilterMixin):
 
 
 time_series_config = TimeSeriesConfigManager(active_only=True).time_series
+
 
 if __name__ == "__main__":
     ts_config = TimeSeriesConfigManager(active_only=True).time_series

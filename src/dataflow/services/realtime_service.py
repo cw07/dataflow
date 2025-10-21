@@ -124,15 +124,23 @@ if __name__ == "__main__":
         "--schema", "mbp-1"
     ]
 
-    databento_args = [
+    bbg_args = [
         "--mode", "PROD",
         "--end-time", "05:30:00 1",
+        "--data-source", "bbg",
+        "--asset-type", "fut",
+        "--schema", "mbp-1"
+    ]
+
+    databento_args = [
+        "--mode", "PROD",
+        "--end-time", "9:30:00",
         "--data-source", "databento",
         "--asset-type", "fut",
         "--schema", "mbp-1"
     ]
 
-    main(onyx_args)
+    main(databento_args)
 
 
 

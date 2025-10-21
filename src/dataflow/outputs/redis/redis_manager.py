@@ -1,9 +1,10 @@
+import redis
 import logging
 
+from dataflow.utils.schema_map import SCHEMA_MAP
 from dataflow.config.settings import RedisConfig
 from dataflow.outputs.base import BaseOutputManager
 from dataflow.config.loaders.time_series import TimeSeriesConfig
-from dataflow.utils.schema_map import SCHEMA_MAP
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +22,12 @@ class RedisWrapper:
         store_type = store_config.get("type")
 
         if store_type == "stream":
-            self.redis.add_to_stream(data_object.to_dict(), redis_key)
+            self.redis.xadd(name=redis_key,
+                            fields=data_object.to_dict_redis(),
+                            id="*",
+                            maxlen=20,
+                            approximate=True
+                            )
         elif store_type == "kv":
             value_field = store_config.get("field")
             if value_field is None:
@@ -41,7 +47,17 @@ class RedisManager(BaseOutputManager):
 
     def init_redis(self):
         for redis_id, redis_cfg in self.config.items():
-            self.redis_instance[redis_id] = RedisWrapper(1)
+            redis_instance = redis.Redis(
+                host=redis_cfg.host,
+                port=redis_cfg.port,
+                username=redis_cfg.username,
+                password=redis_cfg.password,
+            )
+            if redis_instance.ping():
+                logger.info(f"{redis_id} connect success")
+                self.redis_instance[redis_id] = RedisWrapper(redis_instance)
+            else:
+                logger.error(f"{redis_id} connect failed")
 
     def save(self, message, time_series: TimeSeriesConfig):
         market_data_obj = SCHEMA_MAP[time_series.data_schema].from_dict(message)

@@ -1,7 +1,7 @@
 # Index Specification
 
 index_spec:
-  PFATIOCH.SGX:
+  SGX.PFATIOCH:
     description: PLATTS IODEX CFR CHINA 62% Fe $/DMT
     time_zone: Asia/Singapore
     trading_hours:
