@@ -14,9 +14,7 @@ from dataflow.config.loaders.pipelines import pipeline_specs
 from dataflow.config.loaders.index_spec import index_specs
 
 
-def main(args):
-    time_series = []
-    total_time_series = 1
+def gen_fut_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
     term_in_word = {1: "1st", 2: "2nd", 3: "3rd"}
     for root_id, fut_spec in futures_specs.specs.items():
         pipelines = pipeline_specs.get_spec(root_id)
@@ -40,18 +38,55 @@ def main(args):
                 )
                 time_series.append(ts)
                 total_time_series += 1
+    return total_time_series, time_series
 
-    for fx_spec in fx_specs:
+
+def gen_fx_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
+    for fx_spec in fx_specs.specs.items():
         pass
 
-    for index_spec in index_specs:
+
+def gen_index_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
+    for root_id, index_spec in index_specs.specs.items():
+        pipelines = pipeline_specs.get_spec(root_id)
+        if not pipelines:
+            continue
+        for pipeline in pipelines:
+            ts = TimeSeriesConfig(
+                service_id=total_time_series,
+                series_id=f"{root_id}",
+                series_type=AssetType.INDEX,
+                root_id=root_id,
+                venue=root_id.split(".")[1],
+                data_schema=pipeline.schema,
+                data_source=pipeline.source,
+                destination=pipeline.output,
+                extractor=pipeline.extractor,
+                description=index_spec.description,
+                additional_params=pipeline.params,
+                active=index_spec.active
+            )
+            time_series.append(ts)
+            total_time_series += 1
+    return total_time_series, time_series
+
+
+def gen_spread_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
+    for spread_spec in spread_specs.specs.items():
         pass
 
-    for spread_spec in spread_specs:
+
+def gen_equity_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
+    for equity_spec in equity_specs.items():
         pass
 
-    for equity_spec in equity_specs:
-        pass
+
+def main(args):
+    time_series = []
+    total_time_series = 1
+
+    total_time_series, time_series = gen_fut_spec(total_time_series, time_series)
+    total_time_series, time_series = gen_index_spec(total_time_series, time_series)
 
     dump_to_file(time_series)
 

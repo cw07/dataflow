@@ -2,6 +2,7 @@ import yaml
 import json
 from pathlib import Path
 from datetime import datetime
+from html import escape
 
 
 class YamlToHtmlTable:
@@ -30,9 +31,23 @@ class YamlToHtmlTable:
         else:
             return str(value)
 
+    @staticmethod
+    def format_attr_value(value):
+        """Format a value safely for use in HTML data-* attributes (no markup)."""
+        if isinstance(value, list):
+            plain = ", ".join(str(item) for item in value)
+        elif isinstance(value, dict):
+            plain = json.dumps(value, separators=(",", ":"))
+        elif value is None:
+            plain = ""
+        else:
+            plain = str(value)
+        return escape(plain, quote=True)
+
     def generate_html(self):
         """Generate HTML page with filterable table from YAML data."""
-        self.data.sort(key=lambda x: x.get("service_id", ""))
+        # Sort robustly by service_id as string to avoid type issues
+        self.data.sort(key=lambda x: str(x.get("service_id", "")))
 
         # Generate table headers and filters
         headers = [

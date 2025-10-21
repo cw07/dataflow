@@ -850,3 +850,19 @@
       type: stream
   symbol: null
   active: true
+- service_id: 53
+  series_id: PFATIOCH.SGX
+  series_type: index
+  root_id: PFATIOCH.SGX
+  venue: SGX
+  data_schema: ohlcv-1d
+  data_source: mkt_db
+  destination:
+  - database1
+  extractor: historical
+  description: PLATTS IODEX CFR CHINA 62% Fe $/DMT
+  additional_params:
+    table_name: sgx.tsi_index
+    date_column: TIMESTAMP
+  symbol: null
+  active: true
