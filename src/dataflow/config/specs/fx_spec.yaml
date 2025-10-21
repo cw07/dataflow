@@ -1,3 +1,37 @@
 # FX Specification
 
 fx_spec:
+  XAGUSD:
+    description: Silver Spot
+    time_zone: Asia/Singapore
+    trading_hours:
+      open_time_local: "00:00:00"
+      close_time_local: "23:59:59"
+      trading_days: [ 0,1,2,3,4,5,6 ]
+      active: true
+  XAUUSD:
+    description: Gold Spot
+    time_zone: Asia/Singapore
+    trading_hours:
+      open_time_local: "00:00:00"
+      close_time_local: "23:59:59"
+      trading_days: [ 0,1,2,3,4,5,6 ]
+      active: true
+  XPDUSD:
+    description: Palladium Spot
+    time_zone: Asia/Singapore
+    trading_hours:
+      open_time_local: "00:00:00"
+      close_time_local: "23:59:59"
+      trading_days: [ 0,1,2,3,4,5,6 ]
+      active: true
+  XPTUSD:
+    description: Platinum Spot
+    time_zone: Asia/Singapore
+    trading_hours:
+      open_time_local: "00:00:00"
+      close_time_local: "23:59:59"
+      trading_days: [ 0,1,2,3,4,5,6 ]
+      active: true
+
+

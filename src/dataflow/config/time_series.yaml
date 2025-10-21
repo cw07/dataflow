@@ -866,3 +866,67 @@
     date_column: TIMESTAMP
   symbol: null
   active: true
+- service_id: 54
+  series_id: XAGUSD
+  series_type: fx
+  root_id: XAGUSD
+  venue: GLOBAL
+  data_schema: mbp-1
+  data_source: bbg
+  destination:
+  - redis1
+  extractor: realtime
+  description: Silver Spot
+  additional_params:
+    redis:
+      type: stream
+  symbol: null
+  active: true
+- service_id: 55
+  series_id: XAUUSD
+  series_type: fx
+  root_id: XAUUSD
+  venue: GLOBAL
+  data_schema: mbp-1
+  data_source: bbg
+  destination:
+  - redis1
+  extractor: realtime
+  description: Gold Spot
+  additional_params:
+    redis:
+      type: stream
+  symbol: null
+  active: true
+- service_id: 56
+  series_id: XPDUSD
+  series_type: fx
+  root_id: XPDUSD
+  venue: GLOBAL
+  data_schema: mbp-1
+  data_source: bbg
+  destination:
+  - redis1
+  extractor: realtime
+  description: Palladium Spot
+  additional_params:
+    redis:
+      type: stream
+  symbol: null
+  active: true
+- service_id: 57
+  series_id: XPTUSD
+  series_type: fx
+  root_id: XPTUSD
+  venue: GLOBAL
+  data_schema: mbp-1
+  data_source: bbg
+  destination:
+  - redis1
+  extractor: realtime
+  description: Platinum Spot
+  additional_params:
+    redis:
+      type: stream
+  symbol: null
+  active: true

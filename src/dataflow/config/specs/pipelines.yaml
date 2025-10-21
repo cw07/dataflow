@@ -13,7 +13,6 @@ root_ids:
         schema: ohlcv-1d
         output: redis1
         params: '{"redis":{"type":"kv","field":"close"}}'
-
   GC.CME:
     pipelines:
       - extractor: realtime
@@ -21,7 +20,6 @@ root_ids:
         schema: mbp-1
         output: redis1
         params: '{"redis":{"type":"stream"}}'
-
   PFATIOCH.SGX:
     pipelines:
       - extractor: historical
@@ -29,6 +27,36 @@ root_ids:
         schema: ohlcv-1d
         output: database1
         params: '{"table_name":"sgx.tsi_index", "date_column":"TIMESTAMP"}'
+  XAGUSD:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  XPDUSD:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  XAUUSD:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  XPTUSD:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+
+
 
 
 

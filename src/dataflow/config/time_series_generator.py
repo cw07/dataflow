@@ -1,7 +1,6 @@
 import sys
 import yaml
 from pathlib import Path
-from dataclasses import asdict
 
 from datacore.models.assets import AssetType
 
@@ -42,8 +41,28 @@ def gen_fut_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
 
 
 def gen_fx_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
-    for fx_spec in fx_specs.specs.items():
-        pass
+    for root_id, fx_spec in fx_specs.specs.items():
+        pipelines = pipeline_specs.get_spec(root_id)
+        if not pipelines:
+            continue
+        for pipeline in pipelines:
+            ts = TimeSeriesConfig(
+                service_id=total_time_series,
+                series_id=f"{root_id}",
+                series_type=AssetType.FX,
+                root_id=root_id,
+                venue="GLOBAL",
+                data_schema=pipeline.schema,
+                data_source=pipeline.source,
+                destination=pipeline.output,
+                extractor=pipeline.extractor,
+                description=fx_spec.description,
+                additional_params=pipeline.params,
+                active=fx_spec.active
+            )
+            time_series.append(ts)
+            total_time_series += 1
+    return total_time_series, time_series
 
 
 def gen_index_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
@@ -72,22 +91,27 @@ def gen_index_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
 
 
 def gen_spread_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
-    for spread_spec in spread_specs.specs.items():
+    for root_id, spread_spec in spread_specs.specs.items():
         pass
+
+    return total_time_series, time_series
 
 
 def gen_equity_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
-    for equity_spec in equity_specs.items():
+    for equity_spec in equity_specs.specs.items():
         pass
+
+    return total_time_series, time_series
 
 
 def main(args):
     time_series = []
     total_time_series = 1
-
     total_time_series, time_series = gen_fut_spec(total_time_series, time_series)
     total_time_series, time_series = gen_index_spec(total_time_series, time_series)
-
+    total_time_series, time_series = gen_fx_spec(total_time_series, time_series)
+    total_time_series, time_series = gen_equity_spec(total_time_series, time_series)
+    total_time_series, time_series = gen_spread_spec(total_time_series, time_series)
     dump_to_file(time_series)
 
 def dump_to_file(time_series):
