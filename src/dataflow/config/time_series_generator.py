@@ -1,5 +1,8 @@
+import argparse
+
 import sys
 import yaml
+import logging
 from pathlib import Path
 
 from datacore.models.assets import AssetType
@@ -13,7 +16,24 @@ from dataflow.config.loaders.index_spec import index_specs
 
 from dataflow.config.loaders.pipelines import pipeline_specs
 from dataflow.config.loaders.time_series import TimeSeriesConfig
+from dataflow.utils.yaml_to_html import time_series_html
 
+logger = logging.getLogger(__name__)
+
+
+def parse_arguments(args):
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--serialization",
+        choices=["yaml", "csv"],
+    )
+    parser.add_argument(
+        "--generate-html",
+        action="store_true",
+        default=True,
+    )
+    args = parser.parse_args(args)
+    return args
 
 
 def gen_fut_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
@@ -136,6 +156,7 @@ def gen_equity_spec(total_time_series: int, time_series: list[TimeSeriesConfig])
 
 
 def main(args):
+    args = parse_arguments(args)
     time_series = []
     total_time_series = 1
     total_time_series, time_series = gen_fut_spec(total_time_series, time_series)
@@ -144,28 +165,40 @@ def main(args):
     total_time_series, time_series = get_fwd_spec(total_time_series, time_series)
     total_time_series, time_series = gen_equity_spec(total_time_series, time_series)
     total_time_series, time_series = gen_spread_spec(total_time_series, time_series)
-    dump_to_file(time_series)
+    serialization(time_series, output_type=args.serialization)
+    if args.generate_html:
+        time_series_html(time_series, output_path=Path("./time_series.html"))
 
-def dump_to_file(time_series):
-    output_file = Path("./time_series.yaml")
-    time_series_data = []
-    for ts in time_series:
-        d = ts.model_dump()
 
-        # Handle known non-serializable fields
-        d['data_schema'] = d['data_schema'].value
+def serialization(time_series, output_type: str):
+    if output_type == "yaml":
+        output_file = Path("./time_series.yaml")
+        time_series_data = []
+        for ts in time_series:
+            d = ts.model_dump()
+            d['data_schema'] = d['data_schema'].value
 
-        if d['additional_params'] is not None:
-            d['additional_params'] = dict(d['additional_params'])
+            if d['additional_params'] is not None:
+                d['additional_params'] = dict(d['additional_params'])
 
-        time_series_data.append(d)
+            time_series_data.append(d)
 
-    with open(output_file, "w", encoding="utf-8") as f:
-        yaml.dump(time_series_data, f, indent=2, default_flow_style=False, sort_keys=False)
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write("# This YAML file is auto-generated. Do not edit manually.\n\n")
+            yaml.dump(time_series_data, f, indent=2, default_flow_style=False, sort_keys=False)
+    elif output_type == "csv":
+        pass
+    else:
+        raise NotImplementedError(f"Output type {output_type} is not implemented.")
 
 def clmain():
     main(sys.argv[1:])
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    gen_args = [
+        "--serialization", "yaml",
+        "--generate-html"
+    ]
+
+    main(gen_args)

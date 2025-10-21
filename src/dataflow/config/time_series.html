@@ -1,0 +1,6846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Configuration Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f7fa;
+            padding: 20px;
+            color: #2c3e50;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .header .stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 25px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-card .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .stat-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .controls {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .filter-group label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        
+        .filter-group select {
+            padding: 10px;
+            border: 2px solid #e1e8ed;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        
+        .filter-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .reset-btn {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        
+        .reset-btn:hover {
+            background: #5568d3;
+        }
+        
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .tabs-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e1e8ed;
+            padding-bottom: 10px;
+        }
+        
+        .tab-group-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            padding: 10px 0;
+        }
+        
+        .tab-group-title.active {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            margin-bottom: -12px;
+        }
+        
+        .tabs-container {
+            width: 100%;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: #f8f9fa;
+            border: 2px solid #e1e8ed;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            border-radius: 8px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .tab:hover {
+            background: #e9ecef;
+            color: #333;
+            border-color: #667eea;
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+        
+        .tab .count {
+            display: inline-block;
+            background: rgba(0,0,0,0.15);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin-left: 8px;
+        }
+        
+        .tab.active .count {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .table-wrapper {
+            max-height: 600px;
+            overflow: auto;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .table-wrapper::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        .table-wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        
+        .table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto;
+        }
+        
+        th {
+            background: #f8f9fa;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: #555;
+            border-bottom: 2px solid #e1e8ed;
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            user-select: none;
+            z-index: 10;
+            position: relative;
+        }
+        
+        th:hover {
+            background: #e9ecef;
+        }
+        
+        th .resize-handle {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            cursor: col-resize;
+            user-select: none;
+            z-index: 1;
+        }
+        
+        th .resize-handle:hover {
+            background: #667eea;
+            opacity: 0.5;
+        }
+        
+        th.resizing {
+            background: #e9ecef;
+        }
+        
+        th.resizing .resize-handle {
+            background: #667eea;
+            opacity: 0.8;
+        }
+        
+        td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #e1e8ed;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .col-service-id { min-width: 80px; width: 80px; }
+        .col-series-id { min-width: 150px; width: 150px; }
+        .col-type { min-width: 100px; width: 100px; }
+        .col-root-id { min-width: 120px; width: 120px; }
+        .col-venue { min-width: 100px; width: 100px; }
+        .col-schema { min-width: 120px; width: 120px; }
+        .col-source { min-width: 120px; width: 120px; }
+        .col-destination { min-width: 150px; width: 150px; }
+        .col-extractor { min-width: 100px; width: 100px; }
+        .col-description { min-width: 250px; width: 250px; }
+        .col-symbol { min-width: 100px; width: 100px; }
+        .col-params { min-width: 150px; width: 150px; }
+        .col-status { min-width: 80px; width: 80px; }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .badge-active {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .badge-inactive {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .json-preview {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            background: #f8f9fa;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #e1e8ed;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: help;
+            display: block;
+        }
+        
+        .json-preview:hover {
+            background: #e9ecef;
+        }
+        
+        .series-id {
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .service-id {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .extractor-type {
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        
+        .extractor-realtime {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #bbdefb;
+        }
+        
+        .extractor-historical {
+            background: #f3e5f5;
+            color: #6a1b9a;
+            border: 1px solid #e1bee7;
+        }
+        
+        .venue-badge {
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            font-weight: 500;
+            background: #fff3e0;
+            color: #e65100;
+            border: 1px solid #ffe0b2;
+        }
+        
+        .source-badge {
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            font-weight: 500;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 1.1em;
+        }
+        
+        .empty-tab {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+        }
+        
+        .empty-tab-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .group-switcher {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e1e8ed;
+        }
+        
+        .group-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.3s;
+        }
+        
+        .group-btn:hover {
+            color: #667eea;
+        }
+        
+        .group-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .filters {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+            
+            .tab {
+                padding: 10px 16px;
+                font-size: 13px;
+                white-space: nowrap;
+            }
+            
+            table {
+                font-size: 0.85em;
+            }
+            
+            .table-wrapper {
+                max-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Time Series Configuration Dashboard</h1>
+        <p>Realtime and Historical Data Service</p>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="label">Total Series</div>
+                <div class="value" id="totalCount">398</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Venues</div>
+                <div class="value">6</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Data Sources</div>
+                <div class="value">4</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Active</div>
+                <div class="value">398</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <input type="text" id="searchBox" class="search-box" placeholder="Search across all fields...">
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label>Venue</label>
+                <select id="filterVenue">
+                    <option value="">All Venues</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Data Source</label>
+                <select id="filterSource">
+                    <option value="">All Sources</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Series Type</label>
+                <select id="filterSeriesType">
+                    <option value="">All Types</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Extractor</label>
+                <select id="filterExtractor">
+                    <option value="">All Extractors</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Data Schema</label>
+                <select id="filterSchema">
+                    <option value="">All Schemas</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Status</label>
+                <select id="filterActive">
+                    <option value="">All Status</option>
+                    <option value="true">Active</option>
+                    <option value="false">Inactive</option>
+                </select>
+            </div>
+        </div>
+        
+        <button class="reset-btn" onclick="resetFilters()">Reset All Filters</button>
+    </div>
+    
+    <div class="section">
+        <div class="group-switcher">
+            <button class="group-btn active" id="btnVenue" onclick="switchGroup('venue')">Grouped by Venue</button>
+            <button class="group-btn" id="btnSource" onclick="switchGroup('source')">Grouped by Data Source</button>
+        </div>
+        
+        <div class="tabs-container">
+            <div class="tabs" id="tabsBar"></div>
+            <div id="tabsContent"></div>
+        </div>
+    </div>
+    
+    <script>
+        const timeSeriesData = [
+  {
+    "service_id": 1,
+    "series_id": "CL.CME.1",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 2,
+    "series_id": "CL.CME.2",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 3,
+    "series_id": "CL.CME.3",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 4,
+    "series_id": "CL.CME.4",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 5,
+    "series_id": "CL.CME.5",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 6,
+    "series_id": "CL.CME.6",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 7,
+    "series_id": "CL.CME.7",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 8,
+    "series_id": "CL.CME.8",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 9,
+    "series_id": "CL.CME.9",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 10,
+    "series_id": "CL.CME.10",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 11,
+    "series_id": "CL.CME.11",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 12,
+    "series_id": "CL.CME.12",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 13,
+    "series_id": "CL.CME.13",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "13th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 14,
+    "series_id": "CL.CME.14",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "14th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 15,
+    "series_id": "CL.CME.15",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "15th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 16,
+    "series_id": "CL.CME.16",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "16th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 17,
+    "series_id": "CL.CME.17",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "17th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 18,
+    "series_id": "CL.CME.18",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "18th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 19,
+    "series_id": "CL.CME.19",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "19th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 20,
+    "series_id": "CL.CME.20",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "20th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 21,
+    "series_id": "CL.CME.21",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "21th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 22,
+    "series_id": "CL.CME.22",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "22th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 23,
+    "series_id": "CL.CME.23",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "23th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 24,
+    "series_id": "CL.CME.24",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "24th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 25,
+    "series_id": "CL.CME.1",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 26,
+    "series_id": "CL.CME.2",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 27,
+    "series_id": "CL.CME.3",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 28,
+    "series_id": "CL.CME.4",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 29,
+    "series_id": "CL.CME.5",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 30,
+    "series_id": "CL.CME.6",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 31,
+    "series_id": "CL.CME.7",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 32,
+    "series_id": "CL.CME.8",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 33,
+    "series_id": "CL.CME.9",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 34,
+    "series_id": "CL.CME.10",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 35,
+    "series_id": "CL.CME.11",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 36,
+    "series_id": "CL.CME.12",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 37,
+    "series_id": "CL.CME.13",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "13th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 38,
+    "series_id": "CL.CME.14",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "14th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 39,
+    "series_id": "CL.CME.15",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "15th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 40,
+    "series_id": "CL.CME.16",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "16th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 41,
+    "series_id": "CL.CME.17",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "17th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 42,
+    "series_id": "CL.CME.18",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "18th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 43,
+    "series_id": "CL.CME.19",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "19th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 44,
+    "series_id": "CL.CME.20",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "20th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 45,
+    "series_id": "CL.CME.21",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "21th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 46,
+    "series_id": "CL.CME.22",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "22th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 47,
+    "series_id": "CL.CME.23",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "23th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 48,
+    "series_id": "CL.CME.24",
+    "series_type": "fut",
+    "root_id": "CL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "24th WTI Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 49,
+    "series_id": "NG.CME.1",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 50,
+    "series_id": "NG.CME.2",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 51,
+    "series_id": "NG.CME.3",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 52,
+    "series_id": "NG.CME.4",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 53,
+    "series_id": "NG.CME.5",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 54,
+    "series_id": "NG.CME.6",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 55,
+    "series_id": "NG.CME.7",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 56,
+    "series_id": "NG.CME.8",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 57,
+    "series_id": "NG.CME.9",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 58,
+    "series_id": "NG.CME.10",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 59,
+    "series_id": "NG.CME.11",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 60,
+    "series_id": "NG.CME.12",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 61,
+    "series_id": "NG.CME.13",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "13th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 62,
+    "series_id": "NG.CME.14",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "14th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 63,
+    "series_id": "NG.CME.15",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "15th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 64,
+    "series_id": "NG.CME.16",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "16th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 65,
+    "series_id": "NG.CME.17",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "17th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 66,
+    "series_id": "NG.CME.18",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "18th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 67,
+    "series_id": "NG.CME.19",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "19th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 68,
+    "series_id": "NG.CME.20",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "20th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 69,
+    "series_id": "NG.CME.21",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "21th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 70,
+    "series_id": "NG.CME.22",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "22th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 71,
+    "series_id": "NG.CME.23",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "23th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 72,
+    "series_id": "NG.CME.24",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "24th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 73,
+    "series_id": "NG.CME.1",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 74,
+    "series_id": "NG.CME.2",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 75,
+    "series_id": "NG.CME.3",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 76,
+    "series_id": "NG.CME.4",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 77,
+    "series_id": "NG.CME.5",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 78,
+    "series_id": "NG.CME.6",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 79,
+    "series_id": "NG.CME.7",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 80,
+    "series_id": "NG.CME.8",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 81,
+    "series_id": "NG.CME.9",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 82,
+    "series_id": "NG.CME.10",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 83,
+    "series_id": "NG.CME.11",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 84,
+    "series_id": "NG.CME.12",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 85,
+    "series_id": "NG.CME.13",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "13th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 86,
+    "series_id": "NG.CME.14",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "14th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 87,
+    "series_id": "NG.CME.15",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "15th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 88,
+    "series_id": "NG.CME.16",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "16th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 89,
+    "series_id": "NG.CME.17",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "17th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 90,
+    "series_id": "NG.CME.18",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "18th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 91,
+    "series_id": "NG.CME.19",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "19th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 92,
+    "series_id": "NG.CME.20",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "20th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 93,
+    "series_id": "NG.CME.21",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "21th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 94,
+    "series_id": "NG.CME.22",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "22th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 95,
+    "series_id": "NG.CME.23",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "23th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 96,
+    "series_id": "NG.CME.24",
+    "series_type": "fut",
+    "root_id": "NG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "24th Natural Gas Henry Hub Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 97,
+    "series_id": "RB.CME.1",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 98,
+    "series_id": "RB.CME.2",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 99,
+    "series_id": "RB.CME.3",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 100,
+    "series_id": "RB.CME.4",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 101,
+    "series_id": "RB.CME.5",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 102,
+    "series_id": "RB.CME.6",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 103,
+    "series_id": "RB.CME.7",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 104,
+    "series_id": "RB.CME.8",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 105,
+    "series_id": "RB.CME.9",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 106,
+    "series_id": "RB.CME.10",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 107,
+    "series_id": "RB.CME.11",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 108,
+    "series_id": "RB.CME.12",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 109,
+    "series_id": "RB.CME.1",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 110,
+    "series_id": "RB.CME.2",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 111,
+    "series_id": "RB.CME.3",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 112,
+    "series_id": "RB.CME.4",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 113,
+    "series_id": "RB.CME.5",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 114,
+    "series_id": "RB.CME.6",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 115,
+    "series_id": "RB.CME.7",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 116,
+    "series_id": "RB.CME.8",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 117,
+    "series_id": "RB.CME.9",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 118,
+    "series_id": "RB.CME.10",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 119,
+    "series_id": "RB.CME.11",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 120,
+    "series_id": "RB.CME.12",
+    "series_type": "fut",
+    "root_id": "RB.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th RBOB Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 121,
+    "series_id": "B.ICE.1",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 122,
+    "series_id": "B.ICE.2",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 123,
+    "series_id": "B.ICE.3",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 124,
+    "series_id": "B.ICE.4",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 125,
+    "series_id": "B.ICE.5",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 126,
+    "series_id": "B.ICE.6",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 127,
+    "series_id": "B.ICE.7",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 128,
+    "series_id": "B.ICE.8",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 129,
+    "series_id": "B.ICE.9",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 130,
+    "series_id": "B.ICE.10",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 131,
+    "series_id": "B.ICE.11",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 132,
+    "series_id": "B.ICE.12",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 133,
+    "series_id": "B.ICE.13",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "13th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 134,
+    "series_id": "B.ICE.14",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "14th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 135,
+    "series_id": "B.ICE.15",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "15th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 136,
+    "series_id": "B.ICE.16",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "16th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 137,
+    "series_id": "B.ICE.17",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "17th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 138,
+    "series_id": "B.ICE.18",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "18th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 139,
+    "series_id": "B.ICE.19",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "19th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 140,
+    "series_id": "B.ICE.20",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "20th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 141,
+    "series_id": "B.ICE.21",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "21th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 142,
+    "series_id": "B.ICE.22",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "22th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 143,
+    "series_id": "B.ICE.23",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "23th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 144,
+    "series_id": "B.ICE.24",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "24th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 145,
+    "series_id": "B.ICE.1",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 146,
+    "series_id": "B.ICE.2",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 147,
+    "series_id": "B.ICE.3",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 148,
+    "series_id": "B.ICE.4",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 149,
+    "series_id": "B.ICE.5",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 150,
+    "series_id": "B.ICE.6",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 151,
+    "series_id": "B.ICE.7",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 152,
+    "series_id": "B.ICE.8",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 153,
+    "series_id": "B.ICE.9",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 154,
+    "series_id": "B.ICE.10",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 155,
+    "series_id": "B.ICE.11",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 156,
+    "series_id": "B.ICE.12",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 157,
+    "series_id": "B.ICE.13",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "13th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 158,
+    "series_id": "B.ICE.14",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "14th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 159,
+    "series_id": "B.ICE.15",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "15th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 160,
+    "series_id": "B.ICE.16",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "16th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 161,
+    "series_id": "B.ICE.17",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "17th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 162,
+    "series_id": "B.ICE.18",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "18th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 163,
+    "series_id": "B.ICE.19",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "19th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 164,
+    "series_id": "B.ICE.20",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "20th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 165,
+    "series_id": "B.ICE.21",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "21th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 166,
+    "series_id": "B.ICE.22",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "22th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 167,
+    "series_id": "B.ICE.23",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "23th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 168,
+    "series_id": "B.ICE.24",
+    "series_type": "fut",
+    "root_id": "B.ICE",
+    "venue": "ICE",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "24th Brent Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 169,
+    "series_id": "NAPEW.ONYX.1",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 170,
+    "series_id": "NAPEW.ONYX.2",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 171,
+    "series_id": "NAPEW.ONYX.3",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 172,
+    "series_id": "NAPEW.ONYX.4",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 173,
+    "series_id": "NAPEW.ONYX.5",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 174,
+    "series_id": "NAPEW.ONYX.6",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 175,
+    "series_id": "NAPEW.ONYX.7",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 176,
+    "series_id": "NAPEW.ONYX.8",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 177,
+    "series_id": "NAPEW.ONYX.9",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 178,
+    "series_id": "NAPEW.ONYX.10",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 179,
+    "series_id": "NAPEW.ONYX.11",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 180,
+    "series_id": "NAPEW.ONYX.12",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 181,
+    "series_id": "NAPEW.ONYX.13",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "13th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 182,
+    "series_id": "NAPEW.ONYX.14",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "14th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 183,
+    "series_id": "NAPEW.ONYX.15",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "15th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 184,
+    "series_id": "NAPEW.ONYX.16",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "16th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 185,
+    "series_id": "NAPEW.ONYX.17",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "17th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 186,
+    "series_id": "NAPEW.ONYX.18",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "18th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 187,
+    "series_id": "NAPEW.ONYX.19",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "19th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 188,
+    "series_id": "NAPEW.ONYX.20",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "mbp-1",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "20th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 189,
+    "series_id": "NAPEW.ONYX.1",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "1st East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 190,
+    "series_id": "NAPEW.ONYX.2",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "2nd East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 191,
+    "series_id": "NAPEW.ONYX.3",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "3rd East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 192,
+    "series_id": "NAPEW.ONYX.4",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "4th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 193,
+    "series_id": "NAPEW.ONYX.5",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "5th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 194,
+    "series_id": "NAPEW.ONYX.6",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "6th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 195,
+    "series_id": "NAPEW.ONYX.7",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "7th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 196,
+    "series_id": "NAPEW.ONYX.8",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "8th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 197,
+    "series_id": "NAPEW.ONYX.9",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "9th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 198,
+    "series_id": "NAPEW.ONYX.10",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "10th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 199,
+    "series_id": "NAPEW.ONYX.11",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "11th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 200,
+    "series_id": "NAPEW.ONYX.12",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "12th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 201,
+    "series_id": "NAPEW.ONYX.13",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "13th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 202,
+    "series_id": "NAPEW.ONYX.14",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "14th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 203,
+    "series_id": "NAPEW.ONYX.15",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "15th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 204,
+    "series_id": "NAPEW.ONYX.16",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "16th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 205,
+    "series_id": "NAPEW.ONYX.17",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "17th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 206,
+    "series_id": "NAPEW.ONYX.18",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "18th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 207,
+    "series_id": "NAPEW.ONYX.19",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "19th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 208,
+    "series_id": "NAPEW.ONYX.20",
+    "series_type": "fut",
+    "root_id": "NAPEW.ONYX",
+    "venue": "ONYX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "onyx",
+    "destination": "redis1",
+    "extractor": "historical",
+    "description": "20th East-West Naphtha",
+    "additional_params": "{\"redis\": {\"type\": \"kv\", \"field\": \"close\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 209,
+    "series_id": "GC.CME.1",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 210,
+    "series_id": "GC.CME.2",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 211,
+    "series_id": "GC.CME.3",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 212,
+    "series_id": "GC.CME.4",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 213,
+    "series_id": "GC.CME.5",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 214,
+    "series_id": "GC.CME.6",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 215,
+    "series_id": "GC.CME.7",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 216,
+    "series_id": "GC.CME.8",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 217,
+    "series_id": "GC.CME.9",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 218,
+    "series_id": "GC.CME.10",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 219,
+    "series_id": "GC.CME.11",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 220,
+    "series_id": "GC.CME.12",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 221,
+    "series_id": "GC.CME.1",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 222,
+    "series_id": "GC.CME.2",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 223,
+    "series_id": "GC.CME.3",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 224,
+    "series_id": "GC.CME.4",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 225,
+    "series_id": "GC.CME.5",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 226,
+    "series_id": "GC.CME.6",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 227,
+    "series_id": "GC.CME.7",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 228,
+    "series_id": "GC.CME.8",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 229,
+    "series_id": "GC.CME.9",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 230,
+    "series_id": "GC.CME.10",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 231,
+    "series_id": "GC.CME.11",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 232,
+    "series_id": "GC.CME.12",
+    "series_type": "fut",
+    "root_id": "GC.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Gold Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 233,
+    "series_id": "SI.CME.1",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 234,
+    "series_id": "SI.CME.2",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 235,
+    "series_id": "SI.CME.3",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 236,
+    "series_id": "SI.CME.4",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 237,
+    "series_id": "SI.CME.5",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 238,
+    "series_id": "SI.CME.6",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 239,
+    "series_id": "SI.CME.7",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 240,
+    "series_id": "SI.CME.8",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 241,
+    "series_id": "SI.CME.9",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 242,
+    "series_id": "SI.CME.10",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 243,
+    "series_id": "SI.CME.11",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 244,
+    "series_id": "SI.CME.12",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 245,
+    "series_id": "SI.CME.1",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 246,
+    "series_id": "SI.CME.2",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 247,
+    "series_id": "SI.CME.3",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 248,
+    "series_id": "SI.CME.4",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 249,
+    "series_id": "SI.CME.5",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 250,
+    "series_id": "SI.CME.6",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 251,
+    "series_id": "SI.CME.7",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 252,
+    "series_id": "SI.CME.8",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 253,
+    "series_id": "SI.CME.9",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 254,
+    "series_id": "SI.CME.10",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 255,
+    "series_id": "SI.CME.11",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 256,
+    "series_id": "SI.CME.12",
+    "series_type": "fut",
+    "root_id": "SI.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Silver Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 257,
+    "series_id": "PL.CME.1",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 258,
+    "series_id": "PL.CME.2",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 259,
+    "series_id": "PL.CME.3",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 260,
+    "series_id": "PL.CME.4",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 261,
+    "series_id": "PL.CME.5",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 262,
+    "series_id": "PL.CME.6",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 263,
+    "series_id": "PL.CME.7",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 264,
+    "series_id": "PL.CME.8",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 265,
+    "series_id": "PL.CME.9",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 266,
+    "series_id": "PL.CME.10",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 267,
+    "series_id": "PL.CME.11",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 268,
+    "series_id": "PL.CME.12",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 269,
+    "series_id": "PL.CME.1",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 270,
+    "series_id": "PL.CME.2",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 271,
+    "series_id": "PL.CME.3",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 272,
+    "series_id": "PL.CME.4",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 273,
+    "series_id": "PL.CME.5",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 274,
+    "series_id": "PL.CME.6",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 275,
+    "series_id": "PL.CME.7",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 276,
+    "series_id": "PL.CME.8",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 277,
+    "series_id": "PL.CME.9",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 278,
+    "series_id": "PL.CME.10",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 279,
+    "series_id": "PL.CME.11",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 280,
+    "series_id": "PL.CME.12",
+    "series_type": "fut",
+    "root_id": "PL.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Platinum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 281,
+    "series_id": "PA.CME.1",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 282,
+    "series_id": "PA.CME.2",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 283,
+    "series_id": "PA.CME.3",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 284,
+    "series_id": "PA.CME.4",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 285,
+    "series_id": "PA.CME.5",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 286,
+    "series_id": "PA.CME.6",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 287,
+    "series_id": "PA.CME.7",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 288,
+    "series_id": "PA.CME.8",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 289,
+    "series_id": "PA.CME.9",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 290,
+    "series_id": "PA.CME.10",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 291,
+    "series_id": "PA.CME.11",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 292,
+    "series_id": "PA.CME.12",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 293,
+    "series_id": "PA.CME.1",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 294,
+    "series_id": "PA.CME.2",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 295,
+    "series_id": "PA.CME.3",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 296,
+    "series_id": "PA.CME.4",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 297,
+    "series_id": "PA.CME.5",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 298,
+    "series_id": "PA.CME.6",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 299,
+    "series_id": "PA.CME.7",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 300,
+    "series_id": "PA.CME.8",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 301,
+    "series_id": "PA.CME.9",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 302,
+    "series_id": "PA.CME.10",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 303,
+    "series_id": "PA.CME.11",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 304,
+    "series_id": "PA.CME.12",
+    "series_type": "fut",
+    "root_id": "PA.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Palladium Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 305,
+    "series_id": "HG.CME.1",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 306,
+    "series_id": "HG.CME.2",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 307,
+    "series_id": "HG.CME.3",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 308,
+    "series_id": "HG.CME.4",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 309,
+    "series_id": "HG.CME.5",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 310,
+    "series_id": "HG.CME.6",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 311,
+    "series_id": "HG.CME.7",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 312,
+    "series_id": "HG.CME.8",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 313,
+    "series_id": "HG.CME.9",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 314,
+    "series_id": "HG.CME.10",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 315,
+    "series_id": "HG.CME.11",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 316,
+    "series_id": "HG.CME.12",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 317,
+    "series_id": "HG.CME.1",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 318,
+    "series_id": "HG.CME.2",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 319,
+    "series_id": "HG.CME.3",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 320,
+    "series_id": "HG.CME.4",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 321,
+    "series_id": "HG.CME.5",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 322,
+    "series_id": "HG.CME.6",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 323,
+    "series_id": "HG.CME.7",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 324,
+    "series_id": "HG.CME.8",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 325,
+    "series_id": "HG.CME.9",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 326,
+    "series_id": "HG.CME.10",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 327,
+    "series_id": "HG.CME.11",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 328,
+    "series_id": "HG.CME.12",
+    "series_type": "fut",
+    "root_id": "HG.CME",
+    "venue": "CME",
+    "data_schema": "mbp-1",
+    "data_source": "databento",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 329,
+    "series_id": "LA.LME.1",
+    "series_type": "fut",
+    "root_id": "LA.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Aluminum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 330,
+    "series_id": "LA.LME.2",
+    "series_type": "fut",
+    "root_id": "LA.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Aluminum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 331,
+    "series_id": "LA.LME.3",
+    "series_type": "fut",
+    "root_id": "LA.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Aluminum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 332,
+    "series_id": "LA.LME.4",
+    "series_type": "fut",
+    "root_id": "LA.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Aluminum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 333,
+    "series_id": "LA.LME.5",
+    "series_type": "fut",
+    "root_id": "LA.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Aluminum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 334,
+    "series_id": "LA.LME.6",
+    "series_type": "fut",
+    "root_id": "LA.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Aluminum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 335,
+    "series_id": "LA.LME.7",
+    "series_type": "fut",
+    "root_id": "LA.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Aluminum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 336,
+    "series_id": "LA.LME.8",
+    "series_type": "fut",
+    "root_id": "LA.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Aluminum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 337,
+    "series_id": "LA.LME.9",
+    "series_type": "fut",
+    "root_id": "LA.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Aluminum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 338,
+    "series_id": "LA.LME.10",
+    "series_type": "fut",
+    "root_id": "LA.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Aluminum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 339,
+    "series_id": "LA.LME.11",
+    "series_type": "fut",
+    "root_id": "LA.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Aluminum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 340,
+    "series_id": "LA.LME.12",
+    "series_type": "fut",
+    "root_id": "LA.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Aluminum Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 341,
+    "series_id": "LL.LME.1",
+    "series_type": "fut",
+    "root_id": "LL.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Lead Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 342,
+    "series_id": "LL.LME.2",
+    "series_type": "fut",
+    "root_id": "LL.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Lead Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 343,
+    "series_id": "LL.LME.3",
+    "series_type": "fut",
+    "root_id": "LL.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Lead Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 344,
+    "series_id": "LL.LME.4",
+    "series_type": "fut",
+    "root_id": "LL.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Lead Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 345,
+    "series_id": "LL.LME.5",
+    "series_type": "fut",
+    "root_id": "LL.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Lead Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 346,
+    "series_id": "LL.LME.6",
+    "series_type": "fut",
+    "root_id": "LL.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Lead Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 347,
+    "series_id": "LL.LME.7",
+    "series_type": "fut",
+    "root_id": "LL.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Lead Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 348,
+    "series_id": "LL.LME.8",
+    "series_type": "fut",
+    "root_id": "LL.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Lead Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 349,
+    "series_id": "LL.LME.9",
+    "series_type": "fut",
+    "root_id": "LL.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Lead Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 350,
+    "series_id": "LL.LME.10",
+    "series_type": "fut",
+    "root_id": "LL.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Lead Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 351,
+    "series_id": "LL.LME.11",
+    "series_type": "fut",
+    "root_id": "LL.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Lead Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 352,
+    "series_id": "LL.LME.12",
+    "series_type": "fut",
+    "root_id": "LL.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Lead Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 353,
+    "series_id": "LN.LME.1",
+    "series_type": "fut",
+    "root_id": "LN.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Nickle Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 354,
+    "series_id": "LN.LME.2",
+    "series_type": "fut",
+    "root_id": "LN.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Nickle Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 355,
+    "series_id": "LN.LME.3",
+    "series_type": "fut",
+    "root_id": "LN.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Nickle Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 356,
+    "series_id": "LN.LME.4",
+    "series_type": "fut",
+    "root_id": "LN.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Nickle Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 357,
+    "series_id": "LN.LME.5",
+    "series_type": "fut",
+    "root_id": "LN.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Nickle Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 358,
+    "series_id": "LN.LME.6",
+    "series_type": "fut",
+    "root_id": "LN.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Nickle Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 359,
+    "series_id": "LN.LME.7",
+    "series_type": "fut",
+    "root_id": "LN.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Nickle Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 360,
+    "series_id": "LN.LME.8",
+    "series_type": "fut",
+    "root_id": "LN.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Nickle Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 361,
+    "series_id": "LN.LME.9",
+    "series_type": "fut",
+    "root_id": "LN.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Nickle Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 362,
+    "series_id": "LN.LME.10",
+    "series_type": "fut",
+    "root_id": "LN.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Nickle Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 363,
+    "series_id": "LN.LME.11",
+    "series_type": "fut",
+    "root_id": "LN.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Nickle Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 364,
+    "series_id": "LN.LME.12",
+    "series_type": "fut",
+    "root_id": "LN.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Nickle Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 365,
+    "series_id": "LP.LME.1",
+    "series_type": "fut",
+    "root_id": "LP.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 366,
+    "series_id": "LP.LME.2",
+    "series_type": "fut",
+    "root_id": "LP.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 367,
+    "series_id": "LP.LME.3",
+    "series_type": "fut",
+    "root_id": "LP.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 368,
+    "series_id": "LP.LME.4",
+    "series_type": "fut",
+    "root_id": "LP.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 369,
+    "series_id": "LP.LME.5",
+    "series_type": "fut",
+    "root_id": "LP.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 370,
+    "series_id": "LP.LME.6",
+    "series_type": "fut",
+    "root_id": "LP.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 371,
+    "series_id": "LP.LME.7",
+    "series_type": "fut",
+    "root_id": "LP.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 372,
+    "series_id": "LP.LME.8",
+    "series_type": "fut",
+    "root_id": "LP.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 373,
+    "series_id": "LP.LME.9",
+    "series_type": "fut",
+    "root_id": "LP.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 374,
+    "series_id": "LP.LME.10",
+    "series_type": "fut",
+    "root_id": "LP.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 375,
+    "series_id": "LP.LME.11",
+    "series_type": "fut",
+    "root_id": "LP.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 376,
+    "series_id": "LP.LME.12",
+    "series_type": "fut",
+    "root_id": "LP.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Copper Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 377,
+    "series_id": "LX.LME.1",
+    "series_type": "fut",
+    "root_id": "LX.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "1st Zinc Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 378,
+    "series_id": "LX.LME.2",
+    "series_type": "fut",
+    "root_id": "LX.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "2nd Zinc Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 379,
+    "series_id": "LX.LME.3",
+    "series_type": "fut",
+    "root_id": "LX.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "3rd Zinc Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 380,
+    "series_id": "LX.LME.4",
+    "series_type": "fut",
+    "root_id": "LX.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "4th Zinc Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 381,
+    "series_id": "LX.LME.5",
+    "series_type": "fut",
+    "root_id": "LX.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "5th Zinc Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 382,
+    "series_id": "LX.LME.6",
+    "series_type": "fut",
+    "root_id": "LX.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "6th Zinc Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 383,
+    "series_id": "LX.LME.7",
+    "series_type": "fut",
+    "root_id": "LX.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "7th Zinc Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 384,
+    "series_id": "LX.LME.8",
+    "series_type": "fut",
+    "root_id": "LX.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "8th Zinc Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 385,
+    "series_id": "LX.LME.9",
+    "series_type": "fut",
+    "root_id": "LX.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "9th Zinc Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 386,
+    "series_id": "LX.LME.10",
+    "series_type": "fut",
+    "root_id": "LX.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "10th Zinc Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 387,
+    "series_id": "LX.LME.11",
+    "series_type": "fut",
+    "root_id": "LX.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "11th Zinc Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 388,
+    "series_id": "LX.LME.12",
+    "series_type": "fut",
+    "root_id": "LX.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "12th Zinc Futures",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 389,
+    "series_id": "PFATIOCH.SGX",
+    "series_type": "index",
+    "root_id": "PFATIOCH.SGX",
+    "venue": "SGX",
+    "data_schema": "ohlcv-1d",
+    "data_source": "mkt_db",
+    "destination": "database1",
+    "extractor": "historical",
+    "description": "PLATTS IODEX CFR CHINA 62% Fe $/DMT",
+    "additional_params": "{\"table_name\": \"sgx.tsi_index\", \"date_column\": \"TIMESTAMP\"}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 390,
+    "series_id": "XAGUSD",
+    "series_type": "fx",
+    "root_id": "XAGUSD",
+    "venue": "GLOBAL",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "Silver Spot",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 391,
+    "series_id": "XAUUSD",
+    "series_type": "fx",
+    "root_id": "XAUUSD",
+    "venue": "GLOBAL",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "Gold Spot",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 392,
+    "series_id": "XPDUSD",
+    "series_type": "fx",
+    "root_id": "XPDUSD",
+    "venue": "GLOBAL",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "Palladium Spot",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 393,
+    "series_id": "XPTUSD",
+    "series_type": "fx",
+    "root_id": "XPTUSD",
+    "venue": "GLOBAL",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "Platinum Spot",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 394,
+    "series_id": "LMHADS03.LME",
+    "series_type": "fwd",
+    "root_id": "LMHADS03.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "LME Aluminum 3M Forward",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 395,
+    "series_id": "LMCADS03.LME",
+    "series_type": "fwd",
+    "root_id": "LMCADS03.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "LME Copper 3M Forward",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 396,
+    "series_id": "LMNIDS03.LME",
+    "series_type": "fwd",
+    "root_id": "LMNIDS03.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "LME Nickel 3M Forward",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 397,
+    "series_id": "LMPBDS03.LME",
+    "series_type": "fwd",
+    "root_id": "LMPBDS03.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "LME Lead 3M Forward",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  },
+  {
+    "service_id": 398,
+    "series_id": "LMZSDS03.LME",
+    "series_type": "fwd",
+    "root_id": "LMZSDS03.LME",
+    "venue": "LME",
+    "data_schema": "mbp-1",
+    "data_source": "bbg",
+    "destination": "redis1",
+    "extractor": "realtime",
+    "description": "LME Zinc 3M Forward",
+    "additional_params": "{\"redis\": {\"type\": \"stream\"}}",
+    "symbol": "",
+    "active": true
+  }
+];
+        let currentGroup = 'venue';
+        let currentTab = null;
+        
+        function populateFilters() {
+            const venues = new Set();
+            const sources = new Set();
+            const seriesTypes = new Set();
+            const extractors = new Set();
+            const schemas = new Set();
+            
+            timeSeriesData.forEach(ts => {
+                venues.add(ts.venue);
+                sources.add(ts.data_source);
+                seriesTypes.add(ts.series_type);
+                extractors.add(ts.extractor);
+                schemas.add(ts.data_schema);
+            });
+            
+            populateSelect('filterVenue', Array.from(venues).sort());
+            populateSelect('filterSource', Array.from(sources).sort());
+            populateSelect('filterSeriesType', Array.from(seriesTypes).sort());
+            populateSelect('filterExtractor', Array.from(extractors).sort());
+            populateSelect('filterSchema', Array.from(schemas).sort());
+        }
+        
+        function populateSelect(id, options) {
+            const select = document.getElementById(id);
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.textContent = option;
+                select.appendChild(opt);
+            });
+        }
+        
+        function filterData() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const venue = document.getElementById('filterVenue').value;
+            const source = document.getElementById('filterSource').value;
+            const seriesType = document.getElementById('filterSeriesType').value;
+            const extractor = document.getElementById('filterExtractor').value;
+            const schema = document.getElementById('filterSchema').value;
+            const active = document.getElementById('filterActive').value;
+            
+            let filtered = timeSeriesData.filter(ts => {
+                const searchMatch = !searchTerm || Object.values(ts).some(val => 
+                    String(val).toLowerCase().includes(searchTerm)
+                );
+                
+                const venueMatch = !venue || ts.venue === venue;
+                const sourceMatch = !source || ts.data_source === source;
+                const typeMatch = !seriesType || ts.series_type === seriesType;
+                const extractorMatch = !extractor || ts.extractor === extractor;
+                const schemaMatch = !schema || ts.data_schema === schema;
+                const activeMatch = !active || String(ts.active) === active;
+                
+                return searchMatch && venueMatch && sourceMatch && typeMatch && 
+                       extractorMatch && schemaMatch && activeMatch;
+            });
+            
+            document.getElementById('totalCount').textContent = filtered.length;
+            renderTabs(filtered);
+        }
+        
+        function switchGroup(group) {
+            currentGroup = group;
+            document.getElementById('btnVenue').classList.toggle('active', group === 'venue');
+            document.getElementById('btnSource').classList.toggle('active', group === 'source');
+            filterData();
+        }
+        
+        function renderTabs(data) {
+            const groupKey = currentGroup === 'venue' ? 'venue' : 'data_source';
+            const grouped = {};
+            
+            data.forEach(ts => {
+                const key = ts[groupKey];
+                if (!grouped[key]) grouped[key] = [];
+                grouped[key].push(ts);
+            });
+            
+            const tabsBar = document.getElementById('tabsBar');
+            const tabsContent = document.getElementById('tabsContent');
+            
+            tabsBar.innerHTML = '';
+            tabsContent.innerHTML = '';
+            
+            if (Object.keys(grouped).length === 0) {
+                tabsContent.innerHTML = '<div class="no-results">No results found</div>';
+                return;
+            }
+            
+            const sortedKeys = Object.keys(grouped).sort();
+            
+            sortedKeys.forEach((key, index) => {
+                const group = grouped[key];
+                const tabButton = document.createElement('button');
+                tabButton.className = 'tab' + (index === 0 ? ' active' : '');
+                tabButton.innerHTML = `
+                    ${key}
+                    <span class="count">${group.length}</span>
+                `;
+                tabButton.onclick = () => switchTab(key);
+                tabsBar.appendChild(tabButton);
+                
+                const tabContent = document.createElement('div');
+                tabContent.className = 'tab-content' + (index === 0 ? ' active' : '');
+                tabContent.id = `tab-${key}`;
+                
+                if (group.length === 0) {
+                    tabContent.innerHTML = `
+                        <div class="empty-tab">
+                            <div class="empty-tab-icon">📭</div>
+                            <div>No time series found</div>
+                        </div>
+                    `;
+                } else {
+                    tabContent.innerHTML = `
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="col-service-id">Service ID<div class="resize-handle"></div></th>
+                                        <th class="col-series-id">Series ID<div class="resize-handle"></div></th>
+                                        <th class="col-type">Type<div class="resize-handle"></div></th>
+                                        <th class="col-root-id">Root ID<div class="resize-handle"></div></th>
+                                        <th class="col-venue">Venue<div class="resize-handle"></div></th>
+                                        <th class="col-schema">Schema<div class="resize-handle"></div></th>
+                                        <th class="col-source">Source<div class="resize-handle"></div></th>
+                                        <th class="col-destination">Destination<div class="resize-handle"></div></th>
+                                        <th class="col-extractor">Extractor<div class="resize-handle"></div></th>
+                                        <th class="col-description">Description<div class="resize-handle"></div></th>
+                                        <th class="col-symbol">Symbol<div class="resize-handle"></div></th>
+                                        <th class="col-params">Additional Params<div class="resize-handle"></div></th>
+                                        <th class="col-status">Status<div class="resize-handle"></div></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${group.map(ts => `
+                                        <tr>
+                                            <td class="service-id">${ts.service_id}</td>
+                                            <td><span class="series-id">${ts.series_id}</span></td>
+                                            <td>${ts.series_type.toUpperCase()}</td>
+                                            <td>${ts.root_id}</td>
+                                            <td><span class="venue-badge">${ts.venue}</span></td>
+                                            <td>${ts.data_schema}</td>
+                                            <td><span class="source-badge">${ts.data_source}</span></td>
+                                            <td>${ts.destination}</td>
+                                            <td><span class="extractor-type extractor-${ts.extractor}">${ts.extractor}</span></td>
+                                            <td>${ts.description}</td>
+                                            <td>${ts.symbol || '-'}</td>
+                                            <td><span class="json-preview" title="${ts.additional_params}">${ts.additional_params}</span></td>
+                                            <td><span class="badge ${ts.active ? 'badge-active' : 'badge-inactive'}">${ts.active ? 'Active' : 'Inactive'}</span></td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                }
+                
+                tabsContent.appendChild(tabContent);
+            });
+            
+            currentTab = sortedKeys[0];
+            
+            // Initialize column resizing after rendering
+            initColumnResize();
+        }
+        
+        function initColumnResize() {
+            const tables = document.querySelectorAll('table');
+            
+            tables.forEach(table => {
+                const cols = table.querySelectorAll('th');
+                
+                cols.forEach((col, colIndex) => {
+                    const resizeHandle = col.querySelector('.resize-handle');
+                    if (!resizeHandle) return;
+                    
+                    let startX, startWidth;
+                    
+                    const onMouseDown = (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        startX = e.pageX;
+                        startWidth = col.offsetWidth;
+                        
+                        col.classList.add('resizing');
+                        document.body.style.cursor = 'col-resize';
+                        document.body.style.userSelect = 'none';
+                        
+                        document.addEventListener('mousemove', onMouseMove);
+                        document.addEventListener('mouseup', onMouseUp);
+                    };
+                    
+                    const onMouseMove = (e) => {
+                        const diff = e.pageX - startX;
+                        const newWidth = Math.max(50, startWidth + diff);
+                        
+                        col.style.width = newWidth + 'px';
+                        col.style.minWidth = newWidth + 'px';
+                        
+                        // Apply same width to all cells in this column
+                        const rows = table.querySelectorAll('tr');
+                        rows.forEach(row => {
+                            const cell = row.children[colIndex];
+                            if (cell) {
+                                cell.style.width = newWidth + 'px';
+                                cell.style.minWidth = newWidth + 'px';
+                            }
+                        });
+                    };
+                    
+                    const onMouseUp = () => {
+                        col.classList.remove('resizing');
+                        document.body.style.cursor = '';
+                        document.body.style.userSelect = '';
+                        
+                        document.removeEventListener('mousemove', onMouseMove);
+                        document.removeEventListener('mouseup', onMouseUp);
+                    };
+                    
+                    resizeHandle.addEventListener('mousedown', onMouseDown);
+                });
+            });
+        }
+        
+        function switchTab(tabKey) {
+            const tabs = document.getElementById('tabsBar').querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                if (tab.textContent.trim().startsWith(tabKey)) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            
+            const contents = document.getElementById('tabsContent').querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                if (content.id === `tab-${tabKey}`) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+            
+            currentTab = tabKey;
+        }
+        
+        function resetFilters() {
+            document.getElementById('searchBox').value = '';
+            document.getElementById('filterVenue').value = '';
+            document.getElementById('filterSource').value = '';
+            document.getElementById('filterSeriesType').value = '';
+            document.getElementById('filterExtractor').value = '';
+            document.getElementById('filterSchema').value = '';
+            document.getElementById('filterActive').value = '';
+            filterData();
+        }
+        
+        // Event listeners
+        document.getElementById('searchBox').addEventListener('input', filterData);
+        document.getElementById('filterVenue').addEventListener('change', filterData);
+        document.getElementById('filterSource').addEventListener('change', filterData);
+        document.getElementById('filterSeriesType').addEventListener('change', filterData);
+        document.getElementById('filterExtractor').addEventListener('change', filterData);
+        document.getElementById('filterSchema').addEventListener('change', filterData);
+        document.getElementById('filterActive').addEventListener('change', filterData);
+        
+        // Initialize
+        populateFilters();
+        renderTabs(timeSeriesData);
+    </script>
+</body>
+</html>

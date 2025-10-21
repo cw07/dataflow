@@ -1,6 +1,164 @@
 # Time Series pipelines, for futures, all contract share the same meta
 
 root_ids:
+  GC.CME:
+    pipelines:
+      - extractor: realtime
+        source: databento
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  CL.CME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+      - extractor: realtime
+        source: databento
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  NG.CME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+      - extractor: realtime
+        source: databento
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  B.ICE:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+      - extractor: realtime
+        source: databento
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  HG.CME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+      - extractor: realtime
+        source: databento
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  LA.LME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  LL.LME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  LN.LME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  LP.LME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  LX.LME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  PA.CME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+      - extractor: realtime
+        source: databento
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  PL.CME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+      - extractor: realtime
+        source: databento
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  QS.CME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+      - extractor: realtime
+        source: databento
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  SI.CME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+      - extractor: realtime
+        source: databento
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+  RB.CME:
+    pipelines:
+      - extractor: realtime
+        source: bbg
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+      - extractor: realtime
+        source: databento
+        schema: mbp-1
+        output: redis1
+        params: '{"redis":{"type":"stream"}}'
+
+
+
   NAPEW.ONYX:
     pipelines:
       - extractor: realtime
@@ -13,13 +171,6 @@ root_ids:
         schema: ohlcv-1d
         output: redis1
         params: '{"redis":{"type":"kv","field":"close"}}'
-  GC.CME:
-    pipelines:
-      - extractor: realtime
-        source: databento
-        schema: mbp-1
-        output: redis1
-        params: '{"redis":{"type":"stream"}}'
   PFATIOCH.SGX:
     pipelines:
       - extractor: historical
