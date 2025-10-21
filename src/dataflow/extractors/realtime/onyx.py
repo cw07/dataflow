@@ -67,7 +67,7 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
                 time.sleep(1)
 
     def stop_extract(self):
-        pass
+        logger.info(f"Onyx realtime extractor stopped gracefully")
 
     def on_message(self, message):
         symbol = message["symbol"]
