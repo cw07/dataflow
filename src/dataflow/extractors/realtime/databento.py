@@ -80,10 +80,14 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
             if self._is_connected and self.dbento_client is not None:
                 self.dbento_client.block_for_close(timeout=30)
 
-
     def stop_extract(self):
-        self.unsubscribe()
-        self.dbento_client.block_for_close(timeout=10)
+        if self.dbento_client is not None:
+            self.dbento_client.stop()
+            res = self.dbento_client.block_for_close(timeout=60)
+            if res is None:
+                logger.info(f"Databento realtime extractor stopped gracefully")
+            else:
+                logger.error(f"Databento realtime extractor stopped with error: {res}")
 
     def resolve_raw_symbols(self):
         mapping = {}  # {data_set, {our_root, databento_raw_symbol}}

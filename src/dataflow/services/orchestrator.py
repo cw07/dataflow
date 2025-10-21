@@ -50,7 +50,8 @@ class ServiceOrchestrator:
 
     def stop_services(self):
         for extract_service in self.services:
-            logger.info(f"Service {extract_service.__class__.__name__} stopped")
+            logger.info(f"Stopping service {extract_service.__class__.__name__}")
+            extract_service.stop_extract()
 
     def run_services(self):
         """Run a single service manually (for testing or one-off execution)"""

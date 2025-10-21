@@ -89,6 +89,7 @@ class RealTimeLoopControl(BaseGate):
                 logger.info(f"Starting a new thread for service as configured: {self.new_thread=}")
                 self.stop_event.clear()
                 self._thread = threading.Thread(
+                    name="RealTimeLoopControl",
                     target=func,
                     args=args,
                     kwargs=kwargs,
@@ -111,9 +112,9 @@ class RealTimeLoopControl(BaseGate):
                     if not self.should_continue():
                         logger.info(f"Service {func.__name__} passed end time {self.end}, stopping.")
                         break
-
                     if self.on_idle:
                         self.on_idle()
+                    time.sleep(1)
 
         return wrapper
 
