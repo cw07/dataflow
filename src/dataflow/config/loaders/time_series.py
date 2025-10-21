@@ -7,10 +7,6 @@ from datacore.models.mktdata.schema import MktDataSchema
 
 from dataflow.config.settings import settings
 from dataflow.utils.common import DataOutput
-from dataflow.config.loaders.fut_spec import FuturesSpecReader
-
-
-fut_spec = FuturesSpecReader("../specs/fut_spec.yaml")
 
 
 class TimeSeriesConfig(BaseModel):
@@ -67,10 +63,11 @@ class TimeSeriesConfig(BaseModel):
 
     @model_validator(mode='after')
     def resolve_fut_description(self) -> 'TimeSeriesConfig':
+        from dataflow.config.loaders.fut_spec import futures_specs
         if self.series_type == 'fut' and self.description is None:
-            term = int(self.series_id.split(".")[1])
+            term = int(self.series_id.split(".")[2])
             term_in_word = {1: "1st", 2: "2nd", 3: "3rd"}
-            fut_contract = fut_spec.get_contract(self.root_id)
+            fut_contract = futures_specs.get_spec(self.root_id)
             if fut_contract:
                 self.description = term_in_word.get(term, str(term)+"th") + " " + fut_contract.description
             else:

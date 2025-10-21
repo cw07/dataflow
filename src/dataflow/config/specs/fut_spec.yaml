@@ -103,7 +103,7 @@ futures_spec:
       terms: 24
       contract_size: 1000
       description: Brent Futures
-      time_zone: America/Chicago
+      time_zone: America/New_York
       trading_hours:
         open_time_local: "20:00:00"
         close_time_local: "18:00:00"
@@ -113,6 +113,14 @@ futures_spec:
     NAPEW.ONYX:
       root_id: NAPEW
       terms: 20
+      contract_size: 1000
+      description: East-West Naphtha
+      time_zone: America/New_York
+      trading_hours:
+        open_time_local: "18:00:00"
+        close_time_local: "17:00:00"
+        trading_days: [ 6,0,1,2,3,4 ]
+      contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
 
   precious_metals:

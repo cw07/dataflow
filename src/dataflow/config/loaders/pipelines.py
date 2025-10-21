@@ -2,6 +2,7 @@ import yaml
 import json
 from pathlib import Path
 from typing import List, Dict, Any
+from dataflow.config.loaders.base import BaseSpecReader
 
 
 class Pipeline:
@@ -44,7 +45,6 @@ class Pipeline:
         elif not isinstance(params, dict):
             raise TypeError(f"'params' must be a dict or JSON string, got {type(params)}")
 
-        # Validate required fields
         required = ["extractor", "source", "schema", "output"]
         for key in required:
             if key not in data:
@@ -59,34 +59,31 @@ class Pipeline:
         )
 
 
-class TimeSeriesPipelineConfig:
+class PipelineSpecReader(BaseSpecReader):
     """
     Manages time-series pipeline configurations for root IDs (e.g., 'NAPEW.ONYX').
     Loads from '../specs/pipelines.yaml' by default.
     """
 
-    def __init__(self, config_path: str = "../specs/pipelines.yaml"):
-        self.config_path = Path(config_path)
-        if not self.config_path.exists():
-            raise FileNotFoundError(f"Config file not found: {self.config_path.resolve()}")
-        self.root_ids: Dict[str, List[Pipeline]] = self._load_config()
+    def __init__(self, config_path: str = None):
+        super().__init__(config_path, default_filename="pipelines.yaml")
 
     def _load_config(self) -> Dict[str, List[Pipeline]]:
         """Load and parse the YAML configuration file."""
         with open(self.config_path, "r", encoding="utf-8") as f:
-            raw_config = yaml.safe_load(f)
+            self.raw_data = yaml.safe_load(f)
 
-        if not isinstance(raw_config, dict) or "root_ids" not in raw_config:
+        if "root_ids" not in self.raw_data:
             raise ValueError("YAML must contain a top-level 'root_ids' key")
 
-        root_ids_config = raw_config["root_ids"]
-        parsed_root_ids = {}
+        root_ids_config = self.raw_data["root_ids"]
+        parsed_root_ids: Dict[str, List[Pipeline]] = {}
 
         for root_id, config_data in root_ids_config.items():
             if "pipelines" not in config_data:
                 raise ValueError(f"Root ID '{root_id}' missing 'pipelines' key")
 
-            pipelines = []
+            pipelines: List[Pipeline] = []
             for idx, pipeline_data in enumerate(config_data["pipelines"]):
                 try:
                     pipeline = Pipeline.from_dict(pipeline_data)
@@ -100,33 +97,6 @@ class TimeSeriesPipelineConfig:
 
         return parsed_root_ids
 
-    def get_pipelines(self, root_id: str) -> List[Pipeline]:
-        """Get all pipelines for a given root ID."""
-        if root_id not in self.root_ids:
-            raise KeyError(f"Root ID '{root_id}' not found in config")
-        return self.root_ids[root_id]
 
-    def list_root_ids(self) -> List[str]:
-        """List all configured root IDs."""
-        return list(self.root_ids.keys())
+pipeline_specs = PipelineSpecReader()
 
-
-if __name__ == "__main__":
-    try:
-        config = TimeSeriesPipelineConfig("../specs/pipelines.yaml")
-
-        print("Configured root IDs:", config.list_root_ids())
-        print("\n" + "=" * 60)
-
-        for root_id in config.list_root_ids():
-            print(f"\nRoot ID: {root_id}")
-            for i, pipeline in enumerate(config.get_pipelines(root_id), 1):
-                print(f"  Pipeline {i}:")
-                print(f"    Extractor: {pipeline.extractor}")
-                print(f"    Source:    {pipeline.source}")
-                print(f"    Schema:    {pipeline.schema}")
-                print(f"    Output:    {pipeline.output}")
-                print(f"    Params:    {pipeline.params}")
-
-    except (FileNotFoundError, ValueError, KeyError) as e:
-        print(f"Configuration error: {e}")

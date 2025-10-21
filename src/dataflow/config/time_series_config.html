@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Time Series Configuration</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f9f9fc;
+            color: #1a1a1a;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th {
+            background-color: #34495e;
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        /* Style for filter inputs */
+        th input.filter-input {
+            width: 100%;
+            padding: 6px;
+            margin: 4px 0;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            box-sizing: border-box;
+        }
+        th input.filter-input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f5f8;
+        }
+        tr:hover {
+            background-color: #e6f7ff;
+            transition: background-color 0.2s;
+        }
+        pre.json {
+            margin: 0;
+            padding: 8px;
+            background: #2c3e5e;
+            color: #ecf0f1;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        .null {
+            color: #bdc3c7;
+            font-style: italic;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #95a5a6;
+            font-size: 12px;
+        }
+        @media (max-width: 768px) {
+            th, td {
+                padding: 6px;
+                font-size: 12px;
+            }
+            th input.filter-input {
+                padding: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Time Series Configuration</h1>
+        <p class="subtitle">Total Entries: 52</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Service ID</th>
+                    <th>Series ID</th>
+                    <th>Type</th>
+                    <th>Root ID</th>
+                    <th>Venue</th>
+                    <th>Data Schema</th>
+                    <th>Data Source</th>
+                    <th>Destination</th>
+                    <th>Extractor</th>
+                    <th>Description</th>
+                    <th>Additional Params</th>
+                    <th>Symbol</th>
+                    <th>Active</th>
+                </tr>
+                <tr>
+                    <th><input type="text" class="filter-input" data-column="service_id" placeholder="Filter Service Id..." /></th><th><input type="text" class="filter-input" data-column="series_id" placeholder="Filter Series Id..." /></th><th><input type="text" class="filter-input" data-column="series_type" placeholder="Filter Series Type..." /></th><th><input type="text" class="filter-input" data-column="root_id" placeholder="Filter Root Id..." /></th><th><input type="text" class="filter-input" data-column="venue" placeholder="Filter Venue..." /></th><th><input type="text" class="filter-input" data-column="data_schema" placeholder="Filter Data Schema..." /></th><th><input type="text" class="filter-input" data-column="data_source" placeholder="Filter Data Source..." /></th><th><input type="text" class="filter-input" data-column="destination" placeholder="Filter Destination..." /></th><th><input type="text" class="filter-input" data-column="extractor" placeholder="Filter Extractor..." /></th><th><input type="text" class="filter-input" data-column="description" placeholder="Filter Description..." /></th><th><input type="text" class="filter-input" data-column="additional_params" placeholder="Filter Additional Params..." /></th><th><input type="text" class="filter-input" data-column="symbol" placeholder="Filter Symbol..." /></th><th><input type="text" class="filter-input" data-column="active" placeholder="Filter Active..." /></th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr data-service-id="1" data-series-id="NAPEW.ONYX.1" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="1st East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>1</td>
+                <td>NAPEW.ONYX.1</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>1st East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="2" data-series-id="NAPEW.ONYX.2" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="2nd East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>2</td>
+                <td>NAPEW.ONYX.2</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>2nd East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="3" data-series-id="NAPEW.ONYX.3" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="3rd East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>3</td>
+                <td>NAPEW.ONYX.3</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>3rd East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="4" data-series-id="NAPEW.ONYX.4" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="4th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>4</td>
+                <td>NAPEW.ONYX.4</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>4th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="5" data-series-id="NAPEW.ONYX.5" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="5th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>5</td>
+                <td>NAPEW.ONYX.5</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>5th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="6" data-series-id="NAPEW.ONYX.6" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="6th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>6</td>
+                <td>NAPEW.ONYX.6</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>6th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="7" data-series-id="NAPEW.ONYX.7" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="7th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>7</td>
+                <td>NAPEW.ONYX.7</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>7th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="8" data-series-id="NAPEW.ONYX.8" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="8th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>8</td>
+                <td>NAPEW.ONYX.8</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>8th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="9" data-series-id="NAPEW.ONYX.9" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="9th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>9</td>
+                <td>NAPEW.ONYX.9</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>9th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="10" data-series-id="NAPEW.ONYX.10" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="10th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>10</td>
+                <td>NAPEW.ONYX.10</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>10th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="11" data-series-id="NAPEW.ONYX.11" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="11th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>11</td>
+                <td>NAPEW.ONYX.11</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>11th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="12" data-series-id="NAPEW.ONYX.12" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="12th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>12</td>
+                <td>NAPEW.ONYX.12</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>12th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="13" data-series-id="NAPEW.ONYX.13" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="13th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>13</td>
+                <td>NAPEW.ONYX.13</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>13th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="14" data-series-id="NAPEW.ONYX.14" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="14th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>14</td>
+                <td>NAPEW.ONYX.14</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>14th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="15" data-series-id="NAPEW.ONYX.15" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="15th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>15</td>
+                <td>NAPEW.ONYX.15</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>15th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="16" data-series-id="NAPEW.ONYX.16" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="16th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>16</td>
+                <td>NAPEW.ONYX.16</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>16th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="17" data-series-id="NAPEW.ONYX.17" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="17th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>17</td>
+                <td>NAPEW.ONYX.17</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>17th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="18" data-series-id="NAPEW.ONYX.18" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="18th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>18</td>
+                <td>NAPEW.ONYX.18</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>18th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="19" data-series-id="NAPEW.ONYX.19" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="19th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>19</td>
+                <td>NAPEW.ONYX.19</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>19th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="20" data-series-id="NAPEW.ONYX.20" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="mbp-1" data-data-source="onyx"
+                data-extractor="realtime" data-description="20th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>20</td>
+                <td>NAPEW.ONYX.20</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>mbp-1</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>20th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="21" data-series-id="NAPEW.ONYX.1" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="1st East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>21</td>
+                <td>NAPEW.ONYX.1</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>1st East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="22" data-series-id="NAPEW.ONYX.2" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="2nd East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>22</td>
+                <td>NAPEW.ONYX.2</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>2nd East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="23" data-series-id="NAPEW.ONYX.3" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="3rd East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>23</td>
+                <td>NAPEW.ONYX.3</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>3rd East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="24" data-series-id="NAPEW.ONYX.4" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="4th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>24</td>
+                <td>NAPEW.ONYX.4</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>4th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="25" data-series-id="NAPEW.ONYX.5" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="5th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>25</td>
+                <td>NAPEW.ONYX.5</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>5th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="26" data-series-id="NAPEW.ONYX.6" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="6th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>26</td>
+                <td>NAPEW.ONYX.6</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>6th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="27" data-series-id="NAPEW.ONYX.7" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="7th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>27</td>
+                <td>NAPEW.ONYX.7</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>7th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="28" data-series-id="NAPEW.ONYX.8" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="8th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>28</td>
+                <td>NAPEW.ONYX.8</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>8th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="29" data-series-id="NAPEW.ONYX.9" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="9th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>29</td>
+                <td>NAPEW.ONYX.9</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>9th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="30" data-series-id="NAPEW.ONYX.10" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="10th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>30</td>
+                <td>NAPEW.ONYX.10</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>10th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="31" data-series-id="NAPEW.ONYX.11" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="11th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>31</td>
+                <td>NAPEW.ONYX.11</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>11th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="32" data-series-id="NAPEW.ONYX.12" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="12th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>32</td>
+                <td>NAPEW.ONYX.12</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>12th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="33" data-series-id="NAPEW.ONYX.13" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="13th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>33</td>
+                <td>NAPEW.ONYX.13</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>13th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="34" data-series-id="NAPEW.ONYX.14" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="14th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>34</td>
+                <td>NAPEW.ONYX.14</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>14th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="35" data-series-id="NAPEW.ONYX.15" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="15th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>35</td>
+                <td>NAPEW.ONYX.15</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>15th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="36" data-series-id="NAPEW.ONYX.16" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="16th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>36</td>
+                <td>NAPEW.ONYX.16</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>16th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="37" data-series-id="NAPEW.ONYX.17" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="17th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>37</td>
+                <td>NAPEW.ONYX.17</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>17th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="38" data-series-id="NAPEW.ONYX.18" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="18th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>38</td>
+                <td>NAPEW.ONYX.18</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>18th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="39" data-series-id="NAPEW.ONYX.19" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="19th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>39</td>
+                <td>NAPEW.ONYX.19</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>19th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="40" data-series-id="NAPEW.ONYX.20" 
+                data-series-type="fut" data-root-id="NAPEW.ONYX" data-venue="ONYX"
+                data-data-schema="ohlcv-1d" data-data-source="onyx"
+                data-extractor="historical" data-description="20th East-West Naphtha"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>40</td>
+                <td>NAPEW.ONYX.20</td>
+                <td>fut</td>
+                <td>NAPEW.ONYX</td>
+                <td>ONYX</td>
+                <td>ohlcv-1d</td>
+                <td>onyx</td>
+                <td>redis1</td>
+                <td>historical</td>
+                <td>20th East-West Naphtha</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "kv",
+    "field": "close"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="41" data-series-id="GC.CME.1" 
+                data-series-type="fut" data-root-id="GC.CME" data-venue="CME"
+                data-data-schema="mbp-1" data-data-source="databento"
+                data-extractor="realtime" data-description="1st Gold Futures"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>41</td>
+                <td>GC.CME.1</td>
+                <td>fut</td>
+                <td>GC.CME</td>
+                <td>CME</td>
+                <td>mbp-1</td>
+                <td>databento</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>1st Gold Futures</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="42" data-series-id="GC.CME.2" 
+                data-series-type="fut" data-root-id="GC.CME" data-venue="CME"
+                data-data-schema="mbp-1" data-data-source="databento"
+                data-extractor="realtime" data-description="2nd Gold Futures"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>42</td>
+                <td>GC.CME.2</td>
+                <td>fut</td>
+                <td>GC.CME</td>
+                <td>CME</td>
+                <td>mbp-1</td>
+                <td>databento</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>2nd Gold Futures</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="43" data-series-id="GC.CME.3" 
+                data-series-type="fut" data-root-id="GC.CME" data-venue="CME"
+                data-data-schema="mbp-1" data-data-source="databento"
+                data-extractor="realtime" data-description="3rd Gold Futures"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>43</td>
+                <td>GC.CME.3</td>
+                <td>fut</td>
+                <td>GC.CME</td>
+                <td>CME</td>
+                <td>mbp-1</td>
+                <td>databento</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>3rd Gold Futures</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="44" data-series-id="GC.CME.4" 
+                data-series-type="fut" data-root-id="GC.CME" data-venue="CME"
+                data-data-schema="mbp-1" data-data-source="databento"
+                data-extractor="realtime" data-description="4th Gold Futures"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>44</td>
+                <td>GC.CME.4</td>
+                <td>fut</td>
+                <td>GC.CME</td>
+                <td>CME</td>
+                <td>mbp-1</td>
+                <td>databento</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>4th Gold Futures</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="45" data-series-id="GC.CME.5" 
+                data-series-type="fut" data-root-id="GC.CME" data-venue="CME"
+                data-data-schema="mbp-1" data-data-source="databento"
+                data-extractor="realtime" data-description="5th Gold Futures"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>45</td>
+                <td>GC.CME.5</td>
+                <td>fut</td>
+                <td>GC.CME</td>
+                <td>CME</td>
+                <td>mbp-1</td>
+                <td>databento</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>5th Gold Futures</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="46" data-series-id="GC.CME.6" 
+                data-series-type="fut" data-root-id="GC.CME" data-venue="CME"
+                data-data-schema="mbp-1" data-data-source="databento"
+                data-extractor="realtime" data-description="6th Gold Futures"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>46</td>
+                <td>GC.CME.6</td>
+                <td>fut</td>
+                <td>GC.CME</td>
+                <td>CME</td>
+                <td>mbp-1</td>
+                <td>databento</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>6th Gold Futures</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="47" data-series-id="GC.CME.7" 
+                data-series-type="fut" data-root-id="GC.CME" data-venue="CME"
+                data-data-schema="mbp-1" data-data-source="databento"
+                data-extractor="realtime" data-description="7th Gold Futures"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>47</td>
+                <td>GC.CME.7</td>
+                <td>fut</td>
+                <td>GC.CME</td>
+                <td>CME</td>
+                <td>mbp-1</td>
+                <td>databento</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>7th Gold Futures</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="48" data-series-id="GC.CME.8" 
+                data-series-type="fut" data-root-id="GC.CME" data-venue="CME"
+                data-data-schema="mbp-1" data-data-source="databento"
+                data-extractor="realtime" data-description="8th Gold Futures"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>48</td>
+                <td>GC.CME.8</td>
+                <td>fut</td>
+                <td>GC.CME</td>
+                <td>CME</td>
+                <td>mbp-1</td>
+                <td>databento</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>8th Gold Futures</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="49" data-series-id="GC.CME.9" 
+                data-series-type="fut" data-root-id="GC.CME" data-venue="CME"
+                data-data-schema="mbp-1" data-data-source="databento"
+                data-extractor="realtime" data-description="9th Gold Futures"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>49</td>
+                <td>GC.CME.9</td>
+                <td>fut</td>
+                <td>GC.CME</td>
+                <td>CME</td>
+                <td>mbp-1</td>
+                <td>databento</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>9th Gold Futures</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="50" data-series-id="GC.CME.10" 
+                data-series-type="fut" data-root-id="GC.CME" data-venue="CME"
+                data-data-schema="mbp-1" data-data-source="databento"
+                data-extractor="realtime" data-description="10th Gold Futures"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>50</td>
+                <td>GC.CME.10</td>
+                <td>fut</td>
+                <td>GC.CME</td>
+                <td>CME</td>
+                <td>mbp-1</td>
+                <td>databento</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>10th Gold Futures</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="51" data-series-id="GC.CME.11" 
+                data-series-type="fut" data-root-id="GC.CME" data-venue="CME"
+                data-data-schema="mbp-1" data-data-source="databento"
+                data-extractor="realtime" data-description="11th Gold Futures"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>51</td>
+                <td>GC.CME.11</td>
+                <td>fut</td>
+                <td>GC.CME</td>
+                <td>CME</td>
+                <td>mbp-1</td>
+                <td>databento</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>11th Gold Futures</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            <tr data-service-id="52" data-series-id="GC.CME.12" 
+                data-series-type="fut" data-root-id="GC.CME" data-venue="CME"
+                data-data-schema="mbp-1" data-data-source="databento"
+                data-extractor="realtime" data-description="12th Gold Futures"
+                data-symbol="<em class="null">null</em>" data-active="yes">
+                <td>52</td>
+                <td>GC.CME.12</td>
+                <td>fut</td>
+                <td>GC.CME</td>
+                <td>CME</td>
+                <td>mbp-1</td>
+                <td>databento</td>
+                <td>redis1</td>
+                <td>realtime</td>
+                <td>12th Gold Futures</td>
+                <td><pre class="json">{
+  "redis": {
+    "type": "stream"
+  }
+}</pre></td>
+                <td><em class="null">null</em></td>
+                <td>✅ Yes</td>
+            </tr>
+            
+            </tbody>
+        </table>
+    </div>
+    <footer>Last generated on 2025-10-21 14:27:41 (from YAML file modification time)</footer>
+    
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const filterInputs = document.querySelectorAll(".filter-input");
+                const tableRows = document.querySelectorAll("tbody tr");
+
+                filterInputs.forEach(input => {
+                    input.addEventListener("keyup", function () {
+                        const column = this.getAttribute("data-column");
+                        const filterValue = this.value.toLowerCase();
+
+                        tableRows.forEach(row => {
+                            const cellValue = row.getAttribute(`data-${column.replace('_', '-')}`) || "";
+                            if (cellValue.toLowerCase().includes(filterValue)) {
+                                row.style.display = "";
+                            } else {
+                                row.style.display = "none";
+                            }
+                        });
+
+                        // Optional: Re-check visibility based on *all* filters
+                        // But for simplicity, we use per-column OR filtering above.
+                    });
+                });
+            });
+        </script>
+        
+</body>
+</html>
+        
