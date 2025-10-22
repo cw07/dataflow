@@ -22,14 +22,14 @@ class DatabentoSymbolResolve(BaseSymbolResolver):
         self.symbol_type_out = symbol_type_out
         self.continuous_type = continuous_type
 
-    def resolve(self, input_symbols: list, data_set: str) -> dict:
+    def resolve(self, input_symbols: list[str], data_set: str) -> dict[str, str]:
         if data_set == "GLBX.MDP3":
             return self.resolve_cme(input_symbols)
         else:
             logger.error(f"{data_set} resolver not implemented")
             return {}
 
-    def resolve_cme(self, input_symbols: list) -> dict:
+    def resolve_cme(self, input_symbols: list) -> dict[str, str]:
         start_date = BDate("T").delta_calendar_day(-1).date_str
         end_date = BDate("T").date_str
 
@@ -71,7 +71,7 @@ class DatabentoSymbolResolve(BaseSymbolResolver):
         for instrument_id, raw_symbol in raw_symbols_res["result"].items():
             instrument_id_to_raw_symbol[instrument_id] = raw_symbol[0]["s"]
 
-        # Step 4: Chain mappings: series_id → db_id → instrument_id → raw_symbol
+        # Step 4: Chain mappings: series_id → raw_symbol
         series_id_to_raw_symbol = {}
         for series_id in input_symbols:
             db_id = series_id_to_db_id[series_id]

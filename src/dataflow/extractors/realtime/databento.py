@@ -28,8 +28,8 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
         self.time_series: list[TimeSeriesConfig] = self.config["time_series"]
         self.data_sets: dict = self.get_data_sets()
         self.instrument_id_to_raw_sym: dict[int, str] = {}
-        self.series_id_to_raw_sym: dict[str, str] = self.resolve_raw_symbols()
-        self.raw_sym_to_ts: dict[str, TimeSeriesConfig] = {self.series_id_to_raw_sym[s.series_id]: s for s in self.time_series}
+        self.resolve_raw_symbols()
+        self.raw_sym_to_ts: dict[str, TimeSeriesConfig] = {s.symbol: s for s in self.time_series}
         self.dbento_client = None
 
     def validate_config(self) -> None:
@@ -49,9 +49,9 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
         pass
 
     def subscribe(self):
-        for data_set, schema_to_symbols in self.data_sets.items():
-            for schema, symbols in schema_to_symbols.items():
-                db_raw_symbols = [self.series_id_to_raw_sym.get(s) for s in symbols if s in self.series_id_to_raw_sym]
+        for data_set, schema_to_all_ts in self.data_sets.items():
+            for schema, all_ts in schema_to_all_ts.items():
+                db_raw_symbols = [ts.symbol for ts in all_ts]
                 logger.info(f"Subscribing to {data_set} {schema} for {len(db_raw_symbols)} symbols")
                 if db_raw_symbols:
                     self.dbento_client.subscribe(
@@ -94,15 +94,16 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
                 logger.error(f"Databento realtime extractor stopped with error: {res}")
 
     def resolve_raw_symbols(self):
-        mapping = {}  # {data_set, {our_root, databento_raw_symbol}}
-        for data_set, schema_to_symbols in self.data_sets.items():
-            symbol_in_data_set = []
-            for schema, symbols in schema_to_symbols.items():
-                symbol_in_data_set.extend(symbols)
-            mapping.update(db_symbol_resolver.resolve(symbol_in_data_set, data_set))
-        return mapping
+        mapping = {}  # {series_id: raw_symbol}
+        for data_set, schema_to_ts in self.data_sets.items():
+            series_id_in_data_set = []
+            for schema, all_ts in schema_to_ts.items():
+                series_id_in_data_set.extend([ts.series_id for ts in all_ts])
+            mapping.update(db_symbol_resolver.resolve(series_id_in_data_set, data_set))
+        for ts in self.time_series:
+            ts.symbol = mapping.get(ts.series_id, ts.symbol)
 
-    def get_data_sets(self):
+    def get_data_sets(self) -> dict[str, dict[str, list[TimeSeriesConfig]]]:
         data_sets = defaultdict(lambda: defaultdict(list))
         for ts in self.time_series:
             data_set = VENUE_DATASET_MAP.get(ts.venue)
@@ -111,8 +112,7 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
                     f"Cannot find the dataset for {ts.venue}, "
                     f"please make sure the dataset is configured in VENUE_DATASET_MAP")
             schema = ts.data_schema
-            symbol = ts.series_id
-            data_sets[data_set][schema].append(symbol)
+            data_sets[data_set][schema].append(ts)
         return data_sets
 
     def on_message(self, message: db.DBNRecord) -> None:
