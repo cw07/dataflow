@@ -6,15 +6,15 @@ from typing import Any, Optional
 
 from dataflow.config.settings import settings
 from dataflow.outputs import output_router
-from dataflow.utils.loop_control import RealTimeLoopControl
+from dataflow.utils.loop_control import LoopControl
 from dataflow.config.loaders.time_series import TimeSeriesConfig
 from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
 
 logger = logging.getLogger(__name__)
 
-loop_control = RealTimeLoopControl(start=os.environ["EXTRACT_START_TIME"],
-                                   end=os.environ["EXTRACT_END_TIME"],
-                                   new_thread=True)
+loop_control = LoopControl(start=os.environ["EXTRACT_START_TIME"],
+                           end=os.environ["EXTRACT_END_TIME"],
+                           new_thread=True)
 
 
 class OnyxRealtimeExtractor(BaseRealtimeExtractor):

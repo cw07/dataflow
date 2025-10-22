@@ -56,7 +56,7 @@ class BaseGate(ABC):
             raise TypeError(f"Expected datetime or str, got {type(value).__name__}")
 
 
-class RealTimeLoopControl(BaseGate):
+class LoopControl(BaseGate):
     """
     Controls start and end for realtime service.
     Accepts dt.datetime (naive or tz-aware, but be consistent).
@@ -65,10 +65,12 @@ class RealTimeLoopControl(BaseGate):
     def __init__(self,
                  start: Optional[dt.datetime | str] = None,
                  end: Optional[dt.datetime | str] = None,
+                 poll_seconds: float = 1.0,
                  new_thread: bool = False
                  ):
         self.start = self._parse_datetime(start)
         self.end = self._parse_datetime(end)
+        self.poll_seconds = poll_seconds
         self._tz = self.get_timezone()
         self.new_thread = new_thread
         self.stop_event = threading.Event() if new_thread else None
@@ -141,12 +143,12 @@ class RealTimeLoopControl(BaseGate):
     def on_idle(self) -> None:
         return self.sleep_tick()
 
-    def sleep_tick(self, poll_seconds: float = 1.0) -> None:
+    def sleep_tick(self) -> None:
         if not self.should_continue():
             return
         now = self._now()
         remaining = (self.end - now).total_seconds()
-        time.sleep(min(poll_seconds, max(0.0, remaining)))
+        time.sleep(min(self.poll_seconds, max(0.0, remaining)))
 
     def remaining_seconds(self) -> float:
         return max(0.0, (self.end - self._now()).total_seconds())
@@ -249,6 +251,6 @@ def make_time_and_job_gate(
     - stop when end-time reached OR job budget consumed (whichever comes first)
     """
     return AllGate(
-        RealTimeLoopControl(start, end),
+        LoopControl(start, end),
         JobCountGate(max_jobs)
     )
