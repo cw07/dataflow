@@ -101,7 +101,11 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     def get_data_sets(self):
         data_sets = defaultdict(lambda: defaultdict(list))
         for ts in self.time_series:
-            data_set = VENUE_DATASET_MAP[ts.venue]
+            data_set = VENUE_DATASET_MAP.get(ts.venue)
+            if data_set is None:
+                logger.error(
+                    f"Cannot find the dataset for {ts.venue}, "
+                    f"please make sure the dataset is configured in VENUE_DATASET_MAP")
             schema = ts.data_schema
             symbol = ts.series_id
             data_sets[data_set][schema].append(symbol)
