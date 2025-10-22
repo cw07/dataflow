@@ -9,14 +9,14 @@ from dataflow.outputs import output_router
 from dataflow.config.settings import settings
 from dataflow.utils.databento import VENUE_DATASET_MAP
 from dataflow.symbology.databento import db_symbol_resolver
-from dataflow.utils.loop_control import LoopControl
+from dataflow.utils.loop_control import RuntimeControl
 from dataflow.config.loaders.time_series import TimeSeriesConfig
 from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
 
 logger = logging.getLogger(__name__)
 
-loop_control = LoopControl(start=os.environ["EXTRACT_START_TIME"],
-                           end=os.environ["EXTRACT_END_TIME"])
+loop_control = RuntimeControl(start=os.environ["EXTRACT_START_TIME"],
+                              end=os.environ["EXTRACT_END_TIME"])
 
 
 class DatabentoRealtimeExtractor(BaseRealtimeExtractor):

@@ -4,7 +4,7 @@ from functools import partial
 from typing import Any, Optional
 
 from dataflow.outputs import output_router
-from dataflow.utils.loop_control import LoopControl
+from dataflow.utils.loop_control import RuntimeControl
 from dataflow.config.loaders.time_series import TimeSeriesQueryResult
 from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
 

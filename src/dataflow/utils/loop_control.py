@@ -56,7 +56,7 @@ class BaseGate(ABC):
             raise TypeError(f"Expected datetime or str, got {type(value).__name__}")
 
 
-class LoopControl(BaseGate):
+class RuntimeControl(BaseGate):
     """
     Controls start and end for realtime service.
     Accepts dt.datetime (naive or tz-aware, but be consistent).
@@ -91,7 +91,7 @@ class LoopControl(BaseGate):
                 logger.info(f"Starting a new thread for service as configured: {self.new_thread=}")
                 self.stop_event.clear()
                 self._thread = threading.Thread(
-                    name="RealTimeLoopControl",
+                    name=f"RuntimeControl-{func.__name__}",
                     target=func,
                     args=args,
                     kwargs=kwargs,
@@ -251,6 +251,6 @@ def make_time_and_job_gate(
     - stop when end-time reached OR job budget consumed (whichever comes first)
     """
     return AllGate(
-        LoopControl(start, end),
+        RuntimeControl(start, end),
         JobCountGate(max_jobs)
     )
