@@ -1,3 +1,4 @@
+import os
 import logging
 from typing import Any
 
@@ -9,8 +10,15 @@ from dataflow.config.settings import settings
 from dataflow.outputs import output_router
 from dataflow.config.loaders.time_series import TimeSeriesConfig
 from dataflow.extractors.historical.base_historical import BaseHistoricalExtractor
+from dataflow.utils.loop_control import RuntimeControl
+from tradetools.bdate import BDate
 
 logger = logging.getLogger(__name__)
+
+
+runtime_control = RuntimeControl(start=os.environ["EXTRACT_START_TIME"],
+                                 end=os.environ["EXTRACT_END_TIME"]
+                                 )
 
 
 class OnyxHistoricalExtractor(BaseHistoricalExtractor):
@@ -19,6 +27,7 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
     def __init__(self, config: dict[str, Any]):
         super().__init__(config)
         self.time_series: list[TimeSeriesConfig] = self.config["time_series"]
+        runtime_control.set_max_job(len(self.time_series))
 
     def connect(self):
         pass
@@ -32,12 +41,15 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
     def stop_extract(self) -> None:
         pass
 
+    @runtime_control
     def start_extract(self):
+        total_done = 0
         headers = {
             "Authorization": f"Bearer {settings.onyx_api_key}"
         }
-        start = self.config["start"]
-        end = self.config["end"]
+
+        start = self.config["start"] if self.config["start"] else BDate("T-1").date.isoformat()
+        end = self.config["end"] if self.config["start"] else BDate("T-1").date.isoformat()
 
         onyx_period_map = {
             MktDataSchema.OHLCV_1D: "1d"
@@ -51,14 +63,21 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
         for time_series in self.time_series:
             try:
                 symbol = time_series.symbol
+                if not symbol:
+                    logger.error(f"No symbol found for {time_series.series_id}")
+                    continue
                 period = onyx_period_map[time_series.data_schema]
                 url = f"{settings.onyx_url}/tickers/ohlc/{symbol}/{period}"
-                response = requests.get(url, headers=headers, params=params)
-                data = response.json()
-                for d in data:
-                    self.on_message(d, time_series)
+                resp  = requests.get(url, headers=headers, params=params)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    for d in data:
+                        total_done += self.on_message(d, time_series)
+                else:
+                    logger.error(f"Failed to fetch data for {time_series.series_id}: {resp.status_code}")
             except Exception as e:
                 logger.error(f"Error fetching historical {time_series.symbol} from Onyx: {e}")
+        return total_done
 
     def on_message(self, data, time_series: TimeSeriesConfig):
         new_data = {
@@ -72,4 +91,6 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
             "close": data["close"]
         }
         output_router.route(message=new_data, time_series=time_series)
+        runtime_control.add_job_done()
+        return 1
 

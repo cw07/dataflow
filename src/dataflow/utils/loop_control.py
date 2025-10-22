@@ -33,12 +33,13 @@ class BaseGate(ABC):
         """
         return
 
-    def sleep_tick(self, poll_seconds: float = 1.0) -> None:
+    @abstractmethod
+    def sleep_tick(self) -> None:
         """
         Called at end of each iteration. Default: sleep a small amount to avoid busy-wait.
         Specialized gates (e.g., time windows) can override to avoid oversleeping end.
         """
-        time.sleep(poll_seconds)
+        raise NotImplementedError
 
     def on_job_finished(self, count: int = 1) -> None:
         """
@@ -66,14 +67,19 @@ class RuntimeControl(BaseGate):
                  start: Optional[dt.datetime | str] = None,
                  end: Optional[dt.datetime | str] = None,
                  poll_seconds: float = 1.0,
-                 new_thread: bool = False
+                 run_in_thread: bool = False,
+                 new_thread: bool = False,
+                 max_job: Optional[int] = None,
                  ):
         self.start = self._parse_datetime(start)
         self.end = self._parse_datetime(end)
         self.poll_seconds = poll_seconds
         self._tz = self.get_timezone()
+        self.run_in_thread = run_in_thread
         self.new_thread = new_thread
-        self.stop_event = threading.Event() if new_thread else None
+        self.max_job = max_job
+        self.done = 0
+        self.stop_event = threading.Event() if run_in_thread else None
         self._thread = None
 
     def __call__(self, func):
@@ -83,41 +89,36 @@ class RuntimeControl(BaseGate):
         def wrapper(*args, **kwargs):
             if not self.should_continue():
                 logger.warning(f"Skipped execution of {func.__name__}: current time {self._now()} >= end {self.end}")
-                return None
-
+                return
             self.wait_until_start()
 
-            if self.new_thread:
-                logger.info(f"Starting a new thread for service as configured: {self.new_thread=}")
-                self.stop_event.clear()
-                self._thread = threading.Thread(
-                    name=f"RuntimeControl-{func.__name__}",
-                    target=func,
-                    args=args,
-                    kwargs=kwargs,
-                    daemon=True
-                )
-                self._thread.start()
+            if self.run_in_thread:
+                if self.new_thread:
+                    logger.info(f"Starting a new thread for service as configured: {self.new_thread=}")
+                    self.stop_event.clear()
+                    self._thread = threading.Thread(
+                        name=f"RuntimeControl-{func.__name__}",
+                        target=func,
+                        args=args,
+                        kwargs=kwargs,
+                        daemon=True
+                    )
+                    self._thread.start()
+                else:
+                    _ = func(*args, **kwargs)  # assume func will start a separate daemon thread
 
-                while True:
-                    if not self.should_continue():
-                        logger.info(f"Service {func.__name__} passed end time {self.end}, stopping.")
-                        self.stop_event.set()
-                        self._thread.join(timeout=300)
-                        break
-
+                while self.should_continue():
                     if self.on_idle:
                         self.on_idle()
+                self.stop_event.set()
             else:
-                _ = func(*args, **kwargs)  # assume func will start a separate daemon thread
-                while True:
-                    if not self.should_continue():
-                        logger.info(f"Service {func.__name__} passed end time {self.end}, stopping.")
-                        break
+                while self.should_continue():
+                    job_done = func(*args, **kwargs)
+                    if job_done:
+                        self.add_job_done(job_done)
                     if self.on_idle:
                         self.on_idle()
-                    time.sleep(1)
-
+            logger.info(f"Service {func.__name__} passed end time {self.end}, stopping.")
         return wrapper
 
     def get_timezone(self) -> Optional[zoneinfo.ZoneInfo]:
@@ -132,13 +133,15 @@ class RuntimeControl(BaseGate):
         now = self._now()
         if now >= self.start:
             return
-        time_to_start = (self.start - now).total_seconds()
-        sleep_duration = min(poll_seconds, max(0.0, time_to_start))
+        sleep_duration = (self.start - now).total_seconds()
         logger.info(f"Waiting to start at {self.start}; current time: {now}; sleeping for {sleep_duration:.2f} seconds")
         time.sleep(sleep_duration)
 
     def should_continue(self) -> bool:
-        return self._now() < self.end
+        if self.max_job is not None:
+            return self._now() < self.end and self.done < self.max_job
+        else:
+            return self._now() < self.end
 
     def on_idle(self) -> None:
         return self.sleep_tick()
@@ -153,26 +156,32 @@ class RuntimeControl(BaseGate):
     def remaining_seconds(self) -> float:
         return max(0.0, (self.end - self._now()).total_seconds())
 
+    def set_max_job(self, max_job: int) -> None:
+        self.max_job = max_job
+
+    def add_job_done(self, count: int = 1):
+        self.done += count
+
     def _now(self) -> dt.datetime:
         return dt.datetime.now(self._tz) if self._tz else dt.datetime.now()
 
 
-class JobCountGate(BaseGate):
+class JobCountControl(BaseGate):
     """
     Stops after 'max_jobs' have been reported via on_job_finished().
     If max_jobs is None or <= 0, it never stops based on count.
     """
 
-    def __init__(self, max_jobs: Optional[int] = None):
+    def __init__(self, max_jobs: Optional[int] = None, poll_seconds: float = 1.0,):
         self._max = max_jobs if (max_jobs is not None and max_jobs > 0) else None
         self._done = 0
+        self.poll_seconds: float = poll_seconds
         self._lock = threading.Lock()
 
     def should_continue(self) -> bool:
         if self._max is None:
             return True
-        with self._lock:
-            return self._done < self._max
+        return self._done < self._max
 
     def on_job_finished(self, count: int = 1) -> None:
         if self._max is None:
@@ -182,8 +191,11 @@ class JobCountGate(BaseGate):
         with self._lock:
             self._done += count
 
-    def add_job_done(self):
-        self._done += 1
+    def sleep_tick(self) -> None:
+        time.sleep(self.poll_seconds)
+
+    def add_job_done(self, count: int = 1) -> None:
+        self._done += count
 
 
 class AllGate(BaseGate):
@@ -206,7 +218,7 @@ class AllGate(BaseGate):
 
     def sleep_tick(self, poll_seconds: float = 1.0) -> None:
         for g in self._gates:
-            g.sleep_tick(poll_seconds=poll_seconds)
+            g.sleep_tick()
 
     def on_job_finished(self, count: int = 1) -> None:
         for g in self._gates:
@@ -233,7 +245,7 @@ class AnyGate(BaseGate):
 
     def sleep_tick(self, poll_seconds: float = 1.0) -> None:
         for g in self._gates:
-            g.sleep_tick(poll_seconds=poll_seconds)
+            g.sleep_tick()
 
     def on_job_finished(self, count: int = 1) -> None:
         for g in self._gates:
@@ -252,5 +264,5 @@ def make_time_and_job_gate(
     """
     return AllGate(
         RuntimeControl(start, end),
-        JobCountGate(max_jobs)
+        JobCountControl(max_jobs)
     )

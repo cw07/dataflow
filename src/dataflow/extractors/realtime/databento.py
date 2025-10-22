@@ -4,7 +4,6 @@ import databento as db
 from collections import defaultdict
 from typing import Callable, Dict, Any, Optional
 
-from datacore.models.assets import AssetType
 from dataflow.outputs import output_router
 from dataflow.config.settings import settings
 from dataflow.utils.databento import VENUE_DATASET_MAP
@@ -16,7 +15,9 @@ from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
 logger = logging.getLogger(__name__)
 
 loop_control = RuntimeControl(start=os.environ["EXTRACT_START_TIME"],
-                              end=os.environ["EXTRACT_END_TIME"])
+                              end=os.environ["EXTRACT_END_TIME"],
+                              run_in_thread=True
+                              )
 
 
 class DatabentoRealtimeExtractor(BaseRealtimeExtractor):

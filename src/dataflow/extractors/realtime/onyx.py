@@ -12,12 +12,13 @@ from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
 
 logger = logging.getLogger(__name__)
 
-loop_control = RuntimeControl(start=os.environ["EXTRACT_START_TIME"],
-                              end=os.environ["EXTRACT_END_TIME"],
-                              new_thread=True)
+runtime_control = RuntimeControl(start=os.environ["EXTRACT_START_TIME"],
+                                 end=os.environ["EXTRACT_END_TIME"],
+                                 poll_seconds=1.0)
 
 
 class OnyxRealtimeExtractor(BaseRealtimeExtractor):
+
     vendor = "onyx"
 
     def __init__(self, config: dict[str, Any]):
@@ -47,24 +48,18 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
     def unsubscribe(self, symbols: Optional[list] = None):
         pass
 
-    @staticmethod
-    def should_run() -> bool:
-        return not loop_control.stop_event.is_set()
-
-    @loop_control
+    @runtime_control
     def start_extract(self):
-        while self.should_run():
-            for root_id in self.root_ids:
-                try:
-                    url = f"https://api.onyxhub.co/v1/tickers/live/{root_id}"
-                    response = requests.get(url, headers=self.headers)
-                    data = response.json()
-                    for d in data:
-                        if d["symbol"] in self.mapping:
-                            self.on_message(d)
-                except Exception as e:
-                    logger.error(f"Error fetching {root_id} from Onyx: {e}")
-                time.sleep(1)
+        for root_id in self.root_ids:
+            try:
+                url = f"https://api.onyxhub.co/v1/tickers/live/{root_id}"
+                response = requests.get(url, headers=self.headers)
+                data = response.json()
+                for d in data:
+                    if d["symbol"] in self.mapping:
+                        self.on_message(d)
+            except Exception as e:
+                logger.error(f"Error fetching {root_id} from Onyx: {e}")
 
     def stop_extract(self):
         logger.info(f"Onyx realtime extractor stopped gracefully")
@@ -80,3 +75,4 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
             "ts_event": message["timestamp"]
         }
         output_router.route(message=new_message, time_series=time_series)
+        return 1

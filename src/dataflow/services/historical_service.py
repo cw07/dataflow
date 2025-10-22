@@ -137,8 +137,8 @@ def clmain():
 if __name__ == "__main__":
     onyx_args = [
         "--mode", "PROD",
-        "--start-time", "00:00:00 -1",
-        "--end-time", "00:00:00 -1",
+        "--start-time", "01:00:00",
+        "--end-time", "12:00:00",
         "--data-source", "onyx",
         "--asset-type", "fut",
         "--schema", "ohlcv-1d"
@@ -153,4 +153,4 @@ if __name__ == "__main__":
         "--schema", "ohlcv-1d"
     ]
 
-    main(mkt_db_args)
+    main(onyx_args)

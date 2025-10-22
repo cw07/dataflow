@@ -34,7 +34,7 @@ class RedisWrapper:
                 raise KeyError(f"store type is kv, but field is missing: {store_config}")
             else:
                 value = data_object.to_dict()[value_field]
-                self.redis.set_value(redis_key, value)
+                self.redis.set(redis_key, value)
         else:
             raise ValueError(f"Unknown redis store type: {store_type}")
 

@@ -1,6 +1,5 @@
 import logging
 import databento as db
-from collections import defaultdict
 
 from tradetools.bdate import BDate
 
