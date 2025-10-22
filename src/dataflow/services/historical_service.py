@@ -130,7 +130,7 @@ if __name__ == "__main__":
         "--start-time", "00:00:00 -1",
         "--end-time", "00:00:00 -1",
         "--data-source", "mkt_db",
-        "--asset-type", "fut",
+        "--asset-type", "index",
         "--schema", "ohlcv-1d"
     ]
 
