@@ -14,7 +14,7 @@ class BaseGate(ABC):
     Unifies the interface used by the orchestrator.
     """
 
-    def wait_until_start(self, poll_seconds: float = 1.0) -> None:
+    def wait_until_start(self) -> None:
         """
         Called once before the loop. Default: no-op.
         """
@@ -129,7 +129,7 @@ class RuntimeControl(BaseGate):
         else:
             raise ValueError("start and end timezones are not compatible")
 
-    def wait_until_start(self, poll_seconds: float = 1.0) -> None:
+    def wait_until_start(self) -> None:
         now = self._now()
         if now >= self.start:
             return
@@ -209,9 +209,9 @@ class AllGate(BaseGate):
             raise ValueError("AllGate requires at least one gate")
         self._gates = gates
 
-    def wait_until_start(self, poll_seconds: float = 1.0) -> None:
+    def wait_until_start(self) -> None:
         for g in self._gates:
-            g.wait_until_start(poll_seconds=poll_seconds)
+            g.wait_until_start()
 
     def should_continue(self) -> bool:
         return all(g.should_continue() for g in self._gates)
@@ -236,9 +236,9 @@ class AnyGate(BaseGate):
             raise ValueError("AnyGate requires at least one gate")
         self._gates = gates
 
-    def wait_until_start(self, poll_seconds: float = 1.0) -> None:
+    def wait_until_start(self) -> None:
         for g in self._gates:
-            g.wait_until_start(poll_seconds=poll_seconds)
+            g.wait_until_start()
 
     def should_continue(self) -> bool:
         return any(g.should_continue() for g in self._gates)
