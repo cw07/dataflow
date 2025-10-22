@@ -88,7 +88,6 @@ def parse_arguments(args):
 
 def main(args):
     args = parse_arguments(args)
-    print_args(args)
 
     asset_ts = (
         time_series_config.get_realtime_ts()
@@ -100,16 +99,17 @@ def main(args):
         logger.error(f"No historical time series found for asset type [{args.data_source}] [{args.asset_type}] [{args.schema}]")
         return
 
-    service_config = {
-        "schema": args.schema,
-        "time_series": asset_ts,
-    }
-
     set_env_vars({
         "EXTRACT_START_TIME": args.start_time.isoformat(),
         "EXTRACT_END_TIME": args.end_time.isoformat(),
     })
 
+    service_config = {
+        "schema": args.schema,
+        "time_series": asset_ts,
+    }
+
+    print_args(args, extra_params=service_config)
     from dataflow.services.orchestrator import ServiceOrchestrator
     with ServiceOrchestrator(service_type="realtime", service_config=service_config) as so:
         so.run_services()

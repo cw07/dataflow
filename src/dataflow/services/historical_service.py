@@ -46,6 +46,20 @@ def parse_arguments(args):
     )
 
     parser.add_argument(
+        "--start-range",
+        type=parse_time,
+        required=False,
+        help="Start range time in 'HH:MM:SS' format",
+    )
+
+    parser.add_argument(
+        "--end-range",
+        type=parse_time,
+        required=False,
+        help="End range time in 'HH:MM:SS' format",
+    )
+
+    parser.add_argument(
         "--data-source",
         type=DataSource,
         help="data source"
@@ -98,14 +112,19 @@ def main(args):
         logger.error(f"No historical time series found for asset type [{args.data_source}] [{args.asset_type}] [{args.schema}]")
         return
 
+    set_env_vars({
+        "EXTRACT_START_TIME": args.start_time.isoformat(),
+        "EXTRACT_END_TIME": args.end_time.isoformat(),
+    })
+
     service_config = {
-        "start": args.start_time.replace(tzinfo=UTC).isoformat(),
-        "end": args.end_time.replace(tzinfo=UTC).isoformat(),
+        "start": args.start_range.replace(tzinfo=UTC).isoformat() if args.start_range else None,
+        "end": args.end_end_range.replace(tzinfo=UTC).isoformat() if args.end_range else None,
         "schema": args.schema,
         "time_series": asset_ts,
     }
-    print_args(args, extra_params=service_config)
 
+    print_args(args, extra_params=service_config)
     from dataflow.services.orchestrator import ServiceOrchestrator
     with ServiceOrchestrator(service_type="historical", service_config=service_config) as so:
         so.run_services()
@@ -127,8 +146,8 @@ if __name__ == "__main__":
 
     mkt_db_args = [
         "--mode", "PROD",
-        "--start-time", "00:00:00 -1",
-        "--end-time", "00:00:00 -1",
+        "--start-time", "07:00:00",
+        "--end-time", "12:00:00",
         "--data-source", "mkt_db",
         "--asset-type", "index",
         "--schema", "ohlcv-1d"
