@@ -6240,8 +6240,10 @@
   extractor: historical
   description: PLATTS IODEX CFR CHINA 62% Fe $/DMT
   additional_params:
-    table_name: sgx.tsi_index
-    date_column: TIMESTAMP
+    s_table_name: sgx.tsi_index
+    s_date_column: TIMESTAMP
+    t_table_name: mktdata.FEF_fixing
+    qmarket: FEF.SGX
   symbol: null
   active: true
 - service_id: 390

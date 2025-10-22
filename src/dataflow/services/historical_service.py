@@ -20,6 +20,7 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
 )
+logger = logging.getLogger(__name__)
 
 
 def parse_arguments(args):
@@ -92,6 +93,10 @@ def main(args):
         .get_ts_by_source(args.data_source)
         .get_ts_by_schema(args.schema)
     )
+
+    if not asset_ts:
+        logger.error(f"No historical time series found for asset type [{args.data_source}] [{args.asset_type}] [{args.schema}]")
+        return
 
     service_config = {
         "start": args.start_time.replace(tzinfo=UTC).isoformat(),

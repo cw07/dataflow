@@ -29,6 +29,9 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
     def validate_config(self):
         pass
 
+    def stop_extract(self) -> None:
+        pass
+
     def start_extract(self):
         headers = {
             "Authorization": f"Bearer {settings.onyx_api_key}"

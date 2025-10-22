@@ -13,3 +13,7 @@ class BaseHistoricalExtractor(BaseExtractor):
     @abstractmethod
     def start_extract(self) -> None:
         pass
+
+    @abstractmethod
+    def stop_extract(self) -> None:
+        pass
