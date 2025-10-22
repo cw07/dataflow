@@ -139,7 +139,7 @@ class RuntimeControl(BaseGate):
 
     def should_continue(self) -> bool:
         if self.max_job is not None:
-            return self._now() < self.end or self.done < self.max_job
+            return self._now() < self.end and self.done < self.max_job
         else:
             return self._now() < self.end
 
