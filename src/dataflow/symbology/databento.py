@@ -1,3 +1,4 @@
+import logging
 import databento as db
 from collections import defaultdict
 
@@ -6,6 +7,7 @@ from tradetools.bdate import BDate
 from dataflow.config.settings import settings
 from dataflow.symbology.base import BaseSymbolResolver
 
+logger = logging.getLogger(__name__)
 
 
 class DatabentoSymbolResolve(BaseSymbolResolver):
@@ -21,13 +23,14 @@ class DatabentoSymbolResolve(BaseSymbolResolver):
         self.symbol_type_out = symbol_type_out
         self.continuous_type = continuous_type
 
-    def resolve(self, input_symbols: list, data_set: str):
+    def resolve(self, input_symbols: list, data_set: str) -> dict:
         if data_set == "GLBX.MDP3":
             return self.resolve_cme(input_symbols)
         else:
-            raise NotImplementedError(f"{data_set} resolver not implemented")
+            logger.error(f"{data_set} resolver not implemented")
+            return {}
 
-    def resolve_cme(self, input_symbols: list):
+    def resolve_cme(self, input_symbols: list) -> dict:
         start_date = BDate("T").delta_calendar_day(-1).date_str
         end_date = BDate("T").date_str
 

@@ -50,14 +50,17 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     def subscribe(self):
         for data_set, schema_to_symbols in self.data_sets.items():
             for schema, symbols in schema_to_symbols.items():
-                db_raw_symbols = [self.series_id_to_raw_sym[s] for s in symbols]
+                db_raw_symbols = [self.series_id_to_raw_sym.get(s) for s in symbols if s in self.series_id_to_raw_sym]
                 logger.info(f"Subscribing to {data_set} {schema} for {len(db_raw_symbols)} symbols")
-                self.dbento_client.subscribe(
-                    dataset=data_set,
-                    schema=schema,
-                    stype_in="raw_symbol",
-                    symbols=db_raw_symbols,
-                )
+                if db_raw_symbols:
+                    self.dbento_client.subscribe(
+                        dataset=data_set,
+                        schema=schema,
+                        stype_in="raw_symbol",
+                        symbols=db_raw_symbols,
+                    )
+                else:
+                    logger.error(f"No symbol found for {data_set} {schema}, skip subscription")
 
     def resubscribe(self, symbols: Optional[list] = None):
         pass
