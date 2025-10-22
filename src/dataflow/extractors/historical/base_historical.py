@@ -11,7 +11,7 @@ class BaseHistoricalExtractor(BaseExtractor):
         self.error_handler: Optional[Callable[[Exception], None]] = None
 
     @abstractmethod
-    def start_extract(self) -> None:
+    def start_extract(self) -> Optional[int]:
         pass
 
     @abstractmethod
