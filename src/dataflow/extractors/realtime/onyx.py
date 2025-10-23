@@ -26,11 +26,11 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
     def __init__(self, config: dict[str, Any]):
         super().__init__(config)
         self.time_series: list[TimeSeriesConfig] = self.config["time_series"]
-        self.mapping: dict[str, TimeSeriesConfig] = {s.symbol: s for s in self.time_series}
         self.headers = {
             "Authorization": f"Bearer {settings.onyx_api_key}",
         }
         self.resolve_raw_symbols()
+        self.raw_sym_to_ts: dict[str, TimeSeriesConfig] = {s.symbol: s for s in self.time_series}
 
     def validate_config(self) -> None:
         pass
@@ -72,14 +72,14 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
                     for d in data:
                         self.on_message(d)
             except Exception as e:
-                logger.error(f"Error fetching {time_series.series_id} from Onyx: {e}")
+                logger.error(f"Error fetching realtime {time_series.series_id} from Onyx: {e}")
 
     def stop_extract(self):
         logger.info(f"Onyx realtime extractor stopped gracefully")
 
     def on_message(self, message):
         symbol = message["symbol"]
-        time_series: TimeSeriesConfig = self.mapping[symbol]
+        time_series: TimeSeriesConfig = self.raw_sym_to_ts[symbol]
         new_message = {
             "asset_type": time_series.series_type,
             "vendor": time_series.data_source,
