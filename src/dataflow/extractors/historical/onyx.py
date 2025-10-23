@@ -11,6 +11,7 @@ from dataflow.config.settings import settings
 from dataflow.utils.common import parse_web_response
 from dataflow.utils.loop_control import RuntimeControl
 from dataflow.config.loaders.time_series import TimeSeriesConfig
+from dataflow.symbology.onyx_resolver import onyx_symbol_resolver
 from dataflow.extractors.historical.base_historical import BaseHistoricalExtractor
 from tradetools.bdate import BDate
 
@@ -29,6 +30,7 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
         super().__init__(config)
         self.time_series: list[TimeSeriesConfig] = self.config["time_series"]
         runtime_control.set_max_job(len(self.time_series))
+        self.resolve_raw_symbols()
 
     def connect(self):
         pass
@@ -41,6 +43,13 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
 
     def stop_extract(self) -> None:
         pass
+
+    def resolve_raw_symbols(self):
+        series_ids = [s.series_id for s in self.time_series]
+        series_id_to_raw_symbol = onyx_symbol_resolver.resolve(series_ids)
+        for s in self.time_series:
+            if s.series_id in series_id_to_raw_symbol:
+                s.symbol = series_id_to_raw_symbol[s.series_id]
 
     @runtime_control
     def start_extract(self):
