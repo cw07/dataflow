@@ -36,9 +36,7 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 dataflow = [
-    "config/time_series.yaml",
     "config/**/*.yaml",
-    "config/*.yaml",
     "config/.env*",
     "config/*.html",
     "symbology/*.yaml"

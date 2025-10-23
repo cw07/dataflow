@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 from pydantic import field_validator
 from typing import Optional, Any, Union, get_args, get_origin
@@ -157,7 +158,7 @@ class Settings(BaseSettings):
 
     @field_validator("*", mode="before")
     @classmethod
-    def empty_str_to_none(cls, v: Any, info):
+    def all_fields(cls, v: Any, info):
         if v == '':
             field = cls.model_fields.get(info.field_name)
             if field and field.annotation:
@@ -166,31 +167,27 @@ class Settings(BaseSettings):
                     args = get_args(field.annotation)
                     if type(None) in args:
                         return None
+        elif isinstance(v, str) and re.match(r"^file\d+_storage_path$", v):
+            path = Path(v)
+            if path.is_absolute():
+                return path
+            elif str(v).startswith("~"):
+                return path.expanduser().resolve()
+            else:
+                raise ValueError(f"Invalid file storage path: {v}")
         return v
 
-    @field_validator('time_series_config_path', 'file1_storage_path', mode='before')
+    @field_validator('time_series_config_path', mode='before')
     @classmethod
-    def expand_paths(cls, v: str) -> Path:
-        """
-        Resolve relative paths relative to the project root.
-        Handles:
-        - Relative paths like './config/time_series.csv' (relative to project root)
-        - Absolute paths (returned as-is)
-        - User home paths like '~/config/file.csv' (expanded)
-        """
+    def resolve_time_series_config_path(cls, v: str) -> Path:
         path = Path(v)
-        
-        # If it's already absolute, just resolve it
         if path.is_absolute():
-            return path.resolve()
-        
-        # If it starts with ~, expand user home
-        if str(v).startswith('~'):
-            return path.expanduser().resolve()
-        
-        # For relative paths, resolve relative to project root
-        project_root = Path(__file__).resolve().parents[3]
-        return (project_root / path).resolve()
+            return path
+        elif str(v).startswith('./'):
+            settings_file_path = Path(__file__)
+            return settings_file_path.parent.parent / v
+        else:
+            raise ValueError(f"Invalid time series config path: {v}")
 
     def all_databases(self) -> dict[str, DatabaseConfig]:
         databases = {}
