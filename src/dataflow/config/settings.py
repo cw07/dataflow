@@ -126,20 +126,20 @@ class Settings(BaseSettings):
 
     # Redis
     redis1_id: str
-    redis1_host: str
+    redis1_host: Optional[str]
     redis1_port: Optional[int]
-    redis1_username: str
-    redis1_password: str
-    redis1_ssl: bool
-    redis1_db: int
+    redis1_username: Optional[str]
+    redis1_password: Optional[str]
+    redis1_ssl: Optional[bool]
+    redis1_db: Optional[int]
 
     redis2_id: str
-    redis2_host: str
+    redis2_host: Optional[str]
     redis2_port: Optional[int]
-    redis2_username: str
-    redis2_password: str
-    redis2_ssl: bool
-    redis2_db: int
+    redis2_username: Optional[str]
+    redis2_password: Optional[str]
+    redis2_ssl: Optional[bool]
+    redis2_db: Optional[int]
 
     # File Storage
     file1_id: str
@@ -246,7 +246,7 @@ class Settings(BaseSettings):
                     db=getattr(self, f'{prefix}_db'),
                 )
             else:
-                raise ValueError("Cannot create a valid Redis config with no host and no port ")
+                logger.error(f"Cannot create a valid Redis config with no host and no port: {prefix}")
         return redis
 
     def all_files(self) -> dict[str, FileConfig]:

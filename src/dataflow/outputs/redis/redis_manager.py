@@ -47,12 +47,14 @@ class RedisManager(BaseOutputManager):
 
     def init_redis(self):
         for redis_id, redis_cfg in self.config.items():
-            redis_instance = redis.Redis(
-                host=redis_cfg.host,
-                port=redis_cfg.port,
-                username=redis_cfg.username,
-                password=redis_cfg.password,
-            )
+            scheme = "rediss" if redis_cfg.ssl else "redis"
+            if redis_cfg.username:
+                auth = f"{redis_cfg.username}:{redis_cfg.password}"
+            else:
+                auth = f":{redis_cfg.password}"
+            redis_url = f"{scheme}://{auth}@{redis_cfg.host}:{redis_cfg.port}/{redis_cfg.db}"
+            pool = redis.ConnectionPool.from_url(url=redis_url, decode_responses=True)
+            redis_instance = redis.Redis(connection_pool=pool)
             if redis_instance.ping():
                 logger.info(f"{redis_id} connect success")
                 self.redis_instance[redis_id] = RedisWrapper(redis_instance)
