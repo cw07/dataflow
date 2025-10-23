@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 
 runtime_control = RuntimeControl(start=os.environ["EXTRACT_START_TIME"],
                                  end=os.environ["EXTRACT_END_TIME"],
-                                 poll_seconds=3  # API limit
+                                 poll_seconds=1
                                  )
 
 
