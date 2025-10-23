@@ -86,6 +86,7 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
                     logger.error(f"Failed to fetch data for {time_series.series_id}: {error}")
                 else:
                     for d in data:
+                        logger.info(f"{time_series.series_id}: {d}")
                         total_done += self.on_message(d, time_series)
             except Exception as e:
                 logger.error(f"Error fetching historical {time_series.symbol} from Onyx: {e}")
