@@ -104,6 +104,5 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
             "close": data["close"]
         }
         output_router.route(message=new_data, time_series=time_series)
-        runtime_control.add_job_done()
         return 1
 
