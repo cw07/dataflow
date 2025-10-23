@@ -2,8 +2,6 @@ import requests
 import logging
 from collections import defaultdict
 
-from tradetools.bdate import BDate
-
 from dataflow.config.settings import settings
 from dataflow.utils.common import parse_web_response
 from dataflow.symbology.base import BaseSymbolResolver
