@@ -72,8 +72,8 @@ class RedisConfig(BaseSettings):
     id: str
     host: str
     port: int
-    username: str
-    password: str
+    username: Optional[str]
+    password: Optional[str]
     ssl: bool
     db: int
 
