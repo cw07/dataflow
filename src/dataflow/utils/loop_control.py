@@ -118,7 +118,6 @@ class RuntimeControl(BaseGate):
                         self.add_job_done(job_done)
                     if self.on_idle:
                         self.on_idle()
-            logger.info(f"Service {func.__name__} passed end time {self.end}, stopping.")
         return wrapper
 
     def get_timezone(self) -> Optional[zoneinfo.ZoneInfo]:
@@ -138,10 +137,15 @@ class RuntimeControl(BaseGate):
         time.sleep(sleep_duration)
 
     def should_continue(self) -> bool:
-        if self.max_job is not None:
-            return self._now() < self.end and self.done < self.max_job
-        else:
-            return self._now() < self.end
+        if self._now() > self.end:
+            logger.info(f"Service passed end time {self.end} stopping.")
+            return False
+
+        if self.max_job is not None and self.done >= self.max_job:
+            logger.info(f"Service job done: {self.done}, target: {self.max_job}, stopping.")
+            return False
+
+        return True
 
     def on_idle(self) -> None:
         return self.sleep_tick()
