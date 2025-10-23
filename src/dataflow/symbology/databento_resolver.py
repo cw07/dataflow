@@ -83,6 +83,7 @@ class DatabentoSymbolResolve(BaseSymbolResolver):
             if raw_sym is None:
                 raise KeyError(f"No raw_symbol found for instrument_id: {inst_id}")
             series_id_to_raw_symbol[series_id] = raw_sym
+            logger.info(f"Databento mapping {series_id} -> {raw_sym}")
         return series_id_to_raw_symbol
 
 db_symbol_resolver = DatabentoSymbolResolve()
