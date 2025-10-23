@@ -240,8 +240,8 @@ class Settings(BaseSettings):
                     id=redis_id,
                     host=host,
                     port=port,
-                    username=user_name,
-                    password=pwd,
+                    username=user_name if user_name else None,
+                    password=pwd if pwd else None,
                     ssl=getattr(self, f'{prefix}_ssl'),
                     db=getattr(self, f'{prefix}_db'),
                 )
