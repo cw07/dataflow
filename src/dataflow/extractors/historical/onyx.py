@@ -3,6 +3,7 @@ import logging
 from typing import Any
 
 import requests
+from tradetools.bdate import BDate
 from datacore.models.mktdata.historical import OHLCV1D
 from datacore.models.mktdata.schema import MktDataSchema
 
@@ -13,7 +14,7 @@ from dataflow.utils.loop_control import RuntimeControl
 from dataflow.config.loaders.time_series import TimeSeriesConfig
 from dataflow.symbology.onyx_resolver import onyx_symbol_resolver
 from dataflow.extractors.historical.base_historical import BaseHistoricalExtractor
-from tradetools.bdate import BDate
+
 
 logger = logging.getLogger(__name__)
 
