@@ -138,7 +138,7 @@ if __name__ == "__main__":
 
     databento_args = [
         "--mode", "PROD",
-        "--end-time", "9:30:00",
+        "--end-time", "23:59:00",
         "--data-source", "databento",
         "--asset-type", "fut",
         "--schema", "mbp-1"

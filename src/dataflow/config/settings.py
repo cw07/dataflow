@@ -123,7 +123,7 @@ class Settings(BaseSettings):
     # Redis
     redis1_id: str
     redis1_host: str
-    redis1_port: int
+    redis1_port: Optional[int]
     redis1_username: str
     redis1_password: str
     redis1_ssl: bool
@@ -131,7 +131,7 @@ class Settings(BaseSettings):
 
     redis2_id: str
     redis2_host: str
-    redis2_port: int
+    redis2_port: Optional[int]
     redis2_username: str
     redis2_password: str
     redis2_ssl: bool
@@ -143,13 +143,13 @@ class Settings(BaseSettings):
     file1_format: str
 
     # Data Provider API Keys
-    databento_api_key: str
-    onyx_api_key: str
-    onyx_url: str
-    sparta_api_key: str
+    databento_api_key: Optional[str]
+    onyx_api_key: Optional[str]
+    onyx_url: Optional[str]
+    sparta_api_key: Optional[str]
 
     model_config = SettingsConfigDict(
-        env_file=[Path(__file__).resolve().parents[3] / '.env.example', Path(__file__).resolve().parents[3] / '.env'],
+        env_file=[Path(__file__).resolve().parent / '.env.common', Path(__file__).resolve().parent / '.env'],
         env_file_encoding="utf-8",
         extra="forbid",
         case_sensitive=False,
@@ -167,7 +167,6 @@ class Settings(BaseSettings):
                     if type(None) in args:
                         return None
         return v
-
 
     @field_validator('time_series_config_path', 'file1_storage_path', mode='before')
     @classmethod
