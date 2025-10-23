@@ -15,13 +15,13 @@ class Pipeline:
             extractor: str,
             source: str,
             schema: str,
-            output: str,
+            output: list[str],
             params: Dict[str, Any]
     ):
         self.extractor = extractor
         self.source = source
         self.schema = schema
-        self.output = output
+        self.output: list[str] = output
         self.params = params
 
     def __repr__(self) -> str:
@@ -49,6 +49,13 @@ class Pipeline:
         for key in required:
             if key not in data:
                 raise KeyError(f"Missing required pipeline field: '{key}'")
+
+        if isinstance(data["output"], str):
+            data["output"] = [data["output"]]
+        elif isinstance(data["output"], list):
+            pass
+        else:
+            raise TypeError(f"'output' must be a string or list of strings, got {type(data["output"])}")
 
         return cls(
             extractor=data["extractor"],
