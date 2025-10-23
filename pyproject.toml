@@ -31,4 +31,9 @@ historical_service = "dataflow.services.historical_service:clmain"
 where = ["src"]
 
 [tool.setuptools.package-data]
-dataflow = ["config/specs/*.yaml", "config/*.yaml", "config/.env*", "config/*.html"]
+dataflow = [
+    "config/**/*.yaml",
+    "config/*.yaml",
+    "config/.env*",
+    "config/*.html"
+]
