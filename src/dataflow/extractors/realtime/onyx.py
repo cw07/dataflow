@@ -52,7 +52,7 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
     def start_extract(self):
         for root_id in self.root_ids:
             try:
-                url = f"https://api.onyxhub.co/v1/tickers/live/{root_id}"
+                url = f"{settings.onyx_url}/tickers/live/{root_id}"
                 response = requests.get(url, headers=self.headers)
                 data = response.json()
                 for d in data:
