@@ -30,6 +30,9 @@ class DatabaseManager(BaseOutputManager):
 
     def save(self, message, time_series: TimeSeriesConfig):
         market_data_obj = SCHEMA_MAP[time_series.data_schema].from_dict(message)
-        for output_name in time_series.destination:
-            if output_name in self.db_instance:
-                self.db_instance[output_name].save_data(market_data_obj)
+        for destination_name in time_series.destination:
+            if destination_name in self.db_instance:
+                logger.info(f"Saving {destination_name} {market_data_obj} for {time_series}")
+                self.db_instance[destination_name].save_data(market_data_obj)
+            else:
+                logger.error(f"No active instance for {destination_name}")
