@@ -1,4 +1,5 @@
 import re
+import logging
 from pathlib import Path
 from pydantic import field_validator
 from typing import Optional, Any, Union, get_args, get_origin
@@ -6,6 +7,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from dataflow.utils.common import ORM
 from dataflow.utils.database import DatabaseConnectionBuilder
+
+logger = logging.getLogger(__name__)
 
 
 class DatabaseConfig(BaseSettings):
@@ -232,7 +235,7 @@ class Settings(BaseSettings):
             port = getattr(self, f'{prefix}_port')
             user_name = getattr(self, f'{prefix}_username')
             pwd = getattr(self, f'{prefix}_password')
-            if host and port and user_name and pwd:
+            if host and port:
                 redis[redis_id] = RedisConfig(
                     id=redis_id,
                     host=host,
@@ -242,6 +245,8 @@ class Settings(BaseSettings):
                     ssl=getattr(self, f'{prefix}_ssl'),
                     db=getattr(self, f'{prefix}_db'),
                 )
+            else:
+                raise ValueError("Cannot create a valid Redis config with no host and no port ")
         return redis
 
     def all_files(self) -> dict[str, FileConfig]:
