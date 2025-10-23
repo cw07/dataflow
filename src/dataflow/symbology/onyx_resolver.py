@@ -21,8 +21,10 @@ class OnyxSymbolResolve(BaseSymbolResolver):
         }
 
     def resolve(self, input_symbols: list[str]) -> dict[str, str]:
-        final_map = {}
-
+        """
+            input_symbols: "ONYX.NAPEW.1", "ONYX.NAPEW.2", "ONYX.NAPEW.3"
+        """
+        final_mapping = {}
         groups = defaultdict(list)
         for sym in input_symbols:
             parts = sym.split('.')
@@ -39,14 +41,16 @@ class OnyxSymbolResolve(BaseSymbolResolver):
             params = {
                 "product_symbol": product_name,
             }
-            url = f"{settings.onyx_url}/contracts"
-            resp = requests.get(url, headers=self.headers, params=params)
+            url = f"{settings.onyx_url}/tickers/live/{product_name}"
+            resp = requests.get(url, headers=self.headers)
             data, error = parse_web_response(resp)
             if error:
                 logger.error(f"Failed to all futures data for {product_name}: {error}")
             else:
-                for d in data:
-                    pass
+                for i, series_id in enumerate(input_symbols):
+                    raw_symbol = data[i]["symbol"]
+                    final_mapping[series_id] = raw_symbol
+        return final_mapping
 
 
 onyx_symbol_resolver = OnyxSymbolResolve()
