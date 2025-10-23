@@ -73,7 +73,7 @@ class DatabentoSymbolResolve(BaseSymbolResolver):
             instrument_id_to_raw_symbol[instrument_id] = raw_symbol[0]["s"]
 
         # Step 4: Chain mappings: series_id → raw_symbol
-        series_id_to_raw_symbol = {}
+        final_mapping = {}
         for series_id in input_symbols:
             db_id = series_id_to_db_id[series_id]
             inst_id = db_id_to_db_instrument_id.get(db_id)
@@ -82,9 +82,13 @@ class DatabentoSymbolResolve(BaseSymbolResolver):
             raw_sym = instrument_id_to_raw_symbol.get(inst_id)
             if raw_sym is None:
                 raise KeyError(f"No raw_symbol found for instrument_id: {inst_id}")
-            series_id_to_raw_symbol[series_id] = raw_sym
-            logger.info(f"Databento mapping {series_id} -> {raw_sym}")
-        return series_id_to_raw_symbol
+            final_mapping[series_id] = raw_sym
+        if final_mapping:
+            for series_id, raw_symbol in final_mapping.items():
+                logger.info(f"contract mapping {series_id} -> {raw_symbol}")
+        else:
+            logger.warning(f"No mapping found for {len(input_symbols)} series")
+        return final_mapping
 
 db_symbol_resolver = DatabentoSymbolResolve()
 

@@ -50,7 +50,11 @@ class OnyxSymbolResolve(BaseSymbolResolver):
                 for i, series_id in enumerate(input_symbols):
                     raw_symbol = data[i]["symbol"]
                     final_mapping[series_id] = raw_symbol
-                    logger.info(f"Onyx mapping {series_id} -> {raw_symbol}")
+        if final_mapping:
+            for series_id, raw_symbol in final_mapping.items():
+                logger.info(f"contract mapping {series_id} -> {raw_symbol}")
+        else:
+            logger.warning(f"No mapping found for {len(input_symbols)} series")
         return final_mapping
 
 
