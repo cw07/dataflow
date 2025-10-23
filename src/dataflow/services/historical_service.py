@@ -8,7 +8,7 @@ from functools import partial
 from datacore.models.assets import AssetType
 from datacore.models.mktdata.datasource import DataSource
 
-from tradetools import UTC
+from tradetools import DEFAULT_TIMEZONE
 from tradetools.common import parse_time, print_args
 
 from dataflow.utils.common import set_env_vars
@@ -36,12 +36,14 @@ def parse_arguments(args):
     parser.add_argument(
         "--start-time",
         type=parse_time,
+        default=dt.datetime.now(DEFAULT_TIMEZONE),
         help="Start time in 'HH:MM:SS delta_day' format",
     )
 
     parser.add_argument(
         "--end-time",
-        type=parse_time,
+        required=True,
+        type=partial(parse_time, run_hours_limit=True),
         help="End time in 'HH:MM:SS delta_day' format"
     )
 
