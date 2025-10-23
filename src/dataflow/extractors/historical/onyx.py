@@ -76,7 +76,7 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
             try:
                 symbol = time_series.symbol
                 if not symbol:
-                    logger.error(f"No symbol found for {time_series.series_id}")
+                    logger.error(f"No contract mapping found for {time_series.series_id}")
                     continue
                 period = onyx_period_map[time_series.data_schema]
                 url = f"{settings.onyx_url}/tickers/ohlc/{symbol}/{period}"
