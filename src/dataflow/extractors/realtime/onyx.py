@@ -54,8 +54,8 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
         series_ids = [s.series_id for s in self.time_series]
         series_id_to_raw_symbol = onyx_symbol_resolver.resolve(series_ids)
         for s in self.time_series:
-            if s.symbol in series_id_to_raw_symbol:
-                s.symbol = series_id_to_raw_symbol[s.symbol]
+            if s.series_id in series_id_to_raw_symbol:
+                s.symbol = series_id_to_raw_symbol[s.series_id]
 
     @runtime_control
     def start_extract(self):
