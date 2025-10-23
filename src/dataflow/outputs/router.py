@@ -52,8 +52,11 @@ class OutputRouter:
                 output_type = None
                 logger.info(f"Log only: {message}")
             if output_type:
-                output_model = self.outputs[output_type]
+                output_model = self.outputs.get(output_type)
                 output_model.save(message, time_series)
+            else:
+                if output_type is not None:
+                    logger.info(f"Cannot find output model for the output type: {output_type}")
 
 
 output_router = OutputRouter()
