@@ -151,8 +151,6 @@ class RuntimeControl(BaseGate):
         return self.sleep_tick()
 
     def sleep_tick(self) -> None:
-        if not self.should_continue():
-            return
         now = self._now()
         remaining = (self.end - now).total_seconds()
         time.sleep(min(self.poll_seconds, max(0.0, remaining)))
