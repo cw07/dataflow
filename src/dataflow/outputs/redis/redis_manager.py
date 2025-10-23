@@ -61,7 +61,9 @@ class RedisManager(BaseOutputManager):
 
     def save(self, message, time_series: TimeSeriesConfig):
         market_data_obj = SCHEMA_MAP[time_series.data_schema].from_dict(message)
-        for output_name in time_series.destination:
-            if output_name in self.redis_instance:
+        for destination_name in time_series.destination:
+            if destination_name in self.redis_instance:
                 logger.info(f"Saving {market_data_obj} for {time_series}")
-                self.redis_instance[output_name].save_data(market_data_obj, time_series)
+                self.redis_instance[destination_name].save_data(market_data_obj, time_series)
+            else:
+                logger.error(f"No active instance for {destination_name}")
