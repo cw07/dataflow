@@ -52,7 +52,7 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
 
     def resolve_raw_symbols(self):
         series_ids = [s.series_id for s in self.time_series]
-        series_id_to_raw_symbol = onyx_symbol_resolver(series_ids)
+        series_id_to_raw_symbol = onyx_symbol_resolver.resolve(series_ids)
         for s in self.time_series:
             if s.symbol in series_id_to_raw_symbol:
                 s.symbol = series_id_to_raw_symbol[s.symbol]
