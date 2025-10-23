@@ -6,11 +6,12 @@ import requests
 from datacore.models.mktdata.historical import OHLCV1D
 from datacore.models.mktdata.schema import MktDataSchema
 
-from dataflow.config.settings import settings
 from dataflow.outputs import output_router
+from dataflow.config.settings import settings
+from dataflow.utils.common import parse_web_response
+from dataflow.utils.loop_control import RuntimeControl
 from dataflow.config.loaders.time_series import TimeSeriesConfig
 from dataflow.extractors.historical.base_historical import BaseHistoricalExtractor
-from dataflow.utils.loop_control import RuntimeControl
 from tradetools.bdate import BDate
 
 logger = logging.getLogger(__name__)
@@ -68,13 +69,13 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
                     continue
                 period = onyx_period_map[time_series.data_schema]
                 url = f"{settings.onyx_url}/tickers/ohlc/{symbol}/{period}"
-                resp  = requests.get(url, headers=headers, params=params)
-                if resp.status_code == 200:
-                    data = resp.json()
+                resp = requests.get(url, headers=headers, params=params)
+                data, error = parse_web_response(resp)
+                if error:
+                    logger.error(f"Failed to fetch data for {time_series.series_id}: {error}")
+                else:
                     for d in data:
                         total_done += self.on_message(d, time_series)
-                else:
-                    logger.error(f"Failed to fetch data for {time_series.series_id}: {resp.status_code}")
             except Exception as e:
                 logger.error(f"Error fetching historical {time_series.symbol} from Onyx: {e}")
         return total_done

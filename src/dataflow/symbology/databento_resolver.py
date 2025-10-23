@@ -16,6 +16,7 @@ class DatabentoSymbolResolve(BaseSymbolResolver):
                  symbol_type_out: str = "raw_symbol",
                  continuous_type: str = "c"  # n: open interest, v: volume
                  ):
+
         self.client = db.Historical(settings.databento_api_key)
         self.mapping = {}
         self.symbol_type_in = symbol_type_in

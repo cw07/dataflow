@@ -4,10 +4,12 @@ import logging
 import requests
 from typing import Any, Optional
 
-from dataflow.config.settings import settings
 from dataflow.outputs import output_router
+from dataflow.config.settings import settings
+from dataflow.utils.common import parse_web_response
 from dataflow.utils.loop_control import RuntimeControl
 from dataflow.config.loaders.time_series import TimeSeriesConfig
+from dataflow.symbology.onyx_resolver import onyx_symbol_resolver
 from dataflow.extractors.realtime.base_realtime import BaseRealtimeExtractor
 
 logger = logging.getLogger(__name__)
@@ -25,10 +27,10 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
         super().__init__(config)
         self.time_series: list[TimeSeriesConfig] = self.config["time_series"]
         self.mapping: dict[str, TimeSeriesConfig] = {s.symbol: s for s in self.time_series}
-        self.root_ids = {s.root_id for s in self.time_series}
         self.headers = {
             "Authorization": f"Bearer {settings.onyx_api_key}",
         }
+        self.resolve_raw_symbols()
 
     def validate_config(self) -> None:
         pass
@@ -48,18 +50,29 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
     def unsubscribe(self, symbols: Optional[list] = None):
         pass
 
+    def resolve_raw_symbols(self):
+        series_ids = [s.series_id for s in self.time_series]
+        series_id_to_raw_symbol = onyx_symbol_resolver(series_ids)
+        for s in self.time_series:
+            if s.symbol in series_id_to_raw_symbol:
+                s.symbol = series_id_to_raw_symbol[s.symbol]
+
     @runtime_control
     def start_extract(self):
-        for root_id in self.root_ids:
+        for time_series in self.time_series:
             try:
-                url = f"{settings.onyx_url}/tickers/live/{root_id}"
-                response = requests.get(url, headers=self.headers)
-                data = response.json()
-                for d in data:
-                    if d["symbol"] in self.mapping:
+                root_id = time_series.root_id
+                id_without_venue = root_id.split(".")[1]
+                url = f"{settings.onyx_url}/tickers/live/{id_without_venue}"
+                resp = requests.get(url, headers=self.headers)
+                data, error = parse_web_response(resp)
+                if error:
+                    logger.error(f"Failed to fetch data for {time_series.series_id}: {error}")
+                else:
+                    for d in data:
                         self.on_message(d)
             except Exception as e:
-                logger.error(f"Error fetching {root_id} from Onyx: {e}")
+                logger.error(f"Error fetching {time_series.series_id} from Onyx: {e}")
 
     def stop_extract(self):
         logger.info(f"Onyx realtime extractor stopped gracefully")
