@@ -79,13 +79,13 @@ class OnyxRealtimeExtractor(BaseRealtimeExtractor):
 
     def on_message(self, message):
         symbol = message["symbol"]
-        time_series: TimeSeriesConfig = self.raw_sym_to_ts[symbol]
-        new_message = {
-            "asset_type": time_series.series_type,
-            "vendor": time_series.data_source,
-            "symbol": time_series.symbol,
-            "price": message["mid"],
-            "ts_event": message["timestamp"]
-        }
-        output_router.route(message=new_message, time_series=time_series)
-        return 1
+        if symbol in self.raw_sym_to_ts:
+            time_series: TimeSeriesConfig = self.raw_sym_to_ts[symbol]
+            new_message = {
+                "asset_type": time_series.series_type,
+                "vendor": time_series.data_source,
+                "symbol": time_series.symbol,
+                "price": message["mid"],
+                "ts_event": message["timestamp"]
+            }
+            output_router.route(message=new_message, time_series=time_series)
