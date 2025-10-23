@@ -142,7 +142,7 @@ class RuntimeControl(BaseGate):
             return False
 
         if self.max_job is not None and self.done >= self.max_job:
-            logger.info(f"Service job done: {self.done}, target: {self.max_job}, stopping.")
+            logger.info(f"Service all jobs done: {self.done}, target: {self.max_job}, stopping.")
             return False
 
         return True
