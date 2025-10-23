@@ -1,0 +1,5 @@
+include src/dataflow/config/time_series.yaml
+recursive-include src/dataflow/config *.yaml
+include src/dataflow/config/.env*
+include src/dataflow/config/*.html
+include src/dataflow/symbology/*.yaml
