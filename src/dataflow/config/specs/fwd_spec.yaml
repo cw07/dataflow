@@ -2,6 +2,7 @@
 
 forward_spec:
   LME.LMHADS03:
+    root_id: LME.LMHADS03
     contract_size: 25
     description: LME Aluminum 3M Forward
     time_zone: Europe/London
@@ -12,6 +13,7 @@ forward_spec:
       trading_days: [ 0,1,2,3,4 ]
       active: true
   LME.LMCADS03:
+    root_id: LME.LMCADS03
     contract_size: 25
     description: LME Copper 3M Forward
     time_zone: Europe/London
@@ -22,6 +24,7 @@ forward_spec:
       trading_days: [ 0,1,2,3,4 ]
       active: true
   LME.LMNIDS03:
+    root_id: LME.LMNIDS03
     contract_size: 6
     description: LME Nickel 3M Forward
     time_zone: Europe/London
@@ -32,6 +35,7 @@ forward_spec:
       trading_days: [ 0,1,2,3,4 ]
       active: true
   LME.LMPBDS03:
+    root_id: LME.LMPBDS03
     contract_size: 25
     description: LME Lead 3M Forward
     time_zone: Europe/London
@@ -42,6 +46,7 @@ forward_spec:
       trading_days: [ 0,1,2,3,4 ]
       active: true
   LME.LMZSDS03:
+    root_id: LME.LMZSDS03
     contract_size: 25
     description: LME Zinc 3M Forward
     time_zone: Europe/London

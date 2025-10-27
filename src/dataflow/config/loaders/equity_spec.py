@@ -29,21 +29,21 @@ class EquitySpecReader(BaseSpecReader):
         equity_spec_data = raw_data["equity_spec"] or {}
         specs: Dict[str, EquitySpec] = {}
 
-        for root_id, data in equity_spec_data.items():
-            if not isinstance(data, dict):
-                raise ValueError(f"Spec for root_id '{root_id}' is not a mapping")
+        for dataflow_id, equity_spec in equity_spec_data.items():
+            if not isinstance(equity_spec, dict):
+                raise ValueError(f"Spec for dataflow_id '{dataflow_id}' is not a mapping")
 
-            trading_hours = data.get("trading_hours", {}) or {}
-            spec = EquitySpec(
-                root_id=root_id,
-                description=data.get("description", ""),
-                time_zone=data.get("time_zone", "UTC"),
+            trading_hours = equity_spec.get("trading_hours", {}) or {}
+            equity_spec = EquitySpec(
+                root_id=equity_spec["root_id"],
+                description=equity_spec.get("description", ""),
+                time_zone=equity_spec.get("time_zone", "UTC"),
                 open_time_local=trading_hours.get("open_time_local"),
                 close_time_local=trading_hours.get("close_time_local"),
                 trading_days=trading_hours.get("trading_days", []),
                 active=trading_hours.get("active", True),
             )
-            specs[root_id] = spec
+            specs[dataflow_id] = equity_spec
 
         return specs
 

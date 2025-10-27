@@ -45,22 +45,22 @@ class FuturesOptSpecReader(BaseSpecReader):
         fut_option_spec_data = self.raw_data["futures_option_spec"] or {}
         specs: Dict[str, FuturesOptSpec] = {}
 
-        for root_id, spec in fut_option_spec_data.items():
+        for dataflow_id, futopt_spec in fut_option_spec_data.items():
             contract = FuturesOptSpec(
-                root_id=spec["root_id"],
-                terms=int(spec["terms"]),
-                contract_size=int(spec["contract_size"]),
-                description=spec["description"],
-                venue=root_id.split('.')[1],
-                time_zone=spec["time_zone"],
-                open_time_local=spec["trading_hours"]["open_time_local"],
-                close_time_local=spec["trading_hours"]["close_time_local"],
-                trading_days=spec["trading_hours"]["trading_days"],
-                contract_month_code=[self.raw_data["contract_month_codes"][des] for des in spec["contract_months"]],
-                contract_months=spec["contract_months"],
-                active=bool(spec["active"])
+                root_id=futopt_spec["root_id"],
+                terms=int(futopt_spec["terms"]),
+                contract_size=int(futopt_spec["contract_size"]),
+                description=futopt_spec["description"],
+                venue=dataflow_id.split('.')[1],
+                time_zone=futopt_spec["time_zone"],
+                open_time_local=futopt_spec["trading_hours"]["open_time_local"],
+                close_time_local=futopt_spec["trading_hours"]["close_time_local"],
+                trading_days=futopt_spec["trading_hours"]["trading_days"],
+                contract_month_code=[self.raw_data["contract_month_codes"][des] for des in futopt_spec["contract_months"]],
+                contract_months=futopt_spec["contract_months"],
+                active=bool(futopt_spec["active"])
             )
-            specs[root_id] = contract
+            specs[dataflow_id] = contract
         return specs
 
     def get_contract(self, root_id: str) -> Optional[FuturesOptSpec]:

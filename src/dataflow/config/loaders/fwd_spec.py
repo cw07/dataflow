@@ -32,21 +32,21 @@ class ForwardSpecReader(BaseSpecReader):
         forward_spec_data = self.raw_data["forward_spec"] or {}
         specs: Dict[str, ForwardSpec] = {}
 
-        for root_id, data in forward_spec_data.items():
-            if not isinstance(data, dict):
-                raise ValueError(f"Spec for root_id '{root_id}' is not a mapping")
+        for dataflow_id, fwd_spec in forward_spec_data.items():
+            if not isinstance(fwd_spec, dict):
+                raise ValueError(f"Spec for dataflow_id '{dataflow_id}' is not a mapping")
 
-            trading_hours = data.get("trading_hours", {}) or {}
-            spec = ForwardSpec(
-                root_id=root_id,
-                description=data["description"],
-                time_zone=data["time_zone"],
+            trading_hours = fwd_spec.get("trading_hours", {}) or {}
+            fwd_spec = ForwardSpec(
+                root_id=fwd_spec["root_id"],
+                description=fwd_spec["description"],
+                time_zone=fwd_spec["time_zone"],
                 open_time_local=trading_hours["open_time_local"],
                 close_time_local=trading_hours["close_time_local"],
                 trading_days=trading_hours["trading_days"],
                 active=trading_hours["active"]
             )
-            specs[root_id] = spec
+            specs[dataflow_id] = fwd_spec
 
         return specs
 

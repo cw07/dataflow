@@ -33,21 +33,21 @@ class FxSpecReader(BaseSpecReader):
         fx_spec_data = self.raw_data["fx_spec"] or {}
         specs: Dict[str, FxSpec] = {}
 
-        for root_id, data in fx_spec_data.items():
-            if not isinstance(data, dict):
-                raise ValueError(f"Spec for root_id '{root_id}' is not a mapping")
+        for dataflow_id, fx_spec in fx_spec_data.items():
+            if not isinstance(fx_spec, dict):
+                raise ValueError(f"Spec for dataflow_id '{dataflow_id}' is not a mapping")
 
-            trading_hours = data.get("trading_hours", {}) or {}
-            spec = FxSpec(
-                root_id=root_id,
-                description=data.get("description", ""),
-                time_zone=data.get("time_zone", "UTC"),
+            trading_hours = fx_spec.get("trading_hours", {}) or {}
+            fx_spec = FxSpec(
+                root_id=fx_spec["root_id"],
+                description=fx_spec.get("description", ""),
+                time_zone=fx_spec.get("time_zone", "UTC"),
                 open_time_local=trading_hours.get("open_time_local"),
                 close_time_local=trading_hours.get("close_time_local"),
                 trading_days=trading_hours.get("trading_days", []),
                 active=trading_hours.get("active", True),
             )
-            specs[root_id] = spec
+            specs[dataflow_id] = fx_spec
 
         return specs
 

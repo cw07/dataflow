@@ -75,23 +75,23 @@ class FuturesSpecReader(BaseSpecReader):
 
         for category, contracts in fut_spec_data.items():
             categories[category] = []
-            for root_id, spec in contracts.items():
+            for dataflow_id, fut_spec in contracts.items():
                 contract = FuturesSpec(
-                    root_id=root_id,
-                    terms=int(spec["terms"]),
-                    contract_size=int(spec["contract_size"]),
-                    description=spec['description'],
-                    venue=root_id.split('.')[-1],
-                    time_zone=spec['time_zone'],
-                    open_time_local=spec['trading_hours']['open_time_local'],
-                    close_time_local=spec['trading_hours']['close_time_local'],
-                    trading_days=spec["trading_hours"]["trading_days"],
-                    contract_month_code=[self.raw_data["contract_month_codes"][des] for des in spec["contract_months"]],
-                    contract_months=spec['contract_months'],
+                    root_id=fut_spec["root_id"],
+                    terms=int(fut_spec["terms"]),
+                    contract_size=int(fut_spec["contract_size"]),
+                    description=fut_spec['description'],
+                    venue=dataflow_id.split('.')[-1],
+                    time_zone=fut_spec['time_zone'],
+                    open_time_local=fut_spec['trading_hours']['open_time_local'],
+                    close_time_local=fut_spec['trading_hours']['close_time_local'],
+                    trading_days=fut_spec["trading_hours"]["trading_days"],
+                    contract_month_code=[self.raw_data["contract_month_codes"][des] for des in fut_spec["contract_months"]],
+                    contract_months=fut_spec['contract_months'],
                     category=category,
-                    active=bool(spec["active"])
+                    active=bool(fut_spec["active"])
                 )
-                specs[root_id] = contract
+                specs[dataflow_id] = contract
                 categories[category].append(contract)
 
         self.categories = categories

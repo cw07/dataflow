@@ -37,22 +37,22 @@ class IndexSpecReader(BaseSpecReader):
         index_spec_data = self.raw_data["index_spec"]
         specs = {}
 
-        for root_id, data in index_spec_data.items():
-            if not isinstance(data, dict):
-                raise ValueError(f"Spec for root_id '{root_id}' is not a mapping")
+        for dataflow_id, idx_spec in index_spec_data.items():
+            if not isinstance(idx_spec, dict):
+                raise ValueError(f"Spec for dataflow_id '{dataflow_id}' is not a mapping")
 
             # Extract fields, with defaults
-            trading_hours = data.get("trading_hours", {}) or {}
-            spec = IndexSpec(
-                root_id=root_id,
-                description=data.get("description", ""),
-                time_zone=data.get("time_zone", "UTC"),
+            trading_hours = idx_spec.get("trading_hours", {}) or {}
+            idx_spec = IndexSpec(
+                root_id=idx_spec["root_id"],
+                description=idx_spec.get("description", ""),
+                time_zone=idx_spec.get("time_zone", "UTC"),
                 open_time_local=trading_hours.get("open_time_local"),
                 close_time_local=trading_hours.get("close_time_local"),
                 trading_days=trading_hours.get("trading_days", []),
                 active=trading_hours.get("active", True),
             )
-            specs[root_id] = spec
+            specs[dataflow_id] = idx_spec
 
         return specs
 
