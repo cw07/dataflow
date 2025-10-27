@@ -53,8 +53,7 @@ class BBGHistoricalExtractor(BaseHistoricalExtractor):
             underlyings = {}
 
             for ts in self.time_series:
-                tmp = ts.series_id.split(".")
-                underlyings[f"{tmp[0]}.{tmp[1]}.{tmp[3]}"] = ts
+                underlyings[ts.root_id] = ts
 
             all_futures = list(underlyings.keys())
 
