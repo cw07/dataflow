@@ -60,8 +60,8 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
             "Authorization": f"Bearer {settings.onyx_api_key}"
         }
 
-        start = self.config["start"] if self.config["start"] else BDate("T-1").date.isoformat()
-        end = self.config["end"] if self.config["start"] else BDate("T-1").date.isoformat()
+        start = self.config["start_range"] if self.config["start_range"] else BDate("T-1").date.isoformat()
+        end = self.config["end_range"] if self.config["end_range"] else BDate("T-1").date.isoformat()
 
         onyx_period_map = {
             MktDataSchema.OHLCV_1D: "1d"

@@ -1,5 +1,6 @@
 import logging
 
+from datacore.models.assets import AssetType
 from tradetools.bdate import BDate
 
 from dataflow.config.settings import settings
@@ -7,11 +8,12 @@ from dataflow.symbology.base import BaseSymbolResolver
 
 logger = logging.getLogger(__name__)
 
+
 class BBGSymbolResolve(BaseSymbolResolver):
     def resolve(self, input_symbols: list[str], market: str, resolve_type: str) -> dict[str, str]:
-        if market == "LME" and resolve_type == "fut":
+        if market == "LME" and resolve_type == AssetType.FUT:
             mapping = self.resolve_lme_futures(input_symbols)
-        elif market == "LME" and resolve_type == "futopt":
+        elif market == "LME" and resolve_type == AssetType.FUT_OPTION:
             mapping = self.resolve_lme_futures_option(input_symbols)
         else:
             mapping = {}
