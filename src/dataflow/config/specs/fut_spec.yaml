@@ -257,7 +257,7 @@ futures_spec:
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Mar, May, Jul, Sep, Dec ]
       active: true
-    LME.LA:
+    LME.AH:
       root_id: LA
       terms: 12
       contract_size: 25
@@ -269,7 +269,7 @@ futures_spec:
         trading_days: [ 0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
-    LME.LL:
+    LME.PB:
       root_id: LL
       terms: 12
       contract_size: 25
@@ -281,7 +281,7 @@ futures_spec:
         trading_days: [ 0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
-    LME.LN:
+    LME.NI:
       root_id: LN
       terms: 12
       contract_size: 6
@@ -293,7 +293,7 @@ futures_spec:
         trading_days: [0,1,2,3,4]
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
-    LME.LP:
+    LME.CA:
       root_id: LP
       terms: 12
       contract_size: 25
@@ -305,7 +305,7 @@ futures_spec:
         trading_days: [0,1,2,3,4]
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
-    LME.LX:
+    LME.ZS:
       root_id: LX
       terms: 12
       contract_size: 25

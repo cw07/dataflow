@@ -5269,966 +5269,6 @@
   symbol: null
   active: true
 - service_id: 329
-  series_id: LME.LA.1
-  series_type: fut
-  root_id: LME.LA
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 1st Aluminum Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 330
-  series_id: LME.LA.2
-  series_type: fut
-  root_id: LME.LA
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 2nd Aluminum Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 331
-  series_id: LME.LA.3
-  series_type: fut
-  root_id: LME.LA
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 3rd Aluminum Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 332
-  series_id: LME.LA.4
-  series_type: fut
-  root_id: LME.LA
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 4th Aluminum Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 333
-  series_id: LME.LA.5
-  series_type: fut
-  root_id: LME.LA
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 5th Aluminum Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 334
-  series_id: LME.LA.6
-  series_type: fut
-  root_id: LME.LA
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 6th Aluminum Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 335
-  series_id: LME.LA.7
-  series_type: fut
-  root_id: LME.LA
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 7th Aluminum Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 336
-  series_id: LME.LA.8
-  series_type: fut
-  root_id: LME.LA
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 8th Aluminum Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 337
-  series_id: LME.LA.9
-  series_type: fut
-  root_id: LME.LA
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 9th Aluminum Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 338
-  series_id: LME.LA.10
-  series_type: fut
-  root_id: LME.LA
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 10th Aluminum Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 339
-  series_id: LME.LA.11
-  series_type: fut
-  root_id: LME.LA
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 11th Aluminum Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 340
-  series_id: LME.LA.12
-  series_type: fut
-  root_id: LME.LA
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 12th Aluminum Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 341
-  series_id: LME.LL.1
-  series_type: fut
-  root_id: LME.LL
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 1st Lead Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 342
-  series_id: LME.LL.2
-  series_type: fut
-  root_id: LME.LL
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 2nd Lead Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 343
-  series_id: LME.LL.3
-  series_type: fut
-  root_id: LME.LL
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 3rd Lead Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 344
-  series_id: LME.LL.4
-  series_type: fut
-  root_id: LME.LL
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 4th Lead Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 345
-  series_id: LME.LL.5
-  series_type: fut
-  root_id: LME.LL
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 5th Lead Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 346
-  series_id: LME.LL.6
-  series_type: fut
-  root_id: LME.LL
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 6th Lead Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 347
-  series_id: LME.LL.7
-  series_type: fut
-  root_id: LME.LL
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 7th Lead Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 348
-  series_id: LME.LL.8
-  series_type: fut
-  root_id: LME.LL
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 8th Lead Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 349
-  series_id: LME.LL.9
-  series_type: fut
-  root_id: LME.LL
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 9th Lead Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 350
-  series_id: LME.LL.10
-  series_type: fut
-  root_id: LME.LL
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 10th Lead Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 351
-  series_id: LME.LL.11
-  series_type: fut
-  root_id: LME.LL
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 11th Lead Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 352
-  series_id: LME.LL.12
-  series_type: fut
-  root_id: LME.LL
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 12th Lead Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 353
-  series_id: LME.LN.1
-  series_type: fut
-  root_id: LME.LN
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 1st Nickle Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 354
-  series_id: LME.LN.2
-  series_type: fut
-  root_id: LME.LN
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 2nd Nickle Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 355
-  series_id: LME.LN.3
-  series_type: fut
-  root_id: LME.LN
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 3rd Nickle Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 356
-  series_id: LME.LN.4
-  series_type: fut
-  root_id: LME.LN
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 4th Nickle Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 357
-  series_id: LME.LN.5
-  series_type: fut
-  root_id: LME.LN
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 5th Nickle Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 358
-  series_id: LME.LN.6
-  series_type: fut
-  root_id: LME.LN
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 6th Nickle Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 359
-  series_id: LME.LN.7
-  series_type: fut
-  root_id: LME.LN
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 7th Nickle Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 360
-  series_id: LME.LN.8
-  series_type: fut
-  root_id: LME.LN
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 8th Nickle Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 361
-  series_id: LME.LN.9
-  series_type: fut
-  root_id: LME.LN
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 9th Nickle Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 362
-  series_id: LME.LN.10
-  series_type: fut
-  root_id: LME.LN
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 10th Nickle Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 363
-  series_id: LME.LN.11
-  series_type: fut
-  root_id: LME.LN
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 11th Nickle Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 364
-  series_id: LME.LN.12
-  series_type: fut
-  root_id: LME.LN
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 12th Nickle Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 365
-  series_id: LME.LP.1
-  series_type: fut
-  root_id: LME.LP
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 1st Copper Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 366
-  series_id: LME.LP.2
-  series_type: fut
-  root_id: LME.LP
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 2nd Copper Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 367
-  series_id: LME.LP.3
-  series_type: fut
-  root_id: LME.LP
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 3rd Copper Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 368
-  series_id: LME.LP.4
-  series_type: fut
-  root_id: LME.LP
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 4th Copper Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 369
-  series_id: LME.LP.5
-  series_type: fut
-  root_id: LME.LP
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 5th Copper Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 370
-  series_id: LME.LP.6
-  series_type: fut
-  root_id: LME.LP
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 6th Copper Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 371
-  series_id: LME.LP.7
-  series_type: fut
-  root_id: LME.LP
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 7th Copper Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 372
-  series_id: LME.LP.8
-  series_type: fut
-  root_id: LME.LP
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 8th Copper Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 373
-  series_id: LME.LP.9
-  series_type: fut
-  root_id: LME.LP
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 9th Copper Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 374
-  series_id: LME.LP.10
-  series_type: fut
-  root_id: LME.LP
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 10th Copper Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 375
-  series_id: LME.LP.11
-  series_type: fut
-  root_id: LME.LP
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 11th Copper Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 376
-  series_id: LME.LP.12
-  series_type: fut
-  root_id: LME.LP
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 12th Copper Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 377
-  series_id: LME.LX.1
-  series_type: fut
-  root_id: LME.LX
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 1st Zinc Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 378
-  series_id: LME.LX.2
-  series_type: fut
-  root_id: LME.LX
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 2nd Zinc Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 379
-  series_id: LME.LX.3
-  series_type: fut
-  root_id: LME.LX
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 3rd Zinc Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 380
-  series_id: LME.LX.4
-  series_type: fut
-  root_id: LME.LX
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 4th Zinc Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 381
-  series_id: LME.LX.5
-  series_type: fut
-  root_id: LME.LX
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 5th Zinc Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 382
-  series_id: LME.LX.6
-  series_type: fut
-  root_id: LME.LX
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 6th Zinc Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 383
-  series_id: LME.LX.7
-  series_type: fut
-  root_id: LME.LX
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 7th Zinc Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 384
-  series_id: LME.LX.8
-  series_type: fut
-  root_id: LME.LX
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 8th Zinc Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 385
-  series_id: LME.LX.9
-  series_type: fut
-  root_id: LME.LX
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 9th Zinc Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 386
-  series_id: LME.LX.10
-  series_type: fut
-  root_id: LME.LX
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 10th Zinc Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 387
-  series_id: LME.LX.11
-  series_type: fut
-  root_id: LME.LX
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 11th Zinc Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 388
-  series_id: LME.LX.12
-  series_type: fut
-  root_id: LME.LX
-  venue: LME
-  data_schema: mbp-1
-  data_source: bbg
-  destination:
-  - redis1
-  extractor: realtime
-  description: 12th Zinc Futures
-  additional_params:
-    redis:
-      type: stream
-  symbol: null
-  active: true
-- service_id: 389
   series_id: SGX.PFATIOCH
   series_type: index
   root_id: SGX.PFATIOCH
@@ -6246,7 +5286,7 @@
     qmarket: FEF.SGX
   symbol: null
   active: true
-- service_id: 390
+- service_id: 330
   series_id: XAGUSD
   series_type: fx
   root_id: XAGUSD
@@ -6262,7 +5302,7 @@
       type: stream
   symbol: null
   active: true
-- service_id: 391
+- service_id: 331
   series_id: XAUUSD
   series_type: fx
   root_id: XAUUSD
@@ -6278,7 +5318,7 @@
       type: stream
   symbol: null
   active: true
-- service_id: 392
+- service_id: 332
   series_id: XPDUSD
   series_type: fx
   root_id: XPDUSD
@@ -6294,7 +5334,7 @@
       type: stream
   symbol: null
   active: true
-- service_id: 393
+- service_id: 333
   series_id: XPTUSD
   series_type: fx
   root_id: XPTUSD
@@ -6310,7 +5350,7 @@
       type: stream
   symbol: null
   active: true
-- service_id: 394
+- service_id: 334
   series_id: LME.LMHADS03
   series_type: fwd
   root_id: LME.LMHADS03
@@ -6326,7 +5366,7 @@
       type: stream
   symbol: null
   active: true
-- service_id: 395
+- service_id: 335
   series_id: LME.LMCADS03
   series_type: fwd
   root_id: LME.LMCADS03
@@ -6342,7 +5382,7 @@
       type: stream
   symbol: null
   active: true
-- service_id: 396
+- service_id: 336
   series_id: LME.LMNIDS03
   series_type: fwd
   root_id: LME.LMNIDS03
@@ -6358,7 +5398,7 @@
       type: stream
   symbol: null
   active: true
-- service_id: 397
+- service_id: 337
   series_id: LME.LMPBDS03
   series_type: fwd
   root_id: LME.LMPBDS03
@@ -6374,7 +5414,7 @@
       type: stream
   symbol: null
   active: true
-- service_id: 398
+- service_id: 338
   series_id: LME.LMZSDS03
   series_type: fwd
   root_id: LME.LMZSDS03
@@ -6388,5 +5428,185 @@
   additional_params:
     redis:
       type: stream
+  symbol: null
+  active: true
+- service_id: 339
+  series_id: LME.AH.OPT.1
+  series_type: futoption
+  root_id: LME.AH.OPT
+  venue: LME
+  data_schema: ohlcv-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 1st Aluminum Futures Option
+  additional_params:
+    t_table_name: raw_data.AH_daily_option_price
+  symbol: null
+  active: true
+- service_id: 340
+  series_id: LME.AH.OPT.2
+  series_type: futoption
+  root_id: LME.AH.OPT
+  venue: LME
+  data_schema: ohlcv-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 2nd Aluminum Futures Option
+  additional_params:
+    t_table_name: raw_data.AH_daily_option_price
+  symbol: null
+  active: true
+- service_id: 341
+  series_id: LME.AH.OPT.3
+  series_type: futoption
+  root_id: LME.AH.OPT
+  venue: LME
+  data_schema: ohlcv-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 3rd Aluminum Futures Option
+  additional_params:
+    t_table_name: raw_data.AH_daily_option_price
+  symbol: null
+  active: true
+- service_id: 342
+  series_id: LME.AH.OPT.4
+  series_type: futoption
+  root_id: LME.AH.OPT
+  venue: LME
+  data_schema: ohlcv-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 4th Aluminum Futures Option
+  additional_params:
+    t_table_name: raw_data.AH_daily_option_price
+  symbol: null
+  active: true
+- service_id: 343
+  series_id: LME.AH.OPT.5
+  series_type: futoption
+  root_id: LME.AH.OPT
+  venue: LME
+  data_schema: ohlcv-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 5th Aluminum Futures Option
+  additional_params:
+    t_table_name: raw_data.AH_daily_option_price
+  symbol: null
+  active: true
+- service_id: 344
+  series_id: LME.AH.OPT.6
+  series_type: futoption
+  root_id: LME.AH.OPT
+  venue: LME
+  data_schema: ohlcv-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 6th Aluminum Futures Option
+  additional_params:
+    t_table_name: raw_data.AH_daily_option_price
+  symbol: null
+  active: true
+- service_id: 345
+  series_id: LME.AH.OPT.7
+  series_type: futoption
+  root_id: LME.AH.OPT
+  venue: LME
+  data_schema: ohlcv-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 7th Aluminum Futures Option
+  additional_params:
+    t_table_name: raw_data.AH_daily_option_price
+  symbol: null
+  active: true
+- service_id: 346
+  series_id: LME.AH.OPT.8
+  series_type: futoption
+  root_id: LME.AH.OPT
+  venue: LME
+  data_schema: ohlcv-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 8th Aluminum Futures Option
+  additional_params:
+    t_table_name: raw_data.AH_daily_option_price
+  symbol: null
+  active: true
+- service_id: 347
+  series_id: LME.AH.OPT.9
+  series_type: futoption
+  root_id: LME.AH.OPT
+  venue: LME
+  data_schema: ohlcv-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 9th Aluminum Futures Option
+  additional_params:
+    t_table_name: raw_data.AH_daily_option_price
+  symbol: null
+  active: true
+- service_id: 348
+  series_id: LME.AH.OPT.10
+  series_type: futoption
+  root_id: LME.AH.OPT
+  venue: LME
+  data_schema: ohlcv-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 10th Aluminum Futures Option
+  additional_params:
+    t_table_name: raw_data.AH_daily_option_price
+  symbol: null
+  active: true
+- service_id: 349
+  series_id: LME.AH.OPT.11
+  series_type: futoption
+  root_id: LME.AH.OPT
+  venue: LME
+  data_schema: ohlcv-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 11th Aluminum Futures Option
+  additional_params:
+    t_table_name: raw_data.AH_daily_option_price
+  symbol: null
+  active: true
+- service_id: 350
+  series_id: LME.AH.OPT.12
+  series_type: futoption
+  root_id: LME.AH.OPT
+  venue: LME
+  data_schema: ohlcv-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 12th Aluminum Futures Option
+  additional_params:
+    t_table_name: raw_data.AH_daily_option_price
   symbol: null
   active: true

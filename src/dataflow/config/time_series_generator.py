@@ -11,6 +11,7 @@ from dataflow.config.loaders.fx_spec import fx_specs
 from dataflow.config.loaders.spread_spec import spread_specs
 from dataflow.config.loaders.equity_spec import equity_specs
 from dataflow.config.loaders.fut_spec import futures_specs
+from dataflow.config.loaders.futopt_spec import futures_opt_specs
 from dataflow.config.loaders.fwd_spec import fwd_specs
 from dataflow.config.loaders.index_spec import index_specs
 
@@ -56,6 +57,34 @@ def gen_fut_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
                     destination=pipeline.output,
                     extractor=pipeline.extractor,
                     description=term_in_word.get(i, str(i)+"th") + " " + fut_spec.description,
+                    additional_params=pipeline.params,
+                    active=fut_spec.active
+                )
+                time_series.append(ts)
+                total_time_series += 1
+    return total_time_series, time_series
+
+
+def gen_fut_opt_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
+    term_in_word = {1: "1st", 2: "2nd", 3: "3rd"}
+    for root_id, fut_spec in futures_opt_specs.specs.items():
+        pipelines = pipeline_specs.get_spec(root_id)
+        if not pipelines:
+            logger.warning(f"No pipeline for {root_id}")
+            continue
+        for pipeline in pipelines:
+            for i in range(1, fut_spec.terms + 1):
+                ts = TimeSeriesConfig(
+                    service_id=total_time_series,
+                    series_id=f"{root_id}.{i}",
+                    series_type=AssetType.FUT_OPTION,
+                    root_id=root_id,
+                    venue=root_id.split('.')[0],
+                    data_schema=pipeline.schema,
+                    data_source=pipeline.source,
+                    destination=pipeline.output,
+                    extractor=pipeline.extractor,
+                    description=term_in_word.get(i, str(i) + "th") + " " + fut_spec.description,
                     additional_params=pipeline.params,
                     active=fut_spec.active
                 )
@@ -170,6 +199,8 @@ def main(args):
     total_time_series, time_series = get_fwd_spec(total_time_series, time_series)
     total_time_series, time_series = gen_equity_spec(total_time_series, time_series)
     total_time_series, time_series = gen_spread_spec(total_time_series, time_series)
+    total_time_series, time_series = gen_fut_opt_spec(total_time_series, time_series)
+
     serialization(time_series, output_type=args.serialization)
     if args.generate_html:
         time_series_html(time_series, output_path=Path("./time_series.html"))

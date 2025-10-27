@@ -1,0 +1,86 @@
+from zoneinfo import ZoneInfo
+import yaml
+import datetime as dt
+from pathlib import Path
+from dataclasses import dataclass
+from typing import Dict, List, Optional
+from dataflow.config.loaders.base import BaseSpecReader
+
+@dataclass
+class FuturesOptSpec:
+    """Data class for a futures option contract specification"""
+    root_id: str
+    terms: int
+    underlying: str
+    contract_size: int
+    description: str
+    venue: str
+    time_zone: str
+    open_time_local: str
+    close_time_local: str
+    trading_days: List[int]
+    contract_month_code: List[str]
+    contract_months: List[str]
+    active: bool
+
+    def is_trading_now(self) -> bool:
+        pass
+
+
+class FuturesOptSpecReader(BaseSpecReader):
+    """Reader class for futures specification YAML configuration"""
+
+    def __init__(self, config_path: Optional[str] = None):
+        self.exchanges = {}
+        self.categories = {}
+        super().__init__(config_path, default_filename="futopt_spec.yaml")
+
+    def _load_config(self) -> Dict[str, FuturesOptSpec]:
+        """Load and parse the YAML configuration file"""
+        if not self.config_path.exists():
+            raise FileNotFoundError(f"Configuration file not found: {self.config_path}")
+
+        with open(self.config_path, 'r') as f:
+            self.raw_data = yaml.safe_load(f)
+
+        fut_option_spec_data = self.raw_data["futures_option_spec"] or {}
+        specs: Dict[str, FuturesOptSpec] = {}
+
+        for root_id, spec in fut_option_spec_data.items():
+            contract = FuturesOptSpec(
+                root_id=root_id,
+                terms=int(spec["terms"]),
+                underlying=spec["underlying"],
+                contract_size=int(spec["contract_size"]),
+                description=spec["description"],
+                venue=root_id.split('.')[1],
+                time_zone=spec["time_zone"],
+                open_time_local=spec["trading_hours"]["open_time_local"],
+                close_time_local=spec["trading_hours"]["close_time_local"],
+                trading_days=spec["trading_hours"]["trading_days"],
+                contract_month_code=[self.raw_data["contract_month_codes"][des] for des in spec["contract_months"]],
+                contract_months=spec["contract_months"],
+                active=bool(spec["active"])
+            )
+            specs[root_id] = contract
+        return specs
+
+    def get_contract(self, root_id: str) -> Optional[FuturesOptSpec]:
+        """Backward-compatible alias for get_spec."""
+        return self.get_spec(root_id)
+
+    def get_by_exchange(self, exchange: str) -> List[FuturesOptSpec]:
+        return [c for c in self.specs.values() if c.venue == exchange]
+
+    def get_by_category(self, category: str) -> List[FuturesOptSpec]:
+        return self.categories.get(category, [])
+
+    def all(self) -> Dict[str, FuturesOptSpec]:
+        return self.specs
+
+
+futures_opt_specs = FuturesOptSpecReader()
+
+if __name__ == "__main__":
+    futures_opt_specs = FuturesOptSpecReader()
+    print(futures_opt_specs)

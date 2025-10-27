@@ -49,14 +49,14 @@ def parse_arguments(args):
 
     parser.add_argument(
         "--start-range",
-        type=parse_time,
+        type=str,
         required=False,
         help="Start range time in 'HH:MM:SS' format",
     )
 
     parser.add_argument(
         "--end-range",
-        type=parse_time,
+        type=str,
         required=False,
         help="End range time in 'HH:MM:SS' format",
     )
@@ -120,9 +120,7 @@ def main(args):
     })
 
     service_config = {
-        "start": args.start_range.replace(tzinfo=UTC).isoformat() if args.start_range else None,
-        "end": args.end_end_range.replace(tzinfo=UTC).isoformat() if args.end_range else None,
-        "schema": args.schema,
+        **vars(args),
         "time_series": asset_ts,
     }
 
@@ -137,6 +135,15 @@ def clmain():
 
 
 if __name__ == "__main__":
+    bbg_args = [
+        "--mode", "PROD",
+        "--start-time", "01:00:00",
+        "--end-time", "23:00:00",
+        "--data-source", "bbg",
+        "--asset-type", "futoption",
+        "--schema", "ohlcv-1d"
+    ]
+
     onyx_args = [
         "--mode", "PROD",
         "--start-time", "01:00:00",
@@ -155,4 +162,4 @@ if __name__ == "__main__":
         "--schema", "ohlcv-1d"
     ]
 
-    main(onyx_args)
+    main(bbg_args)
