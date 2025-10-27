@@ -5433,7 +5433,7 @@
 - service_id: 339
   series_id: LME.AH.OPT.1
   series_type: futoption
-  root_id: LME.AH.OPT
+  root_id: LME.AH
   venue: LME
   data_schema: ohlcv-1d
   data_source: bbg
@@ -5448,7 +5448,7 @@
 - service_id: 340
   series_id: LME.AH.OPT.2
   series_type: futoption
-  root_id: LME.AH.OPT
+  root_id: LME.AH
   venue: LME
   data_schema: ohlcv-1d
   data_source: bbg
@@ -5463,7 +5463,7 @@
 - service_id: 341
   series_id: LME.AH.OPT.3
   series_type: futoption
-  root_id: LME.AH.OPT
+  root_id: LME.AH
   venue: LME
   data_schema: ohlcv-1d
   data_source: bbg
@@ -5478,7 +5478,7 @@
 - service_id: 342
   series_id: LME.AH.OPT.4
   series_type: futoption
-  root_id: LME.AH.OPT
+  root_id: LME.AH
   venue: LME
   data_schema: ohlcv-1d
   data_source: bbg
@@ -5493,7 +5493,7 @@
 - service_id: 343
   series_id: LME.AH.OPT.5
   series_type: futoption
-  root_id: LME.AH.OPT
+  root_id: LME.AH
   venue: LME
   data_schema: ohlcv-1d
   data_source: bbg
@@ -5508,7 +5508,7 @@
 - service_id: 344
   series_id: LME.AH.OPT.6
   series_type: futoption
-  root_id: LME.AH.OPT
+  root_id: LME.AH
   venue: LME
   data_schema: ohlcv-1d
   data_source: bbg
@@ -5523,7 +5523,7 @@
 - service_id: 345
   series_id: LME.AH.OPT.7
   series_type: futoption
-  root_id: LME.AH.OPT
+  root_id: LME.AH
   venue: LME
   data_schema: ohlcv-1d
   data_source: bbg
@@ -5538,7 +5538,7 @@
 - service_id: 346
   series_id: LME.AH.OPT.8
   series_type: futoption
-  root_id: LME.AH.OPT
+  root_id: LME.AH
   venue: LME
   data_schema: ohlcv-1d
   data_source: bbg
@@ -5553,7 +5553,7 @@
 - service_id: 347
   series_id: LME.AH.OPT.9
   series_type: futoption
-  root_id: LME.AH.OPT
+  root_id: LME.AH
   venue: LME
   data_schema: ohlcv-1d
   data_source: bbg
@@ -5568,7 +5568,7 @@
 - service_id: 348
   series_id: LME.AH.OPT.10
   series_type: futoption
-  root_id: LME.AH.OPT
+  root_id: LME.AH
   venue: LME
   data_schema: ohlcv-1d
   data_source: bbg
@@ -5583,7 +5583,7 @@
 - service_id: 349
   series_id: LME.AH.OPT.11
   series_type: futoption
-  root_id: LME.AH.OPT
+  root_id: LME.AH
   venue: LME
   data_schema: ohlcv-1d
   data_source: bbg
@@ -5598,7 +5598,7 @@
 - service_id: 350
   series_id: LME.AH.OPT.12
   series_type: futoption
-  root_id: LME.AH.OPT
+  root_id: LME.AH
   venue: LME
   data_schema: ohlcv-1d
   data_source: bbg

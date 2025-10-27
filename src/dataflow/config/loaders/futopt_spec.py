@@ -11,7 +11,6 @@ class FuturesOptSpec:
     """Data class for a futures option contract specification"""
     root_id: str
     terms: int
-    underlying: str
     contract_size: int
     description: str
     venue: str
@@ -48,9 +47,8 @@ class FuturesOptSpecReader(BaseSpecReader):
 
         for root_id, spec in fut_option_spec_data.items():
             contract = FuturesOptSpec(
-                root_id=root_id,
+                root_id=spec["root_id"],
                 terms=int(spec["terms"]),
-                underlying=spec["underlying"],
                 contract_size=int(spec["contract_size"]),
                 description=spec["description"],
                 venue=root_id.split('.')[1],

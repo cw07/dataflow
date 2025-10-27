@@ -67,26 +67,26 @@ def gen_fut_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
 
 def gen_fut_opt_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
     term_in_word = {1: "1st", 2: "2nd", 3: "3rd"}
-    for root_id, fut_spec in futures_opt_specs.specs.items():
+    for root_id, fut_opt_spec in futures_opt_specs.specs.items():
         pipelines = pipeline_specs.get_spec(root_id)
         if not pipelines:
             logger.warning(f"No pipeline for {root_id}")
             continue
         for pipeline in pipelines:
-            for i in range(1, fut_spec.terms + 1):
+            for i in range(1, fut_opt_spec.terms + 1):
                 ts = TimeSeriesConfig(
                     service_id=total_time_series,
                     series_id=f"{root_id}.{i}",
                     series_type=AssetType.FUT_OPTION,
-                    root_id=root_id,
+                    root_id=fut_opt_spec.root_id,
                     venue=root_id.split('.')[0],
                     data_schema=pipeline.schema,
                     data_source=pipeline.source,
                     destination=pipeline.output,
                     extractor=pipeline.extractor,
-                    description=term_in_word.get(i, str(i) + "th") + " " + fut_spec.description,
+                    description=term_in_word.get(i, str(i) + "th") + " " + fut_opt_spec.description,
                     additional_params=pipeline.params,
-                    active=fut_spec.active
+                    active=fut_opt_spec.active
                 )
                 time_series.append(ts)
                 total_time_series += 1

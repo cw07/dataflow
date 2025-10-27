@@ -2,9 +2,8 @@
 
 futures_option_spec:
   LME.AH.OPT:
-    root_id: LME.AH.OPT
+    root_id: LME.AH
     terms: 12
-    underlying: LME.AH
     contract_size: 25
     description: Aluminum Futures Option
     time_zone: Europe/London
