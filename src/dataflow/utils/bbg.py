@@ -1,6 +1,6 @@
 
 
-ROOT_TO_BBG = {
+DATAFLOW_ID_TO_BBG = {
     'ICE.B':  'CO',  # Crude Oil, Brent
     'ICE.G':  'QS',  # Gas oil, ICE, Low Su, europe
     'CME.CL': 'CL',  # Crude Oil, WTI
