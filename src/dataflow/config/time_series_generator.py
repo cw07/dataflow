@@ -78,7 +78,7 @@ def gen_fut_opt_spec(total_time_series: int, time_series: list[TimeSeriesConfig]
                     service_id=total_time_series,
                     series_id=f"{root_id}.{i}",
                     series_type=AssetType.FUT_OPTION,
-                    root_id=fut_opt_spec.root_id,
+                    root_id=f"{fut_opt_spec.root_id}.{i}",
                     venue=root_id.split('.')[0],
                     data_schema=pipeline.schema,
                     data_source=pipeline.source,
