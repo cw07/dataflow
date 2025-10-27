@@ -94,6 +94,7 @@ class OnyxHistoricalExtractor(BaseHistoricalExtractor):
 
     def on_message(self, data, time_series: TimeSeriesConfig):
         new_data = {
+            "venue": time_series.venue,
             "asset_type": time_series.series_type,
             "vendor": time_series.data_source,
             "symbol": time_series.symbol,
