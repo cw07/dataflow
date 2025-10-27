@@ -13,6 +13,55 @@ futures_option_spec:
       trading_days: [ 0,1,2,3,4 ]
     contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
     active: true
+  LME.PB.OPT:
+    root_id: LME.PB
+    terms: 12
+    contract_size: 25
+    description: Aluminum Futures Option
+    time_zone: Europe/London
+    trading_hours:
+      open_time_local: "20:00:00"
+      close_time_local: "19:45:00"
+      trading_days: [ 0,1,2,3,4 ]
+    contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+    active: true
+  LME.NI.OPT:
+    root_id: LME.NI
+    terms: 12
+    contract_size: 25
+    description: Aluminum Futures Option
+    time_zone: Europe/London
+    trading_hours:
+      open_time_local: "20:00:00"
+      close_time_local: "19:45:00"
+      trading_days: [ 0,1,2,3,4 ]
+    contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+    active: true
+  LME.CA.OPT:
+    root_id: LME.CA
+    terms: 12
+    contract_size: 25
+    description: Aluminum Futures Option
+    time_zone: Europe/London
+    trading_hours:
+      open_time_local: "20:00:00"
+      close_time_local: "19:45:00"
+      trading_days: [ 0,1,2,3,4 ]
+    contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+    active: true
+  LME.ZS.OPT:
+    root_id: LME.ZS
+    terms: 12
+    contract_size: 25
+    description: Aluminum Futures Option
+    time_zone: Europe/London
+    trading_hours:
+      open_time_local: "20:00:00"
+      close_time_local: "19:45:00"
+      trading_days: [ 0,1,2,3,4 ]
+    contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
+    active: true
+
 
 contract_month_codes:
   Jan: F

@@ -258,7 +258,7 @@ futures_spec:
       contract_months: [ Mar, May, Jul, Sep, Dec ]
       active: true
     LME.AH:
-      root_id: LA
+      root_id: LME.AH
       terms: 12
       contract_size: 25
       description: Aluminum Futures
@@ -270,7 +270,7 @@ futures_spec:
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
     LME.PB:
-      root_id: LL
+      root_id: LME.PB
       terms: 12
       contract_size: 25
       description: Lead Futures
@@ -282,7 +282,7 @@ futures_spec:
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
     LME.NI:
-      root_id: LN
+      root_id: LME.NI
       terms: 12
       contract_size: 6
       description: Nickle Futures
@@ -294,7 +294,7 @@ futures_spec:
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
     LME.CA:
-      root_id: LP
+      root_id: LME.CA
       terms: 12
       contract_size: 25
       description: Copper Futures
@@ -306,7 +306,7 @@ futures_spec:
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
     LME.ZS:
-      root_id: LX
+      root_id: LME.ZS
       terms: 12
       contract_size: 25
       description: Zinc Futures

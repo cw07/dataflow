@@ -247,3 +247,10 @@ root_ids:
         schema: ohlcv-1d
         output: database1
         params: '{"t_table_name": "raw_data.AH_daily_option_price"}'
+  LME.PB.OPT:
+    pipelines:
+      - extractor: historical
+        source: bbg
+        schema: ohlcv-1d
+        output: database1
+        params: '{"t_table_name": "raw_data.PB_daily_option_price"}'
