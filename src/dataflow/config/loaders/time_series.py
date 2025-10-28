@@ -150,6 +150,10 @@ class TimeSeriesFilterMixin:
         filtered = [s for s in self.time_series if s.data_schema == schema]
         return self._wrap_result(filtered)
 
+    def get_ts_by_root_id(self, root_id: str):
+        filtered = [s for s in self.time_series if s.root_id == root_id]
+        return self._wrap_result(filtered)
+
     def get_realtime_ts(self):
         """Filter for realtime series"""
         filtered = [s for s in self.time_series if s.extractor == "realtime"]
