@@ -60,7 +60,7 @@ class BBGSymbolResolver(BaseSymbolResolver):
                 Fields=['OPT_CHAIN']
             )
             logger.info(f"Got {len(opt_chain)} options for {bbg_id}")
-            options_mapping[dataflow_id] = ["".join(ticker.split()) for ticker in list(opt_chain['SECURITY_DESCRIPTION'])]
+            options_mapping[dataflow_id] = [" ".join(ticker.split()) for ticker in list(opt_chain['SECURITY_DESCRIPTION'])]
             time.sleep(5)
         return options_mapping
 
