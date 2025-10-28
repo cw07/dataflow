@@ -3,7 +3,7 @@
 futures_option_spec:
   LME.AH.OPT:
     root_id: LME.AH
-    terms: 12
+    terms: 18
     contract_size: 25
     description: Aluminum Futures Option
     time_zone: Europe/London
@@ -15,7 +15,7 @@ futures_option_spec:
     active: true
   LME.PB.OPT:
     root_id: LME.PB
-    terms: 12
+    terms: 18
     contract_size: 25
     description: Aluminum Futures Option
     time_zone: Europe/London
@@ -27,7 +27,7 @@ futures_option_spec:
     active: true
   LME.NI.OPT:
     root_id: LME.NI
-    terms: 12
+    terms: 18
     contract_size: 25
     description: Aluminum Futures Option
     time_zone: Europe/London
@@ -39,7 +39,7 @@ futures_option_spec:
     active: true
   LME.CA.OPT:
     root_id: LME.CA
-    terms: 12
+    terms: 18
     contract_size: 25
     description: Aluminum Futures Option
     time_zone: Europe/London
@@ -51,7 +51,7 @@ futures_option_spec:
     active: true
   LME.ZS.OPT:
     root_id: LME.ZS
-    terms: 12
+    terms: 18
     contract_size: 25
     description: Aluminum Futures Option
     time_zone: Europe/London
