@@ -5771,7 +5771,7 @@
   series_type: futoption
   root_id: LME.AH.1
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5786,7 +5786,7 @@
   series_type: futoption
   root_id: LME.AH.2
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5801,7 +5801,7 @@
   series_type: futoption
   root_id: LME.AH.3
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5816,7 +5816,7 @@
   series_type: futoption
   root_id: LME.AH.4
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5831,7 +5831,7 @@
   series_type: futoption
   root_id: LME.AH.5
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5846,7 +5846,7 @@
   series_type: futoption
   root_id: LME.AH.6
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5861,7 +5861,7 @@
   series_type: futoption
   root_id: LME.AH.7
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5876,7 +5876,7 @@
   series_type: futoption
   root_id: LME.AH.8
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5891,7 +5891,7 @@
   series_type: futoption
   root_id: LME.AH.9
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5906,7 +5906,7 @@
   series_type: futoption
   root_id: LME.AH.10
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5921,7 +5921,7 @@
   series_type: futoption
   root_id: LME.AH.11
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5936,7 +5936,7 @@
   series_type: futoption
   root_id: LME.AH.12
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5951,7 +5951,7 @@
   series_type: futoption
   root_id: LME.PB.1
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5966,7 +5966,7 @@
   series_type: futoption
   root_id: LME.PB.2
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5981,7 +5981,7 @@
   series_type: futoption
   root_id: LME.PB.3
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -5996,7 +5996,7 @@
   series_type: futoption
   root_id: LME.PB.4
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -6011,7 +6011,7 @@
   series_type: futoption
   root_id: LME.PB.5
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -6026,7 +6026,7 @@
   series_type: futoption
   root_id: LME.PB.6
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -6041,7 +6041,7 @@
   series_type: futoption
   root_id: LME.PB.7
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -6056,7 +6056,7 @@
   series_type: futoption
   root_id: LME.PB.8
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -6071,7 +6071,7 @@
   series_type: futoption
   root_id: LME.PB.9
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -6086,7 +6086,7 @@
   series_type: futoption
   root_id: LME.PB.10
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -6101,7 +6101,7 @@
   series_type: futoption
   root_id: LME.PB.11
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
@@ -6116,7 +6116,7 @@
   series_type: futoption
   root_id: LME.PB.12
   venue: LME
-  data_schema: ohlcv-1d
+  data_schema: option-1d
   data_source: bbg
   destination:
   - database1
