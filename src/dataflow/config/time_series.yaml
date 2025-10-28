@@ -6126,3 +6126,543 @@
     t_table_name: rawdata.PB_daily_option_price
   symbol: null
   active: true
+- service_id: 387
+  series_id: LME.NI.OPT.1
+  series_type: futoption
+  root_id: LME.NI.1
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 1st Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.NI_daily_option_price
+  symbol: null
+  active: true
+- service_id: 388
+  series_id: LME.NI.OPT.2
+  series_type: futoption
+  root_id: LME.NI.2
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 2nd Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.NI_daily_option_price
+  symbol: null
+  active: true
+- service_id: 389
+  series_id: LME.NI.OPT.3
+  series_type: futoption
+  root_id: LME.NI.3
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 3rd Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.NI_daily_option_price
+  symbol: null
+  active: true
+- service_id: 390
+  series_id: LME.NI.OPT.4
+  series_type: futoption
+  root_id: LME.NI.4
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 4th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.NI_daily_option_price
+  symbol: null
+  active: true
+- service_id: 391
+  series_id: LME.NI.OPT.5
+  series_type: futoption
+  root_id: LME.NI.5
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 5th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.NI_daily_option_price
+  symbol: null
+  active: true
+- service_id: 392
+  series_id: LME.NI.OPT.6
+  series_type: futoption
+  root_id: LME.NI.6
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 6th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.NI_daily_option_price
+  symbol: null
+  active: true
+- service_id: 393
+  series_id: LME.NI.OPT.7
+  series_type: futoption
+  root_id: LME.NI.7
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 7th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.NI_daily_option_price
+  symbol: null
+  active: true
+- service_id: 394
+  series_id: LME.NI.OPT.8
+  series_type: futoption
+  root_id: LME.NI.8
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 8th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.NI_daily_option_price
+  symbol: null
+  active: true
+- service_id: 395
+  series_id: LME.NI.OPT.9
+  series_type: futoption
+  root_id: LME.NI.9
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 9th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.NI_daily_option_price
+  symbol: null
+  active: true
+- service_id: 396
+  series_id: LME.NI.OPT.10
+  series_type: futoption
+  root_id: LME.NI.10
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 10th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.NI_daily_option_price
+  symbol: null
+  active: true
+- service_id: 397
+  series_id: LME.NI.OPT.11
+  series_type: futoption
+  root_id: LME.NI.11
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 11th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.NI_daily_option_price
+  symbol: null
+  active: true
+- service_id: 398
+  series_id: LME.NI.OPT.12
+  series_type: futoption
+  root_id: LME.NI.12
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 12th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.NI_daily_option_price
+  symbol: null
+  active: true
+- service_id: 399
+  series_id: LME.CA.OPT.1
+  series_type: futoption
+  root_id: LME.CA.1
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 1st Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.CA_daily_option_price
+  symbol: null
+  active: true
+- service_id: 400
+  series_id: LME.CA.OPT.2
+  series_type: futoption
+  root_id: LME.CA.2
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 2nd Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.CA_daily_option_price
+  symbol: null
+  active: true
+- service_id: 401
+  series_id: LME.CA.OPT.3
+  series_type: futoption
+  root_id: LME.CA.3
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 3rd Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.CA_daily_option_price
+  symbol: null
+  active: true
+- service_id: 402
+  series_id: LME.CA.OPT.4
+  series_type: futoption
+  root_id: LME.CA.4
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 4th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.CA_daily_option_price
+  symbol: null
+  active: true
+- service_id: 403
+  series_id: LME.CA.OPT.5
+  series_type: futoption
+  root_id: LME.CA.5
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 5th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.CA_daily_option_price
+  symbol: null
+  active: true
+- service_id: 404
+  series_id: LME.CA.OPT.6
+  series_type: futoption
+  root_id: LME.CA.6
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 6th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.CA_daily_option_price
+  symbol: null
+  active: true
+- service_id: 405
+  series_id: LME.CA.OPT.7
+  series_type: futoption
+  root_id: LME.CA.7
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 7th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.CA_daily_option_price
+  symbol: null
+  active: true
+- service_id: 406
+  series_id: LME.CA.OPT.8
+  series_type: futoption
+  root_id: LME.CA.8
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 8th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.CA_daily_option_price
+  symbol: null
+  active: true
+- service_id: 407
+  series_id: LME.CA.OPT.9
+  series_type: futoption
+  root_id: LME.CA.9
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 9th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.CA_daily_option_price
+  symbol: null
+  active: true
+- service_id: 408
+  series_id: LME.CA.OPT.10
+  series_type: futoption
+  root_id: LME.CA.10
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 10th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.CA_daily_option_price
+  symbol: null
+  active: true
+- service_id: 409
+  series_id: LME.CA.OPT.11
+  series_type: futoption
+  root_id: LME.CA.11
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 11th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.CA_daily_option_price
+  symbol: null
+  active: true
+- service_id: 410
+  series_id: LME.CA.OPT.12
+  series_type: futoption
+  root_id: LME.CA.12
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 12th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.CA_daily_option_price
+  symbol: null
+  active: true
+- service_id: 411
+  series_id: LME.ZS.OPT.1
+  series_type: futoption
+  root_id: LME.ZS.1
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 1st Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.ZS_daily_option_price
+  symbol: null
+  active: true
+- service_id: 412
+  series_id: LME.ZS.OPT.2
+  series_type: futoption
+  root_id: LME.ZS.2
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 2nd Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.ZS_daily_option_price
+  symbol: null
+  active: true
+- service_id: 413
+  series_id: LME.ZS.OPT.3
+  series_type: futoption
+  root_id: LME.ZS.3
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 3rd Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.ZS_daily_option_price
+  symbol: null
+  active: true
+- service_id: 414
+  series_id: LME.ZS.OPT.4
+  series_type: futoption
+  root_id: LME.ZS.4
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 4th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.ZS_daily_option_price
+  symbol: null
+  active: true
+- service_id: 415
+  series_id: LME.ZS.OPT.5
+  series_type: futoption
+  root_id: LME.ZS.5
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 5th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.ZS_daily_option_price
+  symbol: null
+  active: true
+- service_id: 416
+  series_id: LME.ZS.OPT.6
+  series_type: futoption
+  root_id: LME.ZS.6
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 6th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.ZS_daily_option_price
+  symbol: null
+  active: true
+- service_id: 417
+  series_id: LME.ZS.OPT.7
+  series_type: futoption
+  root_id: LME.ZS.7
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 7th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.ZS_daily_option_price
+  symbol: null
+  active: true
+- service_id: 418
+  series_id: LME.ZS.OPT.8
+  series_type: futoption
+  root_id: LME.ZS.8
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 8th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.ZS_daily_option_price
+  symbol: null
+  active: true
+- service_id: 419
+  series_id: LME.ZS.OPT.9
+  series_type: futoption
+  root_id: LME.ZS.9
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 9th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.ZS_daily_option_price
+  symbol: null
+  active: true
+- service_id: 420
+  series_id: LME.ZS.OPT.10
+  series_type: futoption
+  root_id: LME.ZS.10
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 10th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.ZS_daily_option_price
+  symbol: null
+  active: true
+- service_id: 421
+  series_id: LME.ZS.OPT.11
+  series_type: futoption
+  root_id: LME.ZS.11
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 11th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.ZS_daily_option_price
+  symbol: null
+  active: true
+- service_id: 422
+  series_id: LME.ZS.OPT.12
+  series_type: futoption
+  root_id: LME.ZS.12
+  venue: LME
+  data_schema: option-1d
+  data_source: bbg
+  destination:
+  - database1
+  extractor: historical
+  description: 12th Aluminum Futures Option
+  additional_params:
+    t_table_name: rawdata.ZS_daily_option_price
+  symbol: null
+  active: true
