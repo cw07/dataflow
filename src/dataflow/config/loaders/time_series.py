@@ -1,6 +1,7 @@
+import re
 import json
-import pandas as pd
 import yaml
+import pandas as pd
 from typing import Any, Optional
 from pydantic import BaseModel, Field, field_validator, model_validator
 
@@ -152,8 +153,17 @@ class TimeSeriesFilterMixin:
 
     def get_ts_by_root_id(self, root_id: Optional[list[str]]):
         if root_id:
-            unique_root_id = set(root_id)
-            filtered = [s for s in self.time_series if s.root_id in unique_root_id]
+            filtered = []
+            for s in self.time_series:
+                for pattern in root_id:
+                    if any(char in pattern for char in ['*', '.', '^', '$', '[', ']']):
+                        if re.match(pattern, s.root_id):
+                            filtered.append(s)
+                            break
+                    else:
+                        if s.root_id == pattern:
+                            filtered.append(s)
+                            break
         else:
             filtered = self.time_series
         return self._wrap_result(filtered)
