@@ -4,8 +4,10 @@ import logging
 import argparse
 import datetime as dt
 from functools import partial
+from pyarrow import logging_memory_pool
 
 from datacore.models.assets import AssetType
+from datacore.models.mktdata.venue import Venue
 from datacore.models.mktdata.datasource import DataSource
 
 from tradetools import DEFAULT_TIMEZONE
@@ -48,15 +50,21 @@ def parse_arguments(args):
     )
 
     parser.add_argument(
-        "--data-source",
-        type=DataSource,
-        help="data source"
+        "--venue",
+        type=Venue,
+        help="venue"
     )
 
     parser.add_argument(
         "--asset-type",
         type=AssetType,
         help="asset type"
+    )
+
+    parser.add_argument(
+        "--data-source",
+        type=DataSource,
+        help="data source"
     )
 
     parser.add_argument(
@@ -120,31 +128,35 @@ def clmain():
 
 
 if __name__ == "__main__":
-    onyx_args = [
+
+    onyx_fut_onyx = [
         "--mode", "PROD",
         "--end-time", "05:30:00 1",
-        "--data-source", "onyx",
+        "--venue", "ONYX",
         "--asset-type", "fut",
+        "--data-source", "onyx",
         "--schema", "mbp-1"
     ]
 
-    bbg_args = [
+    lme_fut_bbg = [
         "--mode", "PROD",
         "--end-time", "05:30:00 1",
+        "--venue", "LME",
         "--data-source", "bbg",
         "--asset-type", "fut",
         "--schema", "mbp-1"
     ]
 
-    databento_args = [
+    cme_fut_databento = [
         "--mode", "PROD",
         "--end-time", "23:59:00",
-        "--data-source", "databento",
+        "--venue", "CME",
         "--asset-type", "fut",
+        "--data-source", "databento",
         "--schema", "mbp-1"
     ]
 
-    main(databento_args)
+    main(cme_fut_databento)
 
 
 

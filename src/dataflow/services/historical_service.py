@@ -6,6 +6,7 @@ import datetime as dt
 from functools import partial
 
 from datacore.models.assets import AssetType
+from datacore.models.mktdata.venue import Venue
 from datacore.models.mktdata.datasource import DataSource
 
 from tradetools.bdate import BDate
@@ -63,9 +64,9 @@ def parse_arguments(args):
     )
 
     parser.add_argument(
-        "--data-source",
-        type=DataSource,
-        help="data source"
+        "--venue",
+        type=Venue,
+        help="venue"
     )
 
     parser.add_argument(
@@ -75,15 +76,21 @@ def parse_arguments(args):
     )
 
     parser.add_argument(
-        "--extra-ids",
-        nargs='*',
-        default=[]
+        "--data-source",
+        type=DataSource,
+        help="data source"
     )
 
     parser.add_argument(
         "--schema",
         type=str,
         required=True
+    )
+
+    parser.add_argument(
+        "--extra-ids",
+        nargs='*',
+        default=[]
     )
 
     parser.add_argument(
@@ -141,31 +148,35 @@ def clmain():
 
 
 if __name__ == "__main__":
-    bbg_args = [
+
+    lme_futopt_bbg = [
         "--mode", "PROD",
         "--start-time", "01:00:00",
         "--end-time", "23:00:00",
-        "--data-source", "bbg",
+        "--venue", "LME",
         "--asset-type", "futoption",
+        "--data-source", "bbg",
         "--schema", "option-1d"
     ]
 
-    onyx_args = [
+    onyx_fut_onyx = [
         "--mode", "PROD",
         "--start-time", "01:00:00",
         "--end-time", "12:00:00",
-        "--data-source", "onyx",
+        "--venue", "ONYX",
         "--asset-type", "fut",
+        "--data-source", "onyx",
         "--schema", "ohlcv-1d"
     ]
 
-    mkt_db_args = [
+    sgx_index_mktdb = [
         "--mode", "PROD",
         "--start-time", "07:00:00",
         "--end-time", "12:00:00",
-        "--data-source", "mkt_db",
+        "--venue", "SGX",
         "--asset-type", "index",
+        "--data-source", "mkt_db",
         "--schema", "ohlcv-1d"
     ]
 
-    main(bbg_args)
+    main(lme_futopt_bbg)
