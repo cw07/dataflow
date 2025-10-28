@@ -44,3 +44,8 @@ BBG_SYMBOL_SPEC = {
     'XAUUSD': {'asset_type': 'fx', 'bbg_root_id': 'XAUUSD', 'year_digit': 0, 'suffix': ' Currency'},
     'XPTUSD': {'asset_type': 'fx', 'bbg_root_id': 'XPTUSD', 'year_digit': 0, 'suffix': ' Currency'}
 }
+
+
+COLUMN_MAPPING = {
+    "LME": {"date": "TIMESTAMP"}
+}
