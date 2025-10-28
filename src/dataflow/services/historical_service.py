@@ -120,7 +120,7 @@ def main(args):
         "EXTRACT_END_TIME": args.end_time.isoformat(),
     })
 
-    start_range = args.start_range if args.start_ranage else BDate("T-1").date
+    start_range = args.start_range if args.start_range else BDate("T-1").date
     end_range = args.end_range if args.end_range else BDate("T-1").date
 
     service_config = {
