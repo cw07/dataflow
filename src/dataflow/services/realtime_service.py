@@ -77,6 +77,12 @@ def parse_arguments(args):
     )
 
     parser.add_argument(
+        "--root-ids",
+        nargs="*",
+        type=str,
+    )
+
+    parser.add_argument(
         "--extra-ids",
         nargs='*',
         default=[]
@@ -106,6 +112,7 @@ def main(args):
         .get_ts_by_asset_type(args.asset_type)
         .get_ts_by_source(args.data_source)
         .get_ts_by_schema(args.schema)
+        .get_ts_by_root_id(args.root_ids)
     )
     if not asset_ts:
         logger.error(f"No historical time series found for asset type [{args.data_source}] [{args.asset_type}] [{args.schema}]")
