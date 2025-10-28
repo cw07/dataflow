@@ -260,32 +260,32 @@ root_ids:
         source: bbg
         schema: option-1d
         output: database1
-        params: '{"t_table_name": "rawdata.LME_AH_daily_option_price"}'
+        params: '{"t_table_name": "LME_AH_daily_option_price", "t_schema_name":"rawdata"}'
   LME.PB.OPT:
     pipelines:
       - extractor: historical
         source: bbg
         schema: option-1d
         output: database1
-        params: '{"t_table_name": "rawdata.LME_PB_daily_option_price"}'
+        params: '{"t_table_name": "LME_PB_daily_option_price", "t_schema_name":"rawdata"}'
   LME.NI.OPT:
     pipelines:
       - extractor: historical
         source: bbg
         schema: option-1d
         output: database1
-        params: '{"t_table_name": "rawdata.LME_NI_daily_option_price"}'
+        params: '{"t_table_name": "LME_NI_daily_option_price", "t_schema_name":"rawdata"}'
   LME.CA.OPT:
     pipelines:
       - extractor: historical
         source: bbg
         schema: option-1d
         output: database1
-        params: '{"t_table_name": "rawdata.LME_CA_daily_option_price"}'
+        params: '{"t_table_name": "LME_CA_daily_option_price", "t_schema_name":"rawdata"}'
   LME.ZS.OPT:
     pipelines:
       - extractor: historical
         source: bbg
         schema: option-1d
         output: database1
-        params: '{"t_table_name": "rawdata.LME_ZS_daily_option_price"}'
+        params: '{"t_table_name": "LME_ZS_daily_option_price", "t_schema_name":"rawdata"}'
