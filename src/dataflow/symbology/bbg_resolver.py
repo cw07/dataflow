@@ -1,6 +1,6 @@
 import time
 import logging
-from bamdata.api.bloomberg import bloomberg
+from bamdataimport bloomberg
 from bamdata.api import get
 
 from datacore.models.assets import AssetType
