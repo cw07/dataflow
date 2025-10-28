@@ -147,7 +147,7 @@ if __name__ == "__main__":
         "--end-time", "23:00:00",
         "--data-source", "bbg",
         "--asset-type", "futoption",
-        "--schema", "ohlcv-1d"
+        "--schema", "option-1d"
     ]
 
     onyx_args = [
