@@ -130,6 +130,11 @@ class TimeSeriesFilterMixin:
         filtered = [s for s in self.time_series if s.active]
         return self._wrap_result(filtered)
 
+    def get_ts_by_venue(self, venue: str):
+        """Filter by venue"""
+        filtered = [s for s in self.time_series if s.venue == venue]
+        return self._wrap_result(filtered)
+
     def get_ts_by_source(self, source: str):
         """Filter by data source"""
         filtered = [s for s in self.time_series if s.data_source == source]

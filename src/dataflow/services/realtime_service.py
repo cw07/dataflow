@@ -52,31 +52,34 @@ def parse_arguments(args):
     parser.add_argument(
         "--venue",
         type=Venue,
+        required=True,
         help="venue"
     )
 
     parser.add_argument(
         "--asset-type",
         type=AssetType,
+        required=True,
         help="asset type"
     )
 
     parser.add_argument(
         "--data-source",
         type=DataSource,
+        required=True,
         help="data source"
-    )
-
-    parser.add_argument(
-        "--extra-ids",
-        nargs='*',
-        default=[]
     )
 
     parser.add_argument(
         "--schema",
         type=str,
         required=True
+    )
+
+    parser.add_argument(
+        "--extra-ids",
+        nargs='*',
+        default=[]
     )
 
     parser.add_argument(
@@ -99,6 +102,7 @@ def main(args):
 
     asset_ts = (
         time_series_config.get_realtime_ts()
+        .get_ts_by_venue(args.venue)
         .get_ts_by_asset_type(args.asset_type)
         .get_ts_by_source(args.data_source)
         .get_ts_by_schema(args.schema)
