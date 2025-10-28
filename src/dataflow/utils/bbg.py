@@ -1,5 +1,3 @@
-
-
 DATAFLOW_ID_TO_BBG = {
     'ICE.B':  'CO',  # Crude Oil, Brent
     'ICE.G':  'QS',  # Gas oil, ICE, Low Su, europe

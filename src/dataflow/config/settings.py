@@ -151,6 +151,7 @@ class Settings(BaseSettings):
     onyx_api_key: Optional[str]
     onyx_url: Optional[str]
     sparta_api_key: Optional[str]
+    bpipe_app_name: Optional[str]
 
     model_config = SettingsConfigDict(
         env_file=[Path(__file__).resolve().parent / '.env.common', Path(__file__).resolve().parent / '.env'],
