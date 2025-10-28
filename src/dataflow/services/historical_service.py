@@ -8,7 +8,8 @@ from functools import partial
 from datacore.models.assets import AssetType
 from datacore.models.mktdata.datasource import DataSource
 
-from tradetools import DEFAULT_TIMEZONE, UTC
+from tradetools.bdate import BDate
+from tradetools import DEFAULT_TIMEZONE
 from tradetools.common import parse_time, print_args
 
 from dataflow.utils.common import set_env_vars
@@ -119,9 +120,14 @@ def main(args):
         "EXTRACT_END_TIME": args.end_time.isoformat(),
     })
 
+    start_range = args.start_range if args.start_ranage else BDate("T-1").date
+    end_range = args.end_range if args.end_range else BDate("T-1").date
+
     service_config = {
         **vars(args),
         "time_series": asset_ts,
+        "start_range": start_range,
+        "end_range": end_range
     }
 
     print_args(args, extra_params=service_config)
