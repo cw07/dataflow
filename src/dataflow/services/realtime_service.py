@@ -6,8 +6,8 @@ import datetime as dt
 from functools import partial
 from pyarrow import logging_memory_pool
 
-from datacore.models.assets import AssetType
 from datacore.models.mktdata.venue import Venue
+from datacore.models.assets.asset_type import AssetType
 from datacore.models.mktdata.datasource import DataSource
 
 from tradetools import DEFAULT_TIMEZONE

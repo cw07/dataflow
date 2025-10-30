@@ -5,7 +5,7 @@ import yaml
 import logging
 from pathlib import Path
 
-from datacore.models.assets import AssetType
+from datacore.models.assets.asset_type import AssetType
 
 from dataflow.config.loaders.fx_spec import fx_specs
 from dataflow.config.loaders.spread_spec import spread_specs
