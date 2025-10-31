@@ -169,10 +169,10 @@ def gen_fx_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
         for pipeline in pipelines:
             fx = FXSpot(
                 dflow_id=root_id,
-                hours=TradingHours(time_zone=fx_specs.time_zone,
-                                   open_time_local=fx_specs.open_time_local,
-                                   close_time_local=fx_specs.close_time_local,
-                                   days=fx_specs.trading_days
+                hours=TradingHours(time_zone=fx_spec.time_zone,
+                                   open_time_local=fx_spec.open_time_local,
+                                   close_time_local=fx_spec.close_time_local,
+                                   days=fx_spec.trading_days
                                    ),
                 description=fx_spec.description
             )
