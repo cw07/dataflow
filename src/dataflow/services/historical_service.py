@@ -14,7 +14,7 @@ from tradetools import DEFAULT_TIMEZONE
 from tradetools.common import parse_time, print_args
 
 from dataflow.utils.common import set_env_vars
-from dataflow.config.loaders.time_series import time_series_config
+from dataflow.config.loaders.manager import time_series_config
 
 
 logging.basicConfig(
@@ -165,10 +165,9 @@ if __name__ == "__main__":
         "--start-time", "01:00:00",
         "--end-time", "23:00:00",
         "--venue", "LME",
-        "--asset-type", "futoption",
+        "--asset-type", "fut_option",
         "--data-source", "bbg",
         "--schema", "option-1d",
-        "--root-ids", "LME.AH.1", "LME.AH.2"
     ]
 
     onyx_fut_onyx = [
