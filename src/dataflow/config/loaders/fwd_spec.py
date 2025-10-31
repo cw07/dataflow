@@ -10,6 +10,7 @@ class ForwardSpec:
     root_id: str
     venue: str
     time_zone: str
+    contract_size: int
     description: str = ""
     trading_days: List[int] = field(default_factory=list)
     open_time_local: Optional[str] = None
@@ -41,6 +42,7 @@ class ForwardSpecReader(BaseSpecReader):
             fwd_spec = ForwardSpec(
                 root_id=fwd_spec["root_id"],
                 venue=fwd_spec["root_id"].split(".")[0],
+                contract_size=fwd_spec["contract_size"],
                 description=fwd_spec["description"],
                 time_zone=fwd_spec["time_zone"],
                 open_time_local=trading_hours["open_time_local"],
