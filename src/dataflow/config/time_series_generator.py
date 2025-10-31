@@ -143,6 +143,7 @@ def gen_index_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
                                    close_time_local=index_spec.close_time_local,
                                    days=index_spec.trading_days
                                    ),
+                description=index_spec.description
             )
             ts = TimeSeriesConfig(
                 service_id=total_time_series,
@@ -166,17 +167,22 @@ def gen_fx_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
             logger.warning(f"No pipeline for {root_id}")
             continue
         for pipeline in pipelines:
+            fx = FXSpot(
+                dflow_id=root_id,
+                hours=TradingHours(time_zone=fx_specs.time_zone,
+                                   open_time_local=fx_specs.open_time_local,
+                                   close_time_local=fx_specs.close_time_local,
+                                   days=fx_specs.trading_days
+                                   ),
+                description=fx_spec.description
+            )
             ts = TimeSeriesConfig(
                 service_id=total_time_series,
-                series_id=f"{root_id}",
-                series_type=AssetType.FX,
-                root_id=root_id,
-                venue="GLOBAL",
+                asset=fx,
                 data_schema=pipeline.schema,
                 data_source=pipeline.source,
                 destination=pipeline.output,
                 extractor=pipeline.extractor,
-                description=fx_spec.description,
                 additional_params=pipeline.params,
                 active=fx_spec.active
             )
