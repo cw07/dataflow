@@ -6,6 +6,7 @@ import logging
 from pathlib import Path
 
 from datacore.models.assets.asset_type import AssetType
+from datacore.models.assets import Index, Forward, FXSpot, Futures, FuturesOptions, BaseFutures, TradingHours
 
 from dataflow.config.loaders.fx_spec import fx_specs
 from dataflow.config.loaders.spread_spec import spread_specs
@@ -37,59 +38,124 @@ def parse_arguments(args):
     return args
 
 
-def gen_fut_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
-    term_in_word = {1: "1st", 2: "2nd", 3: "3rd"}
+def gen_fut_spec(num_time_series: int, time_series: list[TimeSeriesConfig]):
     for root_id, fut_spec in futures_specs.specs.items():
+        base_future = BaseFutures(
+            dflow_id=root_id,
+            venue=fut_spec.venue,
+            terms=fut_spec.terms,
+            contract_size=fut_spec.contract_size,
+            hours=TradingHours(time_zone=fut_spec.time_zone,
+                               open_time_local=fut_spec.open_time_local,
+                               close_time_local=fut_spec.close_time_local,
+                               days=fut_spec.trading_days
+                               ),
+            contract_months=fut_spec.contract_months,
+            description=fut_spec.description,
+            category=fut_spec.category
+        )
         pipelines = pipeline_specs.get_spec(root_id)
         if not pipelines:
             logger.warning(f"No pipeline for {root_id}")
             continue
         for pipeline in pipelines:
             for i in range(1, fut_spec.terms+1):
+                futures = Futures(
+                    dflow_id=f"{root_id}.{i}",
+                    parent=base_future,
+                    term=i
+                )
                 ts = TimeSeriesConfig(
-                    service_id=total_time_series,
-                    series_id=f"{root_id}.{i}",
-                    series_type=AssetType.FUT,
-                    root_id=root_id,
-                    venue=root_id.split(".")[0],
+                    service_id=num_time_series,
+                    asset=futures,
                     data_schema=pipeline.schema,
                     data_source=pipeline.source,
                     destination=pipeline.output,
                     extractor=pipeline.extractor,
-                    description=term_in_word.get(i, str(i)+"th") + " " + fut_spec.description,
                     additional_params=pipeline.params,
                     active=fut_spec.active
                 )
                 time_series.append(ts)
-                total_time_series += 1
-    return total_time_series, time_series
+                num_time_series += 1
+    return num_time_series, time_series
 
 
-def gen_fut_opt_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
-    term_in_word = {1: "1st", 2: "2nd", 3: "3rd"}
+def gen_fut_opt_spec(num_time_series: int, time_series: list[TimeSeriesConfig]):
     for root_id, fut_opt_spec in futures_opt_specs.specs.items():
+        fut_spec = futures_specs.specs[fut_opt_spec.parent]
+        base_future = BaseFutures(
+            dflow_id=fut_spec.root_id,
+            venue=fut_spec.venue,
+            terms=fut_spec.terms,
+            contract_size=fut_spec.contract_size,
+            hours=TradingHours(time_zone=fut_spec.time_zone,
+                               open_time_local=fut_spec.open_time_local,
+                               close_time_local=fut_spec.close_time_local,
+                               days=fut_spec.trading_days
+                               ),
+            contract_months=fut_spec.contract_months,
+            description=fut_spec.description,
+            category=fut_spec.category
+        )
         pipelines = pipeline_specs.get_spec(root_id)
         if not pipelines:
             logger.warning(f"No pipeline for {root_id}")
             continue
         for pipeline in pipelines:
             for i in range(1, fut_opt_spec.terms + 1):
+                futures = Futures(
+                    dflow_id=f"{base_future.dflow_id}.{i}",
+                    parent=base_future,
+                    term=i
+                )
+                futures_option = FuturesOptions(
+                    dflow_id=f"{root_id}.{i}",
+                    term=i,
+                    parent=futures
+                )
                 ts = TimeSeriesConfig(
-                    service_id=total_time_series,
-                    series_id=f"{root_id}.{i}",
-                    series_type=AssetType.FUT_OPTION,
-                    root_id=f"{fut_opt_spec.root_id}.{i}",
-                    venue=root_id.split('.')[0],
+                    service_id=num_time_series,
+                    asset=futures_option,
                     data_schema=pipeline.schema,
                     data_source=pipeline.source,
                     destination=pipeline.output,
                     extractor=pipeline.extractor,
-                    description=term_in_word.get(i, str(i) + "th") + " " + fut_opt_spec.description,
                     additional_params=pipeline.params,
                     active=fut_opt_spec.active
                 )
                 time_series.append(ts)
-                total_time_series += 1
+                num_time_series += 1
+    return num_time_series, time_series
+
+
+def gen_index_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
+    for root_id, index_spec in index_specs.specs.items():
+        pipelines = pipeline_specs.get_spec(root_id)
+        if not pipelines:
+            logger.warning(f"No pipeline for {root_id}")
+            continue
+        for pipeline in pipelines:
+            index = Index(
+                dflow_id=root_id,
+                venue=index_spec.venue,
+                hours=TradingHours(time_zone=index_spec.time_zone,
+                                   open_time_local=index_spec.open_time_local,
+                                   close_time_local=index_spec.close_time_local,
+                                   days=index_spec.trading_days
+                                   ),
+            )
+            ts = TimeSeriesConfig(
+                service_id=total_time_series,
+                asset=index,
+                data_schema=pipeline.schema,
+                data_source=pipeline.source,
+                destination=pipeline.output,
+                extractor=pipeline.extractor,
+                additional_params=pipeline.params,
+                active=index_spec.active
+            )
+            time_series.append(ts)
+            total_time_series += 1
     return total_time_series, time_series
 
 
@@ -119,30 +185,7 @@ def gen_fx_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
     return total_time_series, time_series
 
 
-def gen_index_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
-    for root_id, index_spec in index_specs.specs.items():
-        pipelines = pipeline_specs.get_spec(root_id)
-        if not pipelines:
-            logger.warning(f"No pipeline for {root_id}")
-            continue
-        for pipeline in pipelines:
-            ts = TimeSeriesConfig(
-                service_id=total_time_series,
-                series_id=f"{root_id}",
-                series_type=AssetType.INDEX,
-                root_id=root_id,
-                venue=root_id.split(".")[0],
-                data_schema=pipeline.schema,
-                data_source=pipeline.source,
-                destination=pipeline.output,
-                extractor=pipeline.extractor,
-                description=index_spec.description,
-                additional_params=pipeline.params,
-                active=index_spec.active
-            )
-            time_series.append(ts)
-            total_time_series += 1
-    return total_time_series, time_series
+
 
 
 def get_fwd_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
@@ -194,13 +237,12 @@ def main(args):
     time_series = []
     total_time_series = 1
     total_time_series, time_series = gen_fut_spec(total_time_series, time_series)
+    total_time_series, time_series = gen_fut_opt_spec(total_time_series, time_series)
     total_time_series, time_series = gen_index_spec(total_time_series, time_series)
     total_time_series, time_series = gen_fx_spec(total_time_series, time_series)
     total_time_series, time_series = get_fwd_spec(total_time_series, time_series)
     total_time_series, time_series = gen_equity_spec(total_time_series, time_series)
     total_time_series, time_series = gen_spread_spec(total_time_series, time_series)
-    total_time_series, time_series = gen_fut_opt_spec(total_time_series, time_series)
-
     serialization(time_series, output_type=args.serialization)
     if args.generate_html:
         time_series_html(time_series, output_path=Path("./time_series.html"))

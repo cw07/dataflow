@@ -6,8 +6,8 @@ index_spec:
     description: PLATTS IODEX CFR CHINA 62% Fe $/DMT
     time_zone: Asia/Singapore
     trading_hours:
-      open_time_local:
-      close_time_local:
+      open_time_local: [ "09:00:00", "13:00:00" ]
+      close_time_local: [ "12:00:00", "17:00:00" ]
       trading_days: [ 0,1,2,3,4 ]
       active: true
 

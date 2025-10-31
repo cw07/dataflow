@@ -3,7 +3,6 @@
 futures_spec:
   energy:
     CME.CL:
-      root_id: CL
       terms: 24
       contract_size: 1000
       description: WTI Futures
@@ -15,7 +14,6 @@ futures_spec:
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
     CME.QM:
-      root_id: QM
       terms: 12
       contract_size: 500
       description: E-mini WTI Futures
@@ -27,7 +25,6 @@ futures_spec:
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
     CME.MCL:
-      root_id: MCL
       terms: 12
       contract_size: 100
       description: Micro WTI Futures
@@ -39,7 +36,6 @@ futures_spec:
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
     CME.NG:
-      root_id: NG
       terms: 24
       contract_size: 10000
       description: Natural Gas Henry Hub Futures
@@ -51,7 +47,6 @@ futures_spec:
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
     CME.QG:
-      root_id: QG
       terms: 12
       contract_size: 2500
       description: E-mini Natural Gas Henry Hub Futures
@@ -63,7 +58,6 @@ futures_spec:
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
     CME.MNG:
-      root_id: MNG
       terms: 12
       contract_size: 1000
       description: Micro Natural Gas Henry Hub Futures
@@ -75,7 +69,6 @@ futures_spec:
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
     CME.RB:
-      root_id: RB
       terms: 12
       contract_size: 42000
       description: RBOB Futures
@@ -87,7 +80,6 @@ futures_spec:
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
     ICE.G:
-      root_id: G
       terms: 24
       contract_size: 100
       description: Low-Sulfur Gasoil Futures
@@ -99,7 +91,6 @@ futures_spec:
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
     ICE.B:
-      root_id: B
       terms: 24
       contract_size: 1000
       description: Brent Futures
@@ -111,7 +102,6 @@ futures_spec:
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
     ONYX.NAPEW:
-      root_id: NAPEW
       terms: 20
       contract_size: 1000
       description: East-West Naphtha
@@ -125,7 +115,6 @@ futures_spec:
 
   precious_metals:
     CME.GC:
-      root_id: GC
       terms: 12
       contract_size: 100
       description: Gold Futures
@@ -137,7 +126,6 @@ futures_spec:
       contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
       active: true
     CME.QO:
-      root_id: QO
       terms: 6
       contract_size: 50
       description: E-mini Gold Futures
@@ -149,7 +137,6 @@ futures_spec:
       contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
       active: true
     CME.MGC:
-      root_id: MGC
       terms: 6
       contract_size: 10
       description: Micro Gold Futures
@@ -161,7 +148,6 @@ futures_spec:
       contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
       active: true
     CME.1OZ:
-      root_id: 1OZ
       terms: 6
       contract_size: 1
       description: 1-Ounce Gold Futures
@@ -173,7 +159,6 @@ futures_spec:
       contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
       active: true
     CME.SI:
-      root_id: SI
       terms: 12
       contract_size: 5000
       description: Silver Futures
@@ -185,7 +170,6 @@ futures_spec:
       contract_months: [ Jan, Mar, May, Jul, Sep, Dec]
       active: true
     CME.QI:
-      root_id: QI
       terms: 12
       contract_size: 2500
       description: E-mini Silver Futures
@@ -197,7 +181,6 @@ futures_spec:
       contract_months: [ Jan, Mar, May, Jul, Sep, Dec ]
       active: true
     CME.SIL:
-      root_id: SIL
       terms: 12
       contract_size: 1000
       description: Micro Silver Futures
@@ -209,7 +192,6 @@ futures_spec:
       contract_months: [ Jan, Mar, May, Jul, Sep, Dec ]
       active: true
     CME.PL:
-      root_id: PL
       terms: 12
       contract_size: 50
       description: Platinum Futures
@@ -221,7 +203,6 @@ futures_spec:
       contract_months: [ Jan, Apr, Jul, Oct ]
       active: true
     CME.PA:
-      root_id: PA
       terms: 12
       contract_size: 100
       description: Palladium Futures
@@ -234,7 +215,6 @@ futures_spec:
       active: true
   base_metals:
     CME.HG:
-      root_id: HG
       terms: 12
       contract_size: 25000
       description: Copper Futures
@@ -246,7 +226,6 @@ futures_spec:
       contract_months: [ Mar, May, Jul, Sep, Dec ]
       active: true
     CME.MHG:
-      root_id: MHG
       terms: 12
       contract_size: 2500
       description: Micro Copper Futures
@@ -258,7 +237,6 @@ futures_spec:
       contract_months: [ Mar, May, Jul, Sep, Dec ]
       active: true
     LME.AH:
-      root_id: LME.AH
       terms: 12
       contract_size: 25
       description: Aluminum Futures
@@ -270,7 +248,6 @@ futures_spec:
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
     LME.PB:
-      root_id: LME.PB
       terms: 12
       contract_size: 25
       description: Lead Futures
@@ -282,7 +259,6 @@ futures_spec:
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
     LME.NI:
-      root_id: LME.NI
       terms: 12
       contract_size: 6
       description: Nickle Futures
@@ -294,7 +270,6 @@ futures_spec:
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
     LME.CA:
-      root_id: LME.CA
       terms: 12
       contract_size: 25
       description: Copper Futures
@@ -306,7 +281,6 @@ futures_spec:
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
     LME.ZS:
-      root_id: LME.ZS
       terms: 12
       contract_size: 25
       description: Zinc Futures
@@ -319,7 +293,6 @@ futures_spec:
       active: true
   interest_rate:
     CME.SR3:
-      root_id: SR3
       terms: 12
       contract_size: 2500
       description: Three-Month SOFR Futures
@@ -332,7 +305,6 @@ futures_spec:
       active: true
   equities:
     CME.NQ:
-      root_id: NQ
       terms: 6
       contract_size: 20
       description: E-mini Nasdaq-100 Futures
@@ -344,7 +316,6 @@ futures_spec:
       contract_months: [Mar, Jun, Sep, Dec]
       active: true
     CME.MNQ:
-      root_id: MNQ
       terms: 6
       contract_size: 2
       description: Micro E-mini Nasdaq-100 Futures
@@ -356,7 +327,6 @@ futures_spec:
       contract_months: [ Mar, Jun, Sep, Dec ]
       active: true
     CME.ES:
-      root_id: ES
       terms: 6
       contract_size: 50
       description: E-mini S&P 500 Futures
@@ -368,7 +338,6 @@ futures_spec:
       contract_months: [ Mar, Jun, Sep, Dec ]
       active: true
     CME.MES:
-      root_id: ES
       terms: 6
       contract_size: 5
       description: Micro E-mini S&P 500 Futures

@@ -2,7 +2,7 @@
 
 futures_option_spec:
   LME.AH.OPT:
-    root_id: LME.AH
+    parent: LME.AH
     terms: 18
     contract_size: 25
     description: Aluminum Futures Option
@@ -14,10 +14,10 @@ futures_option_spec:
     contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
     active: true
   LME.PB.OPT:
-    root_id: LME.PB
+    parent: LME.PB
     terms: 18
     contract_size: 25
-    description: Aluminum Futures Option
+    description: Lead Futures Option
     time_zone: Europe/London
     trading_hours:
       open_time_local: "20:00:00"
@@ -26,10 +26,10 @@ futures_option_spec:
     contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
     active: true
   LME.NI.OPT:
-    root_id: LME.NI
+    parent: LME.NI
     terms: 18
     contract_size: 25
-    description: Aluminum Futures Option
+    description: Nickle Futures Option
     time_zone: Europe/London
     trading_hours:
       open_time_local: "20:00:00"
@@ -38,10 +38,10 @@ futures_option_spec:
     contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
     active: true
   LME.CA.OPT:
-    root_id: LME.CA
+    parent: LME.CA
     terms: 18
     contract_size: 25
-    description: Aluminum Futures Option
+    description: Copper Futures Option
     time_zone: Europe/London
     trading_hours:
       open_time_local: "20:00:00"
@@ -50,10 +50,10 @@ futures_option_spec:
     contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
     active: true
   LME.ZS.OPT:
-    root_id: LME.ZS
+    parent: LME.ZS
     terms: 18
     contract_size: 25
-    description: Aluminum Futures Option
+    description: Zinc Futures Option
     time_zone: Europe/London
     trading_hours:
       open_time_local: "20:00:00"

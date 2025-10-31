@@ -11,6 +11,7 @@ class IndexSpec:
     Data class representing the specification of Index.
     """
     root_id: str
+    venue: str
     description: str
     time_zone: str
     trading_days: List[int] = field(default_factory=list)
@@ -37,14 +38,11 @@ class IndexSpecReader(BaseSpecReader):
         index_spec_data = self.raw_data["index_spec"]
         specs = {}
 
-        for dataflow_id, idx_spec in index_spec_data.items():
-            if not isinstance(idx_spec, dict):
-                raise ValueError(f"Spec for dataflow_id '{dataflow_id}' is not a mapping")
-
-            # Extract fields, with defaults
+        for root_id, idx_spec in index_spec_data.items():
             trading_hours = idx_spec.get("trading_hours", {}) or {}
             idx_spec = IndexSpec(
                 root_id=idx_spec["root_id"],
+                venue=root_id.split('.')[0],
                 description=idx_spec.get("description", ""),
                 time_zone=idx_spec.get("time_zone", "UTC"),
                 open_time_local=trading_hours.get("open_time_local"),
@@ -52,8 +50,7 @@ class IndexSpecReader(BaseSpecReader):
                 trading_days=trading_hours.get("trading_days", []),
                 active=trading_hours.get("active", True),
             )
-            specs[dataflow_id] = idx_spec
-
+            specs[root_id] = idx_spec
         return specs
 
     def get_spec(self, root_id: str) -> IndexSpec:

@@ -25,33 +25,6 @@ class FuturesSpec:
     active: bool
     category: Optional[str] = None
 
-    def is_trading_now(self) -> bool:
-        """
-        Check if the contract is currently in trading hours
-
-        Returns:
-            Boolean indicating if market is open
-        """
-        now = dt.datetime.now(ZoneInfo(self.time_zone))
-
-        weekday = now.weekday()
-        current_time = now.time()
-
-        open_hour, open_min, open_sec = map(int, self.open_time_local.split(':'))
-        close_hour, close_min, close_sec = map(int, self.close_time_local.split(':'))
-
-        session_start = dt.time(open_hour, open_min, open_sec)
-        session_end = dt.time(close_hour, close_min, close_sec)
-
-        if weekday not in self.trading_days:
-            return False
-        elif self.trading_days.index(weekday) == 0:
-            return current_time >= session_start
-        elif self.trading_days.index(weekday) == len(self.trading_days) - 1:
-            return current_time < session_end
-        else:
-            return not (session_end <= current_time <= session_start)
-
 
 class FuturesSpecReader(BaseSpecReader):
     """Reader class for futures specification YAML configuration"""
@@ -77,11 +50,11 @@ class FuturesSpecReader(BaseSpecReader):
             categories[category] = []
             for dataflow_id, fut_spec in contracts.items():
                 contract = FuturesSpec(
-                    root_id=fut_spec["root_id"],
+                    root_id=dataflow_id,
                     terms=int(fut_spec["terms"]),
                     contract_size=int(fut_spec["contract_size"]),
                     description=fut_spec['description'],
-                    venue=dataflow_id.split('.')[-1],
+                    venue=dataflow_id.split('.')[0],
                     time_zone=fut_spec['time_zone'],
                     open_time_local=fut_spec['trading_hours']['open_time_local'],
                     close_time_local=fut_spec['trading_hours']['close_time_local'],

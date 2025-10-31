@@ -3,8 +3,9 @@ import json
 import yaml
 import pandas as pd
 from typing import Any, Optional
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, field_validator, computed_field
 
+from datacore.models.assets import BaseAsset
 from datacore.models.mktdata.schema import MktDataSchema
 
 from dataflow.config.settings import settings
@@ -14,17 +15,12 @@ from dataflow.utils.common import DataOutput
 class TimeSeriesConfig(BaseModel):
     """Model for each time series configuration entry"""
     service_id: int
-    series_id: str
-    series_type: str
-    root_id: str
-    venue: str
+    asset: BaseAsset
     data_schema: MktDataSchema
     data_source: str
     destination: list[str]
     extractor: str
-    description: Optional[str] = None
     additional_params: dict = Field(default_factory=dict)
-    symbol: Optional[str] = None
     active: bool
 
     @field_validator('destination', mode='before')
@@ -36,14 +32,6 @@ class TimeSeriesConfig(BaseModel):
             return v
         else:
             return []
-
-    @field_validator('symbol', mode='before')
-    @classmethod
-    def parse_symbol(cls, v: Any) -> Optional[str]:
-        if isinstance(v, str) and v:
-            return v
-        else:
-            return None
 
     @field_validator('additional_params', mode='before')
     @classmethod
@@ -65,20 +53,6 @@ class TimeSeriesConfig(BaseModel):
             return v.lower() in ('true', '1', 'yes', 'on')
         return bool(v)
 
-    @model_validator(mode='after')
-    def resolve_fut_description(self) -> 'TimeSeriesConfig':
-        from dataflow.config.loaders.fut_spec import futures_specs
-        if self.series_type == 'fut' and self.description is None:
-            term = int(self.series_id.split(".")[2])
-            term_in_word = {1: "1st", 2: "2nd", 3: "3rd"}
-            fut_contract = futures_specs.get_spec(self.root_id)
-            if fut_contract:
-                self.description = term_in_word.get(term, str(term)+"th") + " " + fut_contract.description
-            else:
-                self.description = term_in_word.get(term, str(term)+"th") + " " + self.root_id
-            self.description = self.description + f" ({self.venue})"
-        return self
-
     @staticmethod
     def output_type(destination: str):
         if "database" in destination or "db" in destination:
@@ -91,29 +65,31 @@ class TimeSeriesConfig(BaseModel):
             raise ValueError("Invalid destination type")
         return output_type
 
+    @computed_field
+    @property
+    def description(self) -> str:
+        """Automatically composed description from asset and pipeline components."""
+        extractor_map = {
+            "realtime": "rt",
+            "historical": "hist"
+        }
+        parts = [
+            self.asset.dflow_id,
+            self.asset.description,
+            f"{extractor_map[self.extractor]}",
+            f"{self.data_source}",
+            f"schema:{self.data_schema.value}"
+        ]
+        dest_str = ", ".join(self.destination)
+        parts.append(f"to:{dest_str}")
+        return " | ".join(parts)
 
     def __str__(self) -> str:
-        """String representation showing all fields except additional_params"""
-        dest_str = ','.join(self.destination) if self.destination else ''
-        desc_str = f"('{self.description}')" if self.description else 'None'
-
-        return (
-            f"TimeSeriesConfig("
-            f"service_id={self.service_id}, "
-            f"series_id='{self.series_id}', "
-            f"series_type='{self.series_type}', "
-            f"root_id='{self.root_id}', "
-            f"venue='{self.venue}', "
-            f"data_schema='{self.data_schema}', "
-            f"data_source='{self.data_source}', "
-            f"destination=[{dest_str}], "
-            f"extractor='{self.extractor}', "
-            f"description={desc_str}, "
-            f"active={self.active})"
-        )
+       return self.description
 
     def __repr__(self) -> str:
-        return self.__str__()
+        return self.description
+
 
 class TimeSeriesFilterMixin:
     """Mixin class providing common filtering methods"""
@@ -267,7 +243,7 @@ class TimeSeriesConfigManager(TimeSeriesFilterMixin):
         return TimeSeriesQueryResult(filtered)
 
 
-time_series_config = TimeSeriesConfigManager(active_only=True).time_series
+# time_series_config = TimeSeriesConfigManager(active_only=True).time_series
 
 
 if __name__ == "__main__":
