@@ -8,7 +8,7 @@ from dataflow.config.loaders.base import BaseSpecReader
 class ForwardSpec:
     """Data class representing the specification of a Forward contract."""
     root_id: str
-    venue: str,
+    venue: str
     time_zone: str
     description: str = ""
     trading_days: List[int] = field(default_factory=list)
