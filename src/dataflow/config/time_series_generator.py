@@ -191,9 +191,6 @@ def gen_fx_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
     return total_time_series, time_series
 
 
-
-
-
 def get_fwd_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
     for root_id, fwd_spec in fwd_specs.specs.items():
         pipelines = pipeline_specs.get_spec(root_id)
@@ -201,17 +198,22 @@ def get_fwd_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
             logger.warning(f"No pipeline for {root_id}")
             continue
         for pipeline in pipelines:
+            fwd = Forward(
+                dflow_id=root_id,
+                hours=TradingHours(time_zone=fwd_spec.time_zone,
+                                   open_time_local=fwd_spec.open_time_local,
+                                   close_time_local=fwd_spec.close_time_local,
+                                   days=fwd_spec.trading_days
+                                   ),
+                description=fwd_spec.description
+            )
             ts = TimeSeriesConfig(
                 service_id=total_time_series,
-                series_id=f"{root_id}",
-                series_type=AssetType.FWD,
-                root_id=root_id,
-                venue=root_id.split(".")[0],
+                asset=fwd,
                 data_schema=pipeline.schema,
                 data_source=pipeline.source,
                 destination=pipeline.output,
                 extractor=pipeline.extractor,
-                description=fwd_spec.description,
                 additional_params=pipeline.params,
                 active=fwd_spec.active
             )
