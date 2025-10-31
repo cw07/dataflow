@@ -200,7 +200,7 @@ class TimeSeriesQueryResult(TimeSeriesFilterMixin):
         return len(self._time_series) > 0
 
 
-class TimeSeriesConfigManager(TimeSeriesFilterMixin):
+class TimeSeriesManager(TimeSeriesFilterMixin):
     """Manages loading and querying service configurations"""
 
     def __init__(self, active_only: bool = True):
@@ -247,6 +247,6 @@ class TimeSeriesConfigManager(TimeSeriesFilterMixin):
 
 
 if __name__ == "__main__":
-    ts_config = TimeSeriesConfigManager(active_only=True).time_series
+    ts_config = TimeSeriesManager(active_only=True).time_series
     result = ts_config.get_realtime_ts().get_ts_by_source("bbg")
     print(result)

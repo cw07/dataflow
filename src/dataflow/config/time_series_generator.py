@@ -4,17 +4,7 @@ import sys
 import yaml
 import logging
 from pathlib import Path
-
-from datacore.models.assets.asset_type import AssetType
 from datacore.models.assets import Index, Forward, FXSpot, Futures, FuturesOptions, BaseFutures, TradingHours
-
-from dataflow.config.loaders.fx_spec import fx_specs
-from dataflow.config.loaders.spread_spec import spread_specs
-from dataflow.config.loaders.equity_spec import equity_specs
-from dataflow.config.loaders.fut_spec import futures_specs
-from dataflow.config.loaders.futopt_spec import futures_opt_specs
-from dataflow.config.loaders.fwd_spec import fwd_specs
-from dataflow.config.loaders.index_spec import index_specs
 
 from dataflow.config.loaders.pipelines import pipeline_specs
 from dataflow.config.loaders.time_series import TimeSeriesConfig
@@ -27,18 +17,19 @@ def parse_arguments(args):
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--serialization",
+        default=None,
         choices=["yaml", "csv"],
     )
     parser.add_argument(
         "--generate-html",
-        action="store_true",
-        default=True,
+        action="store_true"
     )
     args = parser.parse_args(args)
     return args
 
 
 def gen_fut_spec(num_time_series: int, time_series: list[TimeSeriesConfig]):
+    from dataflow.config.loaders.fut_spec import futures_specs
     for root_id, fut_spec in futures_specs.specs.items():
         base_future = BaseFutures(
             dflow_id=root_id,
@@ -81,6 +72,9 @@ def gen_fut_spec(num_time_series: int, time_series: list[TimeSeriesConfig]):
 
 
 def gen_fut_opt_spec(num_time_series: int, time_series: list[TimeSeriesConfig]):
+    from dataflow.config.loaders.fut_spec import futures_specs
+    from dataflow.config.loaders.futopt_spec import futures_opt_specs
+
     for root_id, fut_opt_spec in futures_opt_specs.specs.items():
         fut_spec = futures_specs.specs[fut_opt_spec.parent]
         base_future = BaseFutures(
@@ -129,6 +123,8 @@ def gen_fut_opt_spec(num_time_series: int, time_series: list[TimeSeriesConfig]):
 
 
 def gen_index_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
+    from dataflow.config.loaders.index_spec import index_specs
+
     for root_id, index_spec in index_specs.specs.items():
         pipelines = pipeline_specs.get_spec(root_id)
         if not pipelines:
@@ -161,6 +157,8 @@ def gen_index_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
 
 
 def gen_fx_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
+    from dataflow.config.loaders.fx_spec import fx_specs
+
     for root_id, fx_spec in fx_specs.specs.items():
         pipelines = pipeline_specs.get_spec(root_id)
         if not pipelines:
@@ -192,6 +190,8 @@ def gen_fx_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
 
 
 def get_fwd_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
+    from dataflow.config.loaders.fwd_spec import fwd_specs
+
     for root_id, fwd_spec in fwd_specs.specs.items():
         pipelines = pipeline_specs.get_spec(root_id)
         if not pipelines:
@@ -225,6 +225,8 @@ def get_fwd_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
 
 
 def gen_spread_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
+    from dataflow.config.loaders.spread_spec import spread_specs
+
     for root_id, spread_spec in spread_specs.specs.items():
         pipelines = pipeline_specs.get_spec(root_id)
         if not pipelines:
@@ -236,6 +238,8 @@ def gen_spread_spec(total_time_series: int, time_series: list[TimeSeriesConfig])
 
 
 def gen_equity_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
+    from dataflow.config.loaders.equity_spec import equity_specs
+
     for equity_spec in equity_specs.specs.items():
         pass
 
@@ -253,7 +257,8 @@ def main(args):
     total_time_series, time_series = get_fwd_spec(total_time_series, time_series)
     total_time_series, time_series = gen_equity_spec(total_time_series, time_series)
     total_time_series, time_series = gen_spread_spec(total_time_series, time_series)
-    serialization(time_series, output_type=args.serialization)
+    if args.serialization:
+        serialization(time_series, output_type=args.serialization)
     if args.generate_html:
         time_series_html(time_series, output_path=Path("./time_series.html"))
 
@@ -285,8 +290,6 @@ def clmain():
 
 if __name__ == '__main__':
     gen_args = [
-        "--serialization", "yaml",
-        "--generate-html"
     ]
 
     main(gen_args)
