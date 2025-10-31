@@ -8,8 +8,8 @@ futures_option_spec:
     description: Aluminum Futures Option
     time_zone: Europe/London
     trading_hours:
-      open_time_local: "20:00:00"
-      close_time_local: "19:45:00"
+      open_time_local: ["20:00:00"]
+      close_time_local: ["19:45:00"]
       trading_days: [ 0,1,2,3,4 ]
     contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
     active: true
@@ -20,8 +20,8 @@ futures_option_spec:
     description: Lead Futures Option
     time_zone: Europe/London
     trading_hours:
-      open_time_local: "20:00:00"
-      close_time_local: "19:45:00"
+      open_time_local: ["20:00:00"]
+      close_time_local: ["19:45:00"]
       trading_days: [ 0,1,2,3,4 ]
     contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
     active: true
@@ -32,8 +32,8 @@ futures_option_spec:
     description: Nickle Futures Option
     time_zone: Europe/London
     trading_hours:
-      open_time_local: "20:00:00"
-      close_time_local: "19:45:00"
+      open_time_local: ["20:00:00"]
+      close_time_local: ["19:45:00"]
       trading_days: [ 0,1,2,3,4 ]
     contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
     active: true
@@ -44,8 +44,8 @@ futures_option_spec:
     description: Copper Futures Option
     time_zone: Europe/London
     trading_hours:
-      open_time_local: "20:00:00"
-      close_time_local: "19:45:00"
+      open_time_local: ["20:00:00"]
+      close_time_local: ["19:45:00"]
       trading_days: [ 0,1,2,3,4 ]
     contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
     active: true
@@ -56,8 +56,8 @@ futures_option_spec:
     description: Zinc Futures Option
     time_zone: Europe/London
     trading_hours:
-      open_time_local: "20:00:00"
-      close_time_local: "19:45:00"
+      open_time_local: ["20:00:00"]
+      close_time_local: ["19:45:00"]
       trading_days: [ 0,1,2,3,4 ]
     contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
     active: true

@@ -8,8 +8,8 @@ futures_spec:
       description: WTI Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4]
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
@@ -19,8 +19,8 @@ futures_spec:
       description: E-mini WTI Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
@@ -30,8 +30,8 @@ futures_spec:
       description: Micro WTI Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
@@ -41,8 +41,8 @@ futures_spec:
       description: Natural Gas Henry Hub Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [6,0,1,2,3,4]
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
@@ -52,8 +52,8 @@ futures_spec:
       description: E-mini Natural Gas Henry Hub Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
@@ -63,8 +63,8 @@ futures_spec:
       description: Micro Natural Gas Henry Hub Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
@@ -74,8 +74,8 @@ futures_spec:
       description: RBOB Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
@@ -85,8 +85,8 @@ futures_spec:
       description: Low-Sulfur Gasoil Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "20:00:00"
-        close_time_local: "18:00:00"
+        open_time_local: ["20:00:00"]
+        close_time_local: ["18:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
@@ -96,8 +96,8 @@ futures_spec:
       description: Brent Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "20:00:00"
-        close_time_local: "18:00:00"
+        open_time_local: ["20:00:00"]
+        close_time_local: ["18:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
@@ -107,8 +107,8 @@ futures_spec:
       description: East-West Naphtha
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
@@ -120,8 +120,8 @@ futures_spec:
       description: Gold Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
       active: true
@@ -131,8 +131,8 @@ futures_spec:
       description: E-mini Gold Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
       active: true
@@ -142,8 +142,8 @@ futures_spec:
       description: Micro Gold Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
       active: true
@@ -153,8 +153,8 @@ futures_spec:
       description: 1-Ounce Gold Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Feb, Apr, Jun, Aug, Oct, Dec ]
       active: true
@@ -164,8 +164,8 @@ futures_spec:
       description: Silver Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4]
       contract_months: [ Jan, Mar, May, Jul, Sep, Dec]
       active: true
@@ -175,8 +175,8 @@ futures_spec:
       description: E-mini Silver Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Mar, May, Jul, Sep, Dec ]
       active: true
@@ -186,8 +186,8 @@ futures_spec:
       description: Micro Silver Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Mar, May, Jul, Sep, Dec ]
       active: true
@@ -197,8 +197,8 @@ futures_spec:
       description: Platinum Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Jan, Apr, Jul, Oct ]
       active: true
@@ -208,8 +208,8 @@ futures_spec:
       description: Palladium Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Mar, Jun, Sep, Dec ]
       active: true
@@ -220,8 +220,8 @@ futures_spec:
       description: Copper Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Mar, May, Jul, Sep, Dec ]
       active: true
@@ -231,8 +231,8 @@ futures_spec:
       description: Micro Copper Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Mar, May, Jul, Sep, Dec ]
       active: true
@@ -242,8 +242,8 @@ futures_spec:
       description: Aluminum Futures
       time_zone: Europe/London
       trading_hours:
-        open_time_local: "20:00:00"
-        close_time_local: "19:45:00"
+        open_time_local: ["20:00:00"]
+        close_time_local: ["19:45:00"]
         trading_days: [ 0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
@@ -253,8 +253,8 @@ futures_spec:
       description: Lead Futures
       time_zone: Europe/London
       trading_hours:
-        open_time_local: "20:00:00"
-        close_time_local: "19:45:00"
+        open_time_local: ["20:00:00"]
+        close_time_local: ["19:45:00"]
         trading_days: [ 0,1,2,3,4 ]
       contract_months: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec ]
       active: true
@@ -264,8 +264,8 @@ futures_spec:
       description: Nickle Futures
       time_zone: Europe/London
       trading_hours:
-        open_time_local: "20:00:00"
-        close_time_local: "19:45:00"
+        open_time_local: ["20:00:00"]
+        close_time_local: ["19:45:00"]
         trading_days: [0,1,2,3,4]
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
@@ -275,8 +275,8 @@ futures_spec:
       description: Copper Futures
       time_zone: Europe/London
       trading_hours:
-        open_time_local: "20:00:00"
-        close_time_local: "19:45:00"
+        open_time_local: ["20:00:00"]
+        close_time_local: ["19:45:00"]
         trading_days: [0,1,2,3,4]
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
@@ -286,8 +286,8 @@ futures_spec:
       description: Zinc Futures
       time_zone: Europe/London
       trading_hours:
-        open_time_local: "20:00:00"
-        close_time_local: "19:45:00"
+        open_time_local: ["20:00:00"]
+        close_time_local: ["19:45:00"]
         trading_days: [0,1,2,3,4]
       contract_months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
       active: true
@@ -298,8 +298,8 @@ futures_spec:
       description: Three-Month SOFR Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [Mar, Jun, Sep, Dec] # and the nearest 6 serial contract months
       active: true
@@ -310,8 +310,8 @@ futures_spec:
       description: E-mini Nasdaq-100 Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [Mar, Jun, Sep, Dec]
       active: true
@@ -321,8 +321,8 @@ futures_spec:
       description: Micro E-mini Nasdaq-100 Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Mar, Jun, Sep, Dec ]
       active: true
@@ -332,8 +332,8 @@ futures_spec:
       description: E-mini S&P 500 Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Mar, Jun, Sep, Dec ]
       active: true
@@ -343,8 +343,8 @@ futures_spec:
       description: Micro E-mini S&P 500 Futures
       time_zone: America/New_York
       trading_hours:
-        open_time_local: "18:00:00"
-        close_time_local: "17:00:00"
+        open_time_local: ["18:00:00"]
+        close_time_local: ["17:00:00"]
         trading_days: [ 6,0,1,2,3,4 ]
       contract_months: [ Mar, Jun, Sep, Dec ]
       active: true

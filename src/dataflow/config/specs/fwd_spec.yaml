@@ -8,8 +8,8 @@ forward_spec:
     time_zone: Europe/London
     ccy: USD
     trading_hours:
-      open_time_local: "01:00:00"
-      close_time_local: "19:00:00"
+      open_time_local: ["01:00:00"]
+      close_time_local: ["19:00:00"]
       trading_days: [ 0,1,2,3,4 ]
       active: true
   LME.LMCADS03:
@@ -19,8 +19,8 @@ forward_spec:
     time_zone: Europe/London
     ccy: USD
     trading_hours:
-      open_time_local: "01:00:00"
-      close_time_local: "19:00:00"
+      open_time_local: ["01:00:00"]
+      close_time_local: ["19:00:00"]
       trading_days: [ 0,1,2,3,4 ]
       active: true
   LME.LMNIDS03:
@@ -30,8 +30,8 @@ forward_spec:
     time_zone: Europe/London
     ccy: USD
     trading_hours:
-      open_time_local: "01:00:00"
-      close_time_local: "19:00:00"
+      open_time_local: ["01:00:00"]
+      close_time_local: ["19:00:00"]
       trading_days: [ 0,1,2,3,4 ]
       active: true
   LME.LMPBDS03:
@@ -41,8 +41,8 @@ forward_spec:
     time_zone: Europe/London
     ccy: USD
     trading_hours:
-      open_time_local: "01:00:00"
-      close_time_local: "19:00:00"
+      open_time_local: ["01:00:00"]
+      close_time_local: ["19:00:00"]
       trading_days: [ 0,1,2,3,4 ]
       active: true
   LME.LMZSDS03:
@@ -52,7 +52,7 @@ forward_spec:
     time_zone: Europe/London
     ccy: USD
     trading_hours:
-      open_time_local: "01:00:00"
-      close_time_local: "19:00:00"
+      open_time_local: ["01:00:00"]
+      close_time_local: ["19:00:00"]
       trading_days: [ 0,1,2,3,4 ]
       active: true
