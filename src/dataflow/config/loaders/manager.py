@@ -2,6 +2,7 @@ import re
 import logging
 from typing import Optional
 
+from datacore.models.mktdata.venue import Venue
 from datacore.models.assets import Index, Forward, FXSpot, Futures, FuturesOptions, BaseFutures, TradingHours
 
 from dataflow.config.loaders.pipelines import pipeline_specs
@@ -150,6 +151,7 @@ def gen_fx_spec(total_time_series: int, time_series: list[TimeSeriesConfig]):
         for pipeline in pipelines:
             fx = FXSpot(
                 dflow_id=root_id,
+                venue=Venue.GLOBAL,
                 hours=TradingHours(time_zone=fx_spec.time_zone,
                                    open_time_local=fx_spec.open_time_local,
                                    close_time_local=fx_spec.close_time_local,

@@ -29,7 +29,7 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
         self.data_sets: dict = self.get_data_sets()
         self.instrument_id_to_raw_sym: dict[int, str] = {}
         self.resolve_raw_symbols()
-        self.raw_sym_to_ts: dict[str, TimeSeriesConfig] = {s.symbol: s for s in self.time_series}
+        self.raw_sym_to_ts: dict[str, TimeSeriesConfig] = {s.asset.symbol: s for s in self.time_series}
         self.dbento_client = None
 
     def validate_config(self) -> None:
@@ -51,7 +51,7 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     def subscribe(self):
         for data_set, schema_to_all_ts in self.data_sets.items():
             for schema, all_ts in schema_to_all_ts.items():
-                db_raw_symbols = [ts.symbol for ts in all_ts]
+                db_raw_symbols = [ts.asset.symbol for ts in all_ts]
                 logger.info(f"Subscribing to {data_set} {schema} for {len(db_raw_symbols)} symbols")
                 if db_raw_symbols:
                     self.dbento_client.subscribe(
@@ -94,19 +94,19 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
                 logger.error(f"Databento realtime extractor stopped with error: {res}")
 
     def resolve_raw_symbols(self):
-        mapping = {}  # {series_id: raw_symbol}
+        mapping = {}  # {dflow_id: raw_symbol}
         for data_set, schema_to_ts in self.data_sets.items():
-            series_id_in_data_set = []
+            dflow_id_in_dataset = []
             for schema, all_ts in schema_to_ts.items():
-                series_id_in_data_set.extend([ts.series_id for ts in all_ts])
-            mapping.update(db_symbol_resolver.resolve(series_id_in_data_set, data_set))
+                dflow_id_in_dataset.extend([ts.asset.dflow_id for ts in all_ts])
+            mapping.update(db_symbol_resolver.resolve(dflow_id_in_dataset, data_set))
         for ts in self.time_series:
-            ts.symbol = mapping.get(ts.series_id, ts.symbol)
+            ts.asset.symbol = mapping.get(ts.asset.dflow_id, ts.asset.symbol)
 
     def get_data_sets(self) -> dict[str, dict[str, list[TimeSeriesConfig]]]:
         data_sets = defaultdict(lambda: defaultdict(list))
         for ts in self.time_series:
-            data_set = VENUE_DATASET_MAP.get(ts.venue)
+            data_set = VENUE_DATASET_MAP.get(ts.asset.venue)
             if data_set is None:
                 logger.error(
                     f"Cannot find the dataset for {ts.venue}, "
@@ -134,11 +134,12 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
     def handle_mbp1(self, msg: db.MBP1Msg) -> None:
         try:
             symbol = self.instrument_id_to_raw_sym[msg.instrument_id]
-            time_series = self.raw_sym_to_ts[symbol]
+            ts = self.raw_sym_to_ts[symbol]
 
             new_msg = {
-                "asset_type": time_series.series_type,
-                "vendor":  time_series.data_source,
+                "venue": str(ts.asset.venue),
+                "asset_type": ts.asset.asset_type,
+                "vendor":  ts.data_source,
                 "symbol": symbol,
                 "price": msg.pretty_price,
                 "ts_event": msg.pretty_ts_event.isoformat(),
@@ -160,7 +161,7 @@ class DatabentoRealtimeExtractor(BaseRealtimeExtractor):
                 "ask_ct_00": msg.levels[0].ask_ct,
                 "mid_px_00": (msg.levels[0].bid_px * 0.000000001 + msg.levels[0].ask_px * 0.000000001) / 2,
             }
-            output_router.route(message=new_msg, time_series=time_series)
+            output_router.route(message=new_msg, time_series=ts)
         except Exception as e:
             logger.error(f"Error handle mbp1: {e}")
 
