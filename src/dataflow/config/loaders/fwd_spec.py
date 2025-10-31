@@ -8,6 +8,7 @@ from dataflow.config.loaders.base import BaseSpecReader
 class ForwardSpec:
     """Data class representing the specification of a Forward contract."""
     root_id: str
+    venue: str,
     time_zone: str
     description: str = ""
     trading_days: List[int] = field(default_factory=list)
@@ -32,13 +33,14 @@ class ForwardSpecReader(BaseSpecReader):
         forward_spec_data = self.raw_data["forward_spec"] or {}
         specs: Dict[str, ForwardSpec] = {}
 
-        for dataflow_id, fwd_spec in forward_spec_data.items():
+        for root_id, fwd_spec in forward_spec_data.items():
             if not isinstance(fwd_spec, dict):
-                raise ValueError(f"Spec for dataflow_id '{dataflow_id}' is not a mapping")
+                raise ValueError(f"Spec for root_id '{root_id}' is not a mapping")
 
             trading_hours = fwd_spec.get("trading_hours", {}) or {}
             fwd_spec = ForwardSpec(
                 root_id=fwd_spec["root_id"],
+                venue=fwd_spec["root_id"].split(".")[0],
                 description=fwd_spec["description"],
                 time_zone=fwd_spec["time_zone"],
                 open_time_local=trading_hours["open_time_local"],
@@ -46,8 +48,7 @@ class ForwardSpecReader(BaseSpecReader):
                 trading_days=trading_hours["trading_days"],
                 active=trading_hours["active"]
             )
-            specs[dataflow_id] = fwd_spec
-
+            specs[root_id] = fwd_spec
         return specs
 
 
